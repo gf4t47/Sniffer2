@@ -10,6 +10,16 @@
 
 namespace Model {
     using namespace std;
+
+	WindVector::WindVector() {
+
+	}
+
+	WindVector::WindVector(double x, double y, double z) {
+		this->at(0) = x;
+		this->at(1) = y;
+		this->at(2) = z;
+	}
     
     WindVector WindVector::operator+(const Model::WindVector &oth) {
         WindVector ret;

@@ -15,6 +15,8 @@
 namespace Model {
     class WindVector : public std::array<double, 3> {
     public:
+		WindVector();
+		WindVector(double x, double y, double z);
         WindVector operator+ (const WindVector & oth);
     };
 }
