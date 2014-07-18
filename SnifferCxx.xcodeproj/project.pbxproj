@@ -7,8 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AC42890719789E8200B99ACE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC42890619789E8200B99ACE /* main.cpp */; };
 		AC42890919789E8200B99ACE /* SnifferCxx.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC42890819789E8200B99ACE /* SnifferCxx.1 */; };
+		AC42892219789ED600B99ACE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC42891019789ED600B99ACE /* main.cpp */; };
+		AC42892319789ED600B99ACE /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC42891219789ED600B99ACE /* Cell.cpp */; };
+		AC42892419789ED600B99ACE /* Cells.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC42891419789ED600B99ACE /* Cells.cpp */; };
+		AC42892519789ED600B99ACE /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC42891619789ED600B99ACE /* Coordinate.cpp */; };
+		AC42892619789ED600B99ACE /* Map3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC42891819789ED600B99ACE /* Map3D.cpp */; };
+		AC42892719789ED600B99ACE /* Methane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC42891A19789ED600B99ACE /* Methane.cpp */; };
+		AC42892819789ED600B99ACE /* Wind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC42891D19789ED600B99ACE /* Wind.cpp */; };
+		AC42892919789ED600B99ACE /* WindVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC42891F19789ED600B99ACE /* WindVector.cpp */; };
+		AC42892D19789F0B00B99ACE /* testWindVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC42892C19789F0B00B99ACE /* testWindVector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,8 +34,25 @@
 
 /* Begin PBXFileReference section */
 		AC42890319789E8200B99ACE /* SnifferCxx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnifferCxx; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC42890619789E8200B99ACE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AC42890819789E8200B99ACE /* SnifferCxx.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = SnifferCxx.1; sourceTree = "<group>"; };
+		AC42891019789ED600B99ACE /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		AC42891219789ED600B99ACE /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cell.cpp; sourceTree = "<group>"; };
+		AC42891319789ED600B99ACE /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		AC42891419789ED600B99ACE /* Cells.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cells.cpp; sourceTree = "<group>"; };
+		AC42891519789ED600B99ACE /* Cells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cells.h; sourceTree = "<group>"; };
+		AC42891619789ED600B99ACE /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
+		AC42891719789ED600B99ACE /* Coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinate.h; sourceTree = "<group>"; };
+		AC42891819789ED600B99ACE /* Map3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Map3D.cpp; sourceTree = "<group>"; };
+		AC42891919789ED600B99ACE /* Map3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map3D.h; sourceTree = "<group>"; };
+		AC42891A19789ED600B99ACE /* Methane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Methane.cpp; sourceTree = "<group>"; };
+		AC42891B19789ED600B99ACE /* Methane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Methane.h; sourceTree = "<group>"; };
+		AC42891C19789ED600B99ACE /* Vector3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3D.h; sourceTree = "<group>"; };
+		AC42891D19789ED600B99ACE /* Wind.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wind.cpp; sourceTree = "<group>"; };
+		AC42891E19789ED600B99ACE /* Wind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wind.h; sourceTree = "<group>"; };
+		AC42891F19789ED600B99ACE /* WindVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindVector.cpp; sourceTree = "<group>"; };
+		AC42892019789ED600B99ACE /* WindVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindVector.h; sourceTree = "<group>"; };
+		AC42892119789ED600B99ACE /* Sniffer_Cxx.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = Sniffer_Cxx.1; sourceTree = "<group>"; };
+		AC42892C19789F0B00B99ACE /* testWindVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testWindVector.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +85,59 @@
 		AC42890519789E8200B99ACE /* SnifferCxx */ = {
 			isa = PBXGroup;
 			children = (
-				AC42890619789E8200B99ACE /* main.cpp */,
+				AC42892A19789F0B00B99ACE /* test */,
+				AC42890F19789ED600B99ACE /* src */,
 				AC42890819789E8200B99ACE /* SnifferCxx.1 */,
 			);
 			path = SnifferCxx;
+			sourceTree = "<group>";
+		};
+		AC42890F19789ED600B99ACE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				AC42891019789ED600B99ACE /* main.cpp */,
+				AC42891119789ED600B99ACE /* model */,
+				AC42892119789ED600B99ACE /* Sniffer_Cxx.1 */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		AC42891119789ED600B99ACE /* model */ = {
+			isa = PBXGroup;
+			children = (
+				AC42891219789ED600B99ACE /* Cell.cpp */,
+				AC42891319789ED600B99ACE /* Cell.h */,
+				AC42891419789ED600B99ACE /* Cells.cpp */,
+				AC42891519789ED600B99ACE /* Cells.h */,
+				AC42891619789ED600B99ACE /* Coordinate.cpp */,
+				AC42891719789ED600B99ACE /* Coordinate.h */,
+				AC42891819789ED600B99ACE /* Map3D.cpp */,
+				AC42891919789ED600B99ACE /* Map3D.h */,
+				AC42891A19789ED600B99ACE /* Methane.cpp */,
+				AC42891B19789ED600B99ACE /* Methane.h */,
+				AC42891C19789ED600B99ACE /* Vector3D.h */,
+				AC42891D19789ED600B99ACE /* Wind.cpp */,
+				AC42891E19789ED600B99ACE /* Wind.h */,
+				AC42891F19789ED600B99ACE /* WindVector.cpp */,
+				AC42892019789ED600B99ACE /* WindVector.h */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		AC42892A19789F0B00B99ACE /* test */ = {
+			isa = PBXGroup;
+			children = (
+				AC42892B19789F0B00B99ACE /* model */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		AC42892B19789F0B00B99ACE /* model */ = {
+			isa = PBXGroup;
+			children = (
+				AC42892C19789F0B00B99ACE /* testWindVector.cpp */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,7 +191,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC42890719789E8200B99ACE /* main.cpp in Sources */,
+				AC42892319789ED600B99ACE /* Cell.cpp in Sources */,
+				AC42892619789ED600B99ACE /* Map3D.cpp in Sources */,
+				AC42892919789ED600B99ACE /* WindVector.cpp in Sources */,
+				AC42892419789ED600B99ACE /* Cells.cpp in Sources */,
+				AC42892D19789F0B00B99ACE /* testWindVector.cpp in Sources */,
+				AC42892819789ED600B99ACE /* Wind.cpp in Sources */,
+				AC42892719789ED600B99ACE /* Methane.cpp in Sources */,
+				AC42892519789ED600B99ACE /* Coordinate.cpp in Sources */,
+				AC42892219789ED600B99ACE /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +279,12 @@
 		AC42890D19789E8200B99ACE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -204,6 +292,12 @@
 		AC42890E19789E8200B99ACE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
