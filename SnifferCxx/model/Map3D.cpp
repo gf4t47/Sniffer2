@@ -61,7 +61,9 @@ namespace Model {
         return (*this)(pos);
     }
 
-	Coordinate & Map3D::locatePosition(const WindVector & pos) const {
-		return Coordinate();
+	Coordinate Map3D::locatePosition(const WindVector & pos) const {
+		Coordinate ret;
+		transform(pos.begin(), pos.end(), ret.begin(), [](wv_item_t it){return (coord_item_t)it; });
+		return ret;
 	}
 }

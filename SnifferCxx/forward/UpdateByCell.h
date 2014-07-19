@@ -14,6 +14,8 @@
 
 namespace Forward {
     
+    typedef std::unordered_map<Model::Coordinate, size_t, Model::CoordHasher> pos_val_st;
+    
     class UpdateByCell : public ForwardChecking {
     public:
         ~UpdateByCell();
@@ -21,11 +23,12 @@ namespace Forward {
         std::shared_ptr<Model::Cells> Deduce(const std::shared_ptr<Model::Cells> cells, const Model::Map3D & map, size_t count) const;
         
     protected:
-        std::shared_ptr<Model::Cells> calcEnds(const Model::Cell & cell, const Model::Map3D map) const;
+        std::shared_ptr<Model::Cells> calcEnds(const Model::Cell & cell, const Model::Map3D & map) const;
         
     private:
-        std::shared_ptr<std::vector<std::unordered_map<Model::Coordinate, size_t, Model::CoordHasher>>> calcGaussianEnds(const Model::Coordinate & startPos,const Model::WindVector & wv, const Model::mtn_t particle_num, const Model::unit_t unit) const;
+        std::shared_ptr<pos_val_st> calcGaussianEnds(const Model::Coordinate & startPos,const Model::WindVector & wv, const Model::mtn_t particle_num, const Model::Map3D & map) const;
         std::shared_ptr<std::vector<Model::WindVector>> calcGaussianSamples(const Model::WindVector & mean, const Model::unit_t unit, const size_t num) const;
+        
     };
 }
 

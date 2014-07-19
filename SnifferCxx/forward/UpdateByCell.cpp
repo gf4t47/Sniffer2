@@ -36,27 +36,38 @@ namespace Forward {
         return ret;
     }
     
-    shared_ptr<vector<unordered_map<Coordinate, size_t, CoordHasher>>> UpdateByCell::calcGaussianEnds(const Coordinate & startPos, const WindVector & wv, const mtn_t particle_num, const unit_t unit) const {
-        auto winds = calcGaussianSamples(wv,unit, particle_num);
+    shared_ptr<pos_val_st> UpdateByCell::calcGaussianEnds(const Coordinate & startPos, const WindVector & wv, const mtn_t particle_num, const Map3D & map) const {
+        auto winds = calcGaussianSamples(wv,map.getUnit(), particle_num);
         size_t particle_num_per_wind = 1;
         
-        auto ret = make_shared<vector<unordered_map<Coordinate, size_t, CoordHasher>>>();
+        auto map_ret = make_shared<pos_val_st>();
         for_each(winds->begin(), winds->end(), 
-			[&ret, particle_num_per_wind, &startPos](WindVector & wv)
+			[&map_ret, particle_num_per_wind, &startPos, &map](WindVector & wv)
 			{
-			//	ret->push_back(make_pair(startPos + wv, particle_num_per_wind)); 
+                auto endPos =  map.locatePosition(startPos + wv);
+                auto find_ret = map_ret->find(endPos);
+                if (find_ret == map_ret->end()) {
+                    map_ret->at(endPos) = particle_num_per_wind;
+                }
+                else {
+                    map_ret->at(endPos) += particle_num_per_wind;
+                }
 			});
 
-        return ret;
+        return map_ret;
     }
     
-    shared_ptr<Cells> UpdateByCell::calcEnds(const Cell & cell, const Map3D map) const {
+    shared_ptr<Cells> UpdateByCell::calcEnds(const Cell & cell, const Map3D & map) const {
         if (!cell.isAirCell()) {
             return make_shared<Cells>();
         }
         
         auto curPos = cell.getCoordinate();
-		auto ends = calcGaussianEnds(curPos, cell.getWind().getWindVector(), cell.getMethane().getParticleNum(), map.getUnit());
+		auto end_vals = calcGaussianEnds(curPos, cell.getWind().getWindVector(), cell.getMethane().getParticleNum(), map);
+        
+        for (auto entry : *end_vals) {
+            
+        }
         
         return nullptr;
     }

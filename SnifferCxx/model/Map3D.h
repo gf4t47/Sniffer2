@@ -33,7 +33,7 @@ namespace Model{
         
         bool updateCell(Cell & cell);
 
-		Coordinate & locatePosition(const WindVector & pos) const;
+		Coordinate locatePosition(const WindVector & pos) const;
         
     protected:
         const size_t * getStartIndex() const;
