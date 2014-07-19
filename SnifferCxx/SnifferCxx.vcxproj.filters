@@ -19,6 +19,12 @@
     <Filter Include="Source Files\model">
       <UniqueIdentifier>{c3d5e557-d2bd-425b-b05e-6cab111a848e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\forward">
+      <UniqueIdentifier>{7b134845-092c-4cae-a062-b44aee3e45fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\forward">
+      <UniqueIdentifier>{9ef5c441-b232-47eb-a044-160237d3cdb8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="model\Cell.cpp">
@@ -45,6 +51,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="forward\ForwardChecking.cpp">
+      <Filter>Source Files\forward</Filter>
+    </ClCompile>
+    <ClCompile Include="forward\UpdateByCell.cpp">
+      <Filter>Source Files\forward</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="model\Cell.h">
@@ -70,6 +82,12 @@
     </ClInclude>
     <ClInclude Include="model\WindVector.h">
       <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="forward\ForwardChecking.h">
+      <Filter>Header Files\forward</Filter>
+    </ClInclude>
+    <ClInclude Include="forward\UpdateByCell.h">
+      <Filter>Header Files\forward</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

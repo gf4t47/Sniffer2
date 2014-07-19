@@ -14,7 +14,7 @@
 #include "Cell.h"
 
 namespace Model{
-    typedef std::unordered_map<Coordinate, Cell, Coordinate::CoordHasher> cells_t;
+    typedef std::unordered_map<Coordinate, Cell, CoordHasher> cells_t;
     class Cells : public cells_t{
         
     };

@@ -7,25 +7,32 @@
 //
 
 #include "WindVector.h"
+#include "Coordinate.h"
 
 namespace Model {
     using namespace std;
 
 	WindVector::WindVector()
-    :wv_t{0.0f,0.0f,0.0f} {
+		:wv_t{ { 0.0f, 0.0f, 0.0f } } {
 
 	}
 
-	WindVector::WindVector(double x, double y, double z)
-    :wv_t{x,y,z} {
+	WindVector::WindVector(wv_item_t x, wv_item_t y, wv_item_t z)
+		: wv_t{ { x, y, z } } {
         
 	}
     
-    WindVector WindVector::operator+(const Model::WindVector &oth) const{
+    WindVector WindVector::operator+(const WindVector &oth) const{
         WindVector ret;
-        transform(oth.begin(), oth.end(), begin(), ret.begin(), [](double it1, double it2){return it1 + it2;});
+		transform(oth.begin(), oth.end(), begin(), ret.begin(), [](wv_item_t it1, wv_item_t it2){return it1 + it2; });
         return ret;
     }
+
+	WindVector WindVector::operator+(const Coordinate &oth) const{
+		WindVector ret;
+		transform(oth.begin(), oth.end(), begin(), ret.begin(), [](coord_item_t it1, wv_item_t it2){return it1 + it2; });
+		return ret;
+	}
     
     ostream& operator<<(ostream& os, const WindVector& wv)
     {

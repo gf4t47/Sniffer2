@@ -48,6 +48,9 @@
     <ClCompile Include="model\testWindVector.cpp">
       <Filter>Test</Filter>
     </ClCompile>
+    <ClCompile Include="model\testMap3D.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SnifferCxx\model\Cell.h">

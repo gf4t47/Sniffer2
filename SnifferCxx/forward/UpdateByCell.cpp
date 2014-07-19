@@ -36,12 +36,17 @@ namespace Forward {
         return ret;
     }
     
-    shared_ptr<vector<pair<WindVector, size_t>>> UpdateByCell::calcGaussianEnds(const Coordinate & startPos, const WindVector & wv, const mtn_t particle_num, const unit_t unit) const {
+    shared_ptr<vector<unordered_map<Coordinate, size_t, CoordHasher>>> UpdateByCell::calcGaussianEnds(const Coordinate & startPos, const WindVector & wv, const mtn_t particle_num, const unit_t unit) const {
         auto winds = calcGaussianSamples(wv,unit, particle_num);
         size_t particle_num_per_wind = 1;
         
-        auto ret = make_shared<vector<pair<WindVector, size_t>>>();
-        for_each(winds->begin(), winds->end(), [&ret, particle_num_per_wind, &startPos](WindVector & wv){ ret->push_back(make_pair(startPos + wv, particle_num_per_wind)); });
+        auto ret = make_shared<vector<unordered_map<Coordinate, size_t, CoordHasher>>>();
+        for_each(winds->begin(), winds->end(), 
+			[&ret, particle_num_per_wind, &startPos](WindVector & wv)
+			{
+			//	ret->push_back(make_pair(startPos + wv, particle_num_per_wind)); 
+			});
+
         return ret;
     }
     
@@ -51,6 +56,7 @@ namespace Forward {
         }
         
         auto curPos = cell.getCoordinate();
+		auto ends = calcGaussianEnds(curPos, cell.getWind().getWindVector(), cell.getMethane().getParticleNum(), map.getUnit());
         
         return nullptr;
     }

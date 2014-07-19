@@ -60,4 +60,8 @@ namespace Model {
     Cell Map3D::getCell(Coordinate & pos) const{
         return (*this)(pos);
     }
+
+	Coordinate & Map3D::locatePosition(const WindVector & pos) const {
+		return Coordinate();
+	}
 }

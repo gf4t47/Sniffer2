@@ -118,6 +118,7 @@
     <ClCompile Include="..\SnifferCxx\model\Methane.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Wind.cpp" />
     <ClCompile Include="..\SnifferCxx\model\WindVector.cpp" />
+    <ClCompile Include="model\testMap3D.cpp" />
     <ClCompile Include="model\testWindVector.cpp" />
   </ItemGroup>
   <ItemGroup>

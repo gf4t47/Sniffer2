@@ -18,7 +18,7 @@ namespace Model {
         Wind();
         Wind(WindVector & wind, WindVector & potential);
         
-        const WindVector getWind();
+        WindVector getWindVector() const;	
         
         friend std::ostream& operator<<(std::ostream& os, const Wind& wind);
     private:

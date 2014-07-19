@@ -24,7 +24,7 @@ namespace Forward {
         std::shared_ptr<Model::Cells> calcEnds(const Model::Cell & cell, const Model::Map3D map) const;
         
     private:
-        std::shared_ptr<std::vector<std::pair<Model::WindVector, size_t>>> calcGaussianEnds(const Model::Coordinate & startPos, const Model::WindVector & wv, const Model::mtn_t particle_num, const Model::unit_t unit) const;
+        std::shared_ptr<std::vector<std::unordered_map<Model::Coordinate, size_t, Model::CoordHasher>>> calcGaussianEnds(const Model::Coordinate & startPos,const Model::WindVector & wv, const Model::mtn_t particle_num, const Model::unit_t unit) const;
         std::shared_ptr<std::vector<Model::WindVector>> calcGaussianSamples(const Model::WindVector & mean, const Model::unit_t unit, const size_t num) const;
     };
 }

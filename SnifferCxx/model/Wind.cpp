@@ -23,7 +23,7 @@ namespace Model {
         
     }
     
-    const WindVector Wind::getWind() {
+    WindVector Wind::getWindVector() const {
         return wind_ + potential_;
     }
     
