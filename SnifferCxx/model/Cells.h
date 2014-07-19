@@ -10,29 +10,13 @@
 #define __Sniffer_Cxx__Cells__
 
 #include <iostream>
-#include <boost/multi_array.hpp>
-#include <memory>
+#include <unordered_map>
 #include "Cell.h"
-#include "Coordinate.h"
 
 namespace Model{
-    typedef size_t unit_t;
-    typedef boost::multi_array<Cell, 3> cells_t;
-    
+    typedef std::unordered_map<Coordinate, Cell, Coordinate::CoordHasher> cells_t;
     class Cells : public cells_t{
-    public:
-        Cells(Coordinate & startIndex, Coordinate & range, unit_t unit);
         
-        unit_t getUnit();
-        
-        bool underGround(Coordinate & pos);
-        
-    protected:
-        std::shared_ptr<Coordinate> getStartIndex();
-        std::shared_ptr<Coordinate> getBoundary();
-        
-    private:
-        unit_t unit_;
     };
 }
 

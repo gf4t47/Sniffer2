@@ -9,6 +9,10 @@
 #include "Cell.h"
 
 namespace Model {
+    using namespace std;
+    
+    unordered_map<CellTag, string, enum_hash> Cell::TagString = {{CellTag::Air, "Air"}, {CellTag::Building, "Building"}, {CellTag::Ground, "Ground"}};
+    
     Cell::Cell()
     :coord_(Coordinate()),
     wind_(Wind()),
@@ -25,23 +29,39 @@ namespace Model {
         
     }
     
-    Wind & Cell::getWind() {
+    const Wind & Cell::getWind() const {
         return wind_;
     }
     
-    Methane & Cell::getMethane() {
+    const Methane & Cell::getMethane() const {
         return mtn_;
     }
     
-    Coordinate Cell::getCoordinate() {
+    const Coordinate & Cell::getCoordinate() const {
         return coord_;
     }
     
-    CellTag Cell::getTag() {
+    CellTag Cell::getTag() const{
         return tag_;
     }
     
-    bool Cell::isAirCell() {
+    bool Cell::isAirCell() const {
         return getTag() == CellTag::Air;
+    }
+    
+    bool Cell::hasMethane() const {
+        return mtn_.hasMethena();
+    }
+    
+    ostream& operator<<(ostream& os, const Cell& cell)
+    {
+        os << "{" << endl;
+        os << " Coord: " << cell.coord_ << endl;
+        os << " Tag: " << Cell::TagString[cell.tag_] << endl;
+        os << " Wind: " << cell.wind_ << endl;
+        os << " Methane: "<< cell.mtn_ << endl;
+        os << "}" << endl;
+        
+        return os;
     }
 }

@@ -13,11 +13,14 @@
 #include <array>
 
 namespace Model {
-    class WindVector : public std::array<double, 3> {
+    typedef std::array<double, 3> wv_t;
+    class WindVector : public wv_t {
     public:
 		WindVector();
 		WindVector(double x, double y, double z);
-        WindVector operator+ (const WindVector & oth);
+        WindVector operator+ (const WindVector & oth) const;
+        
+        friend std::ostream& operator<<(std::ostream& os, const WindVector& wv);
     };
 }
 

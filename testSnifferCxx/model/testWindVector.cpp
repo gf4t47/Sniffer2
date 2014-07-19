@@ -12,7 +12,7 @@
 
 using namespace std;
 
-BOOST_AUTO_TEST_CASE(universeInOrder)
+BOOST_AUTO_TEST_CASE(testOperatorPlus)
 {
 	using namespace Model;
 
@@ -22,6 +22,5 @@ BOOST_AUTO_TEST_CASE(universeInOrder)
 	WindVector w3{ 3, 5, 7 };
 
 	auto ret = w1 + w2;
-	cout << ret[0] << ret[1] << ret[2];
-	BOOST_CHECK(4 == 4);
+	BOOST_CHECK_EQUAL(ret, w2);
 }

@@ -10,6 +10,7 @@
 #define __Sniffer_Cxx__Cell__
 
 #include <iostream>
+#include <unordered_map>
 #include "Wind.h"
 #include "Methane.h"
 #include "Coordinate.h"
@@ -21,19 +22,36 @@ namespace Model {
         Building
     };
     
+    struct enum_hash
+    {
+        template <typename T>
+        inline
+        typename std::enable_if<std::is_enum<T>::value, std::size_t>::type
+        operator ()(T const value) const
+        {
+            return static_cast<std::size_t>(value);
+        }
+    };
+    
     class Cell {
     public:
         Cell();
         Cell(Coordinate & coord, CellTag tag, Methane & mtn, Wind & wind);
         
-        Wind & getWind();
-        Methane & getMethane();
-        Coordinate getCoordinate();
+        const Wind & getWind() const;
+        const Methane & getMethane() const ;
+        const Coordinate & getCoordinate() const;
         
-        bool isAirCell();
+        bool isAirCell() const;
+        bool hasMethane() const;
+        
+        friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
+        
+    public:
+        static std::unordered_map<CellTag, std::string, enum_hash> TagString;
         
     private:
-        CellTag getTag();
+        CellTag getTag() const;
         
     private:
         Coordinate coord_;

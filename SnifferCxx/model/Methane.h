@@ -12,16 +12,21 @@
 #include <iostream>
 
 namespace Model {
-    typedef double mtn_t;
+    typedef size_t mtn_t;
     
     class Methane {
     public:
         Methane();
         Methane(mtn_t c);
         
-        double getMethane();
-        mtn_t getParticleNum();
-        double getBackground();
+        static double getBackground();
+        
+        double getMethane() const;
+        mtn_t getParticleNum() const;
+        
+        bool hasMethena() const;
+        
+        friend std::ostream& operator<<(std::ostream& os, const Methane& mtn);
         
     private:
         mtn_t concentration_;

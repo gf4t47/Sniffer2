@@ -13,7 +13,6 @@
 
 #include <iostream>
 #include <boost/multi_array.hpp>
-#include <memory>
 #include "Cell.h"
 #include "Coordinate.h"
 
@@ -23,15 +22,20 @@ namespace Model{
     
     class Map3D : public map_t{
     public:
-        Map3D(Coordinate & startIndex, Coordinate & range, unit_t unit);
+        Map3D(size_t length, size_t width, size_t height, unit_t unit);
+        Map3D(Coordinate & startIndex, Coordinate & boundary, unit_t unit);
         
-        unit_t getUnit();
+        unit_t getUnit() const;
         
-        bool underGround(Coordinate & pos);
+        bool underGround(Coordinate & pos) const;
+        bool insideMap(Coordinate & pos) const;
+        Cell getCell(Coordinate & pos) const;
+        
+        bool updateCell(Cell & cell);
         
     protected:
-        std::shared_ptr<Coordinate> getStartIndex();
-        std::shared_ptr<Coordinate> getBoundary();
+        const size_t * getStartIndex() const;
+        const map_t::index * getBoundary() const;
         
     private:
         unit_t unit_;

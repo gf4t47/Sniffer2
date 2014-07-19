@@ -9,6 +9,8 @@
 #include "Wind.h"
 
 namespace Model {
+    using namespace std;
+    
     Wind::Wind()
     :potential_(WindVector()),
     wind_(WindVector()) {
@@ -21,7 +23,14 @@ namespace Model {
         
     }
     
-    WindVector Wind::getWind() {
+    const WindVector Wind::getWind() {
         return wind_ + potential_;
+    }
+    
+    ostream& operator<<(ostream& os, const Wind& wind)
+    {
+        os << "{"<<wind.wind_ <<" + "<<wind.potential_<<"}";
+        
+        return os;
     }
 }

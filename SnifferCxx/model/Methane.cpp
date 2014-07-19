@@ -9,6 +9,8 @@
 #include "Methane.h"
 
 namespace Model {
+    using namespace std;
+    
     const double background = 0.25;
     
     Methane::Methane()
@@ -25,11 +27,22 @@ namespace Model {
         return background;
     }
     
-    mtn_t Methane::getParticleNum() {
+    mtn_t Methane::getParticleNum() const {
         return concentration_;
     }
     
-    double Methane::getMethane() {
+    double Methane::getMethane() const {
         return getParticleNum() + getBackground();
+    }
+    
+    bool Methane::hasMethena() const {
+        return getParticleNum() > 0;
+    }
+    
+    ostream& operator<<(ostream& os, const Methane& mtn)
+    {
+        os << "{"<<mtn.concentration_ <<" + "<< background <<"}";
+        
+        return os;
     }
 }

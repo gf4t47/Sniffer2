@@ -1,0 +1,340 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ACE081CD19797F3000C6880A /* testWindVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081CC19797F3000C6880A /* testWindVector.cpp */; };
+		ACE081DE197980B000C6880A /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081CF197980B000C6880A /* Cell.cpp */; };
+		ACE081DF197980B000C6880A /* Cells.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081D1197980B000C6880A /* Cells.cpp */; };
+		ACE081E0197980B000C6880A /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081D3197980B000C6880A /* Coordinate.cpp */; };
+		ACE081E1197980B000C6880A /* Map3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081D5197980B000C6880A /* Map3D.cpp */; };
+		ACE081E2197980B000C6880A /* Methane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081D7197980B000C6880A /* Methane.cpp */; };
+		ACE081E3197980B000C6880A /* Wind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081DA197980B000C6880A /* Wind.cpp */; };
+		ACE081E4197980B000C6880A /* WindVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081DC197980B000C6880A /* WindVector.cpp */; };
+		ACE081EF197989CA00C6880A /* libboost_unit_test_framework-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE081E91979899700C6880A /* libboost_unit_test_framework-mt.dylib */; };
+		ACE081F0197989CA00C6880A /* libboost_unit_test_framework.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE081E71979899300C6880A /* libboost_unit_test_framework.dylib */; };
+		ACE081F51979979D00C6880A /* testMap3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081F31979979D00C6880A /* testMap3D.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ACE081A519797E4000C6880A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		ACE081A719797E4000C6880A /* testSnifferCxx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testSnifferCxx; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACE081B319797EBB00C6880A /* testSnifferCxx.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = testSnifferCxx.1; sourceTree = "<group>"; };
+		ACE081CC19797F3000C6880A /* testWindVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testWindVector.cpp; sourceTree = "<group>"; };
+		ACE081CF197980B000C6880A /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cell.cpp; sourceTree = "<group>"; };
+		ACE081D0197980B000C6880A /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		ACE081D1197980B000C6880A /* Cells.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cells.cpp; sourceTree = "<group>"; };
+		ACE081D2197980B000C6880A /* Cells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cells.h; sourceTree = "<group>"; };
+		ACE081D3197980B000C6880A /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
+		ACE081D4197980B000C6880A /* Coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinate.h; sourceTree = "<group>"; };
+		ACE081D5197980B000C6880A /* Map3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Map3D.cpp; sourceTree = "<group>"; };
+		ACE081D6197980B000C6880A /* Map3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map3D.h; sourceTree = "<group>"; };
+		ACE081D7197980B000C6880A /* Methane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Methane.cpp; sourceTree = "<group>"; };
+		ACE081D8197980B000C6880A /* Methane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Methane.h; sourceTree = "<group>"; };
+		ACE081D9197980B000C6880A /* Vector3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3D.h; sourceTree = "<group>"; };
+		ACE081DA197980B000C6880A /* Wind.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wind.cpp; sourceTree = "<group>"; };
+		ACE081DB197980B000C6880A /* Wind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wind.h; sourceTree = "<group>"; };
+		ACE081DC197980B000C6880A /* WindVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindVector.cpp; sourceTree = "<group>"; };
+		ACE081DD197980B000C6880A /* WindVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindVector.h; sourceTree = "<group>"; };
+		ACE081E71979899300C6880A /* libboost_unit_test_framework.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_unit_test_framework.dylib; path = ../../../../../usr/local/lib/libboost_unit_test_framework.dylib; sourceTree = "<group>"; };
+		ACE081E91979899700C6880A /* libboost_unit_test_framework-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_unit_test_framework-mt.dylib"; path = "../../../../../usr/local/lib/libboost_unit_test_framework-mt.dylib"; sourceTree = "<group>"; };
+		ACE081EB197989A800C6880A /* libboost_unit_test_framework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_unit_test_framework.a; path = ../../../../../usr/local/lib/libboost_unit_test_framework.a; sourceTree = "<group>"; };
+		ACE081ED197989AB00C6880A /* libboost_unit_test_framework-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_unit_test_framework-mt.a"; path = "../../../../../usr/local/lib/libboost_unit_test_framework-mt.a"; sourceTree = "<group>"; };
+		ACE081F31979979D00C6880A /* testMap3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testMap3D.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ACE081A419797E4000C6880A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACE081EF197989CA00C6880A /* libboost_unit_test_framework-mt.dylib in Frameworks */,
+				ACE081F0197989CA00C6880A /* libboost_unit_test_framework.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ACE0819E19797E4000C6880A = {
+			isa = PBXGroup;
+			children = (
+				ACE081ED197989AB00C6880A /* libboost_unit_test_framework-mt.a */,
+				ACE081EB197989A800C6880A /* libboost_unit_test_framework.a */,
+				ACE081E91979899700C6880A /* libboost_unit_test_framework-mt.dylib */,
+				ACE081E71979899300C6880A /* libboost_unit_test_framework.dylib */,
+				ACE081E6197980DE00C6880A /* test */,
+				ACE081E5197980CD00C6880A /* src */,
+				ACE081B319797EBB00C6880A /* testSnifferCxx.1 */,
+				ACE081A819797E4000C6880A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ACE081A819797E4000C6880A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ACE081A719797E4000C6880A /* testSnifferCxx */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ACE081CB19797F3000C6880A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				ACE081CC19797F3000C6880A /* testWindVector.cpp */,
+				ACE081F31979979D00C6880A /* testMap3D.cpp */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		ACE081CE197980B000C6880A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				ACE081CF197980B000C6880A /* Cell.cpp */,
+				ACE081D0197980B000C6880A /* Cell.h */,
+				ACE081D1197980B000C6880A /* Cells.cpp */,
+				ACE081D2197980B000C6880A /* Cells.h */,
+				ACE081D3197980B000C6880A /* Coordinate.cpp */,
+				ACE081D4197980B000C6880A /* Coordinate.h */,
+				ACE081D5197980B000C6880A /* Map3D.cpp */,
+				ACE081D6197980B000C6880A /* Map3D.h */,
+				ACE081D7197980B000C6880A /* Methane.cpp */,
+				ACE081D8197980B000C6880A /* Methane.h */,
+				ACE081D9197980B000C6880A /* Vector3D.h */,
+				ACE081DA197980B000C6880A /* Wind.cpp */,
+				ACE081DB197980B000C6880A /* Wind.h */,
+				ACE081DC197980B000C6880A /* WindVector.cpp */,
+				ACE081DD197980B000C6880A /* WindVector.h */,
+			);
+			name = model;
+			path = ../SnifferCxx/model;
+			sourceTree = "<group>";
+		};
+		ACE081E5197980CD00C6880A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				ACE081CE197980B000C6880A /* model */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		ACE081E6197980DE00C6880A /* test */ = {
+			isa = PBXGroup;
+			children = (
+				ACE081CB19797F3000C6880A /* model */,
+			);
+			name = test;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ACE081A619797E4000C6880A /* testSnifferCxx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACE081B019797E4000C6880A /* Build configuration list for PBXNativeTarget "testSnifferCxx" */;
+			buildPhases = (
+				ACE081A319797E4000C6880A /* Sources */,
+				ACE081A419797E4000C6880A /* Frameworks */,
+				ACE081A519797E4000C6880A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = testSnifferCxx;
+			productName = testSnifferCxx;
+			productReference = ACE081A719797E4000C6880A /* testSnifferCxx */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ACE0819F19797E4000C6880A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = JPL;
+			};
+			buildConfigurationList = ACE081A219797E4000C6880A /* Build configuration list for PBXProject "testSnifferCxx" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = ACE0819E19797E4000C6880A;
+			productRefGroup = ACE081A819797E4000C6880A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ACE081A619797E4000C6880A /* testSnifferCxx */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ACE081A319797E4000C6880A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACE081E2197980B000C6880A /* Methane.cpp in Sources */,
+				ACE081CD19797F3000C6880A /* testWindVector.cpp in Sources */,
+				ACE081E3197980B000C6880A /* Wind.cpp in Sources */,
+				ACE081DF197980B000C6880A /* Cells.cpp in Sources */,
+				ACE081F51979979D00C6880A /* testMap3D.cpp in Sources */,
+				ACE081E4197980B000C6880A /* WindVector.cpp in Sources */,
+				ACE081DE197980B000C6880A /* Cell.cpp in Sources */,
+				ACE081E1197980B000C6880A /* Map3D.cpp in Sources */,
+				ACE081E0197980B000C6880A /* Coordinate.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		ACE081AE19797E4000C6880A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		ACE081AF19797E4000C6880A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		ACE081B119797E4000C6880A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ACE081B219797E4000C6880A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ACE081A219797E4000C6880A /* Build configuration list for PBXProject "testSnifferCxx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACE081AE19797E4000C6880A /* Debug */,
+				ACE081AF19797E4000C6880A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACE081B019797E4000C6880A /* Build configuration list for PBXNativeTarget "testSnifferCxx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACE081B119797E4000C6880A /* Debug */,
+				ACE081B219797E4000C6880A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ACE0819F19797E4000C6880A /* Project object */;
+}
