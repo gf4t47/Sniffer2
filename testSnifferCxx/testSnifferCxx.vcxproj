@@ -114,10 +114,12 @@
     <ClCompile Include="..\SnifferCxx\model\Cell.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Cells.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Coordinate.cpp" />
+    <ClCompile Include="..\SnifferCxx\model\Hypothesis.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Map3D.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Methane.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Wind.cpp" />
     <ClCompile Include="..\SnifferCxx\model\WindVector.cpp" />
+    <ClCompile Include="model\testCells.cpp" />
     <ClCompile Include="model\testMap3D.cpp" />
     <ClCompile Include="model\testWindVector.cpp" />
   </ItemGroup>
@@ -125,6 +127,7 @@
     <ClInclude Include="..\SnifferCxx\model\Cell.h" />
     <ClInclude Include="..\SnifferCxx\model\Cells.h" />
     <ClInclude Include="..\SnifferCxx\model\Coordinate.h" />
+    <ClInclude Include="..\SnifferCxx\model\Hypothesis.h" />
     <ClInclude Include="..\SnifferCxx\model\Map3D.h" />
     <ClInclude Include="..\SnifferCxx\model\Methane.h" />
     <ClInclude Include="..\SnifferCxx\model\Vector3D.h" />

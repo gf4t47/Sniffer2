@@ -9,39 +9,37 @@
 #ifndef __Sniffer_Cxx__Map3D__
 #define __Sniffer_Cxx__Map3D__
 
-#include <iostream>
-
-#include <iostream>
 #include <boost/multi_array.hpp>
+#include <boost/logic/tribool.hpp>
 #include "Cell.h"
-#include "Coordinate.h"
 
 namespace Model{
-    typedef size_t unit_t;
-    typedef boost::multi_array<Cell, 3> map_t;
-    
-    class Map3D : public map_t{
-    public:
-        Map3D(size_t length, size_t width, size_t height, unit_t unit);
-        Map3D(Coordinate & startIndex, Coordinate & boundary, unit_t unit);
-        
-        unit_t getUnit() const;
-        
-        bool underGround(Coordinate & pos) const;
-        bool insideMap(Coordinate & pos) const;
-        Cell getCell(Coordinate & pos) const;
-        
-        bool updateCell(Cell & cell);
+	typedef boost::multi_array<Cell, 3> map_t;
 
-		Coordinate locatePosition(const WindVector & pos) const;
-        
-    protected:
-        const size_t * getStartIndex() const;
-        const map_t::index * getBoundary() const;
-        
-    private:
-        unit_t unit_;
-    };
+	class Map3D : public map_t{
+	public:
+		Map3D(size_t length, size_t width, size_t height, unit_t unit);
+		Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit);
+
+		unit_t getUnit() const;
+
+		boost::tribool insideMap(const Coordinate & pos) const;
+		Cell getCell(const Coordinate & pos) const;
+		bool updateCell(const Cell & cell);
+
+		Coordinate calcPosition(const Coordinate & pos, const WindVector & wv) const;
+		std::shared_ptr<Cell> calcCollisionByFullPath(const Coordinate & startPos, const Coordinate & endPos) const;
+		std::shared_ptr<Cell> calcCollisionByEndCell(const Coordinate & startPos, const Coordinate & endPos) const;
+
+		const map_t::size_type * getBoundary() const;
+		const map_t::index * getStartIndex() const;
+
+	private:
+		Coordinate calcStep(const Coordinate & curPos, const Coordinate & dstPos) const;
+
+	private:
+		unit_t unit_;
+	};
 }
 
 #endif /* defined(__Sniffer_Cxx__Map3D__) */

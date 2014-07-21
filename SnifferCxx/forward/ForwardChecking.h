@@ -9,19 +9,32 @@
 #ifndef __SnifferCxx__ForwardChecking__
 #define __SnifferCxx__ForwardChecking__
 
-#include <iostream>
 #include <memory>
-#include "../model/Cells.h"
-#include "../model/Map3D.h"
+
+namespace Model {
+	class Cells;
+	class Map3D;
+	class Hypothesis;
+}
 
 namespace Forward {
-    class ForwardChecking {
-    public:
-        virtual ~ ForwardChecking();
-        
-        virtual std::shared_ptr<Model::Cells> Deduce(std::shared_ptr<Model::Cells> cells, Model::Map3D & map, size_t count) = 0;
-    };
-    
+	class ForwardChecking {
+	public:
+		virtual ~ForwardChecking();
+
+		//************************************
+		// Method:    Deduce
+		// FullName:  Forward::ForwardChecking::Deduce
+		// Access:    virtual public 
+		// Returns:   std::shared_ptr<Model::Cells> : all the cells has some amount of methane after calculation.
+		// Qualifier:
+		// Parameter: const Model::Hypothesis & hypothesis
+		// Parameter: const Model::Map3D & map
+		// Parameter: size_t count : the number of iterations to calculate.
+		//************************************
+		virtual std::shared_ptr<Model::Cells> Deduce(const Model::Hypothesis & hypothesis, const Model::Map3D & map, size_t count) = 0;
+	};
+
 }
 
 #endif /* defined(__SnifferCxx__ForwardChecking__) */

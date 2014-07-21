@@ -12,25 +12,28 @@
 #include <iostream>
 
 namespace Model {
-    typedef size_t mtn_t;
-    
-    class Methane {
-    public:
-        Methane();
-        Methane(mtn_t c);
-        
-        static double getBackground();
-        
-        double getMethane() const;
-        mtn_t getParticleNum() const;
-        
-        bool hasMethena() const;
-        
-        friend std::ostream& operator<<(std::ostream& os, const Methane& mtn);
-        
-    private:
-        mtn_t concentration_;
-    };
+	typedef size_t mtn_t;
+
+	class Methane {
+	public:
+		Methane();
+		Methane(mtn_t c);
+
+		static double getBackground();
+		double getMethane() const;
+		mtn_t getParticleNum() const;
+
+		bool updateMethane(mtn_t concentration);
+
+		bool hasMethena() const;
+
+		bool operator== (const Methane & oth) const;
+
+		friend std::ostream& operator<<(std::ostream& os, const Methane& mtn);
+
+	private:
+		mtn_t concentration_;
+	};
 }
 
 #endif /* defined(__Sniffer_Cxx__Methane__) */

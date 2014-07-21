@@ -51,6 +51,12 @@
     <ClCompile Include="model\testMap3D.cpp">
       <Filter>Test</Filter>
     </ClCompile>
+    <ClCompile Include="..\SnifferCxx\model\Hypothesis.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\testCells.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SnifferCxx\model\Cell.h">
@@ -76,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="..\SnifferCxx\model\WindVector.h">
       <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\model\Hypothesis.h">
+      <Filter>Source Files\model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

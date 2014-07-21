@@ -9,7 +9,7 @@
 #include "ForwardChecking.h"
 
 namespace Forward {
-    ForwardChecking::~ForwardChecking() {
-        
-    }
+	ForwardChecking::~ForwardChecking() {
+
+	}
 }

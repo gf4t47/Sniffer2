@@ -9,15 +9,18 @@
 #ifndef __Sniffer_Cxx__Cells__
 #define __Sniffer_Cxx__Cells__
 
-#include <iostream>
 #include <unordered_map>
 #include "Cell.h"
 
 namespace Model{
-    typedef std::unordered_map<Coordinate, Cell, CoordHasher> cells_t;
-    class Cells : public cells_t{
-        
-    };
+	typedef std::unordered_map<Coordinate, Cell, CoordHasher> cells_t;
+	class Cells : public cells_t{
+	public:
+		std::shared_ptr<Cell> getCell(const Coordinate & pos) const;
+		bool updateCell(const Cell & cell);
+
+		bool mergeCellsByAddMethane(const Cells & cells);
+	};
 }
 
 #endif /* defined(__Sniffer_Cxx__Cells__) */

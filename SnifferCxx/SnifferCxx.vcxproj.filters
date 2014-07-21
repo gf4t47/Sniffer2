@@ -57,6 +57,9 @@
     <ClCompile Include="forward\UpdateByCell.cpp">
       <Filter>Source Files\forward</Filter>
     </ClCompile>
+    <ClCompile Include="model\Hypothesis.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="model\Cell.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="forward\UpdateByCell.h">
       <Filter>Header Files\forward</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Hypothesis.h">
+      <Filter>Header Files\model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

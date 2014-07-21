@@ -68,6 +68,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -86,6 +87,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\tools\boost_1_55_0_win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <EnablePREfast>true</EnablePREfast>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,6 +155,7 @@
     <ClCompile Include="model\Cell.cpp" />
     <ClCompile Include="model\Cells.cpp" />
     <ClCompile Include="model\Coordinate.cpp" />
+    <ClCompile Include="model\Hypothesis.cpp" />
     <ClCompile Include="model\Map3D.cpp" />
     <ClCompile Include="model\Methane.cpp" />
     <ClCompile Include="model\Wind.cpp" />
@@ -164,6 +167,7 @@
     <ClInclude Include="model\Cell.h" />
     <ClInclude Include="model\Cells.h" />
     <ClInclude Include="model\Coordinate.h" />
+    <ClInclude Include="model\Hypothesis.h" />
     <ClInclude Include="model\Map3D.h" />
     <ClInclude Include="model\Methane.h" />
     <ClInclude Include="model\Vector3D.h" />

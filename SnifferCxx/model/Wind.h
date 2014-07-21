@@ -13,18 +13,20 @@
 #include "WindVector.h"
 
 namespace Model {
-    class Wind {
-    public:
-        Wind();
-        Wind(WindVector & wind, WindVector & potential);
-        
-        WindVector getWindVector() const;	
-        
-        friend std::ostream& operator<<(std::ostream& os, const Wind& wind);
-    private:
-        WindVector wind_;
-        WindVector potential_;
-    };
+	class Wind {
+	public:
+		Wind();
+		Wind(const WindVector & wind);
+		Wind(const WindVector & wind, const WindVector & potential);
+
+		WindVector getWindVector() const;
+
+		bool operator== (const Wind & oth) const;
+		friend std::ostream& operator<<(std::ostream& os, const Wind& wind);
+	private:
+		WindVector wind_;
+		WindVector potential_;
+	};
 }
 
 #endif /* defined(__Sniffer_Cxx__Wind__) */

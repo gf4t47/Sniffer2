@@ -18,17 +18,16 @@ namespace Model {
 
 	typedef int coord_item_t;
 	typedef std::array<coord_item_t, 3> coord_t;
-  
-    class Coordinate : public coord_t {
-    public:
-        Coordinate();
+
+	class Coordinate : public coord_t {
+	public:
+		Coordinate();
 		Coordinate(coord_item_t x, coord_item_t y, coord_item_t z);
-        
+
 		Coordinate operator+ (const Coordinate & oth) const;
-        WindVector operator+ (const WindVector & oth) const;
-        
-        friend std::ostream& operator<<(std::ostream& os, const Coordinate& coord);
-    };
+
+		friend std::ostream& operator<<(std::ostream& os, const Coordinate& coord);
+	};
 
 	struct CoordHasher
 	{

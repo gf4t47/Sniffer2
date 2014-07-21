@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 JPL. All rights reserved.
 //
 
-#define BOOST_TEST_MODULE testWindVector
+#define BOOST_TEST_MODULE testMain
 #include <boost/test/unit_test.hpp>
 #include "../../SnifferCxx/model/WindVector.h"
 
@@ -22,5 +22,5 @@ BOOST_AUTO_TEST_CASE(testOperatorPlus)
 	WindVector w3{ 3, 5, 7 };
 
 	auto ret = w1 + w2;
-	BOOST_CHECK_EQUAL(ret, w2);
+	BOOST_CHECK_EQUAL(ret, w3);
 }
