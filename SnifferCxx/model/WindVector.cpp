@@ -24,19 +24,19 @@ namespace Model {
 
 	WindVector WindVector::operator+(const WindVector &oth) const{
 		WindVector ret;
-		transform(oth.begin(), oth.end(), begin(), ret.begin(), [](wv_item_t it1, wv_item_t it2){return it1 + it2; });
+		transform(oth.begin(), oth.end(), begin(), ret.begin(), [](const wv_item_t & it1, const wv_item_t & it2){return it1 + it2; });
 		return ret;
 	}
 
 	//WindVector WindVector::operator+(const Coordinate &oth) const{
 	//	WindVector ret;
-	//	transform(oth.begin(), oth.end(), begin(), ret.begin(), [](coord_item_t it1, wv_item_t it2){return it1 + it2; });
+	//	transform(oth.begin(), oth.end(), begin(), ret.begin(), [](const coord_item_t & it1, const wv_item_t & it2){return it1 + it2; });
 	//	return ret;
 	//}
 
 	Coordinate WindVector::operator/(const unit_t & unit) const {
 		Coordinate ret;
-		transform(begin(), end(), ret.begin(), [unit](wv_item_t it) {return it / unit; });
+		transform(begin(), end(), ret.begin(), [unit](const wv_item_t & it) {return it / unit; });
 		return ret;
 	}
 
