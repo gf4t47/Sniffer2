@@ -1,8 +1,8 @@
 //
-//  testMap3D.cpp
+//  testCells.cpp
 //  testSnifferCxx
 //
-//  Created by Ke Ding  on 7/18/14.
+//  Created by Ke Ding  on 7/20/14.
 //  Copyright (c) 2014 JPL. All rights reserved.
 //
 
@@ -50,7 +50,4 @@ BOOST_AUTO_TEST_CASE(testMergeCells)
 
 	cells1.mergeCellsByAddMethane(cells3);
 	cout << *cells1.getCell(c3);
-
-
-
 }
