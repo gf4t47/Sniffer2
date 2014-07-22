@@ -9,7 +9,7 @@
 #include "Gaussian.h"
 #include <random>
 
-namespace Stactistic {
+namespace Math {
     using namespace std;
     using namespace Model;
     

@@ -10,7 +10,7 @@
 #define __SnifferCxx__Gamma__
 
 
-namespace Stactistic {
+namespace Math {
     class Gamma {
     public:
         static double calcGammaPdf(double shape, double scale, double detected);

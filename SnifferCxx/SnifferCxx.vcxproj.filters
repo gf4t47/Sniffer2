@@ -25,6 +25,18 @@
     <Filter Include="Source Files\forward">
       <UniqueIdentifier>{9ef5c441-b232-47eb-a044-160237d3cdb8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{ffceeba6-1145-4d81-b480-15640d8c52a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{92e4e4b7-5739-4a11-a8ca-317b8e92b348}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\backward">
+      <UniqueIdentifier>{a4146118-f4ce-483e-8a13-df8b81b4a00b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\backward">
+      <UniqueIdentifier>{dc05b8b1-3639-4ab8-8023-3d502e69f43c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="model\Cell.cpp">
@@ -48,9 +60,6 @@
     <ClCompile Include="model\WindVector.cpp">
       <Filter>Source Files\model</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="forward\ForwardChecking.cpp">
       <Filter>Source Files\forward</Filter>
     </ClCompile>
@@ -59,6 +68,24 @@
     </ClCompile>
     <ClCompile Include="model\Hypothesis.cpp">
       <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Gamma.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Gaussian.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\GaussianBlur.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backwrad\BackwardChecking.cpp">
+      <Filter>Source Files\backward</Filter>
+    </ClCompile>
+    <ClCompile Include="forward\UpdateByConvolution.cpp">
+      <Filter>Source Files\forward</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +121,21 @@
     </ClInclude>
     <ClInclude Include="model\Hypothesis.h">
       <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Gamma.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Gaussian.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\GaussianBlur.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="backwrad\BackwardChecking.h">
+      <Filter>Header Files\backward</Filter>
+    </ClInclude>
+    <ClInclude Include="forward\UpdateByConvolution.h">
+      <Filter>Header Files\forward</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

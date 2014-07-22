@@ -10,7 +10,7 @@
 #include <boost/math/special_functions/gamma.hpp>
 
 
-namespace Stactistic {
+namespace Math {
     using namespace boost;
     
     double Gamma::calcGammaPdf(double shape, double scale, double detected) {

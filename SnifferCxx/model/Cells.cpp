@@ -22,6 +22,11 @@ namespace Model {
 		return make_shared<Cell>(find_ret->second);
 	}
 
+	shared_ptr<Cell> Cells::getCell(coord_item_t x, coord_item_t y, coord_item_t z) const {
+		Coordinate coord(x, y, z);
+		return getCell(coord);
+	}
+
 	bool Cells::updateCell(const Cell & cell) {
 		(*this)[cell.getCoordinate()] = cell;
 		return true;

@@ -149,9 +149,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="backwrad\BackwardChecking.cpp" />
     <ClCompile Include="forward\ForwardChecking.cpp" />
     <ClCompile Include="forward\UpdateByCell.cpp" />
+    <ClCompile Include="forward\UpdateByConvolution.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="math\Gamma.cpp" />
+    <ClCompile Include="math\Gaussian.cpp" />
+    <ClCompile Include="math\GaussianBlur.cpp" />
     <ClCompile Include="model\Cell.cpp" />
     <ClCompile Include="model\Cells.cpp" />
     <ClCompile Include="model\Coordinate.cpp" />
@@ -162,8 +167,13 @@
     <ClCompile Include="model\WindVector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="backwrad\BackwardChecking.h" />
     <ClInclude Include="forward\ForwardChecking.h" />
     <ClInclude Include="forward\UpdateByCell.h" />
+    <ClInclude Include="forward\UpdateByConvolution.h" />
+    <ClInclude Include="math\Gamma.h" />
+    <ClInclude Include="math\Gaussian.h" />
+    <ClInclude Include="math\GaussianBlur.h" />
     <ClInclude Include="model\Cell.h" />
     <ClInclude Include="model\Cells.h" />
     <ClInclude Include="model\Coordinate.h" />

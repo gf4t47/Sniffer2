@@ -9,8 +9,9 @@
 #include "GaussianBlur.h"
 #include <math.h>
 #include "../model/Cells.h"
+#include "../model/Map3D.h"
 
-namespace Stactistic {
+namespace Math {
     using namespace std;
     using namespace Model;
     
@@ -39,7 +40,7 @@ namespace Stactistic {
      * Anisotropic Diffusion," SIAM J. on Numerical Analysis, vol. 31, no. 2,
      * pp. 590-605, 1994.
      */
-    void GaussianBlur::gaussianiir3d(double *volume, long width, long height, long depth, double sigma, int numsteps)
+    void GaussianBlur::gaussianiir3d(double *volume, long width, long height, long depth, double sigma, int numsteps /* = 4*/)
     {
         const long plane = width*height;
         const long numel = plane*depth;
@@ -129,7 +130,56 @@ namespace Stactistic {
             volume[i] *= postscale;
     }
     
-    shared_ptr<Cells> GaussianBlur::BlurCells(const Model::Coordinate &location, const Model::Cells &cells, size_t step) {
-        return nullptr;
+    shared_ptr<Cells> GaussianBlur::BlurCells(const Map3D & map, const Coordinate &location, const Cells &cells, size_t step) {
+		auto ret_cells = make_shared<Cells>();
+
+		auto locate_x = location[0];
+		auto locate_y = location[1];
+		auto locate_z = location[2];
+		auto size = step * 2 + 1;
+
+		auto index = 0;
+		unique_ptr<double[]> arr(new double[size * size * size]);
+		for (int h = -step; h < -step + size; h++)  {
+			for (int w = -step; w < -step + size; w++) {
+				for (int l = -step; l < -step + size; l++){
+					auto cell_x = locate_x + l;
+					auto cell_y = locate_y + w;
+					auto cell_z = locate_z + h;
+
+					auto cell = cells.getCell(cell_x, cell_y, cell_z);
+					if (cell) {
+						arr[index++] = cell->getMethane().getParticleNum();
+					}
+					else {
+						arr[index++] = 0;
+					}
+				}
+			}
+        }
+
+		index = 0;
+		gaussianiir3d(arr.get(), size, size, size, step);
+		for (int h = -step; h < -step + size; h++)  {
+			for (int w = -step; w < -step + size; w++) {
+				for (int l = -step; l < -step + size; l++){
+					auto cell_x = locate_x + l;
+					auto cell_y = locate_y + w;
+					auto cell_z = locate_z + h;
+
+					auto bluredVal = arr[index++];
+					if (bluredVal > 0) { 	
+						Coordinate coord(cell_x, cell_y, cell_z);
+						if (map.insideMap(coord)) {
+							auto newCell = map.getCell(coord);
+							newCell.setMethaneConcentration(bluredVal);
+							ret_cells->updateCell(newCell);
+						}
+					}
+				}
+			}
+		}
+
+		return ret_cells;
     }
 }
