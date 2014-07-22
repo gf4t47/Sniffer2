@@ -158,15 +158,15 @@ namespace Model {
 			auto nextPos = curPos + calcStep(curPos, endPos);
 
 			auto next_ret = insideMap(nextPos);
-			if (!next_ret) { // end pos is out of boundary
+			if (!next_ret) { // next pos is out of boundary
 				return nullptr;
 			}
-			else if (indeterminate(next_ret)) { //end pos is hit on ground
+			else if (indeterminate(next_ret)) { //next pos is hit on ground
 				return make_shared<Cell>(getCell(curPos));
 			}
 
 			auto nextCell = getCell(nextPos);
-			if (!nextCell.isAirCell()) { //end pos is hit on building
+			if (!nextCell.isAirCell()) { //next pos is hit on building
 				return make_shared<Cell>(getCell(curPos));
 			}
 

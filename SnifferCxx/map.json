@@ -1,0 +1,22 @@
+{
+	"boundary": [100, 50, 10],
+    "wind" : [-2.5, -1.0, 0.5],
+    "unit" : 1,
+    
+    "building":
+    [
+    	{"location": [12, 6, 0], "boundary":[4, 4, 10]},
+    	{"location": [36, 6, 0], "boundary":[2, 4, 4]},
+    	{"location": [36, 18, 0], "boundary":[2, 4, 4]},
+    	{"location": [36, 30, 0], "boundary":[2, 4, 4]},
+    	{"location": [36, 42, 0], "boundary":[2, 4, 4]},
+    	{"location": [60, 6, 0], "boundary":[2, 4, 4]},
+    	{"location": [60, 18, 0], "boundary":[2, 4, 4]},
+    	{"location": [60, 30, 0], "boundary":[2, 4, 4]},
+    	{"location": [60, 42, 0], "boundary":[2, 4, 4]},
+    	{"location": [84, 6, 0], "boundary":[2, 4, 4]},
+    	{"location": [84, 18, 0], "boundary":[2, 4, 4]},
+    	{"location": [84, 30, 0], "boundary":[2, 4, 4]},
+    	{"location": [84, 42, 0], "boundary":[2, 4, 4]}
+    ]
+}

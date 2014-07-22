@@ -15,9 +15,6 @@
 		ACE081E2197980B000C6880A /* Methane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081D7197980B000C6880A /* Methane.cpp */; };
 		ACE081E3197980B000C6880A /* Wind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081DA197980B000C6880A /* Wind.cpp */; };
 		ACE081E4197980B000C6880A /* WindVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081DC197980B000C6880A /* WindVector.cpp */; };
-		ACE081EF197989CA00C6880A /* libboost_unit_test_framework-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE081E91979899700C6880A /* libboost_unit_test_framework-mt.dylib */; };
-		ACE081F0197989CA00C6880A /* libboost_unit_test_framework.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE081E71979899300C6880A /* libboost_unit_test_framework.dylib */; };
-		ACE081F51979979D00C6880A /* testMap3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE081F31979979D00C6880A /* testMap3D.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,11 +48,6 @@
 		ACE081DB197980B000C6880A /* Wind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wind.h; sourceTree = "<group>"; };
 		ACE081DC197980B000C6880A /* WindVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindVector.cpp; sourceTree = "<group>"; };
 		ACE081DD197980B000C6880A /* WindVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindVector.h; sourceTree = "<group>"; };
-		ACE081E71979899300C6880A /* libboost_unit_test_framework.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_unit_test_framework.dylib; path = ../../../../../usr/local/lib/libboost_unit_test_framework.dylib; sourceTree = "<group>"; };
-		ACE081E91979899700C6880A /* libboost_unit_test_framework-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_unit_test_framework-mt.dylib"; path = "../../../../../usr/local/lib/libboost_unit_test_framework-mt.dylib"; sourceTree = "<group>"; };
-		ACE081EB197989A800C6880A /* libboost_unit_test_framework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_unit_test_framework.a; path = ../../../../../usr/local/lib/libboost_unit_test_framework.a; sourceTree = "<group>"; };
-		ACE081ED197989AB00C6880A /* libboost_unit_test_framework-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_unit_test_framework-mt.a"; path = "../../../../../usr/local/lib/libboost_unit_test_framework-mt.a"; sourceTree = "<group>"; };
-		ACE081F31979979D00C6880A /* testMap3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testMap3D.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +55,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACE081EF197989CA00C6880A /* libboost_unit_test_framework-mt.dylib in Frameworks */,
-				ACE081F0197989CA00C6880A /* libboost_unit_test_framework.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,10 +64,6 @@
 		ACE0819E19797E4000C6880A = {
 			isa = PBXGroup;
 			children = (
-				ACE081ED197989AB00C6880A /* libboost_unit_test_framework-mt.a */,
-				ACE081EB197989A800C6880A /* libboost_unit_test_framework.a */,
-				ACE081E91979899700C6880A /* libboost_unit_test_framework-mt.dylib */,
-				ACE081E71979899300C6880A /* libboost_unit_test_framework.dylib */,
 				ACE081E6197980DE00C6880A /* test */,
 				ACE081E5197980CD00C6880A /* src */,
 				ACE081B319797EBB00C6880A /* testSnifferCxx.1 */,
@@ -97,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				ACE081CC19797F3000C6880A /* testWindVector.cpp */,
-				ACE081F31979979D00C6880A /* testMap3D.cpp */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -196,7 +181,6 @@
 				ACE081CD19797F3000C6880A /* testWindVector.cpp in Sources */,
 				ACE081E3197980B000C6880A /* Wind.cpp in Sources */,
 				ACE081DF197980B000C6880A /* Cells.cpp in Sources */,
-				ACE081F51979979D00C6880A /* testMap3D.cpp in Sources */,
 				ACE081E4197980B000C6880A /* WindVector.cpp in Sources */,
 				ACE081DE197980B000C6880A /* Cell.cpp in Sources */,
 				ACE081E1197980B000C6880A /* Map3D.cpp in Sources */,
@@ -290,7 +274,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-lboost_unit_test_framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -308,7 +292,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-lboost_unit_test_framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC3438EB197EBF03002E37AE /* Gamma.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC3438E5197EBF03002E37AE /* Gamma.cpp */; };
+		AC3438EC197EBF03002E37AE /* Gaussian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC3438E7197EBF03002E37AE /* Gaussian.cpp */; };
+		AC3438ED197EBF03002E37AE /* GaussianBlur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC3438E9197EBF03002E37AE /* GaussianBlur.cpp */; };
 		AC4AE2A3197D6C410089A6F9 /* ForwardChecking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE28D197D6C410089A6F9 /* ForwardChecking.cpp */; };
 		AC4AE2A4197D6C410089A6F9 /* UpdateByCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE28F197D6C410089A6F9 /* UpdateByCell.cpp */; };
 		AC4AE2A5197D6C410089A6F9 /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE292197D6C410089A6F9 /* Cell.cpp */; };
@@ -19,9 +22,6 @@
 		AC4AE2AC197D6C410089A6F9 /* WindVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2A1197D6C410089A6F9 /* WindVector.cpp */; };
 		AC4AE2AF197D6D040089A6F9 /* UpdateByPariticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2AD197D6D040089A6F9 /* UpdateByPariticle.cpp */; };
 		AC4AE2B3197D7AC40089A6F9 /* BackwardChecking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */; };
-		AC4AE2C0197DC23A0089A6F9 /* Gamma.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2BC197DC23A0089A6F9 /* Gamma.cpp */; };
-		AC4AE2C1197DC23A0089A6F9 /* Gaussian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2BE197DC23A0089A6F9 /* Gaussian.cpp */; };
-		AC4AE2C4197DD56A0089A6F9 /* GaussianBlur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2C2197DD56A0089A6F9 /* GaussianBlur.cpp */; };
 		ACE0818719797D2B00C6880A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE0818519797D2B00C6880A /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +38,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AC3438E5197EBF03002E37AE /* Gamma.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gamma.cpp; sourceTree = "<group>"; };
+		AC3438E6197EBF03002E37AE /* Gamma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gamma.h; sourceTree = "<group>"; };
+		AC3438E7197EBF03002E37AE /* Gaussian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gaussian.cpp; sourceTree = "<group>"; };
+		AC3438E8197EBF03002E37AE /* Gaussian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gaussian.h; sourceTree = "<group>"; };
+		AC3438E9197EBF03002E37AE /* GaussianBlur.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GaussianBlur.cpp; sourceTree = "<group>"; };
+		AC3438EA197EBF03002E37AE /* GaussianBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GaussianBlur.h; sourceTree = "<group>"; };
 		AC4AE28D197D6C410089A6F9 /* ForwardChecking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ForwardChecking.cpp; sourceTree = "<group>"; };
 		AC4AE28E197D6C410089A6F9 /* ForwardChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardChecking.h; sourceTree = "<group>"; };
 		AC4AE28F197D6C410089A6F9 /* UpdateByCell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UpdateByCell.cpp; sourceTree = "<group>"; };
@@ -63,12 +69,7 @@
 		AC4AE2AE197D6D040089A6F9 /* UpdateByPariticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateByPariticle.h; sourceTree = "<group>"; };
 		AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackwardChecking.cpp; sourceTree = "<group>"; };
 		AC4AE2B2197D7AC40089A6F9 /* BackwardChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackwardChecking.h; sourceTree = "<group>"; };
-		AC4AE2BC197DC23A0089A6F9 /* Gamma.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gamma.cpp; sourceTree = "<group>"; };
-		AC4AE2BD197DC23A0089A6F9 /* Gamma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gamma.h; sourceTree = "<group>"; };
-		AC4AE2BE197DC23A0089A6F9 /* Gaussian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gaussian.cpp; sourceTree = "<group>"; };
-		AC4AE2BF197DC23A0089A6F9 /* Gaussian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gaussian.h; sourceTree = "<group>"; };
-		AC4AE2C2197DD56A0089A6F9 /* GaussianBlur.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GaussianBlur.cpp; sourceTree = "<group>"; };
-		AC4AE2C3197DD56A0089A6F9 /* GaussianBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GaussianBlur.h; sourceTree = "<group>"; };
+		AC6FE6B9197EEE730034BA54 /* map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
 		ACE0817919797CC400C6880A /* SnifferCxx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnifferCxx; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE0818519797D2B00C6880A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ACE0818619797D2B00C6880A /* SnifferCxx.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = SnifferCxx.1; sourceTree = "<group>"; };
@@ -85,6 +86,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC3438E4197EBF03002E37AE /* math */ = {
+			isa = PBXGroup;
+			children = (
+				AC3438E5197EBF03002E37AE /* Gamma.cpp */,
+				AC3438E6197EBF03002E37AE /* Gamma.h */,
+				AC3438E7197EBF03002E37AE /* Gaussian.cpp */,
+				AC3438E8197EBF03002E37AE /* Gaussian.h */,
+				AC3438E9197EBF03002E37AE /* GaussianBlur.cpp */,
+				AC3438EA197EBF03002E37AE /* GaussianBlur.h */,
+			);
+			path = math;
+			sourceTree = "<group>";
+		};
 		AC4AE28C197D6C410089A6F9 /* forward */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,23 +145,11 @@
 			path = backwrad;
 			sourceTree = "<group>";
 		};
-		AC4AE2BB197DC23A0089A6F9 /* stactistic */ = {
-			isa = PBXGroup;
-			children = (
-				AC4AE2BC197DC23A0089A6F9 /* Gamma.cpp */,
-				AC4AE2BD197DC23A0089A6F9 /* Gamma.h */,
-				AC4AE2BE197DC23A0089A6F9 /* Gaussian.cpp */,
-				AC4AE2BF197DC23A0089A6F9 /* Gaussian.h */,
-				AC4AE2C2197DD56A0089A6F9 /* GaussianBlur.cpp */,
-				AC4AE2C3197DD56A0089A6F9 /* GaussianBlur.h */,
-			);
-			path = stactistic;
-			sourceTree = "<group>";
-		};
 		ACE0817019797CC300C6880A = {
 			isa = PBXGroup;
 			children = (
-				AC4AE2BB197DC23A0089A6F9 /* stactistic */,
+				AC6FE6B9197EEE730034BA54 /* map.json */,
+				AC3438E4197EBF03002E37AE /* math */,
 				AC4AE2B0197D78260089A6F9 /* backwrad */,
 				AC4AE28C197D6C410089A6F9 /* forward */,
 				AC4AE291197D6C410089A6F9 /* model */,
@@ -217,19 +219,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACE0818719797D2B00C6880A /* main.cpp in Sources */,
-				AC4AE2C4197DD56A0089A6F9 /* GaussianBlur.cpp in Sources */,
+				AC3438ED197EBF03002E37AE /* GaussianBlur.cpp in Sources */,
 				AC4AE2A6197D6C410089A6F9 /* Cells.cpp in Sources */,
 				AC4AE2A7197D6C410089A6F9 /* Coordinate.cpp in Sources */,
 				AC4AE2AC197D6C410089A6F9 /* WindVector.cpp in Sources */,
 				AC4AE2A9197D6C410089A6F9 /* Map3D.cpp in Sources */,
 				AC4AE2AF197D6D040089A6F9 /* UpdateByPariticle.cpp in Sources */,
 				AC4AE2A4197D6C410089A6F9 /* UpdateByCell.cpp in Sources */,
-				AC4AE2C0197DC23A0089A6F9 /* Gamma.cpp in Sources */,
+				AC3438EB197EBF03002E37AE /* Gamma.cpp in Sources */,
 				AC4AE2AB197D6C410089A6F9 /* Wind.cpp in Sources */,
 				AC4AE2AA197D6C410089A6F9 /* Methane.cpp in Sources */,
 				AC4AE2A3197D6C410089A6F9 /* ForwardChecking.cpp in Sources */,
 				AC4AE2A5197D6C410089A6F9 /* Cell.cpp in Sources */,
-				AC4AE2C1197DC23A0089A6F9 /* Gaussian.cpp in Sources */,
+				AC3438EC197EBF03002E37AE /* Gaussian.cpp in Sources */,
 				AC4AE2A8197D6C410089A6F9 /* Hypothesis.cpp in Sources */,
 				AC4AE2B3197D7AC40089A6F9 /* BackwardChecking.cpp in Sources */,
 			);
@@ -317,6 +319,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = "-lboost_system";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -330,6 +333,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = "-lboost_system";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -79,9 +79,8 @@ namespace Backward {
     }
     
     //************************************
-    // Method:    updateHypothesises : detect methane and update hypothesis.
-    // FullName:  Backward::BackwardChecking::updateHypothesises
-    // Access:    public 
+    // Method:    updateHypotheses : detect methane and update hypothesis.
+    // FullName:  Backward::BackwardChecking::updateHypotheses    // Access:    public 
     // Returns:   shared_ptr<vector<Hypothesis>> : new hypothesis
     // Qualifier: const
     // Parameter: const vector<Hypothesis> & hyps : old hypothesis
@@ -89,7 +88,7 @@ namespace Backward {
     // Parameter: size_t time_count : how many iterations for forward model algorithm to carry.
     // Parameter: const vector<Leak> & detections
     //************************************
-    shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypothesises(const vector<Hypothesis> & hyps, const Map3D & map, size_t time_count, const vector<Leak> & detections) const {
+    shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypotheses(const vector<Hypothesis> & hyps, const Map3D & map, size_t time_count, const vector<Leak> & detections) const {
         auto new_hyps = forward_->UpdateMethane(hyps, map, time_count);
         
         for (auto hyp : *new_hyps) {
