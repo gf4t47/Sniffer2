@@ -24,7 +24,7 @@ namespace Model {
 
 	Coordinate Coordinate::operator+ (const Coordinate & oth) const {
 		Coordinate ret;
-		transform(oth.begin(), oth.end(), begin(), ret.begin(), [](coord_item_t it1, coord_item_t it2){return it1 + it2; });
+		transform(oth.begin(), oth.end(), begin(), ret.begin(), [](const coord_item_t & it1, const coord_item_t & it2){return it1 + it2; });
 		return ret;
 	}
 

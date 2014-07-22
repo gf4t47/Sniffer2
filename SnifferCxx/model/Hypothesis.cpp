@@ -11,6 +11,13 @@ namespace Model {
 
 	}
 
+    Hypothesis::Hypothesis(const vector<Leak> & leaks, double probability, const shared_ptr<Cells> cells)
+    :leaks_(leaks),
+    probability_(probability),
+    methane_cells_(cells)
+    {
+        
+	}
 
 	Hypothesis::~Hypothesis()
 	{
@@ -23,4 +30,13 @@ namespace Model {
 	shared_ptr<Cells> Hypothesis::getMethaneCells() const {
 		return methane_cells_;
 	}
+    
+    double Hypothesis::getProbability() const {
+        return probability_;
+    }
+    
+    bool Hypothesis::setProbability(double val) {
+        probability_ = val;
+        return true;
+    }
 }
