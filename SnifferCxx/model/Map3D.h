@@ -33,11 +33,13 @@ namespace Model{
 		MapBuilder * setStartIndex(const Coordinate & startIndex);
 		MapBuilder * setWind(const WindVector & wind);
 		MapBuilder * setBuildings(const std::vector<stBuilding> & buildings);
+        MapBuilder * setLocalPotential(coord_item_t step);
 
 		std::shared_ptr<Map3D> build();
 
 	private:
 		unit_t unit_;
+        coord_item_t potentialStep_;
 		Coordinate boundary_;
 		boost::optional<Coordinate> startIndex_;
 		boost::optional<WindVector> wind_;
@@ -51,7 +53,7 @@ namespace Model{
 		boost::tribool insideMap(const Coordinate & pos) const;
 		Cell getCell(const Coordinate & pos) const;
 		bool updateCell(const Cell & cell);
-		bool updateCellTag(const Coordinate & coord, const CellTag & tag);
+
 
 		Coordinate calcPosition(const Coordinate & pos, const WindVector & wv) const;
 		std::shared_ptr<Cell> calcCollisionByFullPath(const Coordinate & startPos, const Coordinate & endPos) const;
@@ -62,15 +64,15 @@ namespace Model{
 	protected:
 		const map_t::size_type * getBoundary() const;
 		const map_t::index * getStartIndex() const;
+        void updateWind(const WindVector & wind);
 
 	private:
 		Map3D(size_t length, size_t width, size_t height, unit_t unit);
 		Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit);
 		Coordinate calcStep(const Coordinate & curPos, const Coordinate & dstPos) const;
 
-		void calcLocalPotential(const Coordinate & coord);
-		std::shared_ptr<std::vector<Coordinate>> AddBuilding(const stBuilding & bld);
-		void InitWind(boost::optional<WindVector> & wind);
+		void calcLocalPotential(const Coordinate & local_coord, coord_item_t step, wv_item_t expected_norm);
+		std::shared_ptr<std::vector<Coordinate>> AddBuilding(const stBuilding & bld, coord_item_t potentialStep, boost::optional<WindVector> wind);
 
 	private:
 		unit_t unit_;

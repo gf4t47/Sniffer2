@@ -22,13 +22,15 @@ private:
     const string strWind = "wind";
     const string strBuilding = "building";
     const string strUnit = "unit";
+    const string strPotential = "potential";
     
 public:
-    boost::optional<Coordinate> location_;
+    unit_t unit_;
     Coordinate boundary_;
     WindVector wind_;
+    boost::optional<coord_item_t> potential_;
+    boost::optional<Coordinate> location_;
     vector<stBuilding> buildings_;
-    unit_t unit_;
     
     bool load(const string & filename);
     void save(const string & filename);
@@ -47,13 +49,15 @@ bool map_setting::load(const string & filename) {
     
     unit_ = pt.get<unit_t>(strUnit);
     
+    potential_ = pt.get_optional<coord_item_t>(strPotential);
+    
     auto node_boundary = pt.get_child(strBoundary);
 	transform(node_boundary.begin(), node_boundary.end(), boundary_.begin(), [](ptree::value_type & v){return lexical_cast<coord_item_t>(v.second.data()); });
     
     auto node_location = pt.get_child_optional(strLocation);
     if (node_location) {
-		//Coordinate temp;
-		location_ = Coordinate{ { 0, 0, 0, } };
+		Coordinate temp(0,0,0);
+		location_ = temp;
         transform(node_location->begin(), node_location->end(), (*location_).begin(), [](ptree::value_type & v){return lexical_cast<coord_item_t>(v.second.data());});
     }
     
@@ -77,24 +81,25 @@ bool map_setting::load(const string & filename) {
         }
     }
 
-    
     return true;
 }
 
 int main(int argc, const char * argv[])
 {
-    auto cfgfile = argv[1];
-    
     map_setting ms;
-    ms.load(cfgfile);
-    
-	MapBuilder builder(ms.boundary_, ms.unit_);
+    ms.load(argv[1]);
+
+	auto builder = make_shared<MapBuilder>(ms.boundary_, ms.unit_);
 	if (ms.location_)
 	{
-		builder.setStartIndex(*ms.location_);
+		builder->setStartIndex(*ms.location_);
 	}
+    
+    if (ms.potential_) {
+        builder->setLocalPotential(*ms.potential_);
+    }
 	
-	auto map = builder.setWind(ms.wind_)->setBuildings(ms.buildings_)->build();
+	auto map = builder->setWind(ms.wind_)->setBuildings(ms.buildings_)->build();
 
     
     return 0;

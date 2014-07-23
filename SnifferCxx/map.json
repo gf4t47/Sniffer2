@@ -1,7 +1,8 @@
 {
 	"boundary": [100, 50, 10],
-    "wind" : [-2.5, -1.0, 0.5],
-    "unit" : 1,
+    "wind": [-2.5, -1.0, 0.5],
+    "unit": 1,
+    "potential": 3,
     
     "building":
     [

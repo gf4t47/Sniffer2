@@ -40,11 +40,11 @@ namespace Backward {
     // Parameter: const Map3D & map
     //************************************
     double BackwardChecking::calcGaussianBlurMean(const Coordinate & location, const Cells & methane_cells, const Map3D & map) const {
-		auto newCells = Math::GaussianBlur::BlurCells(map, location, methane_cells, step);
-		auto locate_cell = newCells->getCell(location);
-		if (locate_cell) {
-			return locate_cell->getMethane().getMethane();
-		}
+//		auto newCells = Math::GaussianBlur::BlurCells(map, location, methane_cells, step);
+//		auto locate_cell = newCells->getCell(location);
+//		if (locate_cell) {
+//			return locate_cell->getMethane().getMethane();
+//		}
 
 		return Methane::getBackground();
     }

@@ -41,8 +41,11 @@ namespace Model {
 		const Wind & getWind() const;
 		const Methane & getMethane() const;
 		const Coordinate & getCoordinate() const;
+        
 		bool setMethaneConcentration(mtn_t concentration);
 		bool setCellTag(const CellTag & tag);
+        bool setWindVector(const WindVector & wind);
+        bool setPotential(const WindVector & potential);
 
 		bool isAirCell() const;
 		bool hasMethane() const;

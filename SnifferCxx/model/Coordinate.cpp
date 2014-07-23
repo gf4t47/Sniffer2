@@ -8,6 +8,7 @@
 
 #include "Coordinate.h"
 #include "WindVector.h"
+#include <numeric>
 
 namespace Model {
 	using namespace std;
@@ -21,10 +22,26 @@ namespace Model {
 		: coord_t{ { x, y, z } } {
 
 	}
+    
+    double Coordinate::calcNorm() const {
+        return sqrt(accumulate(begin(), end(), 0, [](coord_item_t ret_val, const coord_item_t & item_val){return ret_val += item_val * item_val;}));
+    }
 
-	Coordinate Coordinate::operator+ (const Coordinate & oth) const {
+	Coordinate Coordinate::operator + (const Coordinate & oth) const {
 		Coordinate ret;
 		transform(oth.begin(), oth.end(), begin(), ret.begin(), [](const coord_item_t & it1, const coord_item_t & it2){return it1 + it2; });
+		return ret;
+	}
+    
+    Coordinate Coordinate::operator - (const Coordinate & oth) const {
+		Coordinate ret;
+		transform(oth.begin(), oth.end(), begin(), ret.begin(), [](const coord_item_t & it1, const coord_item_t & it2){return it2 - it1; });
+		return ret;
+	}
+    
+    WindVector Coordinate::operator / (const double & norm) const {
+		WindVector ret;
+		transform(begin(), end(), ret.begin(), [norm](const coord_item_t & it) {return it / norm; });
 		return ret;
 	}
 

@@ -23,8 +23,10 @@ namespace Model {
 	public:
 		WindVector();
 		WindVector(wv_item_t x, wv_item_t y, wv_item_t z);
+        
+        wv_item_t calcNorm() const;
+        
 		WindVector operator+ (const WindVector & oth) const;
-		//WindVector operator+ (const Coordinate & oth) const;
 		Coordinate operator/ (const unit_t & unit) const;
 
 		friend std::ostream& operator<<(std::ostream& os, const WindVector& wv);

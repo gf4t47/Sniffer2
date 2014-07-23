@@ -60,7 +60,6 @@
 		AC4AE29B197D6C410089A6F9 /* Map3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map3D.h; sourceTree = "<group>"; };
 		AC4AE29C197D6C410089A6F9 /* Methane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Methane.cpp; sourceTree = "<group>"; };
 		AC4AE29D197D6C410089A6F9 /* Methane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Methane.h; sourceTree = "<group>"; };
-		AC4AE29E197D6C410089A6F9 /* Vector3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3D.h; sourceTree = "<group>"; };
 		AC4AE29F197D6C410089A6F9 /* Wind.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wind.cpp; sourceTree = "<group>"; };
 		AC4AE2A0197D6C410089A6F9 /* Wind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wind.h; sourceTree = "<group>"; };
 		AC4AE2A1197D6C410089A6F9 /* WindVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindVector.cpp; sourceTree = "<group>"; };
@@ -127,7 +126,6 @@
 				AC4AE29B197D6C410089A6F9 /* Map3D.h */,
 				AC4AE29C197D6C410089A6F9 /* Methane.cpp */,
 				AC4AE29D197D6C410089A6F9 /* Methane.h */,
-				AC4AE29E197D6C410089A6F9 /* Vector3D.h */,
 				AC4AE29F197D6C410089A6F9 /* Wind.cpp */,
 				AC4AE2A0197D6C410089A6F9 /* Wind.h */,
 				AC4AE2A1197D6C410089A6F9 /* WindVector.cpp */,

@@ -20,6 +20,9 @@ namespace Model {
 		Wind(const WindVector & wind, const WindVector & potential);
 
 		WindVector getWindVector() const;
+        
+        bool setWindVector(const WindVector & vec);
+        bool setPotential(const WindVector & potential);
 
 		bool operator== (const Wind & oth) const;
 		friend std::ostream& operator<<(std::ostream& os, const Wind& wind);

@@ -24,17 +24,19 @@ namespace Math {
 	// Parameter: const size_t num : the length of return list.
 	//************************************
 	shared_ptr<vector<WindVector>> Gaussian::RandomWindVectors(const WindVector & mean, const unit_t unit, const size_t num) {
-		default_random_engine generator;
-		vector<normal_distribution<double>> distributions;
+        vector<default_random_engine> generators;
+		vector<normal_distribution<wv_item_t>> distributions;
+        
 		for (auto m : mean) {
-			distributions.push_back(normal_distribution<double>(m, unit));
+            generators.push_back(default_random_engine());
+			distributions.push_back(normal_distribution<wv_item_t>(m, unit));
 		}
         
 		auto ret = make_shared<vector<WindVector>>();
 		for (int i = 0; i < num; i++) {
 			WindVector wv;
 			for (int j = 0; j < distributions.size(); j++) {
-				wv[j] = distributions[j](generator);
+				wv[j] = distributions[j](generators[j]);
 			}
 			ret->push_back(wv);
 		}

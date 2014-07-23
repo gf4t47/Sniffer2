@@ -10,19 +10,20 @@
 #define __SnifferCxx__GaussianBlur__
 
 #include <memory>
-
+#include <boost/multi_array.hpp>
 namespace Model {
     class Coordinate;
+    class Map3D;
     class Cells;
-	class Map3D;
 }
 
 namespace Math {
+    typedef boost::multi_array<double, 3> kernel_t;
     class GaussianBlur {
     public:
-        static std::shared_ptr<Model::Cells> BlurCells(const Model::Map3D & map, const Model::Coordinate & location, const Model::Cells & cells, size_t step);
-        
-        static void gaussianiir3d(double *volume, long width, long height, long depth, double sigma, int numsteps = 4);
+        static std::shared_ptr<Model::Cells> blurCells(const Model::Map3D & map, const Model::Coordinate & location, const Model::Cells & cells, int step);
+        static std::shared_ptr<kernel_t> generateGaussianKernel(int step);
+        static double gaussian_pdf(const Model::Coordinate & mean, int step, const Model::Coordinate & val);
     };
 }
 

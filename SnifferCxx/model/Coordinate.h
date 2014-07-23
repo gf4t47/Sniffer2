@@ -23,8 +23,12 @@ namespace Model {
 	public:
 		Coordinate();
 		Coordinate(coord_item_t x, coord_item_t y, coord_item_t z);
+        
+        double calcNorm() const;
 
 		Coordinate operator+ (const Coordinate & oth) const;
+        Coordinate operator- (const Coordinate & oth) const;
+        WindVector operator/ (const double & norm) const;
 
 		friend std::ostream& operator<<(std::ostream& os, const Coordinate& coord);
 	};

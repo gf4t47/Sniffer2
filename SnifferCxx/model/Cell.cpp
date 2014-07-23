@@ -61,6 +61,14 @@ namespace Model {
 		tag_ = tag;
 		return true;
 	}
+    
+    bool Cell::setWindVector(const WindVector &wind) {
+        return wind_.setWindVector(wind);
+    }
+    
+    bool Cell::setPotential(const WindVector &potential) {
+        return wind_.setPotential(potential);
+    }
 
 	bool Cell::operator== (const Cell & oth) const {
 		return coord_ == oth.coord_

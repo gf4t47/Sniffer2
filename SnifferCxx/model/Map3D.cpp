@@ -11,16 +11,21 @@
 namespace Model {
 	using namespace std;
 	typedef map_t::extent_range erange;
+    
+    const size_t default_potential_step = 3;
+    const wv_item_t default_wind_norm = 1.618;
 
 	MapBuilder::MapBuilder(coord_item_t length, coord_item_t width, coord_item_t height, unit_t unit) 
-		:boundary_{ {length, width, height} },
-		unit_(unit) {
+		:boundary_(length, width, height),
+		unit_(unit),
+        potentialStep_(default_potential_step) {
 
 	}
 
 	MapBuilder::MapBuilder(const Coordinate & boundary, unit_t unit)
 		: boundary_(boundary),
-		unit_(unit) {
+		unit_(unit),
+        potentialStep_(default_potential_step) {
 
 	}
 
@@ -33,6 +38,11 @@ namespace Model {
 		wind_ = wind;
 		return this;
 	}
+    
+    MapBuilder * MapBuilder::setLocalPotential(coord_item_t step) {
+        potentialStep_ = step;
+        return this;
+    }
 
 	MapBuilder * MapBuilder::setBuildings(const std::vector<stBuilding> & buildings) {
 		buildings_ = buildings;
@@ -47,18 +57,18 @@ namespace Model {
 		else {
 			map.reset(new Map3D(boundary_[0], boundary_[1], boundary_[2], unit_));
 		}
+        
+        if (wind_)
+		{
+			map->updateWind(*wind_);
+		}
 
 		if (buildings_)
 		{
 			for (auto bld : *buildings_)
 			{
-				map->AddBuilding(bld);
+				map->AddBuilding(bld, potentialStep_, wind_);
 			}
-		}
-
-		if (wind_)
-		{
-			map->InitWind(wind_);
 		}
 
 		return map;
@@ -76,18 +86,21 @@ namespace Model {
 
 	}
 
-	shared_ptr<vector<Coordinate>> Map3D::AddBuilding(const stBuilding & bld) {
+	shared_ptr<vector<Coordinate>> Map3D::AddBuilding(const stBuilding & bld, coord_item_t potentialStep, boost::optional<WindVector> wind) {
 		auto ret_vec = make_shared<vector<Coordinate>>();
 		auto location = bld.location_;
 		auto boudary = bld.boundary_;
-
+        auto wind_norm = default_wind_norm;
+        if (wind) {
+            wind_norm = wind->calcNorm();
+        }
 		for (auto l = location[0]; l < location[0] + boudary[0]; l++) {
 			for (auto w = location[1]; w < location[1] + boudary[1]; w++) {
 				for (auto h = location[2]; h < location[2] + boudary[2]; h++) {
 					Coordinate coord(l, w, h);
 					if (insideMap(coord)) {
-						updateCellTag(coord, CellTag::Building);
-						calcLocalPotential(coord);
+                        (*this)(coord).setCellTag(CellTag::Building);
+						calcLocalPotential(coord, potentialStep, wind_norm);
 						ret_vec->push_back(coord);
 					}
 				}
@@ -96,9 +109,39 @@ namespace Model {
 
 		return ret_vec;
 	}
+    
+    void Map3D::calcLocalPotential(const Coordinate & local_coord, coord_item_t step, wv_item_t expected_norm) {
+        for (auto l = local_coord[0] - step; l <= local_coord[0] + step; l++) {
+            for (auto w = local_coord[1] - step; w <= local_coord[1] + step; w++) {
+                for (auto h = local_coord[2] - step; h <= local_coord[2] + step; h++) {
+                    Coordinate remote_coord(l, w, h);
+                    if (remote_coord != local_coord && insideMap(remote_coord)) {
+                        auto cell = getCell(remote_coord);
+                        if (cell.isAirCell()) {
+                            auto vector = remote_coord - local_coord;
+                            auto potential = vector / (vector.calcNorm() / expected_norm);
+                            (*this)(remote_coord).setPotential(potential);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-	void Map3D::InitWind(boost::optional<WindVector> & wind) {
+	void Map3D::updateWind(const WindVector & wind) {
+        boost::multi_array_ref<Cell, 1> map_ref(this->data(), boost::extents[this->num_elements()]);
+        for_each(map_ref.begin(), map_ref.end(), [&wind](Cell & cell){cell.setWindVector(wind);});
 
+	}
+    
+    bool Map3D::updateCell(const Cell &cell) {
+		(*this)(cell.getCoordinate()) = cell;
+        
+		return true;
+	}
+    
+	Cell Map3D::getCell(const Coordinate & pos) const {
+		return (*this)(pos);
 	}
 
 	unit_t Map3D::getUnit() const {
@@ -137,20 +180,6 @@ namespace Model {
 		}
 
 		return in2D && inHeight;
-	}
-
-	bool Map3D::updateCell(const Cell &cell) {
-		(*this)(cell.getCoordinate()) = cell;
-
-		return true;
-	}
-
-	bool Map3D::updateCellTag(const Coordinate & coord, const CellTag & tag) {
-		return (*this)(coord).setCellTag(tag);
-	}
-
-	Cell Map3D::getCell(const Coordinate & pos) const {
-		return (*this)(pos);
 	}
 
 	//************************************
