@@ -10,8 +10,59 @@
 
 namespace Model {
 	using namespace std;
-
 	typedef map_t::extent_range erange;
+
+	MapBuilder::MapBuilder(coord_item_t length, coord_item_t width, coord_item_t height, unit_t unit) 
+		:boundary_{ {length, width, height} },
+		unit_(unit) {
+
+	}
+
+	MapBuilder::MapBuilder(const Coordinate & boundary, unit_t unit)
+		: boundary_(boundary),
+		unit_(unit) {
+
+	}
+
+	MapBuilder * MapBuilder::setStartIndex(const Coordinate & startIndex) {
+		startIndex_ = startIndex;
+		return this;
+	}
+
+	MapBuilder * MapBuilder::setWind(const WindVector & wind) {
+		wind_ = wind;
+		return this;
+	}
+
+	MapBuilder * MapBuilder::setBuildings(const std::vector<stBuilding> & buildings) {
+		buildings_ = buildings;
+		return this;
+	}
+
+	shared_ptr<Map3D> MapBuilder::build() {
+		shared_ptr<Map3D> map;
+		if (startIndex_) {
+			map.reset(new Map3D(*startIndex_, boundary_, unit_));
+		}
+		else {
+			map.reset(new Map3D(boundary_[0], boundary_[1], boundary_[2], unit_));
+		}
+
+		if (buildings_)
+		{
+			for (auto bld : *buildings_)
+			{
+				map->AddBuilding(bld);
+			}
+		}
+
+		if (wind_)
+		{
+			map->InitWind(wind_);
+		}
+
+		return map;
+	}
 
 	Map3D::Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit)
 		:map_t(boost::extents[erange(startIndex[0], startIndex[0] + boundary[0])][erange(startIndex[1], startIndex[1] + boundary[1])][erange(startIndex[2], startIndex[2] + boundary[2])]),
@@ -22,6 +73,31 @@ namespace Model {
 	Map3D::Map3D(size_t length, size_t width, size_t height, unit_t unit)
 		: map_t(boost::extents[length][width][height]),
 		unit_(unit) {
+
+	}
+
+	shared_ptr<vector<Coordinate>> Map3D::AddBuilding(const stBuilding & bld) {
+		auto ret_vec = make_shared<vector<Coordinate>>();
+		auto location = bld.location_;
+		auto boudary = bld.boundary_;
+
+		for (auto l = location[0]; l < location[0] + boudary[0]; l++) {
+			for (auto w = location[1]; w < location[1] + boudary[1]; w++) {
+				for (auto h = location[2]; h < location[2] + boudary[2]; h++) {
+					Coordinate coord(l, w, h);
+					if (insideMap(coord)) {
+						updateCellTag(coord, CellTag::Building);
+						calcLocalPotential(coord);
+						ret_vec->push_back(coord);
+					}
+				}
+			}
+		}
+
+		return ret_vec;
+	}
+
+	void Map3D::InitWind(boost::optional<WindVector> & wind) {
 
 	}
 
@@ -67,6 +143,10 @@ namespace Model {
 		(*this)(cell.getCoordinate()) = cell;
 
 		return true;
+	}
+
+	bool Map3D::updateCellTag(const Coordinate & coord, const CellTag & tag) {
+		return (*this)(coord).setCellTag(tag);
 	}
 
 	Cell Map3D::getCell(const Coordinate & pos) const {

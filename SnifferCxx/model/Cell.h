@@ -42,6 +42,7 @@ namespace Model {
 		const Methane & getMethane() const;
 		const Coordinate & getCoordinate() const;
 		bool setMethaneConcentration(mtn_t concentration);
+		bool setCellTag(const CellTag & tag);
 
 		bool isAirCell() const;
 		bool hasMethane() const;

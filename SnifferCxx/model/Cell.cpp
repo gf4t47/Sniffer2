@@ -57,6 +57,11 @@ namespace Model {
 		return mtn_.updateMethane(concentration);
 	}
 
+	bool Cell::setCellTag(const CellTag & tag) {
+		tag_ = tag;
+		return true;
+	}
+
 	bool Cell::operator== (const Cell & oth) const {
 		return coord_ == oth.coord_
 			&& wind_ == oth.wind_

@@ -9,7 +9,6 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/filesystem.hpp>
-#include <boost/optional.hpp>
 #include <boost/lexical_cast.hpp>
 #include "model/Map3D.h"
 
@@ -17,12 +16,7 @@ using namespace std;
 using namespace Model;
 
 struct map_setting {
-private:
-    struct building {
-        Coordinate location_;
-        Coordinate boundary_;
-    };
-    
+private:  
     const string strLocation = "location";
     const string strBoundary = "boundary";
     const string strWind = "wind";
@@ -33,7 +27,7 @@ public:
     boost::optional<Coordinate> location_;
     Coordinate boundary_;
     WindVector wind_;
-    vector<building> buildings_;
+    vector<stBuilding> buildings_;
     unit_t unit_;
     
     bool load(const string & filename);
@@ -54,11 +48,12 @@ bool map_setting::load(const string & filename) {
     unit_ = pt.get<unit_t>(strUnit);
     
     auto node_boundary = pt.get_child(strBoundary);
-    transform(node_boundary.begin(), node_boundary.end(), boundary_.begin(), [](ptree::value_type & v){return lexical_cast<coord_item_t>(v.second.data());});
+	transform(node_boundary.begin(), node_boundary.end(), boundary_.begin(), [](ptree::value_type & v){return lexical_cast<coord_item_t>(v.second.data()); });
     
     auto node_location = pt.get_child_optional(strLocation);
     if (node_location) {
-        location_ = {{0,0,0}};
+		//Coordinate temp;
+		location_ = Coordinate{ { 0, 0, 0, } };
         transform(node_location->begin(), node_location->end(), (*location_).begin(), [](ptree::value_type & v){return lexical_cast<coord_item_t>(v.second.data());});
     }
     
@@ -70,7 +65,7 @@ bool map_setting::load(const string & filename) {
         for (auto node_building : *node_buildings) {
             auto node_bld_tree = node_building.second;
 
-            building building;
+            stBuilding building;
             
             auto node_location = node_bld_tree.get_child(strLocation);
             transform(node_location.begin(), node_location.end(), building.location_.begin(), [](ptree::value_type & v){return lexical_cast<coord_item_t>(v.second.data());});
@@ -93,13 +88,14 @@ int main(int argc, const char * argv[])
     map_setting ms;
     ms.load(cfgfile);
     
-    unique_ptr<Map3D> map;
-    if(ms.location_) {
-        map.reset(new Map3D(*ms.location_, ms.boundary_, ms.unit_));
-    }
-    else {
-        map.reset(new Map3D(ms.boundary_[0], ms.boundary_[1], ms.boundary_[2], ms.unit_));
-    }
+	MapBuilder builder(ms.boundary_, ms.unit_);
+	if (ms.location_)
+	{
+		builder.setStartIndex(*ms.location_);
+	}
+	
+	auto map = builder.setWind(ms.wind_)->setBuildings(ms.buildings_)->build();
+
     
     return 0;
 }
