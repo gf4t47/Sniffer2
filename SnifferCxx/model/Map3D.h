@@ -50,6 +50,7 @@ namespace Model{
 	public:
 		unit_t getUnit() const;
 
+		bool isAirCell(const Coordinate & pos) const;
 		boost::tribool insideMap(const Coordinate & pos) const;
 		Cell getCell(const Coordinate & pos) const;
 		bool updateCell(const Cell & cell);

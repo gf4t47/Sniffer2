@@ -10,7 +10,6 @@
 #include "../forward/UpdateByCell.h"
 #include "../model/Map3D.h"
 #include "../math/Gamma.h"
-#include "../math/GaussianBlur.h"
 
 namespace Backward {
     const double gamma_scale = 1.0;
@@ -28,27 +27,7 @@ namespace Backward {
     BackwardChecking::~BackwardChecking() {
         
     }
-    
-    //************************************
-    // Method:    calcGaussianBlurMean : use Gaussian convolution to blur the methane before output as the gamma distribution mean parameter.
-    // FullName:  Backward::BackwardChecking::calcGaussianBlurMean
-    // Access:    protected 
-    // Returns:   double
-    // Qualifier: const
-    // Parameter: const Coordinate & location
-    // Parameter: const Cells & methane_cells
-    // Parameter: const Map3D & map
-    //************************************
-    double BackwardChecking::calcGaussianBlurMean(const Coordinate & location, const Cells & methane_cells, const Map3D & map) const {
-//		auto newCells = Math::GaussianBlur::BlurCells(map, location, methane_cells, step);
-//		auto locate_cell = newCells->getCell(location);
-//		if (locate_cell) {
-//			return locate_cell->getMethane().getMethane();
-//		}
-
-		return Methane::getBackground();
-    }
-    
+      
     //************************************
     // Method:    calcLikehood : calculate the gamma distribution like hood
     // FullName:  Backward::BackwardChecking::calcLikehood
@@ -61,7 +40,7 @@ namespace Backward {
     // Parameter: const Map3D & map
     //************************************
     double BackwardChecking::calcLikehood(const Hypothesis & hyp, const Coordinate & detected_location, double detected_concentration, const Map3D & map) const {
-        auto mean = calcGaussianBlurMean(detected_location, *hyp.getMethaneCells(), map);
+        auto mean = forward_->calcGaussianBlurMean(detected_location, *hyp.getMethaneCells(), map);
         return Math::Gamma::calcGammaPdf(mean, gamma_scale, detected_concentration);
     }
     

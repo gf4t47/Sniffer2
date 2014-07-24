@@ -16,89 +16,74 @@
 
 
 namespace Math {
-    using namespace std;
-    using namespace Model;
-    
-    double GaussianBlur::gaussian_pdf(const Model::Coordinate &mean, int step, const Model::Coordinate &val) {
-        typedef boost::math::normal::normal_distribution<coord_item_t> distribution_t;
-        
-        auto dists = accumulate(mean.begin(), mean.end(), vector<distribution_t>(), [step](vector<distribution_t> ret_vec, const coord_item_t & item_val){ret_vec.push_back(distribution_t(item_val, step)); return ret_vec;});
+	using namespace std;
+	using namespace Model;
 
-        double ret = 1.0;
-        for (auto i =0 ; i < val.size(); i++) {
-            ret *= pdf(dists[i], val[i]);
-        }
-        
-        return ret;
-    }
-    
-    shared_ptr<kernel_t> GaussianBlur::generateGaussianKernel(int step) {
-        auto kernel = make_shared<kernel_t>();
-        kernel->reindex(-step);
-        
-        Coordinate mean(0, 0, 0);
-        for (auto l = -step; l <= step; l++) {
-            for (auto w = -step; w <= step; w++) {
-                for (auto h = -step; h <= step; h++) {
-                    Coordinate coord(l, w, h);
-                    (*kernel)(coord) = gaussian_pdf(mean, step, coord);
-                }
-            }
-        }
-        
-        return kernel;
-    }
-    
-    shared_ptr<Cells> GaussianBlur::blurCells(const Map3D & map, const Coordinate &location, const Cells &cells, int step) {
+	const size_t blur_step = 2;
+	const auto static_kernel = *GaussianBlur::generateGaussianKernel(blur_step);
+
+	double GaussianBlur::gaussian_pdf(const Model::Coordinate &mean, int step, const Model::Coordinate &val) {
+		typedef boost::math::normal::normal_distribution<> distribution_t;
+
+		auto dists = accumulate(mean.begin(), mean.end(), vector<distribution_t>(), [step](vector<distribution_t> ret_vec, const coord_item_t & item_val){ret_vec.push_back(distribution_t(item_val, step)); return ret_vec; });
+
+		double ret = 1.0;
+		for (auto i = 0; i < val.size(); i++) {
+			ret *= boost::math::pdf(dists[i], val[i]);
+		}
+
+		return ret;
+	}
+
+	shared_ptr<kernel_t> GaussianBlur::generateGaussianKernel(int step) {
+		auto kernel = make_shared<kernel_t>();
+		kernel->reindex(-step);
+
+		Coordinate mean(0, 0, 0);
+		for (auto l = -step; l <= step; l++) {
+			for (auto w = -step; w <= step; w++) {
+				for (auto h = -step; h <= step; h++) {
+					Coordinate coord(l, w, h);
+					(*kernel)(coord) = gaussian_pdf(mean, step, coord);
+				}
+			}
+		}
+
+		return kernel;
+	}
+
+	shared_ptr<Cells> GaussianBlur::blurCells(const Map3D & map, const Coordinate &location, const Cells &cells, int step) {
+		step = blur_step;
+		auto kernel = static_kernel;
+		for (auto l = location[0] - step; l <= location[0] + step; l++) {
+			for (auto w = location[1] - step; w <= location[1] + step; w++) {
+				for (auto h = location[2] - step; h <= location[2] + step; h++) {
+					Coordinate cell_coord(l, w, h);
+					Coordinate kernel_coord(l - location[0], w - location[1], h - location[2]);
+					if (!map.isAirCell(cell_coord)) {
+						kernel(kernel_coord) = 0;
+					}
+				}
+			}
+		}
+
+		boost::multi_array_ref<double, 1> kernel_ref(kernel.data(), boost::extents[kernel.num_elements()]);
+		auto sum = accumulate(kernel_ref.begin(), kernel_ref.end(), 0.0);
+		if (sum <= 0) {
+			return make_shared<Cells>(cells);
+		}
+
 		auto ret_cells = make_shared<Cells>();
 
-//		auto locate_x = location[0];
-//		auto locate_y = location[1];
-//		auto locate_z = location[2];
-//		auto size = step * 2 + 1;
-//
-//		auto index = 0;
-//		unique_ptr<double[]> arr(new double[size * size * size]);
-//		for (int h = -step; h < -step + size; h++)  {
-//			for (int w = -step; w < -step + size; w++) {
-//				for (int l = -step; l < -step + size; l++){
-//					auto cell_x = locate_x + l;
-//					auto cell_y = locate_y + w;
-//					auto cell_z = locate_z + h;
-//
-//					auto cell = cells.getCell(cell_x, cell_y, cell_z);
-//					if (cell) {
-//						arr[index++] = cell->getMethane().getParticleNum();
-//					}
-//					else {
-//						arr[index++] = 0;
-//					}
-//				}
-//			}
-//        }
-//
-//		index = 0;
-//		gaussianiir3d(arr.get(), size, size, size, step);
-//		for (int h = -step; h < -step + size; h++)  {
-//			for (int w = -step; w < -step + size; w++) {
-//				for (int l = -step; l < -step + size; l++){
-//					auto cell_x = locate_x + l;
-//					auto cell_y = locate_y + w;
-//					auto cell_z = locate_z + h;
-//
-//					auto bluredVal = arr[index++];
-//					if (bluredVal > 0) { 	
-//						Coordinate coord(cell_x, cell_y, cell_z);
-//						if (map.insideMap(coord)) {
-//							auto newCell = map.getCell(coord);
-//							newCell.setMethaneConcentration(bluredVal);
-//							ret_cells->updateCell(newCell);
-//						}
-//					}
-//				}
-//			}
-//		}
-
+		for_each(kernel_ref.begin(), kernel_ref.end(), [sum](double & item){item /= sum; });
+		for (auto l = location[0] - step; l <= location[0] + step; l++) {
+			for (auto w = location[1] - step; w <= location[1] + step; w++) {
+				for (auto h = location[2] - step; h <= location[2] + step; h++) {
+					Coordinate cell_coord(l, w, h);
+					auto cell = map.getCell(cell_coord);
+				}
+			}
+		}
 		return ret_cells;
-    }
+	}
 }

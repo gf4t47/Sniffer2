@@ -153,6 +153,7 @@
     <ClCompile Include="forward\ForwardChecking.cpp" />
     <ClCompile Include="forward\UpdateByCell.cpp" />
     <ClCompile Include="forward\UpdateByConvolution.cpp" />
+    <ClCompile Include="forward\UpdateByPariticle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\Gamma.cpp" />
     <ClCompile Include="math\Gaussian.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="forward\ForwardChecking.h" />
     <ClInclude Include="forward\UpdateByCell.h" />
     <ClInclude Include="forward\UpdateByConvolution.h" />
+    <ClInclude Include="forward\UpdateByPariticle.h" />
     <ClInclude Include="math\Gamma.h" />
     <ClInclude Include="math\Gaussian.h" />
     <ClInclude Include="math\GaussianBlur.h" />
@@ -180,7 +182,6 @@
     <ClInclude Include="model\Hypothesis.h" />
     <ClInclude Include="model\Map3D.h" />
     <ClInclude Include="model\Methane.h" />
-    <ClInclude Include="model\Vector3D.h" />
     <ClInclude Include="model\Wind.h" />
     <ClInclude Include="model\WindVector.h" />
   </ItemGroup>

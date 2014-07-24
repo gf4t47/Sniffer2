@@ -31,7 +31,6 @@ namespace Backward {
         
     protected:
         double calcLikehood(const Model::Hypothesis & hyp, const Model::Coordinate & detected_location, double detected_concentration, const Model::Map3D & map) const;
-        double calcGaussianBlurMean(const Model::Coordinate & location, const Model::Cells & methane_cells, const Model::Map3D & map) const;
         void normalize(std::vector<Model::Hypothesis> & hyps) const;
         
     private:
