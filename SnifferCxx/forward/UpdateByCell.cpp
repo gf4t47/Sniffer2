@@ -44,10 +44,10 @@ namespace Forward {
 			auto endPos = map.calcPosition(startPos, wv);
 			auto find_ret = map_ret->find(endPos);
 			if (find_ret == map_ret->end()) {
-				map_ret->at(endPos) = particle_num_per_wind;
+				(*map_ret)[endPos] = particle_num_per_wind;
 			}
 			else {
-				map_ret->at(endPos) += particle_num_per_wind;
+				(*map_ret)[endPos] += particle_num_per_wind;
 			}
 		});
 
@@ -147,13 +147,14 @@ namespace Forward {
 			leakCells.updateCell(leakCell);
 		}
 
-		auto ret_cells = make_shared<Cells>(*hypothesis.getMethaneCells()); //copy construtor here to storage the history of a hypothesis.
+		auto ret_cells = make_shared<Cells>(*(hypothesis.getMethaneCells())); //copy construtor here to storage the history of a hypothesis.
 		for (size_t i = 0; i < count; i++) {
 			ret_cells->mergeCellsByAddMethane(leakCells);
 			ret_cells = calcEnds(*ret_cells, map);
 
 		}
 
-		return ret_cells;
+        auto temp_ptr = ret_cells;
+		return temp_ptr;
 	}
 }

@@ -119,18 +119,18 @@ namespace sln {
     
 	shared_ptr<Map3D> MapBuilder::build() {
 		shared_ptr<Map3D> map;
-		if (startIndex_) {
-			map.reset(new Map3D(*startIndex_, boundary_, unit_));
+
+        if (startIndex_) {
+			map.reset(new Map3D(*startIndex_, boundary_, unit_, wind_));
 		}
 		else {
-			map.reset(new Map3D(boundary_[0], boundary_[1], boundary_[2], unit_));
+			map.reset(new Map3D(boundary_[0], boundary_[1], boundary_[2], unit_, wind_));
 		}
         
         auto wind_norm = default_wind_norm;
         if (wind_)
 		{
             wind_norm = wind_->calcNorm();
-			map->updateWind(*wind_);
 		}
         
         for (auto bld : buildings_)

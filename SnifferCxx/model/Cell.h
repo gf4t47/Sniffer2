@@ -46,6 +46,7 @@ namespace Model {
 		bool setCellTag(const CellTag & tag);
         bool setWindVector(const WindVector & wind);
         bool setPotential(const WindVector & potential);
+        bool setCoordinate(const Coordinate & coord);
 
 		bool isAirCell() const;
 		bool hasMethane() const;

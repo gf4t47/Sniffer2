@@ -12,16 +12,16 @@ namespace Model {
 	using namespace std;
 	typedef map_t::extent_range erange;
 
-	Map3D::Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit)
+	Map3D::Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit, boost::optional<WindVector> wv)
 		:map_t(boost::extents[erange(startIndex[0], startIndex[0] + boundary[0])][erange(startIndex[1], startIndex[1] + boundary[1])][erange(startIndex[2], startIndex[2] + boundary[2])]),
 		unit_(unit) {
-
+            initCoordinate(wv);
 	}
 
-	Map3D::Map3D(size_t length, size_t width, size_t height, unit_t unit)
+	Map3D::Map3D(size_t length, size_t width, size_t height, unit_t unit, boost::optional<WindVector> wv)
 		: map_t(boost::extents[length][width][height]),
 		unit_(unit) {
-
+            initCoordinate(wv);
 	}
 
 	shared_ptr<vector<Coordinate>> Map3D::AddBuilding(const Coordinate & location, const Coordinate & boundary, coord_item_t potentialStep, wv_item_t wind_norm) {
@@ -59,11 +59,27 @@ namespace Model {
             }
         }
     }
+    
+    void Map3D::initCoordinate(boost::optional<WindVector> wv) {
+        auto start_pos = getStartIndex();
+		auto boundary = getBoundary();
+        
+        for (auto l = start_pos[0]; l < start_pos[0] + (coord_item_t)boundary[0]; l++) {
+            for (auto w = start_pos[1]; w < start_pos[1] + (coord_item_t)boundary[1]; w++) {
+                for (auto h = start_pos[2]; h < start_pos[2] + (coord_item_t)boundary[2]; h++) {
+                    Coordinate coord(l, w, h);
+                    (*this)(coord).setCoordinate(coord);
+                    if (wv) {
+                        (*this)(coord).setWindVector(*wv);
+                    }
+                }
+            }
+        }
+    }
 
 	void Map3D::updateWind(const WindVector & wind) {
         boost::multi_array_ref<Cell, 1> map_ref(this->data(), boost::extents[this->num_elements()]);
         for_each(map_ref.begin(), map_ref.end(), [&wind](Cell & cell){cell.setWindVector(wind);});
-
 	}
     
     bool Map3D::updateCell(const Cell &cell) {
@@ -114,8 +130,8 @@ namespace Model {
 		auto start_pos = getStartIndex();
 		auto boundary = getBoundary();
 
-		bool in2D = start_pos[0] <= pos[0] && pos[0] < start_pos[0] + (int)boundary[0] && start_pos[1] <= pos[1] && pos[1] < start_pos[1] + (int)boundary[1];
-		bool inHeight = (start_pos[2] <= pos[2]) && (pos[2] < start_pos[2] + (int)boundary[2]);
+		bool in2D = start_pos[0] <= pos[0] && pos[0] < start_pos[0] + (coord_item_t)boundary[0] && start_pos[1] <= pos[1] && pos[1] < start_pos[1] + (coord_item_t)boundary[1];
+		bool inHeight = (start_pos[2] <= pos[2]) && (pos[2] < start_pos[2] + (coord_item_t)boundary[2]);
 		bool underHeight = pos[2] < start_pos[2];
 
 		if (in2D && underHeight)

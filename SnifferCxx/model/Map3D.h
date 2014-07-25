@@ -11,6 +11,7 @@
 
 #include <boost/multi_array.hpp>
 #include <boost/logic/tribool.hpp>
+#include <boost/optional.hpp>
 #include "Cell.h"
 
 namespace sln {
@@ -42,10 +43,11 @@ namespace Model{
 		const map_t::size_type * getBoundary() const;
 		const map_t::index * getStartIndex() const;
         void updateWind(const WindVector & wind);
+        void initCoordinate(boost::optional<WindVector> wv);
 
 	private:
-		Map3D(size_t length, size_t width, size_t height, unit_t unit);
-		Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit);
+		Map3D(size_t length, size_t width, size_t height, unit_t unit, boost::optional<WindVector> wv);
+		Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit, boost::optional<WindVector> wv);
 		Coordinate calcStep(const Coordinate & curPos, const Coordinate & dstPos) const;
 
 		void calcLocalPotential(const Coordinate & local_coord, coord_item_t step, wv_item_t expected_norm);

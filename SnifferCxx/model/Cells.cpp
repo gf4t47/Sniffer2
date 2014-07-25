@@ -55,7 +55,7 @@ namespace Model {
 				}
 				else {
 					ostringstream ostr;
-					ostr << "two cells to be merged are not same" << endl; 
+					ostr << "two cells to be merged are not same: " << endl; 
 					ostr << "cell1 = " << find_ret->second << endl;
 					ostr << "cell2 = " << oth_entry.second << endl;
 

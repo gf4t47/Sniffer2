@@ -70,15 +70,16 @@
 		AC4AE2B2197D7AC40089A6F9 /* BackwardChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackwardChecking.h; sourceTree = "<group>"; };
 		AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UpdateByConvolution.cpp; sourceTree = "<group>"; };
 		AC7D6F58198178BD0041B1E9 /* UpdateByConvolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateByConvolution.h; sourceTree = "<group>"; };
-		ACD64D981981ABE300C9F38E /* hypothesis.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hypothesis.json; sourceTree = "<group>"; };
 		ACD64D991981ABE300C9F38E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		ACD64D9A1981ABE300C9F38E /* map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
 		ACD64D9F1981B7CE00C9F38E /* MapBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapBuilder.cpp; sourceTree = "<group>"; };
 		ACD64DA01981B7CE00C9F38E /* MapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBuilder.h; sourceTree = "<group>"; };
 		ACD64DA21981C8AC00C9F38E /* HypothesisInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HypothesisInitializer.cpp; sourceTree = "<group>"; };
 		ACD64DA31981C8AC00C9F38E /* HypothesisInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypothesisInitializer.h; sourceTree = "<group>"; };
 		ACE0817919797CC400C6880A /* SnifferCxx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnifferCxx; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE0818619797D2B00C6880A /* SnifferCxx.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = SnifferCxx.1; sourceTree = "<group>"; };
+		ACF91B211982B6AC00A423CF /* hypothesis.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hypothesis.json; sourceTree = "<group>"; };
+		ACF91B221982B6AC00A423CF /* map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
+		ACF91B231982B6D600A423CF /* detection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = detection.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,9 +154,7 @@
 		ACD64D971981AB9700C9F38E /* sln */ = {
 			isa = PBXGroup;
 			children = (
-				ACD64D981981ABE300C9F38E /* hypothesis.json */,
 				ACD64D991981ABE300C9F38E /* main.cpp */,
-				ACD64D9A1981ABE300C9F38E /* map.json */,
 				ACD64D9F1981B7CE00C9F38E /* MapBuilder.cpp */,
 				ACD64DA01981B7CE00C9F38E /* MapBuilder.h */,
 				ACD64DA21981C8AC00C9F38E /* HypothesisInitializer.cpp */,
@@ -167,6 +166,7 @@
 		ACE0817019797CC300C6880A = {
 			isa = PBXGroup;
 			children = (
+				ACF91B201982B6AC00A423CF /* cfg */,
 				ACD64D971981AB9700C9F38E /* sln */,
 				AC3438E4197EBF03002E37AE /* math */,
 				AC4AE2B0197D78260089A6F9 /* backwrad */,
@@ -183,6 +183,16 @@
 				ACE0817919797CC400C6880A /* SnifferCxx */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		ACF91B201982B6AC00A423CF /* cfg */ = {
+			isa = PBXGroup;
+			children = (
+				ACF91B231982B6D600A423CF /* detection.json */,
+				ACF91B211982B6AC00A423CF /* hypothesis.json */,
+				ACF91B221982B6AC00A423CF /* map.json */,
+			);
+			path = cfg;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

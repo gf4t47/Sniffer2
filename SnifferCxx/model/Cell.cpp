@@ -66,6 +66,11 @@ namespace Model {
         return wind_.setWindVector(wind);
     }
     
+    bool Cell::setCoordinate(const Coordinate &coord) {
+        coord_ = coord;
+        return true;
+    }
+    
     bool Cell::setPotential(const WindVector &potential) {
         return wind_.setPotential(potential);
     }
