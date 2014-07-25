@@ -14,7 +14,8 @@ namespace Forward {
 	using namespace std;
 	using namespace Model;
     
-    UpdateByCell::UpdateByCell() {
+    UpdateByCell::UpdateByCell(int blur_range)
+        :ForwardChecking(blur_range) {
         
     }
 
@@ -82,7 +83,7 @@ namespace Forward {
 	// Parameter: const Map3D & map
 	//************************************
 	shared_ptr<Cells> UpdateByCell::calcEnds(const Cell & cell, const Map3D & map) const {
-		if (!cell.isAirCell()) {
+		if (!cell.hasMethane()) {
 			return make_shared<Cells>();
 		}
 
@@ -139,16 +140,16 @@ namespace Forward {
 	//************************************
 	shared_ptr<Cells> UpdateByCell::Deduce(const Hypothesis & hypothesis, const Map3D & map, size_t count) const {
 
-		Cells lealCells; // more leaked methane cells added in each iteration.
+		Cells leakCells; // more leaked methane cells added in each iteration.
 		for (auto leak : hypothesis.getLeaks()) {
 			auto leakCell = map.getCell(leak.location_);
 			leakCell.setMethaneConcentration(leak.concentration_);
-			lealCells.updateCell(leakCell);
+			leakCells.updateCell(leakCell);
 		}
 
 		auto ret_cells = make_shared<Cells>(*hypothesis.getMethaneCells()); //copy construtor here to storage the history of a hypothesis.
 		for (size_t i = 0; i < count; i++) {
-			ret_cells->mergeCellsByAddMethane(lealCells);
+			ret_cells->mergeCellsByAddMethane(leakCells);
 			ret_cells = calcEnds(*ret_cells, map);
 
 		}

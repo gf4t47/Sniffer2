@@ -50,7 +50,7 @@ namespace Model {
 	}
 
 	bool Cell::hasMethane() const {
-		return mtn_.hasMethena();
+		return mtn_.getParticleNum() > 0;
 	}
 
 	bool Cell::setMethaneConcentration(mtn_t concentration) {

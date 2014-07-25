@@ -20,9 +20,11 @@
 		AC4AE2AA197D6C410089A6F9 /* Methane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE29C197D6C410089A6F9 /* Methane.cpp */; };
 		AC4AE2AB197D6C410089A6F9 /* Wind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE29F197D6C410089A6F9 /* Wind.cpp */; };
 		AC4AE2AC197D6C410089A6F9 /* WindVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2A1197D6C410089A6F9 /* WindVector.cpp */; };
-		AC4AE2AF197D6D040089A6F9 /* UpdateByPariticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2AD197D6D040089A6F9 /* UpdateByPariticle.cpp */; };
 		AC4AE2B3197D7AC40089A6F9 /* BackwardChecking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */; };
-		ACE0818719797D2B00C6880A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE0818519797D2B00C6880A /* main.cpp */; };
+		AC7D6F59198178BD0041B1E9 /* UpdateByConvolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */; };
+		ACD64D9B1981ABE300C9F38E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD64D991981ABE300C9F38E /* main.cpp */; };
+		ACD64DA11981B7CE00C9F38E /* MapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD64D9F1981B7CE00C9F38E /* MapBuilder.cpp */; };
+		ACD64DA41981C8AC00C9F38E /* HypothesisInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD64DA21981C8AC00C9F38E /* HypothesisInitializer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,13 +66,18 @@
 		AC4AE2A0197D6C410089A6F9 /* Wind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wind.h; sourceTree = "<group>"; };
 		AC4AE2A1197D6C410089A6F9 /* WindVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindVector.cpp; sourceTree = "<group>"; };
 		AC4AE2A2197D6C410089A6F9 /* WindVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindVector.h; sourceTree = "<group>"; };
-		AC4AE2AD197D6D040089A6F9 /* UpdateByPariticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UpdateByPariticle.cpp; sourceTree = "<group>"; };
-		AC4AE2AE197D6D040089A6F9 /* UpdateByPariticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateByPariticle.h; sourceTree = "<group>"; };
 		AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackwardChecking.cpp; sourceTree = "<group>"; };
 		AC4AE2B2197D7AC40089A6F9 /* BackwardChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackwardChecking.h; sourceTree = "<group>"; };
-		AC6FE6B9197EEE730034BA54 /* map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
+		AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UpdateByConvolution.cpp; sourceTree = "<group>"; };
+		AC7D6F58198178BD0041B1E9 /* UpdateByConvolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateByConvolution.h; sourceTree = "<group>"; };
+		ACD64D981981ABE300C9F38E /* hypothesis.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hypothesis.json; sourceTree = "<group>"; };
+		ACD64D991981ABE300C9F38E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		ACD64D9A1981ABE300C9F38E /* map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
+		ACD64D9F1981B7CE00C9F38E /* MapBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapBuilder.cpp; sourceTree = "<group>"; };
+		ACD64DA01981B7CE00C9F38E /* MapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBuilder.h; sourceTree = "<group>"; };
+		ACD64DA21981C8AC00C9F38E /* HypothesisInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HypothesisInitializer.cpp; sourceTree = "<group>"; };
+		ACD64DA31981C8AC00C9F38E /* HypothesisInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypothesisInitializer.h; sourceTree = "<group>"; };
 		ACE0817919797CC400C6880A /* SnifferCxx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnifferCxx; sourceTree = BUILT_PRODUCTS_DIR; };
-		ACE0818519797D2B00C6880A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ACE0818619797D2B00C6880A /* SnifferCxx.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = SnifferCxx.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,12 +108,12 @@
 		AC4AE28C197D6C410089A6F9 /* forward */ = {
 			isa = PBXGroup;
 			children = (
+				AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */,
+				AC7D6F58198178BD0041B1E9 /* UpdateByConvolution.h */,
 				AC4AE28D197D6C410089A6F9 /* ForwardChecking.cpp */,
 				AC4AE28E197D6C410089A6F9 /* ForwardChecking.h */,
 				AC4AE28F197D6C410089A6F9 /* UpdateByCell.cpp */,
 				AC4AE290197D6C410089A6F9 /* UpdateByCell.h */,
-				AC4AE2AD197D6D040089A6F9 /* UpdateByPariticle.cpp */,
-				AC4AE2AE197D6D040089A6F9 /* UpdateByPariticle.h */,
 			);
 			path = forward;
 			sourceTree = "<group>";
@@ -143,15 +150,28 @@
 			path = backwrad;
 			sourceTree = "<group>";
 		};
+		ACD64D971981AB9700C9F38E /* sln */ = {
+			isa = PBXGroup;
+			children = (
+				ACD64D981981ABE300C9F38E /* hypothesis.json */,
+				ACD64D991981ABE300C9F38E /* main.cpp */,
+				ACD64D9A1981ABE300C9F38E /* map.json */,
+				ACD64D9F1981B7CE00C9F38E /* MapBuilder.cpp */,
+				ACD64DA01981B7CE00C9F38E /* MapBuilder.h */,
+				ACD64DA21981C8AC00C9F38E /* HypothesisInitializer.cpp */,
+				ACD64DA31981C8AC00C9F38E /* HypothesisInitializer.h */,
+			);
+			path = sln;
+			sourceTree = "<group>";
+		};
 		ACE0817019797CC300C6880A = {
 			isa = PBXGroup;
 			children = (
-				AC6FE6B9197EEE730034BA54 /* map.json */,
+				ACD64D971981AB9700C9F38E /* sln */,
 				AC3438E4197EBF03002E37AE /* math */,
 				AC4AE2B0197D78260089A6F9 /* backwrad */,
 				AC4AE28C197D6C410089A6F9 /* forward */,
 				AC4AE291197D6C410089A6F9 /* model */,
-				ACE0818519797D2B00C6880A /* main.cpp */,
 				ACE0818619797D2B00C6880A /* SnifferCxx.1 */,
 				ACE0817A19797CC400C6880A /* Products */,
 			);
@@ -216,13 +236,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACE0818719797D2B00C6880A /* main.cpp in Sources */,
 				AC3438ED197EBF03002E37AE /* GaussianBlur.cpp in Sources */,
 				AC4AE2A6197D6C410089A6F9 /* Cells.cpp in Sources */,
 				AC4AE2A7197D6C410089A6F9 /* Coordinate.cpp in Sources */,
 				AC4AE2AC197D6C410089A6F9 /* WindVector.cpp in Sources */,
 				AC4AE2A9197D6C410089A6F9 /* Map3D.cpp in Sources */,
-				AC4AE2AF197D6D040089A6F9 /* UpdateByPariticle.cpp in Sources */,
+				AC7D6F59198178BD0041B1E9 /* UpdateByConvolution.cpp in Sources */,
 				AC4AE2A4197D6C410089A6F9 /* UpdateByCell.cpp in Sources */,
 				AC3438EB197EBF03002E37AE /* Gamma.cpp in Sources */,
 				AC4AE2AB197D6C410089A6F9 /* Wind.cpp in Sources */,
@@ -231,6 +250,9 @@
 				AC4AE2A5197D6C410089A6F9 /* Cell.cpp in Sources */,
 				AC3438EC197EBF03002E37AE /* Gaussian.cpp in Sources */,
 				AC4AE2A8197D6C410089A6F9 /* Hypothesis.cpp in Sources */,
+				ACD64D9B1981ABE300C9F38E /* main.cpp in Sources */,
+				ACD64DA11981B7CE00C9F38E /* MapBuilder.cpp in Sources */,
+				ACD64DA41981C8AC00C9F38E /* HypothesisInitializer.cpp in Sources */,
 				AC4AE2B3197D7AC40089A6F9 /* BackwardChecking.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

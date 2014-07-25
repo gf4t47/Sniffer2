@@ -20,6 +20,7 @@ namespace Model {
 		Wind(const WindVector & wind, const WindVector & potential);
 
 		WindVector getWindVector() const;
+        WindVector getPotential() const;
         
         bool setWindVector(const WindVector & vec);
         bool setPotential(const WindVector & potential);

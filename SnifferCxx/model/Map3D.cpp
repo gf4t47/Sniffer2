@@ -11,68 +11,6 @@
 namespace Model {
 	using namespace std;
 	typedef map_t::extent_range erange;
-    
-    const size_t default_potential_step = 3;
-    const wv_item_t default_wind_norm = 1.618;
-
-	MapBuilder::MapBuilder(coord_item_t length, coord_item_t width, coord_item_t height, unit_t unit) 
-		:boundary_(length, width, height),
-		unit_(unit),
-        potentialStep_(default_potential_step) {
-
-	}
-
-	MapBuilder::MapBuilder(const Coordinate & boundary, unit_t unit)
-		: boundary_(boundary),
-		unit_(unit),
-        potentialStep_(default_potential_step) {
-
-	}
-
-	MapBuilder * MapBuilder::setStartIndex(const Coordinate & startIndex) {
-		startIndex_ = startIndex;
-		return this;
-	}
-
-	MapBuilder * MapBuilder::setWind(const WindVector & wind) {
-		wind_ = wind;
-		return this;
-	}
-    
-    MapBuilder * MapBuilder::setLocalPotential(coord_item_t step) {
-        potentialStep_ = step;
-        return this;
-    }
-
-	MapBuilder * MapBuilder::setBuildings(const std::vector<stBuilding> & buildings) {
-		buildings_ = buildings;
-		return this;
-	}
-
-	shared_ptr<Map3D> MapBuilder::build() {
-		shared_ptr<Map3D> map;
-		if (startIndex_) {
-			map.reset(new Map3D(*startIndex_, boundary_, unit_));
-		}
-		else {
-			map.reset(new Map3D(boundary_[0], boundary_[1], boundary_[2], unit_));
-		}
-        
-        if (wind_)
-		{
-			map->updateWind(*wind_);
-		}
-
-		if (buildings_)
-		{
-			for (auto bld : *buildings_)
-			{
-				map->AddBuilding(bld, potentialStep_, wind_);
-			}
-		}
-
-		return map;
-	}
 
 	Map3D::Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit)
 		:map_t(boost::extents[erange(startIndex[0], startIndex[0] + boundary[0])][erange(startIndex[1], startIndex[1] + boundary[1])][erange(startIndex[2], startIndex[2] + boundary[2])]),
@@ -86,17 +24,11 @@ namespace Model {
 
 	}
 
-	shared_ptr<vector<Coordinate>> Map3D::AddBuilding(const stBuilding & bld, coord_item_t potentialStep, boost::optional<WindVector> wind) {
+	shared_ptr<vector<Coordinate>> Map3D::AddBuilding(const Coordinate & location, const Coordinate & boundary, coord_item_t potentialStep, wv_item_t wind_norm) {
 		auto ret_vec = make_shared<vector<Coordinate>>();
-		auto location = bld.location_;
-		auto boudary = bld.boundary_;
-        auto wind_norm = default_wind_norm;
-        if (wind) {
-            wind_norm = wind->calcNorm();
-        }
-		for (auto l = location[0]; l < location[0] + boudary[0]; l++) {
-			for (auto w = location[1]; w < location[1] + boudary[1]; w++) {
-				for (auto h = location[2]; h < location[2] + boudary[2]; h++) {
+		for (auto l = location[0]; l < location[0] + boundary[0]; l++) {
+			for (auto w = location[1]; w < location[1] + boundary[1]; w++) {
+				for (auto h = location[2]; h < location[2] + boundary[2]; h++) {
 					Coordinate coord(l, w, h);
 					if (insideMap(coord)) {
                         (*this)(coord).setCellTag(CellTag::Building);
@@ -116,11 +48,11 @@ namespace Model {
                 for (auto h = local_coord[2] - step; h <= local_coord[2] + step; h++) {
                     Coordinate remote_coord(l, w, h);
                     if (remote_coord != local_coord && insideMap(remote_coord)) {
-                        auto cell = getCell(remote_coord);
-                        if (cell.isAirCell()) {
+                        auto remote_cell = getCell(remote_coord);
+                        if (remote_cell.isAirCell()) {
                             auto vector = remote_coord - local_coord;
                             auto potential = vector / (vector.calcNorm() / expected_norm);
-                            (*this)(remote_coord).setPotential(potential);
+                            (*this)(remote_coord).setPotential(potential + remote_cell.getWind().getPotential());
                         }
                     }
                 }
@@ -157,8 +89,16 @@ namespace Model {
 	}
 
 	bool Map3D::isAirCell(const Coordinate & pos) const {
-		return (*this)(pos).isAirCell();
+		return insideMap(pos) && (*this)(pos).isAirCell();
 	}
+    
+//    bool Map3D::hasMethane(const Coordinate & pos) const {
+//        return insideMap(pos) && (*this)(pos).hasMethane();
+//    }
+    
+//    mtn_t Map3D::getMethane(const Coordinate & pos) const {
+//        return (*this)(pos).getMethane().getParticleNum();
+//    }
 
 	//************************************
 	// Method:    insideMap : check if a position is in the map area or under the ground or out of boundary
@@ -239,11 +179,11 @@ namespace Model {
 	Coordinate Map3D::calcStep(const Coordinate & curPos, const Coordinate & dstPos)  const {
 		Coordinate ret;
 		transform(curPos.begin(), curPos.end(), dstPos.begin(), ret.begin(),
-			[](coord_item_t it1, coord_item_t it2) {
-			if (it1 < it2){
+			[](coord_item_t curI, coord_item_t dstI) {
+			if (curI < dstI){
 				return 1;
 			}
-			else if (it1 > it2) {
+			else if (curI > dstI) {
 				return -1;
 			}
 			else {
@@ -270,20 +210,21 @@ namespace Model {
 		while (curPos != endPos) {
 			auto nextPos = curPos + calcStep(curPos, endPos);
 
-			auto next_ret = insideMap(nextPos);
-			if (!next_ret) { // next pos is out of boundary
+			auto nextPos_ret = insideMap(nextPos);
+			if (!nextPos_ret) { // next pos is out of boundary
 				return nullptr;
 			}
-			else if (indeterminate(next_ret)) { //next pos is hit on ground
+			else if (indeterminate(nextPos_ret)) { //next pos is hit on ground
 				return make_shared<Cell>(getCell(curPos));
 			}
-
-			auto nextCell = getCell(nextPos);
-			if (!nextCell.isAirCell()) { //next pos is hit on building
-				return make_shared<Cell>(getCell(curPos));
-			}
-
-			curPos = nextPos;
+            else {//next pos is still inside the map
+                auto nextCell = getCell(nextPos);
+                if (!nextCell.isAirCell()) { //next pos is hit on building
+                    return make_shared<Cell>(getCell(curPos));
+                }
+            }
+            
+            curPos = nextPos;
 		}
 
 		return make_shared<Cell>(getCell(curPos));

@@ -41,10 +41,6 @@ namespace Model {
 		return true;
 	}
 
-	bool Methane::hasMethena() const {
-		return getParticleNum() > 0;
-	}
-
 	bool Methane::operator== (const Methane & oth) const {
 		return concentration_ == oth.concentration_;
 	}

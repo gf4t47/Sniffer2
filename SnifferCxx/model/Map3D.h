@@ -11,46 +11,22 @@
 
 #include <boost/multi_array.hpp>
 #include <boost/logic/tribool.hpp>
-#include <boost/optional.hpp>
 #include "Cell.h"
+
+namespace sln {
+    class MapBuilder;
+}
 
 namespace Model{
 	typedef boost::multi_array<Cell, 3> map_t;
-
-	class Map3D;
-	
-	struct stBuilding {
-		Coordinate location_;
-		Coordinate boundary_;
-	};
-
-	class MapBuilder
-	{
-	public:
-		MapBuilder(coord_item_t length, coord_item_t width, coord_item_t height, unit_t unit);
-		MapBuilder(const Coordinate & boundary, unit_t unit);
-
-		MapBuilder * setStartIndex(const Coordinate & startIndex);
-		MapBuilder * setWind(const WindVector & wind);
-		MapBuilder * setBuildings(const std::vector<stBuilding> & buildings);
-        MapBuilder * setLocalPotential(coord_item_t step);
-
-		std::shared_ptr<Map3D> build();
-
-	private:
-		unit_t unit_;
-        coord_item_t potentialStep_;
-		Coordinate boundary_;
-		boost::optional<Coordinate> startIndex_;
-		boost::optional<WindVector> wind_;
-		boost::optional<std::vector<stBuilding>> buildings_;
-	};
 
 	class Map3D : public map_t{
 	public:
 		unit_t getUnit() const;
 
 		bool isAirCell(const Coordinate & pos) const;
+//        bool hasMethane(const Coordinate & pos) const;
+//        mtn_t getMethane(const Coordinate & pos) const;
 		boost::tribool insideMap(const Coordinate & pos) const;
 		Cell getCell(const Coordinate & pos) const;
 		bool updateCell(const Cell & cell);
@@ -60,7 +36,7 @@ namespace Model{
 		std::shared_ptr<Cell> calcCollisionByFullPath(const Coordinate & startPos, const Coordinate & endPos) const;
 		std::shared_ptr<Cell> calcCollisionByEndCell(const Coordinate & startPos, const Coordinate & endPos) const;
 
-		friend class MapBuilder;
+		friend class sln::MapBuilder;
 
 	protected:
 		const map_t::size_type * getBoundary() const;
@@ -73,7 +49,7 @@ namespace Model{
 		Coordinate calcStep(const Coordinate & curPos, const Coordinate & dstPos) const;
 
 		void calcLocalPotential(const Coordinate & local_coord, coord_item_t step, wv_item_t expected_norm);
-		std::shared_ptr<std::vector<Coordinate>> AddBuilding(const stBuilding & bld, coord_item_t potentialStep, boost::optional<WindVector> wind);
+		std::shared_ptr<std::vector<Coordinate>> AddBuilding(const Coordinate & location, const Coordinate & boundary, coord_item_t potentialStep, wv_item_t wind_norm);
 
 	private:
 		unit_t unit_;

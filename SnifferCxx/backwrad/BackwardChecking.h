@@ -24,7 +24,7 @@ namespace Model {
 namespace Backward {
     class BackwardChecking {
     public:
-        BackwardChecking();
+        BackwardChecking(std::shared_ptr<Forward::ForwardChecking> forward);
         virtual ~BackwardChecking();
         
         std::shared_ptr<std::vector<Model::Hypothesis>> updateHypotheses(const std::vector<Model::Hypothesis> & hyps, const Model::Map3D & map, size_t time_count, const std::vector<Model::Leak> & detections) const;
@@ -34,7 +34,7 @@ namespace Backward {
         void normalize(std::vector<Model::Hypothesis> & hyps) const;
         
     private:
-        std::unique_ptr<Forward::ForwardChecking> forward_;
+        std::shared_ptr<Forward::ForwardChecking> forward_;
     };
 }
 

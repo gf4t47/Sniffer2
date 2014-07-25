@@ -12,7 +12,7 @@
 #include <iostream>
 
 namespace Model {
-	typedef size_t mtn_t;
+	typedef double mtn_t;
 
 	class Methane {
 	public:
@@ -24,8 +24,6 @@ namespace Model {
 		mtn_t getParticleNum() const;
 
 		bool updateMethane(mtn_t concentration);
-
-		bool hasMethena() const;
 
 		bool operator== (const Methane & oth) const;
 

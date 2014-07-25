@@ -59,7 +59,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/kding/Desktop/SnifferCxx/SnifferCxx/map.json"
+            argument = "/Users/kding/Desktop/SnifferCxx/SnifferCxx/sln/map.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Users/kding/Desktop/SnifferCxx/SnifferCxx/sln/hypothesis.json"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

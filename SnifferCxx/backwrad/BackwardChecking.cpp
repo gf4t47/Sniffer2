@@ -13,14 +13,13 @@
 
 namespace Backward {
     const double gamma_scale = 1.0;
-	const size_t step = 4;
     
     using namespace std;
     using namespace Model;
     using namespace Forward;
     
-    BackwardChecking::BackwardChecking()
-        :forward_(new UpdateByCell()) {
+    BackwardChecking::BackwardChecking(shared_ptr<Forward::ForwardChecking> forward)
+        :forward_(forward) {
         
     }
     

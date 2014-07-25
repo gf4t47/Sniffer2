@@ -1,0 +1,21 @@
+{
+	"BlurRange" : 3,
+	"ForwardChecking": "byCell",
+	
+	"hypothesis" :
+	[
+		{"location": [12, 6, 0], "concentration": 100},
+    	{"location": [36, 6, 0], "concentration": 100},
+    	{"location": [36, 18, 0], "concentration": 100},
+    	{"location": [36, 30, 0], "concentration": 100},
+    	{"location": [36, 42, 0], "concentration": 100},
+    	{"location": [60, 6, 0], "concentration": 100},
+    	{"location": [60, 18, 0], "concentration": 100},
+    	{"location": [60, 30, 0], "concentration": 100},
+    	{"location": [60, 42, 0], "concentration": 100},
+    	{"location": [84, 6, 0], "concentration": 100},
+    	{"location": [84, 18, 0], "concentration": 100},
+    	{"location": [84, 30, 0], "concentration": 100},
+    	{"location": [84, 42, 0], "concentration": 100}
+	]
+}

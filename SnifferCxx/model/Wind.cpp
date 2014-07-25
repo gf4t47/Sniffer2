@@ -33,6 +33,10 @@ namespace Model {
 		return wind_ + potential_;
 	}
     
+    WindVector Wind::getPotential() const {
+        return potential_;
+    }
+    
     bool Wind::setWindVector(const WindVector &vec) {
         wind_ = vec;
         return true;
