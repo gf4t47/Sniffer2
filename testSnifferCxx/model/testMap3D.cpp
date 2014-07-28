@@ -8,9 +8,11 @@
 
 #include <boost/test/unit_test.hpp>
 #include "../../SnifferCxx/model/Map3D.h"
+#include "../../SnifferCxx/sln/MapBuilder.h"
 
 using namespace std;
 using namespace Model;
+using namespace sln;
 
 BOOST_AUTO_TEST_CASE(UpdateCell)
 {

@@ -37,6 +37,12 @@
     <Filter Include="Source Files\backward">
       <UniqueIdentifier>{dc05b8b1-3639-4ab8-8023-3d502e69f43c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\sln">
+      <UniqueIdentifier>{f971397b-66c7-4b2d-a305-97fc4f6ac1ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sln">
+      <UniqueIdentifier>{e9c44140-c790-4d11-8a1e-b2bd72e953f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="model\Cell.cpp">
@@ -78,17 +84,20 @@
     <ClCompile Include="math\GaussianBlur.cpp">
       <Filter>Source Files\math</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="backwrad\BackwardChecking.cpp">
       <Filter>Source Files\backward</Filter>
     </ClCompile>
     <ClCompile Include="forward\UpdateByConvolution.cpp">
       <Filter>Source Files\forward</Filter>
     </ClCompile>
-    <ClCompile Include="forward\UpdateByPariticle.cpp">
-      <Filter>Source Files\forward</Filter>
+    <ClCompile Include="sln\MapBuilder.cpp">
+      <Filter>Source Files\sln</Filter>
+    </ClCompile>
+    <ClCompile Include="sln\main.cpp">
+      <Filter>Source Files\sln</Filter>
+    </ClCompile>
+    <ClCompile Include="sln\HypothesisInitializer.cpp">
+      <Filter>Source Files\sln</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,8 +146,11 @@
     <ClInclude Include="forward\UpdateByConvolution.h">
       <Filter>Header Files\forward</Filter>
     </ClInclude>
-    <ClInclude Include="forward\UpdateByPariticle.h">
-      <Filter>Header Files\forward</Filter>
+    <ClInclude Include="sln\HypothesisInitializer.h">
+      <Filter>Header Files\sln</Filter>
+    </ClInclude>
+    <ClInclude Include="sln\MapBuilder.h">
+      <Filter>Header Files\sln</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

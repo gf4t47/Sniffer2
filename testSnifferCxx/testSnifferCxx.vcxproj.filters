@@ -22,6 +22,30 @@
     <Filter Include="Test">
       <UniqueIdentifier>{3cd52b0b-63ee-4b7a-8a72-6dd70b9eeea0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\sln">
+      <UniqueIdentifier>{2b2ac0c1-20fc-48d5-9037-9f2c3cc01b44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{31b23bd9-d644-46d7-a50d-a36140ef036c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\forward">
+      <UniqueIdentifier>{427c0836-dc21-4c34-af9c-32eabc280382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\backward">
+      <UniqueIdentifier>{8344bde7-00e2-4098-8fe7-6550c02b8c88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sln">
+      <UniqueIdentifier>{858c8139-f708-4b32-b76a-48f00e6ae5f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\backward">
+      <UniqueIdentifier>{0fe45285-9238-47d7-ae8a-75323b899e96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\forward">
+      <UniqueIdentifier>{c09cf5d0-6c3e-4e09-99b7-779c29352fca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{334e8775-6966-4d05-aa97-3e6988601022}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\SnifferCxx\model\Cell.cpp">
@@ -57,6 +81,33 @@
     <ClCompile Include="model\testCells.cpp">
       <Filter>Test</Filter>
     </ClCompile>
+    <ClCompile Include="..\SnifferCxx\backwrad\BackwardChecking.cpp">
+      <Filter>Source Files\backward</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\forward\ForwardChecking.cpp">
+      <Filter>Source Files\forward</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\math\Gamma.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\math\Gaussian.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\math\GaussianBlur.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\sln\MapBuilder.cpp">
+      <Filter>Source Files\sln</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\forward\UpdateByCell.cpp">
+      <Filter>Source Files\forward</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\forward\UpdateByConvolution.cpp">
+      <Filter>Source Files\forward</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\sln\HypothesisInitializer.cpp">
+      <Filter>Source Files\sln</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SnifferCxx\model\Cell.h">
@@ -85,6 +136,33 @@
     </ClInclude>
     <ClInclude Include="..\SnifferCxx\model\Hypothesis.h">
       <Filter>Source Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\backwrad\BackwardChecking.h">
+      <Filter>Header Files\backward</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\forward\ForwardChecking.h">
+      <Filter>Header Files\forward</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\math\Gamma.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\math\Gaussian.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\math\GaussianBlur.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\sln\MapBuilder.h">
+      <Filter>Header Files\sln</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\forward\UpdateByCell.h">
+      <Filter>Header Files\forward</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\forward\UpdateByConvolution.h">
+      <Filter>Header Files\forward</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\sln\HypothesisInitializer.h">
+      <Filter>Header Files\sln</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -66,12 +66,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\tools\boost_1_55_0_win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\tools\boost-1_56_0_b1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\tools\boost_1_55_0_win32\lib32-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\tools\boost-1_56_0_b1\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -83,34 +83,41 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\tools\boost_1_55_0_win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\tools\boost-1_56_0_b1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\tools\boost_1_55_0_win32\lib32-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\tools\boost-1_56_0_b1\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\tools\boost_1_55_0_win64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\tools\boost-1_56_0_b1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\tools\boost_1_55_0_win64\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\tools\boost-1_56_0_b1\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\tools\boost_1_55_0_win64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\tools\boost-1_56_0_b1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\tools\boost_1_55_0_win64\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\tools\boost-1_56_0_b1\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\SnifferCxx\backwrad\BackwardChecking.cpp" />
+    <ClCompile Include="..\SnifferCxx\forward\ForwardChecking.cpp" />
+    <ClCompile Include="..\SnifferCxx\forward\UpdateByCell.cpp" />
+    <ClCompile Include="..\SnifferCxx\forward\UpdateByConvolution.cpp" />
+    <ClCompile Include="..\SnifferCxx\math\Gamma.cpp" />
+    <ClCompile Include="..\SnifferCxx\math\Gaussian.cpp" />
+    <ClCompile Include="..\SnifferCxx\math\GaussianBlur.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Cell.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Cells.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Coordinate.cpp" />
@@ -119,11 +126,20 @@
     <ClCompile Include="..\SnifferCxx\model\Methane.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Wind.cpp" />
     <ClCompile Include="..\SnifferCxx\model\WindVector.cpp" />
+    <ClCompile Include="..\SnifferCxx\sln\HypothesisInitializer.cpp" />
+    <ClCompile Include="..\SnifferCxx\sln\MapBuilder.cpp" />
     <ClCompile Include="model\testCells.cpp" />
     <ClCompile Include="model\testMap3D.cpp" />
     <ClCompile Include="model\testWindVector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\SnifferCxx\backwrad\BackwardChecking.h" />
+    <ClInclude Include="..\SnifferCxx\forward\ForwardChecking.h" />
+    <ClInclude Include="..\SnifferCxx\forward\UpdateByCell.h" />
+    <ClInclude Include="..\SnifferCxx\forward\UpdateByConvolution.h" />
+    <ClInclude Include="..\SnifferCxx\math\Gamma.h" />
+    <ClInclude Include="..\SnifferCxx\math\Gaussian.h" />
+    <ClInclude Include="..\SnifferCxx\math\GaussianBlur.h" />
     <ClInclude Include="..\SnifferCxx\model\Cell.h" />
     <ClInclude Include="..\SnifferCxx\model\Cells.h" />
     <ClInclude Include="..\SnifferCxx\model\Coordinate.h" />
@@ -133,6 +149,8 @@
     <ClInclude Include="..\SnifferCxx\model\Vector3D.h" />
     <ClInclude Include="..\SnifferCxx\model\Wind.h" />
     <ClInclude Include="..\SnifferCxx\model\WindVector.h" />
+    <ClInclude Include="..\SnifferCxx\sln\HypothesisInitializer.h" />
+    <ClInclude Include="..\SnifferCxx\sln\MapBuilder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
