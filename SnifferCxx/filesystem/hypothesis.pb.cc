@@ -16,7 +16,7 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
-namespace filesystem {
+namespace Filesystem {
 
 namespace {
 
@@ -146,17 +146,17 @@ void protobuf_AddDesc_hypothesis_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  ::filesystem::protobuf_AddDesc_cell_2eproto();
+  ::Filesystem::protobuf_AddDesc_cell_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\020hypothesis.proto\022\nfilesystem\032\ncell.pro"
+    "\n\020hypothesis.proto\022\nFilesystem\032\ncell.pro"
     "to\"\300\001\n\nHypothesis\022\023\n\013probability\030\001 \002(\001\022*"
-    "\n\005leaks\030\002 \003(\0132\033.filesystem.Hypothesis.Le"
-    "ak\022(\n\rmethene_cells\030\003 \003(\0132\021.filesystem.C"
-    "ells\032G\n\004Leak\022(\n\010location\030\001 \002(\0132\026.filesys"
+    "\n\005leaks\030\002 \003(\0132\033.Filesystem.Hypothesis.Le"
+    "ak\022(\n\rmethene_cells\030\003 \003(\0132\021.Filesystem.C"
+    "ells\032G\n\004Leak\022(\n\010location\030\001 \002(\0132\026.Filesys"
     "tem.Coordinate\022\025\n\rconcentration\030\002 \002(\001\"2\n"
-    "\nHypotheses\022$\n\004hyps\030\001 \003(\0132\026.filesystem.H"
+    "\nHypotheses\022$\n\004hyps\030\001 \003(\0132\026.Filesystem.H"
     "ypothesis\">\n\022Hypotheses_history\022(\n\010hyps_"
-    "his\030\001 \003(\0132\026.filesystem.Hypotheses", 353);
+    "his\030\001 \003(\0132\026.Filesystem.Hypotheses", 353);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "hypothesis.proto", &protobuf_RegisterTypes);
   Hypothesis::default_instance_ = new Hypothesis();
@@ -190,7 +190,7 @@ Hypothesis_Leak::Hypothesis_Leak()
 }
 
 void Hypothesis_Leak::InitAsDefaultInstance() {
-  location_ = const_cast< ::filesystem::Coordinate*>(&::filesystem::Coordinate::default_instance());
+  location_ = const_cast< ::Filesystem::Coordinate*>(&::Filesystem::Coordinate::default_instance());
 }
 
 Hypothesis_Leak::Hypothesis_Leak(const Hypothesis_Leak& from)
@@ -240,7 +240,7 @@ Hypothesis_Leak* Hypothesis_Leak::New() const {
 void Hypothesis_Leak::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_location()) {
-      if (location_ != NULL) location_->::filesystem::Coordinate::Clear();
+      if (location_ != NULL) location_->::Filesystem::Coordinate::Clear();
     }
     concentration_ = 0;
   }
@@ -254,7 +254,7 @@ bool Hypothesis_Leak::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .filesystem.Coordinate location = 1;
+      // required .Filesystem.Coordinate location = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -301,7 +301,7 @@ bool Hypothesis_Leak::MergePartialFromCodedStream(
 
 void Hypothesis_Leak::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .filesystem.Coordinate location = 1;
+  // required .Filesystem.Coordinate location = 1;
   if (has_location()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->location(), output);
@@ -320,7 +320,7 @@ void Hypothesis_Leak::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Hypothesis_Leak::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .filesystem.Coordinate location = 1;
+  // required .Filesystem.Coordinate location = 1;
   if (has_location()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -343,7 +343,7 @@ int Hypothesis_Leak::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .filesystem.Coordinate location = 1;
+    // required .Filesystem.Coordinate location = 1;
     if (has_location()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -383,7 +383,7 @@ void Hypothesis_Leak::MergeFrom(const Hypothesis_Leak& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_location()) {
-      mutable_location()->::filesystem::Coordinate::MergeFrom(from.location());
+      mutable_location()->::Filesystem::Coordinate::MergeFrom(from.location());
     }
     if (from.has_concentration()) {
       set_concentration(from.concentration());
@@ -518,7 +518,7 @@ bool Hypothesis::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .filesystem.Hypothesis.Leak leaks = 2;
+      // repeated .Filesystem.Hypothesis.Leak leaks = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -533,7 +533,7 @@ bool Hypothesis::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .filesystem.Cells methene_cells = 3;
+      // repeated .Filesystem.Cells methene_cells = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -571,13 +571,13 @@ void Hypothesis::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->probability(), output);
   }
 
-  // repeated .filesystem.Hypothesis.Leak leaks = 2;
+  // repeated .Filesystem.Hypothesis.Leak leaks = 2;
   for (int i = 0; i < this->leaks_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2, this->leaks(i), output);
   }
 
-  // repeated .filesystem.Cells methene_cells = 3;
+  // repeated .Filesystem.Cells methene_cells = 3;
   for (int i = 0; i < this->methene_cells_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       3, this->methene_cells(i), output);
@@ -596,14 +596,14 @@ void Hypothesis::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->probability(), target);
   }
 
-  // repeated .filesystem.Hypothesis.Leak leaks = 2;
+  // repeated .Filesystem.Hypothesis.Leak leaks = 2;
   for (int i = 0; i < this->leaks_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         2, this->leaks(i), target);
   }
 
-  // repeated .filesystem.Cells methene_cells = 3;
+  // repeated .Filesystem.Cells methene_cells = 3;
   for (int i = 0; i < this->methene_cells_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -627,7 +627,7 @@ int Hypothesis::ByteSize() const {
     }
 
   }
-  // repeated .filesystem.Hypothesis.Leak leaks = 2;
+  // repeated .Filesystem.Hypothesis.Leak leaks = 2;
   total_size += 1 * this->leaks_size();
   for (int i = 0; i < this->leaks_size(); i++) {
     total_size +=
@@ -635,7 +635,7 @@ int Hypothesis::ByteSize() const {
         this->leaks(i));
   }
 
-  // repeated .filesystem.Cells methene_cells = 3;
+  // repeated .Filesystem.Cells methene_cells = 3;
   total_size += 1 * this->methene_cells_size();
   for (int i = 0; i < this->methene_cells_size(); i++) {
     total_size +=
@@ -789,7 +789,7 @@ bool Hypotheses::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .filesystem.Hypothesis hyps = 1;
+      // repeated .Filesystem.Hypothesis hyps = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -822,7 +822,7 @@ bool Hypotheses::MergePartialFromCodedStream(
 
 void Hypotheses::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .filesystem.Hypothesis hyps = 1;
+  // repeated .Filesystem.Hypothesis hyps = 1;
   for (int i = 0; i < this->hyps_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->hyps(i), output);
@@ -836,7 +836,7 @@ void Hypotheses::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Hypotheses::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .filesystem.Hypothesis hyps = 1;
+  // repeated .Filesystem.Hypothesis hyps = 1;
   for (int i = 0; i < this->hyps_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -853,7 +853,7 @@ void Hypotheses::SerializeWithCachedSizes(
 int Hypotheses::ByteSize() const {
   int total_size = 0;
 
-  // repeated .filesystem.Hypothesis hyps = 1;
+  // repeated .Filesystem.Hypothesis hyps = 1;
   total_size += 1 * this->hyps_size();
   for (int i = 0; i < this->hyps_size(); i++) {
     total_size +=
@@ -995,7 +995,7 @@ bool Hypotheses_history::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .filesystem.Hypotheses hyps_his = 1;
+      // repeated .Filesystem.Hypotheses hyps_his = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -1028,7 +1028,7 @@ bool Hypotheses_history::MergePartialFromCodedStream(
 
 void Hypotheses_history::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .filesystem.Hypotheses hyps_his = 1;
+  // repeated .Filesystem.Hypotheses hyps_his = 1;
   for (int i = 0; i < this->hyps_his_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->hyps_his(i), output);
@@ -1042,7 +1042,7 @@ void Hypotheses_history::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Hypotheses_history::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .filesystem.Hypotheses hyps_his = 1;
+  // repeated .Filesystem.Hypotheses hyps_his = 1;
   for (int i = 0; i < this->hyps_his_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -1059,7 +1059,7 @@ void Hypotheses_history::SerializeWithCachedSizes(
 int Hypotheses_history::ByteSize() const {
   int total_size = 0;
 
-  // repeated .filesystem.Hypotheses hyps_his = 1;
+  // repeated .Filesystem.Hypotheses hyps_his = 1;
   total_size += 1 * this->hyps_his_size();
   for (int i = 0; i < this->hyps_his_size(); i++) {
     total_size +=
@@ -1136,6 +1136,6 @@ void Hypotheses_history::Swap(Hypotheses_history* other) {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace filesystem
+}  // namespace Filesystem
 
 // @@protoc_insertion_point(global_scope)

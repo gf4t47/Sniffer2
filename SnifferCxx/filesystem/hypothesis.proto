@@ -1,6 +1,6 @@
 import "cell.proto";
 
-package filesystem;
+package Filesystem;
 
 message Hypothesis {
 	message Leak {

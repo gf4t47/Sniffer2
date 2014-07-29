@@ -86,7 +86,8 @@ int main(int argc, const char * argv[])
     
     vector<shared_ptr<vector<Hypothesis>>> hyps_hist;
     hyps_hist.push_back(hyps);
-    for (auto dect : *dect_vect) {
+    for (auto dect : *dect_vect)
+    {
         auto newhyps = alg->updateHypotheses(*hyps, *map, dect.time_, dect.detected_);
         hyps_hist.push_back(newhyps);
     }

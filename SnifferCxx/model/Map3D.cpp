@@ -88,7 +88,7 @@ namespace Model {
 		return true;
 	}
     
-	Cell Map3D::getCell(const Coordinate & pos) const {
+	const Cell & Map3D::getCell(const Coordinate & pos) const {
 		return (*this)(pos);
 	}
 
