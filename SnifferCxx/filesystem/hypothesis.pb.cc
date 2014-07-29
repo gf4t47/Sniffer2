@@ -29,6 +29,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* Hypotheses_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Hypotheses_reflection_ = NULL;
+const ::google::protobuf::Descriptor* Hypotheses_history_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  Hypotheses_history_reflection_ = NULL;
 
 }  // namespace
 
@@ -87,6 +90,21 @@ void protobuf_AssignDesc_hypothesis_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Hypotheses));
+  Hypotheses_history_descriptor_ = file->message_type(2);
+  static const int Hypotheses_history_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypotheses_history, hyps_his_),
+  };
+  Hypotheses_history_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      Hypotheses_history_descriptor_,
+      Hypotheses_history::default_instance_,
+      Hypotheses_history_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypotheses_history, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypotheses_history, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(Hypotheses_history));
 }
 
 namespace {
@@ -105,6 +123,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
     Hypothesis_Leak_descriptor_, &Hypothesis_Leak::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Hypotheses_descriptor_, &Hypotheses::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    Hypotheses_history_descriptor_, &Hypotheses_history::default_instance());
 }
 
 }  // namespace
@@ -116,6 +136,8 @@ void protobuf_ShutdownFile_hypothesis_2eproto() {
   delete Hypothesis_Leak_reflection_;
   delete Hypotheses::default_instance_;
   delete Hypotheses_reflection_;
+  delete Hypotheses_history::default_instance_;
+  delete Hypotheses_history_reflection_;
 }
 
 void protobuf_AddDesc_hypothesis_2eproto() {
@@ -133,15 +155,18 @@ void protobuf_AddDesc_hypothesis_2eproto() {
     "ells\032G\n\004Leak\022(\n\010location\030\001 \002(\0132\026.filesys"
     "tem.Coordinate\022\025\n\rconcentration\030\002 \002(\001\"2\n"
     "\nHypotheses\022$\n\004hyps\030\001 \003(\0132\026.filesystem.H"
-    "ypothesis", 289);
+    "ypothesis\">\n\022Hypotheses_history\022(\n\010hyps_"
+    "his\030\001 \003(\0132\026.filesystem.Hypotheses", 353);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "hypothesis.proto", &protobuf_RegisterTypes);
   Hypothesis::default_instance_ = new Hypothesis();
   Hypothesis_Leak::default_instance_ = new Hypothesis_Leak();
   Hypotheses::default_instance_ = new Hypotheses();
+  Hypotheses_history::default_instance_ = new Hypotheses_history();
   Hypothesis::default_instance_->InitAsDefaultInstance();
   Hypothesis_Leak::default_instance_->InitAsDefaultInstance();
   Hypotheses::default_instance_->InitAsDefaultInstance();
+  Hypotheses_history::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_hypothesis_2eproto);
 }
 
@@ -899,6 +924,212 @@ void Hypotheses::Swap(Hypotheses* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = Hypotheses_descriptor_;
   metadata.reflection = Hypotheses_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int Hypotheses_history::kHypsHisFieldNumber;
+#endif  // !_MSC_VER
+
+Hypotheses_history::Hypotheses_history()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void Hypotheses_history::InitAsDefaultInstance() {
+}
+
+Hypotheses_history::Hypotheses_history(const Hypotheses_history& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void Hypotheses_history::SharedCtor() {
+  _cached_size_ = 0;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+Hypotheses_history::~Hypotheses_history() {
+  SharedDtor();
+}
+
+void Hypotheses_history::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void Hypotheses_history::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* Hypotheses_history::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return Hypotheses_history_descriptor_;
+}
+
+const Hypotheses_history& Hypotheses_history::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_hypothesis_2eproto();
+  return *default_instance_;
+}
+
+Hypotheses_history* Hypotheses_history::default_instance_ = NULL;
+
+Hypotheses_history* Hypotheses_history::New() const {
+  return new Hypotheses_history;
+}
+
+void Hypotheses_history::Clear() {
+  hyps_his_.Clear();
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool Hypotheses_history::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .filesystem.Hypotheses hyps_his = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_hyps_his:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_hyps_his()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(10)) goto parse_hyps_his;
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void Hypotheses_history::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // repeated .filesystem.Hypotheses hyps_his = 1;
+  for (int i = 0; i < this->hyps_his_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->hyps_his(i), output);
+  }
+
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* Hypotheses_history::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // repeated .filesystem.Hypotheses hyps_his = 1;
+  for (int i = 0; i < this->hyps_his_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        1, this->hyps_his(i), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int Hypotheses_history::ByteSize() const {
+  int total_size = 0;
+
+  // repeated .filesystem.Hypotheses hyps_his = 1;
+  total_size += 1 * this->hyps_his_size();
+  for (int i = 0; i < this->hyps_his_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->hyps_his(i));
+  }
+
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void Hypotheses_history::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const Hypotheses_history* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const Hypotheses_history*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void Hypotheses_history::MergeFrom(const Hypotheses_history& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  hyps_his_.MergeFrom(from.hyps_his_);
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void Hypotheses_history::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Hypotheses_history::CopyFrom(const Hypotheses_history& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Hypotheses_history::IsInitialized() const {
+
+  for (int i = 0; i < hyps_his_size(); i++) {
+    if (!this->hyps_his(i).IsInitialized()) return false;
+  }
+  return true;
+}
+
+void Hypotheses_history::Swap(Hypotheses_history* other) {
+  if (other != this) {
+    hyps_his_.Swap(&other->hyps_his_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata Hypotheses_history::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = Hypotheses_history_descriptor_;
+  metadata.reflection = Hypotheses_history_reflection_;
   return metadata;
 }
 

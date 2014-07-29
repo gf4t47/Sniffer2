@@ -37,6 +37,7 @@ void protobuf_ShutdownFile_hypothesis_2eproto();
 class Hypothesis;
 class Hypothesis_Leak;
 class Hypotheses;
+class Hypotheses_history;
 
 // ===================================================================
 
@@ -327,6 +328,91 @@ class Hypotheses : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static Hypotheses* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class Hypotheses_history : public ::google::protobuf::Message {
+ public:
+  Hypotheses_history();
+  virtual ~Hypotheses_history();
+
+  Hypotheses_history(const Hypotheses_history& from);
+
+  inline Hypotheses_history& operator=(const Hypotheses_history& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Hypotheses_history& default_instance();
+
+  void Swap(Hypotheses_history* other);
+
+  // implements Message ----------------------------------------------
+
+  Hypotheses_history* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Hypotheses_history& from);
+  void MergeFrom(const Hypotheses_history& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .filesystem.Hypotheses hyps_his = 1;
+  inline int hyps_his_size() const;
+  inline void clear_hyps_his();
+  static const int kHypsHisFieldNumber = 1;
+  inline const ::filesystem::Hypotheses& hyps_his(int index) const;
+  inline ::filesystem::Hypotheses* mutable_hyps_his(int index);
+  inline ::filesystem::Hypotheses* add_hyps_his();
+  inline const ::google::protobuf::RepeatedPtrField< ::filesystem::Hypotheses >&
+      hyps_his() const;
+  inline ::google::protobuf::RepeatedPtrField< ::filesystem::Hypotheses >*
+      mutable_hyps_his();
+
+  // @@protoc_insertion_point(class_scope:filesystem.Hypotheses_history)
+ private:
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::RepeatedPtrField< ::filesystem::Hypotheses > hyps_his_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+
+  friend void  protobuf_AddDesc_hypothesis_2eproto();
+  friend void protobuf_AssignDesc_hypothesis_2eproto();
+  friend void protobuf_ShutdownFile_hypothesis_2eproto();
+
+  void InitAsDefaultInstance();
+  static Hypotheses_history* default_instance_;
+};
 // ===================================================================
 
 
@@ -497,6 +583,35 @@ Hypotheses::hyps() const {
 inline ::google::protobuf::RepeatedPtrField< ::filesystem::Hypothesis >*
 Hypotheses::mutable_hyps() {
   return &hyps_;
+}
+
+// -------------------------------------------------------------------
+
+// Hypotheses_history
+
+// repeated .filesystem.Hypotheses hyps_his = 1;
+inline int Hypotheses_history::hyps_his_size() const {
+  return hyps_his_.size();
+}
+inline void Hypotheses_history::clear_hyps_his() {
+  hyps_his_.Clear();
+}
+inline const ::filesystem::Hypotheses& Hypotheses_history::hyps_his(int index) const {
+  return hyps_his_.Get(index);
+}
+inline ::filesystem::Hypotheses* Hypotheses_history::mutable_hyps_his(int index) {
+  return hyps_his_.Mutable(index);
+}
+inline ::filesystem::Hypotheses* Hypotheses_history::add_hyps_his() {
+  return hyps_his_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::filesystem::Hypotheses >&
+Hypotheses_history::hyps_his() const {
+  return hyps_his_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::filesystem::Hypotheses >*
+Hypotheses_history::mutable_hyps_his() {
+  return &hyps_his_;
 }
 
 

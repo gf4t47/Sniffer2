@@ -1,156 +1,176 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\model">
-      <UniqueIdentifier>{be61ab7d-b860-4985-b348-dd9413e24095}</UniqueIdentifier>
+    <Filter Include="cfg">
+      <UniqueIdentifier>{545c8a5c-36b7-4cd5-9ae8-271fe0fa9783}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\model">
-      <UniqueIdentifier>{c3d5e557-d2bd-425b-b05e-6cab111a848e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\forward">
-      <UniqueIdentifier>{7b134845-092c-4cae-a062-b44aee3e45fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\forward">
-      <UniqueIdentifier>{9ef5c441-b232-47eb-a044-160237d3cdb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\math">
-      <UniqueIdentifier>{ffceeba6-1145-4d81-b480-15640d8c52a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\math">
-      <UniqueIdentifier>{92e4e4b7-5739-4a11-a8ca-317b8e92b348}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\backward">
+    <Filter Include="backward">
       <UniqueIdentifier>{a4146118-f4ce-483e-8a13-df8b81b4a00b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\backward">
-      <UniqueIdentifier>{dc05b8b1-3639-4ab8-8023-3d502e69f43c}</UniqueIdentifier>
+    <Filter Include="filesystem">
+      <UniqueIdentifier>{d9adc8e1-09cd-4172-b2ac-7f155062e8a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\sln">
+    <Filter Include="forward">
+      <UniqueIdentifier>{7b134845-092c-4cae-a062-b44aee3e45fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{92e4e4b7-5739-4a11-a8ca-317b8e92b348}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="model">
+      <UniqueIdentifier>{be61ab7d-b860-4985-b348-dd9413e24095}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sln">
       <UniqueIdentifier>{f971397b-66c7-4b2d-a305-97fc4f6ac1ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sln">
-      <UniqueIdentifier>{e9c44140-c790-4d11-8a1e-b2bd72e953f3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="model\Cell.cpp">
-      <Filter>Source Files\model</Filter>
+    <ClCompile Include="backwrad\BackwardChecking.cpp">
+      <Filter>backward</Filter>
     </ClCompile>
-    <ClCompile Include="model\Cells.cpp">
-      <Filter>Source Files\model</Filter>
+    <ClCompile Include="filesystem\cell.pb.cpp">
+      <Filter>filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="model\Coordinate.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\Map3D.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\Methane.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\Wind.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\WindVector.cpp">
-      <Filter>Source Files\model</Filter>
+    <ClCompile Include="filesystem\hypothesis.pb.cc">
+      <Filter>filesystem</Filter>
     </ClCompile>
     <ClCompile Include="forward\ForwardChecking.cpp">
-      <Filter>Source Files\forward</Filter>
+      <Filter>forward</Filter>
     </ClCompile>
     <ClCompile Include="forward\UpdateByCell.cpp">
-      <Filter>Source Files\forward</Filter>
-    </ClCompile>
-    <ClCompile Include="model\Hypothesis.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="math\Gamma.cpp">
-      <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="math\Gaussian.cpp">
-      <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="math\GaussianBlur.cpp">
-      <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="backwrad\BackwardChecking.cpp">
-      <Filter>Source Files\backward</Filter>
+      <Filter>forward</Filter>
     </ClCompile>
     <ClCompile Include="forward\UpdateByConvolution.cpp">
-      <Filter>Source Files\forward</Filter>
+      <Filter>forward</Filter>
     </ClCompile>
-    <ClCompile Include="sln\MapBuilder.cpp">
-      <Filter>Source Files\sln</Filter>
+    <ClCompile Include="math\Gamma.cpp">
+      <Filter>math</Filter>
     </ClCompile>
-    <ClCompile Include="sln\main.cpp">
-      <Filter>Source Files\sln</Filter>
+    <ClCompile Include="math\Gaussian.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\GaussianBlur.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Cell.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Cells.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Coordinate.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Hypothesis.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Map3D.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Methane.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Wind.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\WindVector.cpp">
+      <Filter>model</Filter>
     </ClCompile>
     <ClCompile Include="sln\HypothesisInitializer.cpp">
-      <Filter>Source Files\sln</Filter>
+      <Filter>sln</Filter>
+    </ClCompile>
+    <ClCompile Include="sln\main.cpp">
+      <Filter>sln</Filter>
+    </ClCompile>
+    <ClCompile Include="sln\MapBuilder.cpp">
+      <Filter>sln</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="model\Cell.h">
-      <Filter>Header Files\model</Filter>
+      <Filter>model</Filter>
     </ClInclude>
     <ClInclude Include="model\Cells.h">
-      <Filter>Header Files\model</Filter>
+      <Filter>model</Filter>
     </ClInclude>
     <ClInclude Include="model\Coordinate.h">
-      <Filter>Header Files\model</Filter>
+      <Filter>model</Filter>
     </ClInclude>
     <ClInclude Include="model\Map3D.h">
-      <Filter>Header Files\model</Filter>
+      <Filter>model</Filter>
     </ClInclude>
     <ClInclude Include="model\Methane.h">
-      <Filter>Header Files\model</Filter>
+      <Filter>model</Filter>
     </ClInclude>
     <ClInclude Include="model\Wind.h">
-      <Filter>Header Files\model</Filter>
+      <Filter>model</Filter>
     </ClInclude>
     <ClInclude Include="model\WindVector.h">
-      <Filter>Header Files\model</Filter>
+      <Filter>model</Filter>
     </ClInclude>
     <ClInclude Include="forward\ForwardChecking.h">
-      <Filter>Header Files\forward</Filter>
+      <Filter>forward</Filter>
     </ClInclude>
     <ClInclude Include="forward\UpdateByCell.h">
-      <Filter>Header Files\forward</Filter>
+      <Filter>forward</Filter>
     </ClInclude>
     <ClInclude Include="model\Hypothesis.h">
-      <Filter>Header Files\model</Filter>
+      <Filter>model</Filter>
     </ClInclude>
     <ClInclude Include="math\Gamma.h">
-      <Filter>Header Files\math</Filter>
+      <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="math\Gaussian.h">
-      <Filter>Header Files\math</Filter>
+      <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="math\GaussianBlur.h">
-      <Filter>Header Files\math</Filter>
+      <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="backwrad\BackwardChecking.h">
-      <Filter>Header Files\backward</Filter>
+      <Filter>backward</Filter>
     </ClInclude>
     <ClInclude Include="forward\UpdateByConvolution.h">
-      <Filter>Header Files\forward</Filter>
+      <Filter>forward</Filter>
     </ClInclude>
     <ClInclude Include="sln\HypothesisInitializer.h">
-      <Filter>Header Files\sln</Filter>
+      <Filter>sln</Filter>
     </ClInclude>
     <ClInclude Include="sln\MapBuilder.h">
-      <Filter>Header Files\sln</Filter>
+      <Filter>sln</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\cell.pb.h">
+      <Filter>filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\hypothesis.pb.h">
+      <Filter>filesystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cfg\detection.json">
+      <Filter>cfg</Filter>
+    </None>
+    <None Include="cfg\hypothesis.json">
+      <Filter>cfg</Filter>
+    </None>
+    <None Include="cfg\map.json">
+      <Filter>cfg</Filter>
+    </None>
+    <None Include="cfg\output.bin">
+      <Filter>cfg</Filter>
+    </None>
+    <None Include="filesystem\cell.proto">
+      <Filter>filesystem</Filter>
+    </None>
+    <None Include="filesystem\hypothesis.proto">
+      <Filter>filesystem</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="cfg\output.txt">
+      <Filter>cfg</Filter>
+    </Text>
   </ItemGroup>
 </Project>
