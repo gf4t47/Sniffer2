@@ -7,7 +7,8 @@ namespace Forward {
 	public:
 		UpdateByConvolution(int blur_range);
 		virtual ~UpdateByConvolution();
-        
+       
+    protected:
         virtual std::shared_ptr<Model::Cells> calcEnds(const Model::Cell & cell, const Model::Map3D & map) const;
 	};
 

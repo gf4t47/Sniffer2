@@ -25,6 +25,8 @@
 		ACD64D9B1981ABE300C9F38E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD64D991981ABE300C9F38E /* main.cpp */; };
 		ACD64DA11981B7CE00C9F38E /* MapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD64D9F1981B7CE00C9F38E /* MapBuilder.cpp */; };
 		ACD64DA41981C8AC00C9F38E /* HypothesisInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD64DA21981C8AC00C9F38E /* HypothesisInitializer.cpp */; };
+		ACED9A231987151600E63AA5 /* cell.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = ACED9A211987151600E63AA5 /* cell.pb.cc */; };
+		ACED9A26198716DF00E63AA5 /* hypothesis.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = ACED9A24198716DF00E63AA5 /* hypothesis.pb.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,6 +79,12 @@
 		ACD64DA31981C8AC00C9F38E /* HypothesisInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypothesisInitializer.h; sourceTree = "<group>"; };
 		ACE0817919797CC400C6880A /* SnifferCxx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnifferCxx; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE0818619797D2B00C6880A /* SnifferCxx.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = SnifferCxx.1; sourceTree = "<group>"; };
+		ACED99E91986F24E00E63AA5 /* cell.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cell.proto; sourceTree = "<group>"; };
+		ACED99ED1986F6D500E63AA5 /* hypothesis.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hypothesis.proto; sourceTree = "<group>"; };
+		ACED9A211987151600E63AA5 /* cell.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cell.pb.cc; sourceTree = "<group>"; };
+		ACED9A221987151600E63AA5 /* cell.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cell.pb.h; sourceTree = "<group>"; };
+		ACED9A24198716DF00E63AA5 /* hypothesis.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hypothesis.pb.cc; sourceTree = "<group>"; };
+		ACED9A25198716DF00E63AA5 /* hypothesis.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hypothesis.pb.h; sourceTree = "<group>"; };
 		ACF91B211982B6AC00A423CF /* hypothesis.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hypothesis.json; sourceTree = "<group>"; };
 		ACF91B221982B6AC00A423CF /* map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
 		ACF91B231982B6D600A423CF /* detection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = detection.json; sourceTree = "<group>"; };
@@ -166,6 +174,7 @@
 		ACE0817019797CC300C6880A = {
 			isa = PBXGroup;
 			children = (
+				ACED99E21986E91700E63AA5 /* filesystem */,
 				ACF91B201982B6AC00A423CF /* cfg */,
 				ACD64D971981AB9700C9F38E /* sln */,
 				AC3438E4197EBF03002E37AE /* math */,
@@ -183,6 +192,19 @@
 				ACE0817919797CC400C6880A /* SnifferCxx */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		ACED99E21986E91700E63AA5 /* filesystem */ = {
+			isa = PBXGroup;
+			children = (
+				ACED9A24198716DF00E63AA5 /* hypothesis.pb.cc */,
+				ACED9A25198716DF00E63AA5 /* hypothesis.pb.h */,
+				ACED9A211987151600E63AA5 /* cell.pb.cc */,
+				ACED9A221987151600E63AA5 /* cell.pb.h */,
+				ACED99ED1986F6D500E63AA5 /* hypothesis.proto */,
+				ACED99E91986F24E00E63AA5 /* cell.proto */,
+			);
+			path = filesystem;
 			sourceTree = "<group>";
 		};
 		ACF91B201982B6AC00A423CF /* cfg */ = {
@@ -252,7 +274,9 @@
 				AC4AE2AC197D6C410089A6F9 /* WindVector.cpp in Sources */,
 				AC4AE2A9197D6C410089A6F9 /* Map3D.cpp in Sources */,
 				AC7D6F59198178BD0041B1E9 /* UpdateByConvolution.cpp in Sources */,
+				ACED9A231987151600E63AA5 /* cell.pb.cc in Sources */,
 				AC4AE2A4197D6C410089A6F9 /* UpdateByCell.cpp in Sources */,
+				ACED9A26198716DF00E63AA5 /* hypothesis.pb.cc in Sources */,
 				AC3438EB197EBF03002E37AE /* Gamma.cpp in Sources */,
 				AC4AE2AB197D6C410089A6F9 /* Wind.cpp in Sources */,
 				AC4AE2AA197D6C410089A6F9 /* Methane.cpp in Sources */,
@@ -305,6 +329,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				WARNING_LDFLAGS = "";
 			};
 			name = Debug;
 		};
@@ -337,19 +362,29 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
+				WARNING_LDFLAGS = "";
 			};
 			name = Release;
 		};
 		ACE0818319797CC400C6880A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/include,
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-lboost_system";
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					"/usr/local/build-protobuf/protobuf/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-lboost_system",
+					"-lboost_serialization",
+					"-lprotobuf",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -357,13 +392,22 @@
 		ACE0818419797CC400C6880A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/include,
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-lboost_system";
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					"/usr/local/build-protobuf/protobuf/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-lboost_system",
+					"-lboost_serialization",
+					"-lprotobuf",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

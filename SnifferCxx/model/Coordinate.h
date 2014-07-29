@@ -12,6 +12,8 @@
 #include <iostream>
 #include <array>
 #include <boost/functional/hash.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
 
 namespace Model {
 	class WindVector;
@@ -31,6 +33,15 @@ namespace Model {
         WindVector operator/ (const double & norm) const;
 
 		friend std::ostream& operator<<(std::ostream& os, const Coordinate& coord);
+        
+        friend class boost::serialization::access;
+        template<class Archive>
+        void serialize(Archive & ar, const unsigned int version)
+        {
+            ar & (*this)[0];
+            ar & (*this)[1];
+            ar & (*this)[2];
+        }
 	};
 
 	struct CoordHasher

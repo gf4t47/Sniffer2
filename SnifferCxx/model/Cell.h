@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include <unordered_map>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
 #include "Wind.h"
 #include "Methane.h"
 #include "Coordinate.h"
@@ -53,6 +55,16 @@ namespace Model {
 
 		bool operator== (const Cell & oth) const;
 		friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
+        
+        friend class boost::serialization::access;
+        template<class Archive>
+        void serialize(Archive & ar, const unsigned int version)
+        {
+            ar & coord_;
+            ar & tag_;
+            ar & mtn_;
+            ar & wind_;
+        }
 
 	public:
 		static std::unordered_map<CellTag, std::string, enum_hash> TagString;
@@ -62,9 +74,9 @@ namespace Model {
 
 	private:
 		Coordinate coord_;
+        CellTag tag_;
+        Methane mtn_;
 		Wind wind_;
-		Methane mtn_;
-		CellTag tag_;
 	};
 }
 

@@ -10,6 +10,8 @@
 #define __Sniffer_Cxx__Methane__
 
 #include <iostream>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
 
 namespace Model {
 	typedef double mtn_t;
@@ -28,6 +30,13 @@ namespace Model {
 		bool operator== (const Methane & oth) const;
 
 		friend std::ostream& operator<<(std::ostream& os, const Methane& mtn);
+        
+        friend class boost::serialization::access;
+        template<class Archive>
+        void serialize(Archive & ar, const unsigned int version)
+        {
+            ar & concentration_;
+        }
 
 	private:
 		mtn_t concentration_;

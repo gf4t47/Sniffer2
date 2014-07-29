@@ -6,30 +6,36 @@ namespace Model {
 
 	Hypothesis::Hypothesis(const vector<Leak> & leaks, double probability)
 		:leaks_(leaks),
-		probability_(probability),
-		methane_cells_(make_shared<Cells>()){
+		probability_(probability) {
 
 	}
 
-    Hypothesis::Hypothesis(const vector<Leak> & leaks, double probability, const shared_ptr<Cells> cells)
+    Hypothesis::Hypothesis(const vector<Leak> & leaks, double probability, const shared_ptr<Cells> initial_cells)
     :leaks_(leaks),
-    probability_(probability),
-    methane_cells_(cells)
-    {
-        
+    probability_(probability) {
+        if (initial_cells) {
+            cells_update_his_.push_back(initial_cells);
+        }
 	}
 
-	Hypothesis::~Hypothesis()
-	{
+	Hypothesis::~Hypothesis() {
 	}
 
 	const vector<Leak> & Hypothesis::getLeaks() const {
 		return leaks_;
 	}
 
-	shared_ptr<Cells> Hypothesis::getMethaneCells() const {
-		return methane_cells_;
-	}
+    void Hypothesis::addCellsHistory(const shared_ptr<Cells> cells) {
+        cells_update_his_.push_back(cells);
+    }
+    
+    const shared_ptr<Cells> Hypothesis::getMethaneCells() const {
+        if (cells_update_his_.size() > 0) {
+            return cells_update_his_.back();
+        }
+        
+        return nullptr;
+    }
     
     double Hypothesis::getProbability() const {
         return probability_;

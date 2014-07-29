@@ -10,9 +10,12 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
 #include "HypothesisInitializer.h"
 #include "../backwrad/BackwardChecking.h"
 #include "../model/Map3D.h"
+#include "../model/Cells.h"
 
 using namespace std;
 using namespace sln;
@@ -69,19 +72,25 @@ shared_ptr<vector<detection>> load(string filename) {
 
 int main(int argc, const char * argv[])
 {
+    //load map
     MapBuilder mb(argv[1]);
     auto map = mb.build();
     
+    //load hypotheses
     HypothesisInitializer hypI(argv[2]);
     auto alg = hypI.getCheckingAlg();
     auto hyps = hypI.getHyptheses();
     
-    
+    //load detection
     auto dect_vect = load(argv[3]);
-    for (auto dect : *dect_vect) {
-         auto newhyps = alg->updateHypotheses(*hyps, *map, dect.time_, dect.detected_);
-    }
     
+    vector<shared_ptr<vector<Hypothesis>>> hyps_hist;
+    hyps_hist.push_back(hyps);
+    for (auto dect : *dect_vect) {
+        auto newhyps = alg->updateHypotheses(*hyps, *map, dect.time_, dect.detected_);
+        hyps_hist.push_back(newhyps);
+    }
+        
     return 0;
 }
 

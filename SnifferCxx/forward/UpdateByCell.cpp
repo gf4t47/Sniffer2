@@ -127,34 +127,4 @@ namespace Forward {
 
 		return ret_cells;
 	}
-
-	//************************************
-	// Method:    Deduce : enter face for this algorithm class
-	// FullName:  Forward::UpdateByCell::Deduce
-	// Access:    public 
-	// Returns:   shared_ptr<Cells>
-	// Qualifier: const
-	// Parameter: const Hypothesis & hypothesis
-	// Parameter: const Map3D & map
-	// Parameter: size_t count
-	//************************************
-	shared_ptr<Cells> UpdateByCell::Deduce(const Hypothesis & hypothesis, const Map3D & map, size_t count) const {
-
-		Cells leakCells; // more leaked methane cells added in each iteration.
-		for (auto leak : hypothesis.getLeaks()) {
-			auto leakCell = map.getCell(leak.location_);
-			leakCell.setMethaneConcentration(leak.concentration_);
-			leakCells.updateCell(leakCell);
-		}
-
-		auto ret_cells = make_shared<Cells>(*(hypothesis.getMethaneCells())); //copy construtor here to storage the history of a hypothesis.
-		for (size_t i = 0; i < count; i++) {
-			ret_cells->mergeCellsByAddMethane(leakCells);
-			ret_cells = calcEnds(*ret_cells, map);
-
-		}
-
-        auto temp_ptr = ret_cells;
-		return temp_ptr;
-	}
 }

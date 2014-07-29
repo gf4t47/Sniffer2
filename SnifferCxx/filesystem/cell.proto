@@ -1,0 +1,35 @@
+package filesystem;
+
+message Coordinate {
+		repeated int32 coord_item = 1;
+	}
+	
+message Cell {
+	message WindVector {
+		repeated double wv_item = 1;
+	}
+
+	message Wind {
+		required WindVector wind = 1;
+		required WindVector potential = 2;
+	}
+
+	message Methane {
+		required double concentration = 1;
+	}
+
+	enum CellTag {
+		Air = 1;
+		Ground = 2;
+		Building = 3;
+	}
+
+	required Coordinate coord = 1;
+	required CellTag tag = 2;
+	required Methane mtn = 3;
+	required Wind wind = 4;
+}
+
+message Cells {
+	repeated Cell cell = 1;
+}

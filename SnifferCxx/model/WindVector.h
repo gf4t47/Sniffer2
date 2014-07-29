@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include <array>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
 
 namespace Model {
 	class Coordinate;
@@ -30,6 +32,15 @@ namespace Model {
 		Coordinate operator/ (const unit_t & unit) const;
 
 		friend std::ostream& operator<<(std::ostream& os, const WindVector& wv);
+        
+        friend class boost::serialization::access;
+        template<class Archive>
+        void serialize(Archive & ar, const unsigned int version)
+        {
+            ar & (*this)[0];
+            ar & (*this)[1];
+            ar & (*this)[2];
+        }
 	};
 }
 

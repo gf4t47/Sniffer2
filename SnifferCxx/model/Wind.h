@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include "WindVector.h"
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
 
 namespace Model {
 	class Wind {
@@ -24,9 +26,18 @@ namespace Model {
         
         bool setWindVector(const WindVector & vec);
         bool setPotential(const WindVector & potential);
-
+        
 		bool operator== (const Wind & oth) const;
 		friend std::ostream& operator<<(std::ostream& os, const Wind& wind);
+        
+        friend class boost::serialization::access;
+        template<class Archive>
+        void serialize(Archive & ar, const unsigned int version)
+        {
+            ar & wind_;
+            ar & potential_;
+        }
+        
 	private:
 		WindVector wind_;
 		WindVector potential_;
