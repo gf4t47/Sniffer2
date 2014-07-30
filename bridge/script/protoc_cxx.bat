@@ -1,0 +1,1 @@
+protoc -I=../interface/ --cpp_out=../../SnifferCxx/SnifferCxx/filesystem ../interface/cell.proto ../interface/hypothesis.proto
