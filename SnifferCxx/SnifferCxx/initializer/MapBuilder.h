@@ -19,7 +19,7 @@ namespace Model {
     class Map3D;
 }
 
-namespace sln {
+namespace initializer {
     struct stBuilding {
         Model::Coordinate location_;
         Model::Coordinate boundary_;

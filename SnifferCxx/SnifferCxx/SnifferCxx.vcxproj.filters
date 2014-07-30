@@ -23,7 +23,7 @@
     <Filter Include="model">
       <UniqueIdentifier>{be61ab7d-b860-4985-b348-dd9413e24095}</UniqueIdentifier>
     </Filter>
-    <Filter Include="sln">
+    <Filter Include="initializer">
       <UniqueIdentifier>{f971397b-66c7-4b2d-a305-97fc4f6ac1ec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -73,15 +73,6 @@
     <ClCompile Include="model\WindVector.cpp">
       <Filter>model</Filter>
     </ClCompile>
-    <ClCompile Include="sln\HypothesisInitializer.cpp">
-      <Filter>sln</Filter>
-    </ClCompile>
-    <ClCompile Include="sln\main.cpp">
-      <Filter>sln</Filter>
-    </ClCompile>
-    <ClCompile Include="sln\MapBuilder.cpp">
-      <Filter>sln</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\cell.pb.cc">
       <Filter>filesystem</Filter>
     </ClCompile>
@@ -91,6 +82,13 @@
     <ClCompile Include="filesystem\MessageBuilder.cpp">
       <Filter>filesystem</Filter>
     </ClCompile>
+    <ClCompile Include="initializer\HypothesisInitializer.cpp">
+      <Filter>initializer</Filter>
+    </ClCompile>
+    <ClCompile Include="initializer\MapBuilder.cpp">
+      <Filter>initializer</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="model\Cell.h">
@@ -138,12 +136,6 @@
     <ClInclude Include="forward\UpdateByConvolution.h">
       <Filter>forward</Filter>
     </ClInclude>
-    <ClInclude Include="sln\HypothesisInitializer.h">
-      <Filter>sln</Filter>
-    </ClInclude>
-    <ClInclude Include="sln\MapBuilder.h">
-      <Filter>sln</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\cell.pb.h">
       <Filter>filesystem</Filter>
     </ClInclude>
@@ -152,6 +144,12 @@
     </ClInclude>
     <ClInclude Include="filesystem\MessageBuilder.h">
       <Filter>filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="initializer\HypothesisInitializer.h">
+      <Filter>initializer</Filter>
+    </ClInclude>
+    <ClInclude Include="initializer\MapBuilder.h">
+      <Filter>initializer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

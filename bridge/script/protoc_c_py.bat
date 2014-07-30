@@ -1,0 +1,2 @@
+protoc -I=../interface/ --cpp_out=../../SnifferCxx/SnifferCxx/filesystem ../interface/cell.proto ../interface/hypothesis.proto
+protoc -I=../interface/ --python_out=../../SnifferPy/src/filesystem ../interface/cell.proto ../interface/hypothesis.proto

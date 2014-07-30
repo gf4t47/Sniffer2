@@ -12,7 +12,7 @@
 #include <boost/lexical_cast.hpp>
 #include "../model/Map3D.h"
 
-namespace sln {
+namespace initializer {
     using namespace std;
     using namespace Model;
     

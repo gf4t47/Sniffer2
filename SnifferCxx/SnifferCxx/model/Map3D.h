@@ -14,7 +14,7 @@
 #include <boost/optional.hpp>
 #include "Cell.h"
 
-namespace sln {
+namespace initializer {
     class MapBuilder;
 }
 
@@ -37,7 +37,7 @@ namespace Model{
 		std::shared_ptr<Cell> calcCollisionByFullPath(const Coordinate & startPos, const Coordinate & endPos) const;
 		std::shared_ptr<Cell> calcCollisionByEndCell(const Coordinate & startPos, const Coordinate & endPos) const;
 
-		friend class sln::MapBuilder;
+		friend class initializer::MapBuilder;
 
 	protected:
 		const map_t::size_type * getBoundary() const;

@@ -20,7 +20,7 @@ using namespace Model;
 using namespace Backward;
 using namespace Forward;
 
-namespace sln {
+namespace initializer {
     using namespace std;
     
     const int default_blurRange = 2;

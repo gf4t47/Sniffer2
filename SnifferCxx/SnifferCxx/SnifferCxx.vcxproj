@@ -183,6 +183,9 @@
     <ClCompile Include="forward\ForwardChecking.cpp" />
     <ClCompile Include="forward\UpdateByCell.cpp" />
     <ClCompile Include="forward\UpdateByConvolution.cpp" />
+    <ClCompile Include="initializer\HypothesisInitializer.cpp" />
+    <ClCompile Include="initializer\MapBuilder.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="math\Gamma.cpp" />
     <ClCompile Include="math\Gaussian.cpp" />
     <ClCompile Include="math\GaussianBlur.cpp" />
@@ -194,9 +197,6 @@
     <ClCompile Include="model\Methane.cpp" />
     <ClCompile Include="model\Wind.cpp" />
     <ClCompile Include="model\WindVector.cpp" />
-    <ClCompile Include="sln\HypothesisInitializer.cpp" />
-    <ClCompile Include="sln\main.cpp" />
-    <ClCompile Include="sln\MapBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="backwrad\BackwardChecking.h" />
@@ -206,6 +206,8 @@
     <ClInclude Include="forward\ForwardChecking.h" />
     <ClInclude Include="forward\UpdateByCell.h" />
     <ClInclude Include="forward\UpdateByConvolution.h" />
+    <ClInclude Include="initializer\HypothesisInitializer.h" />
+    <ClInclude Include="initializer\MapBuilder.h" />
     <ClInclude Include="math\Gamma.h" />
     <ClInclude Include="math\Gaussian.h" />
     <ClInclude Include="math\GaussianBlur.h" />
@@ -217,8 +219,6 @@
     <ClInclude Include="model\Methane.h" />
     <ClInclude Include="model\Wind.h" />
     <ClInclude Include="model\WindVector.h" />
-    <ClInclude Include="sln\HypothesisInitializer.h" />
-    <ClInclude Include="sln\MapBuilder.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cfg\detection.json" />

@@ -27,7 +27,7 @@ namespace Forward {
     class ForwardChecking;
 }
 
-namespace sln {
+namespace initializer {
     class HypothesisInitializer {
     public:
         HypothesisInitializer(std::string cfg_file);

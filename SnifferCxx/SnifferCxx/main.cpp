@@ -6,21 +6,21 @@
 //  Copyright (c) 2014 JPL. All rights reserved.
 //
 
-#include "MapBuilder.h"
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
-#include "HypothesisInitializer.h"
-#include "../backwrad/BackwardChecking.h"
-#include "../model/Map3D.h"
-#include "../model/Cells.h"
-#include "../filesystem/MessageBuilder.h"
-#include "../filesystem/hypothesis.pb.h"
+#include "initializer/HypothesisInitializer.h"
+#include "initializer/MapBuilder.h"
+#include "backwrad/BackwardChecking.h"
+#include "model/Map3D.h"
+#include "model/Cells.h"
+#include "filesystem/MessageBuilder.h"
+#include "filesystem/hypothesis.pb.h"
 
 using namespace std;
-using namespace sln;
+using namespace initializer;
 using namespace Model;
 
 
