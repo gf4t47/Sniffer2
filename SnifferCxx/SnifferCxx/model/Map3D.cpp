@@ -105,7 +105,12 @@ namespace Model {
 	}
 
 	bool Map3D::isAirCell(const Coordinate & pos) const {
-		return insideMap(pos) && (*this)(pos).isAirCell();
+        if (insideMap(pos)) {
+            return insideMap(pos);
+        }
+        
+        return false;
+        
 	}
     
 //    bool Map3D::hasMethane(const Coordinate & pos) const {

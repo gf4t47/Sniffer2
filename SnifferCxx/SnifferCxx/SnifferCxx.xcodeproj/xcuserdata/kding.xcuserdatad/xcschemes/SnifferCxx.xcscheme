@@ -59,23 +59,19 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/kding/Desktop/SnifferCxx/SnifferCxx/cfg/map.json"
+            argument = "/Users/kding/Desktop/Sniffer2/bridge/cfg/map.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/kding/Desktop/SnifferCxx/SnifferCxx/cfg/hypothesis.json"
+            argument = "/Users/kding/Desktop/Sniffer2/bridge/cfg/hypothesis.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/kding/Desktop/SnifferCxx/SnifferCxx/cfg/detection.json"
+            argument = "/Users/kding/Desktop/Sniffer2/bridge/cfg/detection.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/kding/Desktop/SnifferCxx/SnifferCxx/cfg/output.txt"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/kding/Desktop/SnifferCxx/SnifferCxx/cfg/output.bin"
+            argument = "/Users/kding/Desktop/Sniffer2/bridge/output/msg.bin"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>A789B956-BF75-41DD-B446-433110EA797B</string>
+	<string>5C5426E8-D737-408D-AD02-6E203D8D0C8C</string>
 	<key>IDESourceControlProjectName</key>
 	<string>SnifferCxx</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>https://github.com/gf4t47/SnifferCxx.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SnifferCxx/SnifferCxx.xcworkspace</string>
+	<string>SnifferCxx.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>EED0015C-2AB9-413D-A3D9-24A55D6F4094</key>
-		<string>../..</string>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/gf4t47/SnifferCxx.git</string>

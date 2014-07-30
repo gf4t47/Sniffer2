@@ -3,6 +3,7 @@ __author__ = 'Kern'
 import numpy
 import mayavi.mlab as mb
 
+
 def _cells_to_vector(cells):
     size = len(cells.cell)
     xs = numpy.zeros(size)
@@ -19,11 +20,11 @@ def _cells_to_vector(cells):
         ys[index] = coord.coord_item[1]
         zs[index] = coord.coord_item[2]
 
-        methane = cell.Methane
+        methane = cell.mtn
         concentration = methane.concentration
-        us[index] = 3
-        vs[index] = 3
-        ws[index] = 3
+        us[index] = concentration
+        vs[index] = concentration
+        ws[index] = concentration
 
     return xs, ys, zs, us, vs, ws
 
@@ -40,6 +41,4 @@ def build(hyps_his):
                 else:
                     ms = fig.mlab_source
                     ms.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
-
-    mb.show()
 

@@ -23,9 +23,9 @@
 		AC4AE2B3197D7AC40089A6F9 /* BackwardChecking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */; };
 		AC5F63AF1988113900C1C53E /* MessageBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5F63AD1988113900C1C53E /* MessageBuilder.cpp */; };
 		AC7D6F59198178BD0041B1E9 /* UpdateByConvolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */; };
-		ACD64D9B1981ABE300C9F38E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD64D991981ABE300C9F38E /* main.cpp */; };
-		ACD64DA11981B7CE00C9F38E /* MapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD64D9F1981B7CE00C9F38E /* MapBuilder.cpp */; };
-		ACD64DA41981C8AC00C9F38E /* HypothesisInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD64DA21981C8AC00C9F38E /* HypothesisInitializer.cpp */; };
+		ACD77E1A19894BFF0057ED65 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD77E1919894BFF0057ED65 /* main.cpp */; };
+		ACD77E2019894C060057ED65 /* HypothesisInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD77E1C19894C060057ED65 /* HypothesisInitializer.cpp */; };
+		ACD77E2119894C060057ED65 /* MapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD77E1E19894C060057ED65 /* MapBuilder.cpp */; };
 		ACED9A231987151600E63AA5 /* cell.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = ACED9A211987151600E63AA5 /* cell.pb.cc */; };
 		ACED9A26198716DF00E63AA5 /* hypothesis.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = ACED9A24198716DF00E63AA5 /* hypothesis.pb.cc */; };
 /* End PBXBuildFile section */
@@ -75,22 +75,17 @@
 		AC5F63AE1988113900C1C53E /* MessageBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBuilder.h; sourceTree = "<group>"; };
 		AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UpdateByConvolution.cpp; sourceTree = "<group>"; };
 		AC7D6F58198178BD0041B1E9 /* UpdateByConvolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateByConvolution.h; sourceTree = "<group>"; };
-		ACD64D991981ABE300C9F38E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		ACD64D9F1981B7CE00C9F38E /* MapBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapBuilder.cpp; sourceTree = "<group>"; };
-		ACD64DA01981B7CE00C9F38E /* MapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBuilder.h; sourceTree = "<group>"; };
-		ACD64DA21981C8AC00C9F38E /* HypothesisInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HypothesisInitializer.cpp; sourceTree = "<group>"; };
-		ACD64DA31981C8AC00C9F38E /* HypothesisInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypothesisInitializer.h; sourceTree = "<group>"; };
+		ACD77E1919894BFF0057ED65 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		ACD77E1C19894C060057ED65 /* HypothesisInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HypothesisInitializer.cpp; sourceTree = "<group>"; };
+		ACD77E1D19894C060057ED65 /* HypothesisInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypothesisInitializer.h; sourceTree = "<group>"; };
+		ACD77E1E19894C060057ED65 /* MapBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapBuilder.cpp; sourceTree = "<group>"; };
+		ACD77E1F19894C060057ED65 /* MapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBuilder.h; sourceTree = "<group>"; };
 		ACE0817919797CC400C6880A /* SnifferCxx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnifferCxx; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE0818619797D2B00C6880A /* SnifferCxx.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = SnifferCxx.1; sourceTree = "<group>"; };
-		ACED99E91986F24E00E63AA5 /* cell.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cell.proto; sourceTree = "<group>"; };
-		ACED99ED1986F6D500E63AA5 /* hypothesis.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hypothesis.proto; sourceTree = "<group>"; };
 		ACED9A211987151600E63AA5 /* cell.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cell.pb.cc; sourceTree = "<group>"; };
 		ACED9A221987151600E63AA5 /* cell.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cell.pb.h; sourceTree = "<group>"; };
 		ACED9A24198716DF00E63AA5 /* hypothesis.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hypothesis.pb.cc; sourceTree = "<group>"; };
 		ACED9A25198716DF00E63AA5 /* hypothesis.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hypothesis.pb.h; sourceTree = "<group>"; };
-		ACF91B211982B6AC00A423CF /* hypothesis.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hypothesis.json; sourceTree = "<group>"; };
-		ACF91B221982B6AC00A423CF /* map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
-		ACF91B231982B6D600A423CF /* detection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = detection.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,29 +157,28 @@
 			path = backwrad;
 			sourceTree = "<group>";
 		};
-		ACD64D971981AB9700C9F38E /* sln */ = {
+		ACD77E1B19894C060057ED65 /* initializer */ = {
 			isa = PBXGroup;
 			children = (
-				ACD64D991981ABE300C9F38E /* main.cpp */,
-				ACD64D9F1981B7CE00C9F38E /* MapBuilder.cpp */,
-				ACD64DA01981B7CE00C9F38E /* MapBuilder.h */,
-				ACD64DA21981C8AC00C9F38E /* HypothesisInitializer.cpp */,
-				ACD64DA31981C8AC00C9F38E /* HypothesisInitializer.h */,
+				ACD77E1C19894C060057ED65 /* HypothesisInitializer.cpp */,
+				ACD77E1D19894C060057ED65 /* HypothesisInitializer.h */,
+				ACD77E1E19894C060057ED65 /* MapBuilder.cpp */,
+				ACD77E1F19894C060057ED65 /* MapBuilder.h */,
 			);
-			path = sln;
+			path = initializer;
 			sourceTree = "<group>";
 		};
 		ACE0817019797CC300C6880A = {
 			isa = PBXGroup;
 			children = (
+				ACD77E1B19894C060057ED65 /* initializer */,
 				ACED99E21986E91700E63AA5 /* filesystem */,
-				ACF91B201982B6AC00A423CF /* cfg */,
-				ACD64D971981AB9700C9F38E /* sln */,
 				AC3438E4197EBF03002E37AE /* math */,
 				AC4AE2B0197D78260089A6F9 /* backwrad */,
 				AC4AE28C197D6C410089A6F9 /* forward */,
 				AC4AE291197D6C410089A6F9 /* model */,
 				ACE0818619797D2B00C6880A /* SnifferCxx.1 */,
+				ACD77E1919894BFF0057ED65 /* main.cpp */,
 				ACE0817A19797CC400C6880A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -204,22 +198,10 @@
 				ACED9A25198716DF00E63AA5 /* hypothesis.pb.h */,
 				ACED9A211987151600E63AA5 /* cell.pb.cc */,
 				ACED9A221987151600E63AA5 /* cell.pb.h */,
-				ACED99ED1986F6D500E63AA5 /* hypothesis.proto */,
-				ACED99E91986F24E00E63AA5 /* cell.proto */,
 				AC5F63AD1988113900C1C53E /* MessageBuilder.cpp */,
 				AC5F63AE1988113900C1C53E /* MessageBuilder.h */,
 			);
 			path = filesystem;
-			sourceTree = "<group>";
-		};
-		ACF91B201982B6AC00A423CF /* cfg */ = {
-			isa = PBXGroup;
-			children = (
-				ACF91B231982B6D600A423CF /* detection.json */,
-				ACF91B211982B6AC00A423CF /* hypothesis.json */,
-				ACF91B221982B6AC00A423CF /* map.json */,
-			);
-			path = cfg;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,13 +268,13 @@
 				AC3438EB197EBF03002E37AE /* Gamma.cpp in Sources */,
 				AC4AE2AB197D6C410089A6F9 /* Wind.cpp in Sources */,
 				AC4AE2AA197D6C410089A6F9 /* Methane.cpp in Sources */,
+				ACD77E1A19894BFF0057ED65 /* main.cpp in Sources */,
+				ACD77E2019894C060057ED65 /* HypothesisInitializer.cpp in Sources */,
 				AC4AE2A3197D6C410089A6F9 /* ForwardChecking.cpp in Sources */,
+				ACD77E2119894C060057ED65 /* MapBuilder.cpp in Sources */,
 				AC4AE2A5197D6C410089A6F9 /* Cell.cpp in Sources */,
 				AC3438EC197EBF03002E37AE /* Gaussian.cpp in Sources */,
 				AC4AE2A8197D6C410089A6F9 /* Hypothesis.cpp in Sources */,
-				ACD64D9B1981ABE300C9F38E /* main.cpp in Sources */,
-				ACD64DA11981B7CE00C9F38E /* MapBuilder.cpp in Sources */,
-				ACD64DA41981C8AC00C9F38E /* HypothesisInitializer.cpp in Sources */,
 				AC4AE2B3197D7AC40089A6F9 /* BackwardChecking.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
