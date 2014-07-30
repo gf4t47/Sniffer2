@@ -21,12 +21,12 @@ def _build_surface(start_index, boundary):
 
 def _build_building(location, boundary):
     xs, ys = numpy.mgrid[location[0]: location[0] + boundary[0], location[1]: location[1] + boundary[1]]
-    zs = numpy.zeros(xs.shape)
+    zs = numpy.zeros(xs.shape, dtype=int)
     zs.fill(location[2])
-    ss = numpy.zeros(xs.shape)
+    ss = numpy.zeros(xs.shape, dtype=int)
     ss.fill(boundary[2])
 
-    mb.barchart(xs, ys, zs, ss)
+    return map(lambda arr: arr.reshape(arr.size, 1), [xs, ys, zs, ss])
 
 
 def build(m_dict):
@@ -34,7 +34,11 @@ def build(m_dict):
     start_index = m_dict.get(strLocation, [0, 0, 0])
     _build_surface(start_index, boundary)
 
+    all_list = [], [], [], []
     for bld_dict in m_dict[strBuilding]:
         location = bld_dict[strLocation]
         boundary = bld_dict[strBoundary]
-        _build_building(location, boundary)
+        ret = _build_building(location, boundary)
+        map(lambda item, item_list: item_list.extend(item), ret, all_list)
+
+    return mb.barchart(*all_list)

@@ -29,7 +29,7 @@ def _cells_to_vector(cells):
     return xs, ys, zs, us, vs, ws
 
 
-def build(hyps_his):
+def _build(hyps_his):
     init = True
     for hyps in hyps_his.hyps:
         for hyp in hyps.hyp:
@@ -37,8 +37,16 @@ def build(hyps_his):
                 xs, ys, zs, us, vs, ws = _cells_to_vector(cells)
                 if init:
                     init = False
-                    fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2, scale_mode="vector", scale_factor=0.1, mode="2dtriangle")
+                    fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2, scale_mode="vector", scale_factor=0.1,
+                                      mode="2dtriangle")
                 else:
                     ms = fig.mlab_source
                     ms.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
+
+
+def build(hyps, fig):
+    filter_hyps = filter(lambda hyp: hyp.probability >= 1.0 / len(hyps.hyp), hyps.hyp)
+    pass
+
+
 
