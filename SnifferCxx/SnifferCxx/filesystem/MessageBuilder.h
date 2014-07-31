@@ -22,13 +22,13 @@ namespace Model {
 
 namespace Filesystem {
     class Hypotheses_history;
-    class Cells;
     class Cell;
+    class Map;
     
     class MessageBuilder {
     public:
         static std::shared_ptr<Filesystem::Hypotheses_history> buildMessage(const std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his);
-        static std::shared_ptr<Filesystem::Cells> buildMessage(const Model::Map3D & map);
+        static std::shared_ptr<Filesystem::Map> buildMessage(const Model::Map3D & map);
         
     private:
         static bool buildCellMessage(const Model::Cell & cell, Filesystem::Cell * msg_cell);

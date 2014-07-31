@@ -39,6 +39,9 @@ const ::google::protobuf::EnumDescriptor* Cell_CellTag_descriptor_ = NULL;
 const ::google::protobuf::Descriptor* Cells_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Cells_reflection_ = NULL;
+const ::google::protobuf::Descriptor* Map_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  Map_reflection_ = NULL;
 
 }  // namespace
 
@@ -144,6 +147,23 @@ void protobuf_AssignDesc_cell_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Cells));
+  Map_descriptor_ = file->message_type(3);
+  static const int Map_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Map, startindex_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Map, boundary_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Map, cell_),
+  };
+  Map_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      Map_descriptor_,
+      Map::default_instance_,
+      Map_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Map, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Map, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(Map));
 }
 
 namespace {
@@ -168,6 +188,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
     Cell_Methane_descriptor_, &Cell_Methane::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Cells_descriptor_, &Cells::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    Map_descriptor_, &Map::default_instance());
 }
 
 }  // namespace
@@ -185,6 +207,8 @@ void protobuf_ShutdownFile_cell_2eproto() {
   delete Cell_Methane_reflection_;
   delete Cells::default_instance_;
   delete Cells_reflection_;
+  delete Map::default_instance_;
+  delete Map_reflection_;
 }
 
 void protobuf_AddDesc_cell_2eproto() {
@@ -205,7 +229,10 @@ void protobuf_AddDesc_cell_2eproto() {
     "(\0132\033.Filesystem.Cell.WindVector\032 \n\007Metha"
     "ne\022\025\n\rconcentration\030\001 \002(\001\",\n\007CellTag\022\007\n\003"
     "Air\020\001\022\n\n\006Ground\020\002\022\014\n\010Building\020\003\"\'\n\005Cells"
-    "\022\036\n\004cell\030\001 \003(\0132\020.Filesystem.Cell", 472);
+    "\022\036\n\004cell\030\001 \003(\0132\020.Filesystem.Cell\"{\n\003Map\022"
+    "*\n\nstartIndex\030\001 \002(\0132\026.Filesystem.Coordin"
+    "ate\022(\n\010boundary\030\002 \002(\0132\026.Filesystem.Coord"
+    "inate\022\036\n\004cell\030\003 \003(\0132\020.Filesystem.Cell", 597);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cell.proto", &protobuf_RegisterTypes);
   Coordinate::default_instance_ = new Coordinate();
@@ -214,12 +241,14 @@ void protobuf_AddDesc_cell_2eproto() {
   Cell_Wind::default_instance_ = new Cell_Wind();
   Cell_Methane::default_instance_ = new Cell_Methane();
   Cells::default_instance_ = new Cells();
+  Map::default_instance_ = new Map();
   Coordinate::default_instance_->InitAsDefaultInstance();
   Cell::default_instance_->InitAsDefaultInstance();
   Cell_WindVector::default_instance_->InitAsDefaultInstance();
   Cell_Wind::default_instance_->InitAsDefaultInstance();
   Cell_Methane::default_instance_->InitAsDefaultInstance();
   Cells::default_instance_->InitAsDefaultInstance();
+  Map::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_cell_2eproto);
 }
 
@@ -1696,6 +1725,308 @@ void Cells::Swap(Cells* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = Cells_descriptor_;
   metadata.reflection = Cells_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int Map::kStartIndexFieldNumber;
+const int Map::kBoundaryFieldNumber;
+const int Map::kCellFieldNumber;
+#endif  // !_MSC_VER
+
+Map::Map()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void Map::InitAsDefaultInstance() {
+  startindex_ = const_cast< ::Filesystem::Coordinate*>(&::Filesystem::Coordinate::default_instance());
+  boundary_ = const_cast< ::Filesystem::Coordinate*>(&::Filesystem::Coordinate::default_instance());
+}
+
+Map::Map(const Map& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void Map::SharedCtor() {
+  _cached_size_ = 0;
+  startindex_ = NULL;
+  boundary_ = NULL;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+Map::~Map() {
+  SharedDtor();
+}
+
+void Map::SharedDtor() {
+  if (this != default_instance_) {
+    delete startindex_;
+    delete boundary_;
+  }
+}
+
+void Map::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* Map::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return Map_descriptor_;
+}
+
+const Map& Map::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_cell_2eproto();
+  return *default_instance_;
+}
+
+Map* Map::default_instance_ = NULL;
+
+Map* Map::New() const {
+  return new Map;
+}
+
+void Map::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (has_startindex()) {
+      if (startindex_ != NULL) startindex_->::Filesystem::Coordinate::Clear();
+    }
+    if (has_boundary()) {
+      if (boundary_ != NULL) boundary_->::Filesystem::Coordinate::Clear();
+    }
+  }
+  cell_.Clear();
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool Map::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // required .Filesystem.Coordinate startIndex = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_startindex()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(18)) goto parse_boundary;
+        break;
+      }
+
+      // required .Filesystem.Coordinate boundary = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_boundary:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_boundary()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(26)) goto parse_cell;
+        break;
+      }
+
+      // repeated .Filesystem.Cell cell = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_cell:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_cell()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(26)) goto parse_cell;
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void Map::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // required .Filesystem.Coordinate startIndex = 1;
+  if (has_startindex()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->startindex(), output);
+  }
+
+  // required .Filesystem.Coordinate boundary = 2;
+  if (has_boundary()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2, this->boundary(), output);
+  }
+
+  // repeated .Filesystem.Cell cell = 3;
+  for (int i = 0; i < this->cell_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3, this->cell(i), output);
+  }
+
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* Map::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // required .Filesystem.Coordinate startIndex = 1;
+  if (has_startindex()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        1, this->startindex(), target);
+  }
+
+  // required .Filesystem.Coordinate boundary = 2;
+  if (has_boundary()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        2, this->boundary(), target);
+  }
+
+  // repeated .Filesystem.Cell cell = 3;
+  for (int i = 0; i < this->cell_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        3, this->cell(i), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int Map::ByteSize() const {
+  int total_size = 0;
+
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required .Filesystem.Coordinate startIndex = 1;
+    if (has_startindex()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->startindex());
+    }
+
+    // required .Filesystem.Coordinate boundary = 2;
+    if (has_boundary()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->boundary());
+    }
+
+  }
+  // repeated .Filesystem.Cell cell = 3;
+  total_size += 1 * this->cell_size();
+  for (int i = 0; i < this->cell_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->cell(i));
+  }
+
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void Map::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const Map* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const Map*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void Map::MergeFrom(const Map& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  cell_.MergeFrom(from.cell_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_startindex()) {
+      mutable_startindex()->::Filesystem::Coordinate::MergeFrom(from.startindex());
+    }
+    if (from.has_boundary()) {
+      mutable_boundary()->::Filesystem::Coordinate::MergeFrom(from.boundary());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void Map::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Map::CopyFrom(const Map& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Map::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+
+  for (int i = 0; i < cell_size(); i++) {
+    if (!this->cell(i).IsInitialized()) return false;
+  }
+  return true;
+}
+
+void Map::Swap(Map* other) {
+  if (other != this) {
+    std::swap(startindex_, other->startindex_);
+    std::swap(boundary_, other->boundary_);
+    cell_.Swap(&other->cell_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata Map::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = Map_descriptor_;
+  metadata.reflection = Map_reflection_;
   return metadata;
 }
 

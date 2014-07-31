@@ -21,12 +21,27 @@ namespace Filesystem {
 			{ Model::CellTag::Ground, Cell_CellTag::Cell_CellTag_Ground } 
 	};
     
-    shared_ptr<Cells> MessageBuilder::buildMessage(const Model::Map3D & map) {
-        auto msg_cells = make_shared<Cells>();
-        boost::const_multi_array_ref<Model::Cell, 1> map_ref(map.data(), boost::extents[map.num_elements()]);
-        for_each(map_ref.begin(), map_ref.end(), [&msg_cells](const Model::Cell & cell){auto msg_cell = msg_cells->add_cell(); buildCellMessage(cell, msg_cell);});
+    shared_ptr<Map> MessageBuilder::buildMessage(const Model::Map3D & map) {
+        auto msg_map = make_shared<Map>();
         
-        return msg_cells;
+        auto msg_startIndex = new Coordinate();
+        auto startIndex = map.getStartIndex();
+        for (int i = 0; i < 3; i++) {
+            msg_startIndex->add_coord_item(*startIndex++);
+        }
+        msg_map->set_allocated_startindex(msg_startIndex);
+        
+        auto msg_boudary = new Coordinate();
+        auto boudary = map.getBoundary();
+        for (int i = 0; i < 3; i++) {
+            msg_boudary->add_coord_item(*boudary++);
+        }
+        msg_map->set_allocated_boundary(msg_boudary);
+        
+        boost::const_multi_array_ref<Model::Cell, 1> map_ref(map.data(), boost::extents[map.num_elements()]);
+        for_each(map_ref.begin(), map_ref.end(), [&msg_map](const Model::Cell & cell){auto msg_cell = msg_map->add_cell(); buildCellMessage(cell, msg_cell);});
+        
+        return msg_map;
     }
     
     shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const vector<shared_ptr<vector<Model::Hypothesis>>> & hyps_his) {

@@ -1,9 +1,10 @@
 __author__ = 'Kern'
 
 import hypothesis_pb2
+import cell_pb2
 
 
-def parse_msg(msg_file):
+def parse_mtn(msg_file):
     hyps_his = hypothesis_pb2.Hypotheses_history()
 
     with open(msg_file, "rb") as msg:
@@ -11,3 +12,13 @@ def parse_msg(msg_file):
     msg.close()
 
     return hyps_his
+
+
+def parse_map(map_file):
+    mp = cell_pb2.Map()
+
+    with open(map_file, "rb") as msg:
+        mp.ParseFromString(msg.read())
+    msg.close()
+
+    return mp

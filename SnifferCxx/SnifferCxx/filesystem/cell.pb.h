@@ -40,6 +40,7 @@ class Cell_WindVector;
 class Cell_Wind;
 class Cell_Methane;
 class Cells;
+class Map;
 
 enum Cell_CellTag {
   Cell_CellTag_Air = 1,
@@ -641,6 +642,115 @@ class Cells : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static Cells* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class Map : public ::google::protobuf::Message {
+ public:
+  Map();
+  virtual ~Map();
+
+  Map(const Map& from);
+
+  inline Map& operator=(const Map& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Map& default_instance();
+
+  void Swap(Map* other);
+
+  // implements Message ----------------------------------------------
+
+  Map* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Map& from);
+  void MergeFrom(const Map& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required .Filesystem.Coordinate startIndex = 1;
+  inline bool has_startindex() const;
+  inline void clear_startindex();
+  static const int kStartIndexFieldNumber = 1;
+  inline const ::Filesystem::Coordinate& startindex() const;
+  inline ::Filesystem::Coordinate* mutable_startindex();
+  inline ::Filesystem::Coordinate* release_startindex();
+  inline void set_allocated_startindex(::Filesystem::Coordinate* startindex);
+
+  // required .Filesystem.Coordinate boundary = 2;
+  inline bool has_boundary() const;
+  inline void clear_boundary();
+  static const int kBoundaryFieldNumber = 2;
+  inline const ::Filesystem::Coordinate& boundary() const;
+  inline ::Filesystem::Coordinate* mutable_boundary();
+  inline ::Filesystem::Coordinate* release_boundary();
+  inline void set_allocated_boundary(::Filesystem::Coordinate* boundary);
+
+  // repeated .Filesystem.Cell cell = 3;
+  inline int cell_size() const;
+  inline void clear_cell();
+  static const int kCellFieldNumber = 3;
+  inline const ::Filesystem::Cell& cell(int index) const;
+  inline ::Filesystem::Cell* mutable_cell(int index);
+  inline ::Filesystem::Cell* add_cell();
+  inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >&
+      cell() const;
+  inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >*
+      mutable_cell();
+
+  // @@protoc_insertion_point(class_scope:Filesystem.Map)
+ private:
+  inline void set_has_startindex();
+  inline void clear_has_startindex();
+  inline void set_has_boundary();
+  inline void clear_has_boundary();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::Filesystem::Coordinate* startindex_;
+  ::Filesystem::Coordinate* boundary_;
+  ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell > cell_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+
+  friend void  protobuf_AddDesc_cell_2eproto();
+  friend void protobuf_AssignDesc_cell_2eproto();
+  friend void protobuf_ShutdownFile_cell_2eproto();
+
+  void InitAsDefaultInstance();
+  static Map* default_instance_;
+};
 // ===================================================================
 
 
@@ -975,6 +1085,111 @@ Cells::cell() const {
 }
 inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >*
 Cells::mutable_cell() {
+  return &cell_;
+}
+
+// -------------------------------------------------------------------
+
+// Map
+
+// required .Filesystem.Coordinate startIndex = 1;
+inline bool Map::has_startindex() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Map::set_has_startindex() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Map::clear_has_startindex() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void Map::clear_startindex() {
+  if (startindex_ != NULL) startindex_->::Filesystem::Coordinate::Clear();
+  clear_has_startindex();
+}
+inline const ::Filesystem::Coordinate& Map::startindex() const {
+  return startindex_ != NULL ? *startindex_ : *default_instance_->startindex_;
+}
+inline ::Filesystem::Coordinate* Map::mutable_startindex() {
+  set_has_startindex();
+  if (startindex_ == NULL) startindex_ = new ::Filesystem::Coordinate;
+  return startindex_;
+}
+inline ::Filesystem::Coordinate* Map::release_startindex() {
+  clear_has_startindex();
+  ::Filesystem::Coordinate* temp = startindex_;
+  startindex_ = NULL;
+  return temp;
+}
+inline void Map::set_allocated_startindex(::Filesystem::Coordinate* startindex) {
+  delete startindex_;
+  startindex_ = startindex;
+  if (startindex) {
+    set_has_startindex();
+  } else {
+    clear_has_startindex();
+  }
+}
+
+// required .Filesystem.Coordinate boundary = 2;
+inline bool Map::has_boundary() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Map::set_has_boundary() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Map::clear_has_boundary() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Map::clear_boundary() {
+  if (boundary_ != NULL) boundary_->::Filesystem::Coordinate::Clear();
+  clear_has_boundary();
+}
+inline const ::Filesystem::Coordinate& Map::boundary() const {
+  return boundary_ != NULL ? *boundary_ : *default_instance_->boundary_;
+}
+inline ::Filesystem::Coordinate* Map::mutable_boundary() {
+  set_has_boundary();
+  if (boundary_ == NULL) boundary_ = new ::Filesystem::Coordinate;
+  return boundary_;
+}
+inline ::Filesystem::Coordinate* Map::release_boundary() {
+  clear_has_boundary();
+  ::Filesystem::Coordinate* temp = boundary_;
+  boundary_ = NULL;
+  return temp;
+}
+inline void Map::set_allocated_boundary(::Filesystem::Coordinate* boundary) {
+  delete boundary_;
+  boundary_ = boundary;
+  if (boundary) {
+    set_has_boundary();
+  } else {
+    clear_has_boundary();
+  }
+}
+
+// repeated .Filesystem.Cell cell = 3;
+inline int Map::cell_size() const {
+  return cell_.size();
+}
+inline void Map::clear_cell() {
+  cell_.Clear();
+}
+inline const ::Filesystem::Cell& Map::cell(int index) const {
+  return cell_.Get(index);
+}
+inline ::Filesystem::Cell* Map::mutable_cell(int index) {
+  return cell_.Mutable(index);
+}
+inline ::Filesystem::Cell* Map::add_cell() {
+  return cell_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >&
+Map::cell() const {
+  return cell_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >*
+Map::mutable_cell() {
   return &cell_;
 }
 
