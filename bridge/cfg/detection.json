@@ -2,25 +2,25 @@
     "detection" :
     [
         {
-            "time" : 1,
+            "time" : 10,
             "leak" :
             [
             	{"location" : [25, 12, 3], "concentration" : 50},
             	{"location" : [25, 12, 3], "concentration" : 30},
             	{"location" : [25, 12, 3], "concentration" : 20}
             ],
-            "repeat" : 30
+            "repeat" : 2
         },
 
         {
-            "time" : 5,
+            "time" : 50,
             "leak" :
             [
             	{"location" : [50, 12, 3], "concentration" : 25},
             	{"location" : [50, 12, 3], "concentration" : 12},
             	{"location" : [50, 12, 3], "concentration" : 10}
             ],
-            "repeat" : 0
+            "repeat" : 1
         }
     ]
 }

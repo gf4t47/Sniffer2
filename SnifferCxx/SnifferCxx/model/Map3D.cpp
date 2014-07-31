@@ -52,6 +52,7 @@ namespace Model {
                         if (remote_cell.isAirCell()) {
                             auto vector = remote_coord - local_coord;
                             auto potential = vector / (vector.calcNorm() / expected_norm);
+//                            cout << "potential=" << (potential + remote_cell.getWind().getPotential()) << endl;
                             (*this)(remote_coord).setPotential(potential + remote_cell.getWind().getPotential());
                         }
                     }

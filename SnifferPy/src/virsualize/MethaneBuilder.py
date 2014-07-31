@@ -6,9 +6,9 @@ import mayavi.mlab as mb
 
 def _cells_to_vector(cells):
     size = len(cells.cell)
-    xs = numpy.zeros(size)
-    ys = numpy.zeros(size)
-    zs = numpy.zeros(size)
+    xs = numpy.zeros(size, dtype=int)
+    ys = numpy.zeros(size, dtype=int)
+    zs = numpy.zeros(size, dtype=int)
 
     us = numpy.zeros(size)
     vs = numpy.zeros(size)
@@ -29,6 +29,13 @@ def _cells_to_vector(cells):
     return xs, ys, zs, us, vs, ws
 
 
+def _cells_list_to_vector(cells_list):
+    all_vec_list = [_cells_to_vector(cells) for cells in cells_list]
+    return reduce(
+        lambda vec_list1, vec_list2: map(lambda vec1, vec2: numpy.concatenate((vec1, vec2)), vec_list1, vec_list2),
+        all_vec_list)
+
+
 def _build(vecs, fig):
     xs, ys, zs, us, vs, ws = vecs
 
@@ -38,12 +45,16 @@ def _build(vecs, fig):
         fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2, scale_mode="vector", scale_factor=0.1,
                           mode="2dtriangle")
 
+    return fig
+
 
 def build(hyps, fig):
-    cells_his_list = map(lambda hyp: hyp.methene_cells, filter(lambda hyp: hyp.probability >= 0.9 / len(hyps.hyp), hyps.hyp))
+    filer_hyps = filter(lambda hyp: hyp.probability >= 0.9 / len(hyps.hyp), hyps.hyp)
+    cells_his_list = map(lambda hyp: hyp.methene_cells, hyps.hyp)
     for cells_list in zip(*cells_his_list):
-        all_cells = reduce(lambda cells1, cells2: cells1.extend(cells2), cells_list)
-        all_vecs = _cells_to_vector(all_cells)
-        return _build(all_vecs, fig)
+        all_vecs = _cells_list_to_vector(cells_list)
+        fig = _build(all_vecs, fig)
+
+    return fig
 
 

@@ -16,14 +16,22 @@
 
 namespace Model {
     class Hypothesis;
+    class Map3D;
+    class Cell;
 }
 
 namespace Filesystem {
     class Hypotheses_history;
+    class Cells;
+    class Cell;
     
     class MessageBuilder {
     public:
         static std::shared_ptr<Filesystem::Hypotheses_history> buildMessage(const std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his);
+        static std::shared_ptr<Filesystem::Cells> buildMessage(const Model::Map3D & map);
+        
+    private:
+        static bool buildCellMessage(const Model::Cell & cell, Filesystem::Cell * msg_cell);
 
 	public:
 		static std::unordered_map<Model::CellTag, Cell_CellTag, Model::enum_hash> Tag2Msg;
