@@ -34,21 +34,21 @@ void  protobuf_AddDesc_hypothesis_2eproto();
 void protobuf_AssignDesc_hypothesis_2eproto();
 void protobuf_ShutdownFile_hypothesis_2eproto();
 
+class Leak;
 class Hypothesis;
-class Hypothesis_Leak;
 class Hypotheses;
 class Hypotheses_history;
 
 // ===================================================================
 
-class Hypothesis_Leak : public ::google::protobuf::Message {
+class Leak : public ::google::protobuf::Message {
  public:
-  Hypothesis_Leak();
-  virtual ~Hypothesis_Leak();
+  Leak();
+  virtual ~Leak();
 
-  Hypothesis_Leak(const Hypothesis_Leak& from);
+  Leak(const Leak& from);
 
-  inline Hypothesis_Leak& operator=(const Hypothesis_Leak& from) {
+  inline Leak& operator=(const Leak& from) {
     CopyFrom(from);
     return *this;
   }
@@ -62,17 +62,17 @@ class Hypothesis_Leak : public ::google::protobuf::Message {
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const Hypothesis_Leak& default_instance();
+  static const Leak& default_instance();
 
-  void Swap(Hypothesis_Leak* other);
+  void Swap(Leak* other);
 
   // implements Message ----------------------------------------------
 
-  Hypothesis_Leak* New() const;
+  Leak* New() const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Hypothesis_Leak& from);
-  void MergeFrom(const Hypothesis_Leak& from);
+  void CopyFrom(const Leak& from);
+  void MergeFrom(const Leak& from);
   void Clear();
   bool IsInitialized() const;
 
@@ -111,7 +111,7 @@ class Hypothesis_Leak : public ::google::protobuf::Message {
   inline double concentration() const;
   inline void set_concentration(double value);
 
-  // @@protoc_insertion_point(class_scope:Filesystem.Hypothesis.Leak)
+  // @@protoc_insertion_point(class_scope:Filesystem.Leak)
  private:
   inline void set_has_location();
   inline void clear_has_location();
@@ -131,7 +131,7 @@ class Hypothesis_Leak : public ::google::protobuf::Message {
   friend void protobuf_ShutdownFile_hypothesis_2eproto();
 
   void InitAsDefaultInstance();
-  static Hypothesis_Leak* default_instance_;
+  static Leak* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -187,8 +187,6 @@ class Hypothesis : public ::google::protobuf::Message {
 
   // nested types ----------------------------------------------------
 
-  typedef Hypothesis_Leak Leak;
-
   // accessors -------------------------------------------------------
 
   // required double probability = 1;
@@ -198,16 +196,16 @@ class Hypothesis : public ::google::protobuf::Message {
   inline double probability() const;
   inline void set_probability(double value);
 
-  // repeated .Filesystem.Hypothesis.Leak leak = 2;
+  // repeated .Filesystem.Leak leak = 2;
   inline int leak_size() const;
   inline void clear_leak();
   static const int kLeakFieldNumber = 2;
-  inline const ::Filesystem::Hypothesis_Leak& leak(int index) const;
-  inline ::Filesystem::Hypothesis_Leak* mutable_leak(int index);
-  inline ::Filesystem::Hypothesis_Leak* add_leak();
-  inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Hypothesis_Leak >&
+  inline const ::Filesystem::Leak& leak(int index) const;
+  inline ::Filesystem::Leak* mutable_leak(int index);
+  inline ::Filesystem::Leak* add_leak();
+  inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >&
       leak() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Hypothesis_Leak >*
+  inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >*
       mutable_leak();
 
   // repeated .Filesystem.Cells methene_cells = 3;
@@ -230,7 +228,7 @@ class Hypothesis : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   double probability_;
-  ::google::protobuf::RepeatedPtrField< ::Filesystem::Hypothesis_Leak > leak_;
+  ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak > leak_;
   ::google::protobuf::RepeatedPtrField< ::Filesystem::Cells > methene_cells_;
 
   mutable int _cached_size_;
@@ -311,15 +309,28 @@ class Hypotheses : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Hypothesis >*
       mutable_hyp();
 
+  // repeated .Filesystem.Leak detection = 2;
+  inline int detection_size() const;
+  inline void clear_detection();
+  static const int kDetectionFieldNumber = 2;
+  inline const ::Filesystem::Leak& detection(int index) const;
+  inline ::Filesystem::Leak* mutable_detection(int index);
+  inline ::Filesystem::Leak* add_detection();
+  inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >&
+      detection() const;
+  inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >*
+      mutable_detection();
+
   // @@protoc_insertion_point(class_scope:Filesystem.Hypotheses)
  private:
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::RepeatedPtrField< ::Filesystem::Hypothesis > hyp_;
+  ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak > detection_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
 
   friend void  protobuf_AddDesc_hypothesis_2eproto();
   friend void protobuf_AssignDesc_hypothesis_2eproto();
@@ -418,37 +429,37 @@ class Hypotheses_history : public ::google::protobuf::Message {
 
 // ===================================================================
 
-// Hypothesis_Leak
+// Leak
 
 // required .Filesystem.Coordinate location = 1;
-inline bool Hypothesis_Leak::has_location() const {
+inline bool Leak::has_location() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void Hypothesis_Leak::set_has_location() {
+inline void Leak::set_has_location() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void Hypothesis_Leak::clear_has_location() {
+inline void Leak::clear_has_location() {
   _has_bits_[0] &= ~0x00000001u;
 }
-inline void Hypothesis_Leak::clear_location() {
+inline void Leak::clear_location() {
   if (location_ != NULL) location_->::Filesystem::Coordinate::Clear();
   clear_has_location();
 }
-inline const ::Filesystem::Coordinate& Hypothesis_Leak::location() const {
+inline const ::Filesystem::Coordinate& Leak::location() const {
   return location_ != NULL ? *location_ : *default_instance_->location_;
 }
-inline ::Filesystem::Coordinate* Hypothesis_Leak::mutable_location() {
+inline ::Filesystem::Coordinate* Leak::mutable_location() {
   set_has_location();
   if (location_ == NULL) location_ = new ::Filesystem::Coordinate;
   return location_;
 }
-inline ::Filesystem::Coordinate* Hypothesis_Leak::release_location() {
+inline ::Filesystem::Coordinate* Leak::release_location() {
   clear_has_location();
   ::Filesystem::Coordinate* temp = location_;
   location_ = NULL;
   return temp;
 }
-inline void Hypothesis_Leak::set_allocated_location(::Filesystem::Coordinate* location) {
+inline void Leak::set_allocated_location(::Filesystem::Coordinate* location) {
   delete location_;
   location_ = location;
   if (location) {
@@ -459,23 +470,23 @@ inline void Hypothesis_Leak::set_allocated_location(::Filesystem::Coordinate* lo
 }
 
 // required double concentration = 2;
-inline bool Hypothesis_Leak::has_concentration() const {
+inline bool Leak::has_concentration() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void Hypothesis_Leak::set_has_concentration() {
+inline void Leak::set_has_concentration() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void Hypothesis_Leak::clear_has_concentration() {
+inline void Leak::clear_has_concentration() {
   _has_bits_[0] &= ~0x00000002u;
 }
-inline void Hypothesis_Leak::clear_concentration() {
+inline void Leak::clear_concentration() {
   concentration_ = 0;
   clear_has_concentration();
 }
-inline double Hypothesis_Leak::concentration() const {
+inline double Leak::concentration() const {
   return concentration_;
 }
-inline void Hypothesis_Leak::set_concentration(double value) {
+inline void Leak::set_concentration(double value) {
   set_has_concentration();
   concentration_ = value;
 }
@@ -506,27 +517,27 @@ inline void Hypothesis::set_probability(double value) {
   probability_ = value;
 }
 
-// repeated .Filesystem.Hypothesis.Leak leak = 2;
+// repeated .Filesystem.Leak leak = 2;
 inline int Hypothesis::leak_size() const {
   return leak_.size();
 }
 inline void Hypothesis::clear_leak() {
   leak_.Clear();
 }
-inline const ::Filesystem::Hypothesis_Leak& Hypothesis::leak(int index) const {
+inline const ::Filesystem::Leak& Hypothesis::leak(int index) const {
   return leak_.Get(index);
 }
-inline ::Filesystem::Hypothesis_Leak* Hypothesis::mutable_leak(int index) {
+inline ::Filesystem::Leak* Hypothesis::mutable_leak(int index) {
   return leak_.Mutable(index);
 }
-inline ::Filesystem::Hypothesis_Leak* Hypothesis::add_leak() {
+inline ::Filesystem::Leak* Hypothesis::add_leak() {
   return leak_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Hypothesis_Leak >&
+inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >&
 Hypothesis::leak() const {
   return leak_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Hypothesis_Leak >*
+inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >*
 Hypothesis::mutable_leak() {
   return &leak_;
 }
@@ -583,6 +594,31 @@ Hypotheses::hyp() const {
 inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Hypothesis >*
 Hypotheses::mutable_hyp() {
   return &hyp_;
+}
+
+// repeated .Filesystem.Leak detection = 2;
+inline int Hypotheses::detection_size() const {
+  return detection_.size();
+}
+inline void Hypotheses::clear_detection() {
+  detection_.Clear();
+}
+inline const ::Filesystem::Leak& Hypotheses::detection(int index) const {
+  return detection_.Get(index);
+}
+inline ::Filesystem::Leak* Hypotheses::mutable_detection(int index) {
+  return detection_.Mutable(index);
+}
+inline ::Filesystem::Leak* Hypotheses::add_detection() {
+  return detection_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >&
+Hypotheses::detection() const {
+  return detection_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >*
+Hypotheses::mutable_detection() {
+  return &detection_;
 }
 
 // -------------------------------------------------------------------

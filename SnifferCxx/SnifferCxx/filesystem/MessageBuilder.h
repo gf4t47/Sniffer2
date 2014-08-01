@@ -18,12 +18,14 @@ namespace Model {
     class Hypothesis;
     class Map3D;
     class Cell;
+    struct Leak;
 }
 
 namespace Filesystem {
     class Hypotheses_history;
     class Cell;
     class Map;
+
     
     class MessageBuilder {
     public:

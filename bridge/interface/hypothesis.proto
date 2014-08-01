@@ -2,12 +2,12 @@ import "cell.proto";
 
 package Filesystem;
 
-message Hypothesis {
-	message Leak {
+message Leak {
 		required Coordinate location = 1;
 		required double concentration = 2;
 	}
 
+message Hypothesis {
 	required double probability = 1;
 	repeated Leak leak = 2;
 	repeated Cells methene_cells = 3;
@@ -15,6 +15,7 @@ message Hypothesis {
 
 message Hypotheses {
 	repeated Hypothesis hyp = 1;
+	repeated Leak detection = 2;
 }
 
 message Hypotheses_history {
