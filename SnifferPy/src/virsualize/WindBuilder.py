@@ -6,7 +6,7 @@ from src.filesystem import cell_pb2
 
 
 def build(mp):
-    air_cells = filter(lambda cell: cell.tag == cell_pb2.Cell.CellTag.Value('Air'), mp.cell)
+    air_cells = filter(lambda cell: cell.tag == cell_pb2.CellTag.Value('Air'), mp.cell)
 
     size = len(air_cells)
 

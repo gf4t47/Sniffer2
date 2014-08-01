@@ -34,7 +34,7 @@ namespace Filesystem {
         static bool buildCellMessage(const Model::Cell & cell, Filesystem::Cell * msg_cell);
 
 	public:
-		static std::unordered_map<Model::CellTag, Cell_CellTag, Model::enum_hash> Tag2Msg;
+		static std::unordered_map<Model::CellTag, CellTag, Model::enum_hash> Tag2Msg;
     };
 }
 

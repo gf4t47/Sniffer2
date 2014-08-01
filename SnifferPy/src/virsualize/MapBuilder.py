@@ -63,7 +63,7 @@ def build_from_bin(mp):
     start_index = mp.startIndex.coord_item
     _build_surface(start_index, boundary)
 
-    bld_cells = filter(lambda cell: cell.tag == cell_pb2.Cell.CellTag.Value('Building'), mp.cell)
+    bld_cells = filter(lambda cell: cell.tag == cell_pb2.CellTag.Value('Building'), mp.cell)
     bld_vecs = _build_buildings(bld_cells)
     return mb.barchart(*bld_vecs)
 

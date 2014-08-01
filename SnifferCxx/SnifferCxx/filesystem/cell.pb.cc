@@ -35,13 +35,13 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* Cell_Methane_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Cell_Methane_reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* Cell_CellTag_descriptor_ = NULL;
 const ::google::protobuf::Descriptor* Cells_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Cells_reflection_ = NULL;
 const ::google::protobuf::Descriptor* Map_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Map_reflection_ = NULL;
+const ::google::protobuf::EnumDescriptor* CellTag_descriptor_ = NULL;
 
 }  // namespace
 
@@ -131,7 +131,6 @@ void protobuf_AssignDesc_cell_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Cell_Methane));
-  Cell_CellTag_descriptor_ = Cell_descriptor_->enum_type(0);
   Cells_descriptor_ = file->message_type(2);
   static const int Cells_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Cells, cell_),
@@ -164,6 +163,7 @@ void protobuf_AssignDesc_cell_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Map));
+  CellTag_descriptor_ = file->enum_type(0);
 }
 
 namespace {
@@ -219,20 +219,20 @@ void protobuf_AddDesc_cell_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\ncell.proto\022\nFilesystem\" \n\nCoordinate\022\022"
-    "\n\ncoord_item\030\001 \003(\005\"\362\002\n\004Cell\022%\n\005coord\030\001 \002"
-    "(\0132\026.Filesystem.Coordinate\022%\n\003tag\030\002 \002(\0162"
-    "\030.Filesystem.Cell.CellTag\022%\n\003mtn\030\003 \002(\0132\030"
-    ".Filesystem.Cell.Methane\022#\n\004wind\030\004 \002(\0132\025"
-    ".Filesystem.Cell.Wind\032\035\n\nWindVector\022\017\n\007w"
-    "v_item\030\001 \003(\001\032a\n\004Wind\022)\n\004wind\030\001 \002(\0132\033.Fil"
-    "esystem.Cell.WindVector\022.\n\tpotential\030\002 \002"
-    "(\0132\033.Filesystem.Cell.WindVector\032 \n\007Metha"
-    "ne\022\025\n\rconcentration\030\001 \002(\001\",\n\007CellTag\022\007\n\003"
-    "Air\020\001\022\n\n\006Ground\020\002\022\014\n\010Building\020\003\"\'\n\005Cells"
-    "\022\036\n\004cell\030\001 \003(\0132\020.Filesystem.Cell\"{\n\003Map\022"
-    "*\n\nstartIndex\030\001 \002(\0132\026.Filesystem.Coordin"
-    "ate\022(\n\010boundary\030\002 \002(\0132\026.Filesystem.Coord"
-    "inate\022\036\n\004cell\030\003 \003(\0132\020.Filesystem.Cell", 597);
+    "\n\ncoord_item\030\001 \003(\005\"\277\002\n\004Cell\022%\n\005coord\030\001 \002"
+    "(\0132\026.Filesystem.Coordinate\022 \n\003tag\030\002 \002(\0162"
+    "\023.Filesystem.CellTag\022%\n\003mtn\030\003 \002(\0132\030.File"
+    "system.Cell.Methane\022#\n\004wind\030\004 \002(\0132\025.File"
+    "system.Cell.Wind\032\035\n\nWindVector\022\017\n\007wv_ite"
+    "m\030\001 \003(\001\032a\n\004Wind\022)\n\004wind\030\001 \002(\0132\033.Filesyst"
+    "em.Cell.WindVector\022.\n\tpotential\030\002 \002(\0132\033."
+    "Filesystem.Cell.WindVector\032 \n\007Methane\022\025\n"
+    "\rconcentration\030\001 \002(\001\"\'\n\005Cells\022\036\n\004cell\030\001 "
+    "\003(\0132\020.Filesystem.Cell\"{\n\003Map\022*\n\nstartInd"
+    "ex\030\001 \002(\0132\026.Filesystem.Coordinate\022(\n\010boun"
+    "dary\030\002 \002(\0132\026.Filesystem.Coordinate\022\036\n\004ce"
+    "ll\030\003 \003(\0132\020.Filesystem.Cell*,\n\007CellTag\022\007\n"
+    "\003Air\020\001\022\n\n\006Ground\020\002\022\014\n\010Building\020\003", 592);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cell.proto", &protobuf_RegisterTypes);
   Coordinate::default_instance_ = new Coordinate();
@@ -258,6 +258,21 @@ struct StaticDescriptorInitializer_cell_2eproto {
     protobuf_AddDesc_cell_2eproto();
   }
 } static_descriptor_initializer_cell_2eproto_;
+const ::google::protobuf::EnumDescriptor* CellTag_descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return CellTag_descriptor_;
+}
+bool CellTag_IsValid(int value) {
+  switch(value) {
+    case 1:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
@@ -472,29 +487,6 @@ void Coordinate::Swap(Coordinate* other) {
 
 // ===================================================================
 
-const ::google::protobuf::EnumDescriptor* Cell_CellTag_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Cell_CellTag_descriptor_;
-}
-bool Cell_CellTag_IsValid(int value) {
-  switch(value) {
-    case 1:
-    case 2:
-    case 3:
-      return true;
-    default:
-      return false;
-  }
-}
-
-#ifndef _MSC_VER
-const Cell_CellTag Cell::Air;
-const Cell_CellTag Cell::Ground;
-const Cell_CellTag Cell::Building;
-const Cell_CellTag Cell::CellTag_MIN;
-const Cell_CellTag Cell::CellTag_MAX;
-const int Cell::CellTag_ARRAYSIZE;
-#endif  // _MSC_VER
 #ifndef _MSC_VER
 const int Cell_WindVector::kWvItemFieldNumber;
 #endif  // !_MSC_VER
@@ -1271,7 +1263,7 @@ bool Cell::MergePartialFromCodedStream(
         break;
       }
 
-      // required .Filesystem.Cell.CellTag tag = 2;
+      // required .Filesystem.CellTag tag = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1280,8 +1272,8 @@ bool Cell::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (::Filesystem::Cell_CellTag_IsValid(value)) {
-            set_tag(static_cast< ::Filesystem::Cell_CellTag >(value));
+          if (::Filesystem::CellTag_IsValid(value)) {
+            set_tag(static_cast< ::Filesystem::CellTag >(value));
           } else {
             mutable_unknown_fields()->AddVarint(2, value);
           }
@@ -1344,7 +1336,7 @@ void Cell::SerializeWithCachedSizes(
       1, this->coord(), output);
   }
 
-  // required .Filesystem.Cell.CellTag tag = 2;
+  // required .Filesystem.CellTag tag = 2;
   if (has_tag()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       2, this->tag(), output);
@@ -1377,7 +1369,7 @@ void Cell::SerializeWithCachedSizes(
         1, this->coord(), target);
   }
 
-  // required .Filesystem.Cell.CellTag tag = 2;
+  // required .Filesystem.CellTag tag = 2;
   if (has_tag()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       2, this->tag(), target);
@@ -1415,7 +1407,7 @@ int Cell::ByteSize() const {
           this->coord());
     }
 
-    // required .Filesystem.Cell.CellTag tag = 2;
+    // required .Filesystem.CellTag tag = 2;
     if (has_tag()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->tag());

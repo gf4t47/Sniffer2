@@ -3,6 +3,12 @@ package Filesystem;
 message Coordinate {
 		repeated int32 coord_item = 1;
 	}
+
+enum CellTag {
+		Air = 1;
+		Ground = 2;
+		Building = 3;
+	}
 	
 message Cell {
 	message WindVector {
@@ -16,12 +22,6 @@ message Cell {
 
 	message Methane {
 		required double concentration = 1;
-	}
-
-	enum CellTag {
-		Air = 1;
-		Ground = 2;
-		Building = 3;
 	}
 
 	required Coordinate coord = 1;

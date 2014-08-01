@@ -42,25 +42,25 @@ class Cell_Methane;
 class Cells;
 class Map;
 
-enum Cell_CellTag {
-  Cell_CellTag_Air = 1,
-  Cell_CellTag_Ground = 2,
-  Cell_CellTag_Building = 3
+enum CellTag {
+  Air = 1,
+  Ground = 2,
+  Building = 3
 };
-bool Cell_CellTag_IsValid(int value);
-const Cell_CellTag Cell_CellTag_CellTag_MIN = Cell_CellTag_Air;
-const Cell_CellTag Cell_CellTag_CellTag_MAX = Cell_CellTag_Building;
-const int Cell_CellTag_CellTag_ARRAYSIZE = Cell_CellTag_CellTag_MAX + 1;
+bool CellTag_IsValid(int value);
+const CellTag CellTag_MIN = Air;
+const CellTag CellTag_MAX = Building;
+const int CellTag_ARRAYSIZE = CellTag_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* Cell_CellTag_descriptor();
-inline const ::std::string& Cell_CellTag_Name(Cell_CellTag value) {
+const ::google::protobuf::EnumDescriptor* CellTag_descriptor();
+inline const ::std::string& CellTag_Name(CellTag value) {
   return ::google::protobuf::internal::NameOfEnum(
-    Cell_CellTag_descriptor(), value);
+    CellTag_descriptor(), value);
 }
-inline bool Cell_CellTag_Parse(
-    const ::std::string& name, Cell_CellTag* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<Cell_CellTag>(
-    Cell_CellTag_descriptor(), name, value);
+inline bool CellTag_Parse(
+    const ::std::string& name, CellTag* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<CellTag>(
+    CellTag_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -468,31 +468,6 @@ class Cell : public ::google::protobuf::Message {
   typedef Cell_Wind Wind;
   typedef Cell_Methane Methane;
 
-  typedef Cell_CellTag CellTag;
-  static const CellTag Air = Cell_CellTag_Air;
-  static const CellTag Ground = Cell_CellTag_Ground;
-  static const CellTag Building = Cell_CellTag_Building;
-  static inline bool CellTag_IsValid(int value) {
-    return Cell_CellTag_IsValid(value);
-  }
-  static const CellTag CellTag_MIN =
-    Cell_CellTag_CellTag_MIN;
-  static const CellTag CellTag_MAX =
-    Cell_CellTag_CellTag_MAX;
-  static const int CellTag_ARRAYSIZE =
-    Cell_CellTag_CellTag_ARRAYSIZE;
-  static inline const ::google::protobuf::EnumDescriptor*
-  CellTag_descriptor() {
-    return Cell_CellTag_descriptor();
-  }
-  static inline const ::std::string& CellTag_Name(CellTag value) {
-    return Cell_CellTag_Name(value);
-  }
-  static inline bool CellTag_Parse(const ::std::string& name,
-      CellTag* value) {
-    return Cell_CellTag_Parse(name, value);
-  }
-
   // accessors -------------------------------------------------------
 
   // required .Filesystem.Coordinate coord = 1;
@@ -504,12 +479,12 @@ class Cell : public ::google::protobuf::Message {
   inline ::Filesystem::Coordinate* release_coord();
   inline void set_allocated_coord(::Filesystem::Coordinate* coord);
 
-  // required .Filesystem.Cell.CellTag tag = 2;
+  // required .Filesystem.CellTag tag = 2;
   inline bool has_tag() const;
   inline void clear_tag();
   static const int kTagFieldNumber = 2;
-  inline ::Filesystem::Cell_CellTag tag() const;
-  inline void set_tag(::Filesystem::Cell_CellTag value);
+  inline ::Filesystem::CellTag tag() const;
+  inline void set_tag(::Filesystem::CellTag value);
 
   // required .Filesystem.Cell.Methane mtn = 3;
   inline bool has_mtn() const;
@@ -960,7 +935,7 @@ inline void Cell::set_allocated_coord(::Filesystem::Coordinate* coord) {
   }
 }
 
-// required .Filesystem.Cell.CellTag tag = 2;
+// required .Filesystem.CellTag tag = 2;
 inline bool Cell::has_tag() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -974,11 +949,11 @@ inline void Cell::clear_tag() {
   tag_ = 1;
   clear_has_tag();
 }
-inline ::Filesystem::Cell_CellTag Cell::tag() const {
-  return static_cast< ::Filesystem::Cell_CellTag >(tag_);
+inline ::Filesystem::CellTag Cell::tag() const {
+  return static_cast< ::Filesystem::CellTag >(tag_);
 }
-inline void Cell::set_tag(::Filesystem::Cell_CellTag value) {
-  assert(::Filesystem::Cell_CellTag_IsValid(value));
+inline void Cell::set_tag(::Filesystem::CellTag value) {
+  assert(::Filesystem::CellTag_IsValid(value));
   set_has_tag();
   tag_ = value;
 }
@@ -1203,8 +1178,8 @@ namespace google {
 namespace protobuf {
 
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::Filesystem::Cell_CellTag>() {
-  return ::Filesystem::Cell_CellTag_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::Filesystem::CellTag>() {
+  return ::Filesystem::CellTag_descriptor();
 }
 
 }  // namespace google

@@ -15,10 +15,10 @@
 namespace Filesystem {
     using namespace std;
 
-	unordered_map<Model::CellTag, Cell_CellTag, Model::enum_hash> MessageBuilder::Tag2Msg = { 
-			{ Model::CellTag::Air,  Cell_CellTag::Cell_CellTag_Air}, 
-			{ Model::CellTag::Building, Cell_CellTag::Cell_CellTag_Building }, 
-			{ Model::CellTag::Ground, Cell_CellTag::Cell_CellTag_Ground } 
+	unordered_map<Model::CellTag, CellTag, Model::enum_hash> MessageBuilder::Tag2Msg = { 
+			{ Model::CellTag::Air, CellTag::Air },
+			{ Model::CellTag::Building, CellTag::Building },
+			{ Model::CellTag::Ground, CellTag::Ground }
 	};
     
     shared_ptr<Map> MessageBuilder::buildMessage(const Model::Map3D & map) {
