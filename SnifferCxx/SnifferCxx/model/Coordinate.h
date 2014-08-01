@@ -18,7 +18,7 @@
 namespace Model {
 	class WindVector;
 
-	typedef long coord_item_t;
+	typedef int coord_item_t;
 	typedef std::array<coord_item_t, 3> coord_t;
 
 	class Coordinate : public coord_t {

@@ -93,12 +93,18 @@ int main(int argc, const char * argv[])
         hyps = alg->updateHypotheses(*hyps, *map, dect.time_, dect.detected_);
         hyps_hist.push_back(hyps);
     }
+    
+    auto map_msg = Filesystem::MessageBuilder::buildMessage(*map);
+    fstream map_out(argv[5], ios::out | ios::trunc | ios::binary);
+    if (!map_msg->SerializeToOstream(&map_out)) {
+        cerr << "Failed to write msg" << endl;
+		return -1;
+    }
 
-	// Write the new address book back to disk.
-	auto msg = Filesystem::MessageBuilder::buildMessage(hyps_hist);
-	fstream output(argv[4], ios::out | ios::trunc | ios::binary);
-	if (!msg->SerializeToOstream(&output)) {
-		cerr << "Failed to write address book." << endl;
+	auto mtn_msg = Filesystem::MessageBuilder::buildMessage(hyps_hist);
+	fstream mtn_out(argv[4], ios::out | ios::trunc | ios::binary);
+	if (!mtn_msg->SerializeToOstream(&mtn_out)) {
+		cerr << "Failed to write msg" << endl;
 		return -1;
 	}
         

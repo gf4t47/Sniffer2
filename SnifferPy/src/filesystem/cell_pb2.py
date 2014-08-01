@@ -13,7 +13,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='cell.proto',
   package='Filesystem',
-  serialized_pb='\n\ncell.proto\x12\nFilesystem\" \n\nCoordinate\x12\x12\n\ncoord_item\x18\x01 \x03(\x05\"\xf2\x02\n\x04\x43\x65ll\x12%\n\x05\x63oord\x18\x01 \x02(\x0b\x32\x16.Filesystem.Coordinate\x12%\n\x03tag\x18\x02 \x02(\x0e\x32\x18.Filesystem.Cell.CellTag\x12%\n\x03mtn\x18\x03 \x02(\x0b\x32\x18.Filesystem.Cell.Methane\x12#\n\x04wind\x18\x04 \x02(\x0b\x32\x15.Filesystem.Cell.Wind\x1a\x1d\n\nWindVector\x12\x0f\n\x07wv_item\x18\x01 \x03(\x01\x1a\x61\n\x04Wind\x12)\n\x04wind\x18\x01 \x02(\x0b\x32\x1b.Filesystem.Cell.WindVector\x12.\n\tpotential\x18\x02 \x02(\x0b\x32\x1b.Filesystem.Cell.WindVector\x1a \n\x07Methane\x12\x15\n\rconcentration\x18\x01 \x02(\x01\",\n\x07\x43\x65llTag\x12\x07\n\x03\x41ir\x10\x01\x12\n\n\x06Ground\x10\x02\x12\x0c\n\x08\x42uilding\x10\x03\"\'\n\x05\x43\x65lls\x12\x1e\n\x04\x63\x65ll\x18\x01 \x03(\x0b\x32\x10.Filesystem.Cell')
+  serialized_pb='\n\ncell.proto\x12\nFilesystem\" \n\nCoordinate\x12\x12\n\ncoord_item\x18\x01 \x03(\x05\"\xf2\x02\n\x04\x43\x65ll\x12%\n\x05\x63oord\x18\x01 \x02(\x0b\x32\x16.Filesystem.Coordinate\x12%\n\x03tag\x18\x02 \x02(\x0e\x32\x18.Filesystem.Cell.CellTag\x12%\n\x03mtn\x18\x03 \x02(\x0b\x32\x18.Filesystem.Cell.Methane\x12#\n\x04wind\x18\x04 \x02(\x0b\x32\x15.Filesystem.Cell.Wind\x1a\x1d\n\nWindVector\x12\x0f\n\x07wv_item\x18\x01 \x03(\x01\x1a\x61\n\x04Wind\x12)\n\x04wind\x18\x01 \x02(\x0b\x32\x1b.Filesystem.Cell.WindVector\x12.\n\tpotential\x18\x02 \x02(\x0b\x32\x1b.Filesystem.Cell.WindVector\x1a \n\x07Methane\x12\x15\n\rconcentration\x18\x01 \x02(\x01\",\n\x07\x43\x65llTag\x12\x07\n\x03\x41ir\x10\x01\x12\n\n\x06Ground\x10\x02\x12\x0c\n\x08\x42uilding\x10\x03\"\'\n\x05\x43\x65lls\x12\x1e\n\x04\x63\x65ll\x18\x01 \x03(\x0b\x32\x10.Filesystem.Cell\"{\n\x03Map\x12*\n\nstartIndex\x18\x01 \x02(\x0b\x32\x16.Filesystem.Coordinate\x12(\n\x08\x62oundary\x18\x02 \x02(\x0b\x32\x16.Filesystem.Coordinate\x12\x1e\n\x04\x63\x65ll\x18\x03 \x03(\x0b\x32\x10.Filesystem.Cell')
 
 
 
@@ -236,6 +236,48 @@ _CELLS = _descriptor.Descriptor(
   serialized_end=472,
 )
 
+
+_MAP = _descriptor.Descriptor(
+  name='Map',
+  full_name='Filesystem.Map',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='startIndex', full_name='Filesystem.Map.startIndex', index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='boundary', full_name='Filesystem.Map.boundary', index=1,
+      number=2, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='cell', full_name='Filesystem.Map.cell', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=474,
+  serialized_end=597,
+)
+
 _CELL_WINDVECTOR.containing_type = _CELL;
 _CELL_WIND.fields_by_name['wind'].message_type = _CELL_WINDVECTOR
 _CELL_WIND.fields_by_name['potential'].message_type = _CELL_WINDVECTOR
@@ -247,9 +289,13 @@ _CELL.fields_by_name['mtn'].message_type = _CELL_METHANE
 _CELL.fields_by_name['wind'].message_type = _CELL_WIND
 _CELL_CELLTAG.containing_type = _CELL;
 _CELLS.fields_by_name['cell'].message_type = _CELL
+_MAP.fields_by_name['startIndex'].message_type = _COORDINATE
+_MAP.fields_by_name['boundary'].message_type = _COORDINATE
+_MAP.fields_by_name['cell'].message_type = _CELL
 DESCRIPTOR.message_types_by_name['Coordinate'] = _COORDINATE
 DESCRIPTOR.message_types_by_name['Cell'] = _CELL
 DESCRIPTOR.message_types_by_name['Cells'] = _CELLS
+DESCRIPTOR.message_types_by_name['Map'] = _MAP
 
 class Coordinate(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType
@@ -286,6 +332,12 @@ class Cells(_message.Message):
   DESCRIPTOR = _CELLS
 
   # @@protoc_insertion_point(class_scope:Filesystem.Cells)
+
+class Map(_message.Message):
+  __metaclass__ = _reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _MAP
+
+  # @@protoc_insertion_point(class_scope:Filesystem.Map)
 
 
 # @@protoc_insertion_point(module_scope)

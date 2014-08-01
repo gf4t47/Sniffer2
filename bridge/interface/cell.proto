@@ -33,3 +33,9 @@ message Cell {
 message Cells {
 	repeated Cell cell = 1;
 }
+
+message Map {
+	required Coordinate startIndex = 1;
+	required Coordinate boundary = 2;
+	repeated Cell cell = 3;
+}

@@ -10,6 +10,7 @@
 #include "hypothesis.pb.h"
 #include "../model/Hypothesis.h"
 #include "../model/Cells.h"
+#include "../model/Map3D.h"
 
 namespace Filesystem {
     using namespace std;
@@ -20,7 +21,30 @@ namespace Filesystem {
 			{ Model::CellTag::Ground, Cell_CellTag::Cell_CellTag_Ground } 
 	};
     
-    shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his) {
+    shared_ptr<Map> MessageBuilder::buildMessage(const Model::Map3D & map) {
+        auto msg_map = make_shared<Map>();
+        
+        auto msg_startIndex = new Coordinate();
+        auto startIndex = map.getStartIndex();
+        for (int i = 0; i < 3; i++) {
+            msg_startIndex->add_coord_item(*startIndex++);
+        }
+        msg_map->set_allocated_startindex(msg_startIndex);
+        
+        auto msg_boudary = new Coordinate();
+        auto boudary = map.getBoundary();
+        for (int i = 0; i < 3; i++) {
+            msg_boudary->add_coord_item(*boudary++);
+        }
+        msg_map->set_allocated_boundary(msg_boudary);
+        
+        boost::const_multi_array_ref<Model::Cell, 1> map_ref(map.data(), boost::extents[map.num_elements()]);
+        for_each(map_ref.begin(), map_ref.end(), [&msg_map](const Model::Cell & cell){auto msg_cell = msg_map->add_cell(); buildCellMessage(cell, msg_cell);});
+        
+        return msg_map;
+    }
+    
+    shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const vector<shared_ptr<vector<Model::Hypothesis>>> & hyps_his) {
 		auto msg_hyps_his = make_shared<Hypotheses_history>();
 
 		for (auto const & hyps : hyps_his) {
@@ -46,43 +70,49 @@ namespace Filesystem {
 					for (auto const & cell_pair : *cells) {
 						auto const & cell = cell_pair.second;
 
-						//set cell tag
 						auto msg_cell = msg_cells->add_cell();
-						msg_cell->set_tag(Tag2Msg[cell.getTag()]);
-
-						//set cell coordinate
-						auto msg_coord = new Coordinate();
-						for (auto const & item : cell.getCoordinate()) {
-							msg_coord->add_coord_item(item);
-						}
-						msg_cell->set_allocated_coord(msg_coord);
-
-						//set cell methane
-						auto msg_mtn = new Cell::Methane();
-						msg_mtn->set_concentration(cell.getMethane().getParticleNum());
-						msg_cell->set_allocated_mtn(msg_mtn);
-
-						//set cell wind
-						auto msg_wind = new Cell::Wind();
-
-						auto msg_windvector = new Cell::WindVector();
-						for (auto const & item : cell.getWind().getWV()) {
-							msg_windvector->add_wv_item(item);
-						}
-						msg_wind->set_allocated_wind(msg_windvector);
-
-						auto msg_potential = new Cell::WindVector();
-						for (auto const & item : cell.getWind().getPotential()) {
-							msg_potential->add_wv_item(item);
-						}
-						msg_wind->set_allocated_potential(msg_potential);
-
-						msg_cell->set_allocated_wind(msg_wind);
+                        buildCellMessage(cell, msg_cell);
 					}
 				}
 			}
 		}
 
 		return msg_hyps_his;
+    }
+    
+    bool MessageBuilder::buildCellMessage(const Model::Cell &cell, Cell * msg_cell) {
+        //set cell tag
+        msg_cell->set_tag(Tag2Msg[cell.getTag()]);
+        
+        //set cell coordinate
+        auto msg_coord = new Coordinate();
+        for (auto const & item : cell.getCoordinate()) {
+            msg_coord->add_coord_item(item);
+        }
+        msg_cell->set_allocated_coord(msg_coord);
+        
+        //set cell methane
+        auto msg_mtn = new Cell::Methane();
+        msg_mtn->set_concentration(cell.getMethane().getParticleNum());
+        msg_cell->set_allocated_mtn(msg_mtn);
+        
+        //set cell wind
+        auto msg_wind = new Cell::Wind();
+        
+        auto msg_windvector = new Cell::WindVector();
+        for (auto const & item : cell.getWind().getWV()) {
+            msg_windvector->add_wv_item(item);
+        }
+        msg_wind->set_allocated_wind(msg_windvector);
+        
+        auto msg_potential = new Cell::WindVector();
+        for (auto const & item : cell.getWind().getPotential()) {
+            msg_potential->add_wv_item(item);
+        }
+        msg_wind->set_allocated_potential(msg_potential);
+        
+        msg_cell->set_allocated_wind(msg_wind);
+        
+        return true;
     }
 }

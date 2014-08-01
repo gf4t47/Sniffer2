@@ -19,5 +19,67 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SnifferCxx/forward/UpdateByConvolution.cpp"
+            timestampString = "428521788.566839"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "UpdateByConvolution::calcEnds(const Cell &amp; cell, const Map3D &amp; map)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Forward::UpdateByConvolution::calcEnds(Model::Cell const&amp;, Model::Map3D const&amp;) const"
+                  moduleName = "SnifferCxx"
+                  urlString = "file:///Users/kding/Desktop/Sniffer2/SnifferCxx/SnifferCxx/forward/UpdateByConvolution.cpp"
+                  timestampString = "428521789.170308"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "420">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Forward::UpdateByConvolution::calcEnds(Model::Cell const&amp;, Model::Map3D const&amp;) const"
+                  moduleName = "SnifferCxx"
+                  urlString = "file:///Users/kding/Desktop/Sniffer2/SnifferCxx/SnifferCxx/forward/UpdateByConvolution.cpp"
+                  timestampString = "428521789.663785"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "435">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SnifferCxx/forward/UpdateByConvolution.cpp"
+            timestampString = "428521820.520155"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "UpdateByConvolution::calcEnds(const Cell &amp; cell, const Map3D &amp; map)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

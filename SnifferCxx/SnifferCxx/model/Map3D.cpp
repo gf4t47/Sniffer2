@@ -32,7 +32,7 @@ namespace Model {
 					Coordinate coord(l, w, h);
 					if (insideMap(coord)) {
                         (*this)(coord).setCellTag(CellTag::Building);
-						calcLocalPotential(coord, potentialStep, wind_norm);
+						calcLocalPotential(coord, potentialStep, wind_norm / pow(potentialStep, 3));
 						ret_vec->push_back(coord);
 					}
 				}
@@ -52,6 +52,7 @@ namespace Model {
                         if (remote_cell.isAirCell()) {
                             auto vector = remote_coord - local_coord;
                             auto potential = vector / (vector.calcNorm() / expected_norm);
+//                            cout << "potential=" << (potential + remote_cell.getWind().getPotential()) << endl;
                             (*this)(remote_coord).setPotential(potential + remote_cell.getWind().getPotential());
                         }
                     }
