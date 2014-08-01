@@ -26,8 +26,8 @@ def build(mp):
 
         wind = cell.wind.wind.wv_item
         potential = cell.wind.potential.wv_item
-        us[index] = wind[0] #+ potential[0]
-        vs[index] = wind[1] #+ potential[1]
-        ws[index] = wind[2] #+ potential[2]
+        us[index] = wind[0] + potential[0]
+        vs[index] = wind[1] + potential[1]
+        ws[index] = wind[2] + potential[2]
 
     return mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=0.5, scale_factor=0.5, mode="2darrow", colormap="Set3")

@@ -18,11 +18,13 @@ fig = mb.figure(size=(1024, 768))
 m_dict = MapParser.parser_json(sys.argv[1])
 fig_map = MapBuilder.build_from_json(m_dict)
 
-mp = MessageParser.parse_map(sys.argv[3])
+# mp = MessageParser.parse_map(sys.argv[3])
 # fig_map = MapBuilder.build_from_bin(mp)
 # fig_wind = WindBuilder.build(mp)
 
 hyps_his = MessageParser.parse_mtn(sys.argv[2])
+# fig_wind.remove()
+
 fig_hyp = None
 for hyps in hyps_his.hyps:
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)

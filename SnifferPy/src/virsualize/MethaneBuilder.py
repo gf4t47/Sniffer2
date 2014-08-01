@@ -44,13 +44,12 @@ def _build(vecs, fig):
     else:
         fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2, scale_mode="vector", scale_factor=0.1,
                           mode="2dtriangle")
-
     return fig
 
 
 def build(hyps, fig):
-    filer_hyps = filter(lambda hyp: hyp.probability >= 0.9 / len(hyps.hyp), hyps.hyp)
-    cells_his_list = map(lambda hyp: hyp.methene_cells, hyps.hyp)
+    cells_his_list = map(lambda hyp: hyp.methene_cells,
+                         filter(lambda hyp: hyp.probability >= 0.9 / len(hyps.hyp), hyps.hyp))
     for cells_list in zip(*cells_his_list):
         all_vecs = _cells_list_to_vector(cells_list)
         fig = _build(all_vecs, fig)

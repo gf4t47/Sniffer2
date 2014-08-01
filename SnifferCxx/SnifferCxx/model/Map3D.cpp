@@ -32,7 +32,7 @@ namespace Model {
 					Coordinate coord(l, w, h);
 					if (insideMap(coord)) {
                         (*this)(coord).setCellTag(CellTag::Building);
-						calcLocalPotential(coord, potentialStep, wind_norm);
+						calcLocalPotential(coord, potentialStep, wind_norm / pow(potentialStep, 3));
 						ret_vec->push_back(coord);
 					}
 				}
