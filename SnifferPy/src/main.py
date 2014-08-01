@@ -18,7 +18,7 @@ fig_blds = MapBuilder.build(m_dict)
 
 hyps_his = MessageParser.parse_msg(sys.argv[2])
 fig_hyp = None
-for index, hyps in enumerate(hyps_his.hyps):
+for hyps in hyps_his.hyps:
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
 
 eng = mb.get_engine()

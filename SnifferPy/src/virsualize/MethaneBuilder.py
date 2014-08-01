@@ -5,16 +5,16 @@ import mayavi.mlab as mb
 
 
 def _cells_to_vector(cells):
-    size = len(cells.cell)
-    xs = numpy.zeros(size)
-    ys = numpy.zeros(size)
-    zs = numpy.zeros(size)
+    size = len(cells)
+    xs = numpy.zeros(size, dtype=int)
+    ys = numpy.zeros(size, dtype=int)
+    zs = numpy.zeros(size, dtype=int)
 
     us = numpy.zeros(size)
     vs = numpy.zeros(size)
     ws = numpy.zeros(size)
 
-    for index, cell in enumerate(cells.cell):
+    for index, cell in enumerate(cells):
         coord = cell.coord
         xs[index] = coord.coord_item[0]
         ys[index] = coord.coord_item[1]
@@ -29,24 +29,30 @@ def _cells_to_vector(cells):
     return xs, ys, zs, us, vs, ws
 
 
-def _build(hyps_his):
-    init = True
-    for hyps in hyps_his.hyps:
-        for hyp in hyps.hyp:
-            for cells in hyp.methene_cells:
-                xs, ys, zs, us, vs, ws = _cells_to_vector(cells)
-                if init:
-                    init = False
-                    fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2, scale_mode="vector", scale_factor=0.1,
-                                      mode="2dtriangle")
-                else:
-                    ms = fig.mlab_source
-                    ms.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
+def _build(vecs, fig):
+    xs, ys, zs, us, vs, ws = vecs
+    if len(xs) <= 0:
+        return fig
+
+    if not fig is None:
+        fig.mlab_source.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
+    else:
+        fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2, scale_mode="vector", scale_factor=0.1,
+                          mode="2dtriangle")
+
+    return fig
 
 
 def build(hyps, fig):
-    filter_hyps = filter(lambda hyp: hyp.probability >= 1.0 / len(hyps.hyp), hyps.hyp)
-    pass
+    cells_his_list = map(lambda hyp: hyp.methene_cells,
+                         filter(lambda hyp: hyp.probability >= 0.9 / len(hyps.hyp), hyps.hyp))
+
+    for cells_list in zip(*cells_his_list):
+        emerged_cells = []
+        all_cells = map(lambda cells: emerged_cells.extend(cells.cell), cells_list)
+        fig = _build(_cells_to_vector(all_cells), fig)
+
+    return fig
 
 
 
