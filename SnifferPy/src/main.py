@@ -26,8 +26,12 @@ hyps_his = MessageParser.parse_mtn(sys.argv[2])
 # fig_wind.remove()
 
 fig_hyp = None
-for index, hyps in enumerate(hyps_his.hyps):
+for time_t, hyps in enumerate(hyps_his.hyps):
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
+
+    print "dect", time_t
+    for index, hyp in enumerate(hyps.hyp):
+        print "hyp", index, "= ", hyp.probability
 
 eng = mb.get_engine()
 scene = eng.scenes[0].scene

@@ -125,6 +125,7 @@ namespace Forward {
 			ret_cells->mergeCellsByAddMethane(*new_cells);
 		}
 
-		return ret_cells;
+		auto ret = ret_cells;
+        return ret;
 	}
 }

@@ -1,6 +1,7 @@
 #include "UpdateByConvolution.h"
 #include "../model/Map3D.h"
 #include "../math/GaussianBlur.h"
+#include "../model/Cells.h"
 
 namespace Forward {
     using namespace std;
@@ -35,7 +36,10 @@ namespace Forward {
         auto endCell = calcEndcell(startPos, ideal_endPos, map, true);
         
         if(endCell) {
-            return Math::GaussianBlur::blurCell(endCell->getCoordinate(), getBlurRange(), cell.getMethane().getParticleNum(), map);
+//            return Math::GaussianBlur::blurCell(endCell->getCoordinate(), getBlurRange(), cell.getMethane().getParticleNum(), map);
+            auto ret = make_shared<Cells>();
+            ret->updateCell(*endCell);
+            return ret;
         }
         
         return make_shared<Cells>();

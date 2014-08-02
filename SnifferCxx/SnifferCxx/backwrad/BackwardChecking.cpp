@@ -53,7 +53,7 @@ namespace Backward {
     //************************************
     void BackwardChecking::normalize(vector<Hypothesis> &hyps) const{
         auto sum = accumulate(hyps.begin(), hyps.end(), 0.0f, [](double sum, const Hypothesis & hyp){ return sum += hyp.getProbability();});
-        for_each(hyps.begin(), hyps.end(), [sum](Hypothesis & hyp){hyp.setProbability(hyp.getProbability() / sum);});
+        for_each(hyps.begin(), hyps.end(), [sum](Hypothesis & hyp){hyp.setProbability(hyp.getProbability() / sum); cout<<"Prob = " << hyp.getProbability() << " ";});
     }
     
     //************************************
@@ -69,15 +69,18 @@ namespace Backward {
     shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, const Map3D & map, size_t time_count, const vector<Leak> & detections) const {
         auto new_hyps = forward_->UpdateMethane(hyps, map, time_count);
         
-        for (auto hyp : *new_hyps) {
+        for (auto & hyp : *new_hyps) {
             double likeHood = 1.0f;
             for (auto detection : detections) {
                 likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
             }
+            cout << "like Hood = "<<likeHood <<" ";
             hyp.setProbability(hyp.getProbability() * likeHood);
         }
+        cout<<endl;
         
         normalize(*new_hyps);
+        cout<<endl;
         
         return new_hyps;
     }

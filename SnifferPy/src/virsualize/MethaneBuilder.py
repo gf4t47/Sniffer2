@@ -48,7 +48,7 @@ def _build(vecs, fig):
 
 def build(hyps, fig):
     cells_his_list = map(lambda hyp: hyp.methene_cells,
-                         filter(lambda hyp: hyp.probability >= 0.9 / len(hyps.hyp), hyps.hyp))
+                         filter(lambda hyp: hyp.probability >= 0, hyps.hyp))
     for cells_list in zip(*cells_his_list):
         all_vecs = _cells_list_to_vector(cells_list)
         fig = _build(all_vecs, fig)

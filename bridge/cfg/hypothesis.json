@@ -1,21 +1,21 @@
 {
 	"blurRange" : 3,
-	"forwardChecking": "byCell",
+	"forwardChecking": "byBlur",
 	
 	"hypothesis" :
 	[
-    	{"location": [22, 6, 0], "concentration": 100},
-        // {"location": [42, 6, 0], "concentration": 100},
-        // {"location": [42, 18, 0], "concentration": 100},
-        // {"location": [42, 30, 0], "concentration": 100},
-        // {"location": [42, 42, 0], "concentration": 100},
-        {"location": [66, 6, 0], "concentration": 100},
-        // {"location": [66, 18, 0], "concentration": 100},
-        {"location": [66, 30, 0], "concentration": 100},
-        // {"location": [66, 42, 0], "concentration": 100},
-        {"location": [90, 6, 0], "concentration": 100},
-        // {"location": [90, 18, 0], "concentration": 100},
-        // {"location": [90, 30, 0], "concentration": 100},
-        {"location": [90, 46, 2], "concentration": 100}
+    	{"location": [22, 6, 0], "concentration": 100}
+        // {"location": [42, 6, 0], "concentration": 80},
+        // {"location": [42, 18, 0], "concentration": 200},
+        // {"location": [42, 30, 0], "concentration": 200},
+        // {"location": [42, 42, 0], "concentration": 200},
+        // {"location": [66, 6, 0], "concentration": 200},
+        // {"location": [66, 18, 0], "concentration": 150},
+        // {"location": [66, 30, 0], "concentration": 200},
+        // {"location": [66, 42, 0], "concentration": 200},
+        // {"location": [90, 6, 0], "concentration": 100},
+        // {"location": [90, 18, 0], "concentration": 200},
+        // {"location": [90, 30, 0], "concentration": 200},
+        // {"location": [90, 46, 2], "concentration": 100}
 	]
 }
