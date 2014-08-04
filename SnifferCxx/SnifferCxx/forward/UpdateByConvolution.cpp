@@ -7,7 +7,10 @@ namespace Forward {
     using namespace std;
     using namespace Model;
     
-	UpdateByConvolution::UpdateByConvolution() {
+    const int blur_concentration_threshold = 10;
+    
+	UpdateByConvolution::UpdateByConvolution(kernel_range_t kernel_range)
+    :UpdateByCell(kernel_range){
 
 	}
 
@@ -33,13 +36,13 @@ namespace Forward {
 		auto ret_cells = make_shared<Cells>();
         
 		auto conecentration = cell.getMethane().getParticleNum();
-		if (conecentration > 1)
+		if (conecentration > blur_concentration_threshold)
 		{
 			auto startPos = cell.getCoordinate();
 			auto ideal_endPos = map.calcPosition(startPos, cell.getWind().getCalcWind());
 			auto endCell = calcEndcell(startPos, ideal_endPos, map, true);
 			if (endCell) {
-				ret_cells = Math::GaussianBlur::blurCell(endCell->getCoordinate(), cell.getMethane().getParticleNum(), map);
+				ret_cells = Math::GaussianBlur::blurCell(endCell->getCoordinate(), cell.getMethane().getParticleNum(), map, getKernelRange());
 			}
 		}
 		else {

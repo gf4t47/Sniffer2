@@ -23,19 +23,21 @@ using namespace Forward;
 namespace initializer {
     using namespace std;
     
-    const int default_blurRange = 2;
+    const kernel_range_t default_blurRange = 1;
+    const kernel_range_t default_kernelRange = 1;
     
     const string strBlurRange = "blurRange";
+    const string strKernelRange = "kernelRange";
     const string strForwardChecking = "forwardChecking";
     const string strHypothesis = "hypothesis";
     const string strLocation = "location";
     const string strConcentration = "concentration";
     
-    unordered_map<string, function<shared_ptr<ForwardChecking>()>> HypothesisInitializer::String2Forward =
+    unordered_map<string, function<shared_ptr<ForwardChecking>(kernel_range_t)>> HypothesisInitializer::String2Forward =
     {
-        {"byCell", [](){return make_shared<UpdateByCell>();}},
-        {"byBlur", [](){return make_shared<UpdateByConvolution>();}},
-        {"byParticle", [](){return nullptr;}}
+        {"byCell", [](kernel_range_t range){return make_shared<UpdateByCell>(range);}},
+        {"byBlur", [](kernel_range_t range){return make_shared<UpdateByConvolution>(range);}},
+        {"byParticle", [](kernel_range_t range){return nullptr;}}
     };
     
     HypothesisInitializer::HypothesisInitializer(string cfg_file)
@@ -63,21 +65,27 @@ namespace initializer {
         read_json(cfg_file, pt);
         
         auto blur_range = default_blurRange;
-        auto blurRange_node = pt.get_optional<int>(strBlurRange);
+        auto blurRange_node = pt.get_optional<kernel_range_t>(strBlurRange);
         if (blurRange_node) {
             blur_range = *blurRange_node;
         }
         
-        forward_ = make_shared<UpdateByConvolution>();
+        auto kernel_range = default_kernelRange;
+        auto kernelRange_node = pt.get_optional<kernel_range_t>(strKernelRange);
+        if (kernelRange_node) {
+            kernel_range = *kernelRange_node;
+        }
+        
+        forward_ = make_shared<UpdateByCell>(kernel_range);
         auto forward_node = pt.get_optional<string>(strForwardChecking);
         if (forward_node) {
             auto find_ret = String2Forward.find(*forward_node);
             if (find_ret != String2Forward.end()) {
-                forward_ = (find_ret->second)();
+                forward_ = (find_ret->second)(kernel_range);
             }
         }
         
-        backward_ = make_shared<BackwardChecking>(blur_range);
+        backward_ = make_shared<BackwardChecking>(blur_range, kernel_range);
         
         auto hyp_node = pt.get_child_optional(strHypothesis);
         if (hyp_node) {

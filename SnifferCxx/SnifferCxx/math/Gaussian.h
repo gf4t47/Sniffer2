@@ -16,7 +16,7 @@
 namespace Math {
     class Gaussian {
     public:
-		static std::shared_ptr<std::vector<Model::WindVector>> RandomWindVectors(const Model::WindVector & mean, const Model::unit_t unit, const size_t num);
+		static std::shared_ptr<std::vector<Model::WindVector>> RandomWindVectors(const Model::WindVector & mean, const Model::unit_t range, const size_t num);
     };
 }
 

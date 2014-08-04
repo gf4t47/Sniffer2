@@ -15,7 +15,8 @@ namespace Forward {
 	using namespace std;
 	using namespace Model;
     
-    UpdateByCell::UpdateByCell() {
+    UpdateByCell::UpdateByCell(kernel_range_t kernel_range)
+    :ForwardChecking(kernel_range) {
         
     }
 
@@ -35,7 +36,7 @@ namespace Forward {
 	// Parameter: const Map3D & map
 	//************************************
 	shared_ptr<pos_conc_t> UpdateByCell::calcGaussianEnds(const Coordinate & startPos, const WindVector & wv, const mtn_t particle_num, const Map3D & map) const {
-		auto winds = Math::Gaussian::RandomWindVectors(wv, map.getUnit(), ceil(particle_num));
+		auto winds = Math::Gaussian::RandomWindVectors(wv, getKernelRange() * map.getUnit(), ceil(particle_num));
 		auto particle_num_per_wind = 1;
 
 		auto map_ret = make_shared<pos_conc_t>(); //a hash table used to merge the methane particles move into same cell.

@@ -14,6 +14,7 @@
 #include <vector>
 #include <unordered_map>
 #include <functional>
+#include "../forward/ForwardChecking.h"
 
 namespace Model {
     class Hypothesis;
@@ -37,7 +38,7 @@ namespace initializer {
         bool load(std::string cfg_file);
         
     public:
-        static std::unordered_map<std::string, std::function<std::shared_ptr<Forward::ForwardChecking>()>> String2Forward;
+        static std::unordered_map<std::string, std::function<std::shared_ptr<Forward::ForwardChecking>(Forward::kernel_range_t)>> String2Forward;
         
     private:
         std::shared_ptr<Backward::BackwardChecking> backward_;

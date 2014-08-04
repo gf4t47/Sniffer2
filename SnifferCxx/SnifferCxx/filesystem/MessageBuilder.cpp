@@ -47,7 +47,7 @@ namespace Filesystem {
     shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const vector<shared_ptr<vector<Model::Hypothesis>>> & hyps_his) {
 		auto msg_hyps_his = make_shared<Hypotheses_history>();
 
-		for (auto const & hyps : hyps_his) {
+		for (auto hyps : hyps_his) {
 			auto msg_hyps = msg_hyps_his->add_hyps();
 			for (auto const & hyp : *hyps) {
 				auto msg_hyp = msg_hyps->add_hyp();

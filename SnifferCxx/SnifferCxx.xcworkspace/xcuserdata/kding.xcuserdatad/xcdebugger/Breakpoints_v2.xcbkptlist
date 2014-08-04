@@ -9,89 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SnifferCxx/forward/UpdateByCell.cpp"
-            timestampString = "428433357.948654"
+            filePath = "SnifferCxx/filesystem/MessageBuilder.cpp"
+            timestampString = "428867426.274042"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "UpdateByCell::calcGaussianEnds(const Coordinate &amp; startPos, const WindVector &amp; wv, const mtn_t particle_num, const Map3D &amp; map)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SnifferCxx/forward/UpdateByConvolution.cpp"
-            timestampString = "428623808.283638"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "UpdateByConvolution::calcEnds(const Cell &amp; cell, const Map3D &amp; map)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Forward::UpdateByConvolution::calcEnds(Model::Cell const&amp;, Model::Map3D const&amp;) const"
-                  moduleName = "SnifferCxx"
-                  urlString = "file:///Users/kding/Desktop/Sniffer2/SnifferCxx/SnifferCxx/forward/UpdateByConvolution.cpp"
-                  timestampString = "428625784.777776"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "535">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Forward::UpdateByConvolution::calcEnds(Model::Cell const&amp;, Model::Map3D const&amp;) const"
-                  moduleName = "SnifferCxx"
-                  urlString = "file:///Users/kding/Desktop/Sniffer2/SnifferCxx/SnifferCxx/forward/UpdateByConvolution.cpp"
-                  timestampString = "428625784.778024"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "577">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Forward::UpdateByConvolution::calcEnds(Model::Cell const&amp;, Model::Map3D const&amp;) const"
-                  moduleName = "SnifferCxx"
-                  urlString = "file:///Users/kding/Desktop/Sniffer2/SnifferCxx/SnifferCxx/forward/UpdateByConvolution.cpp"
-                  timestampString = "428625784.778237"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "626">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SnifferCxx/forward/UpdateByConvolution.cpp"
-            timestampString = "428623808.283638"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "UpdateByConvolution::calcEnds(const Cell &amp; cell, const Map3D &amp; map)"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "MessageBuilder::buildMessage(const vector&lt;shared_ptr&lt;vector&lt;Model::Hypothesis&gt;&gt;&gt; &amp; hyps_his)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -101,44 +25,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SnifferCxx/backwrad/BackwardChecking.cpp"
-            timestampString = "428616999.463928"
+            filePath = "SnifferCxx/filesystem/MessageBuilder.cpp"
+            timestampString = "428867544.2239"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "BackwardChecking::normalize(vector&lt;Hypothesis&gt; &amp;hyps)"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "MessageBuilder::buildMessage(const vector&lt;shared_ptr&lt;vector&lt;Model::Hypothesis&gt;&gt;&gt; &amp; hyps_his)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Backward::BackwardChecking::normalize(std::__1::vector&lt;Model::Hypothesis, std::__1::allocator&lt;Model::Hypothesis&gt; &gt;&amp;) const"
-                  moduleName = "SnifferCxx"
-                  urlString = "file:///Users/kding/Desktop/Sniffer2/SnifferCxx/SnifferCxx/backwrad/BackwardChecking.cpp"
-                  timestampString = "428617019.03797"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "508">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Backward::BackwardChecking::normalize(std::__1::vector&lt;Model::Hypothesis, std::__1::allocator&lt;Model::Hypothesis&gt; &gt;&amp;) const::$_1::operator()(Model::Hypothesis&amp;) const"
-                  moduleName = "SnifferCxx"
-                  urlString = "file:///Users/kding/Desktop/Sniffer2/SnifferCxx/SnifferCxx/backwrad/BackwardChecking.cpp"
-                  timestampString = "428617019.039417"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -147,44 +41,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SnifferCxx/backwrad/BackwardChecking.cpp"
-            timestampString = "428617046.294331"
+            filePath = "SnifferCxx/filesystem/MessageBuilder.cpp"
+            timestampString = "428867596.606607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "BackwardChecking::normalize(vector&lt;Hypothesis&gt; &amp;hyps)"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "MessageBuilder::buildMessage(const vector&lt;shared_ptr&lt;vector&lt;Model::Hypothesis&gt;&gt;&gt; &amp; hyps_his)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Backward::BackwardChecking::normalize(std::__1::vector&lt;Model::Hypothesis, std::__1::allocator&lt;Model::Hypothesis&gt; &gt;&amp;) const"
-                  moduleName = "SnifferCxx"
-                  urlString = "file:///Users/kding/Desktop/Sniffer2/SnifferCxx/SnifferCxx/backwrad/BackwardChecking.cpp"
-                  timestampString = "428617064.808987"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "42">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Backward::BackwardChecking::normalize(std::__1::vector&lt;Model::Hypothesis, std::__1::allocator&lt;Model::Hypothesis&gt; &gt;&amp;) const::$_0::operator()(double, Model::Hypothesis const&amp;) const"
-                  moduleName = "SnifferCxx"
-                  urlString = "file:///Users/kding/Desktop/Sniffer2/SnifferCxx/SnifferCxx/backwrad/BackwardChecking.cpp"
-                  timestampString = "428617064.810276"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "21">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -193,61 +57,125 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SnifferCxx/backwrad/BackwardChecking.cpp"
-            timestampString = "428617264.761022"
+            filePath = "SnifferCxx/main.cpp"
+            timestampString = "428867911.752375"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "BackwardChecking::updateHypotheses(vector&lt;Hypothesis&gt; &amp; hyps, const Map3D &amp; map, size_t time_count, const vector&lt;Leak&gt; &amp; detections)"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "main(int argc, const char * argv[])"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SnifferCxx/main.cpp"
+            timestampString = "428867939.697416"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "main(int argc, const char * argv[])"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SnifferCxx/main.cpp"
+            timestampString = "428867940.956811"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "main(int argc, const char * argv[])"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SnifferCxx/main.cpp"
+            timestampString = "428867981.368047"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "main(int argc, const char * argv[])"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SnifferCxx/math/Gaussian.cpp"
+            timestampString = "428874751.394621"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "Gaussian::RandomWindVectors(const WindVector &amp; mean, const unit_t range, const size_t num)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SnifferCxx/forward/UpdateByCell.cpp"
-            timestampString = "428617979.21843"
+            filePath = "SnifferCxx/main.cpp"
+            timestampString = "428874793.579822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "UpdateByCell::calcEnds(const Model::Cells &amp; cells, const Model::Map3D &amp; map)"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "main(int argc, const char * argv[])"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SnifferCxx/math/GaussianBlur.cpp"
+            timestampString = "428875038.731131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "GaussianBlur::generateGaussianKernel(int step)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SnifferCxx/forward/UpdateByCell.cpp"
-            timestampString = "428625695.023484"
+            filePath = "SnifferCxx/math/GaussianBlur.cpp"
+            timestampString = "428875080.380736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "UpdateByCell::calcEnds(const Model::Cells &amp; cells, const Model::Map3D &amp; map)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SnifferCxx/forward/UpdateByConvolution.cpp"
-            timestampString = "428625776.249215"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "UpdateByConvolution::calcEnds(const Cell &amp; cell, const Map3D &amp; map)"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "GaussianBlur::blurCell(const Coordinate &amp;location, const double concentration, const Map3D &amp;map, int kernel_range)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

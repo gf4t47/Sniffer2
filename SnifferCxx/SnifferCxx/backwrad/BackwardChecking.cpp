@@ -19,8 +19,9 @@ namespace Backward {
     using namespace Model;
     using namespace Forward;
     
-    BackwardChecking::BackwardChecking(size_t blur_range)
-        :blur_range_(blur_range) {
+    BackwardChecking::BackwardChecking(range_t blur_range, range_t kernel_range)
+        :blur_range_(blur_range),
+        kernel_range_(kernel_range) {
         
     }
     
@@ -28,9 +29,13 @@ namespace Backward {
         
     }
 
-	size_t BackwardChecking::getBlurRange() const{
+	range_t BackwardChecking::getBlurRange() const{
 		return blur_range_;
 	}
+    
+    range_t BackwardChecking::getKernelRange() const {
+        return kernel_range_;
+    }
 
 	//************************************
 	// Method:    calcGaussianBlurMean : use Gaussian convolution to blur the methane before output as the gamma distribution mean parameter.
@@ -43,7 +48,7 @@ namespace Backward {
 	// Parameter: const Map3D & map
 	//************************************
 	double BackwardChecking::calcGaussianBlurMean(const Coordinate & location, const Cells & methane_cells, const Map3D & map) const {
-		auto newCells = Math::GaussianBlur::blurCells(location, getBlurRange(), methane_cells, map);
+		auto newCells = Math::GaussianBlur::blurCells(location, getBlurRange(), methane_cells, map, getKernelRange());
 		auto locate_cell = newCells->getCell(location);
 		if (locate_cell) {
 			return locate_cell->getMethane().getMethane();
@@ -91,10 +96,10 @@ namespace Backward {
     // Parameter: size_t time_count : how many iterations for forward model algorithm to carry.
     // Parameter: const vector<Leak> & detections
     //************************************
-    shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, const Map3D & map, size_t time_count, const vector<Leak> & detections) const {
-        //auto new_hyps = forward_->UpdateMethane(hyps, map, time_count);
+    shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, const Map3D & map, size_t time_count, const vector<Leak> & detections, const shared_ptr<ForwardChecking> forward) const {
+        auto new_hyps = forward->UpdateMethane(hyps, map, time_count);
         
-        for (auto & hyp : hyps) {
+        for (auto & hyp : *new_hyps) {
             double likeHood = 1.0f;
             for (auto detection : detections) {
                 likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
@@ -104,10 +109,10 @@ namespace Backward {
         }
         cout<<endl;
         
-        normalize(hyps);
+        normalize(*new_hyps);
         cout<<endl;
         
-		return nullptr;
+		return new_hyps;
     }
     
     

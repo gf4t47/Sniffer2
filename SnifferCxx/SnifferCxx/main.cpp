@@ -91,7 +91,7 @@ int main(int argc, const char * argv[])
     hyps_hist.push_back(hyps);
     for (auto dect : *dect_vect)
     {
-        hyps = backward->updateHypotheses(*hyps, *map, dect.time_, dect.detected_);
+        hyps = backward->updateHypotheses(*hyps, *map, dect.time_, dect.detected_, forward);
         hyps_hist.push_back(hyps);
     }
     

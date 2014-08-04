@@ -21,11 +21,11 @@ namespace Model {
 }
 
 namespace Forward {
-//    const int blur_range = 3;
+    typedef int kernel_range_t;
     
 	class ForwardChecking {
 	public:
-        ForwardChecking();
+        ForwardChecking(kernel_range_t kernel_range);
 		virtual ~ForwardChecking();
 
 		std::shared_ptr<Model::Cells> Deduce(Model::Hypothesis & hypothesis, const Model::Map3D & map, size_t count) const;
@@ -35,6 +35,10 @@ namespace Forward {
 		        
     protected:
 		virtual std::shared_ptr<Model::Cells> calcEnds(const Model::Cells & cells, const Model::Map3D & map) const = 0;
+        kernel_range_t getKernelRange() const;
+        
+    private:
+        kernel_range_t kernel_range_;
 	};
 
 }

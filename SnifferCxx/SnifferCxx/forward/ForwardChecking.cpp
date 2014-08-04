@@ -15,13 +15,18 @@ namespace Forward {
     using namespace std;
     using namespace Model;
     
-    ForwardChecking::ForwardChecking() {
+    ForwardChecking::ForwardChecking(kernel_range_t kernnel_range)
+    :kernel_range_(kernnel_range) {
         
     }
     
 	ForwardChecking::~ForwardChecking() {
 
 	}
+    
+    kernel_range_t ForwardChecking::getKernelRange() const {
+        return kernel_range_;
+    }
    
     //************************************
 	// Method:    Deduce : enter face for this algorithm class

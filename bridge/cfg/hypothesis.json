@@ -1,10 +1,11 @@
 {
-	"blurRange" : 3,
+	"blurRange" : 1,
+    "kernelRange" : 1, 
 	"forwardChecking": "byCell",
 	
 	"hypothesis" :
 	[
-    	{"location": [22, 6, 0], "concentration": 100}
+    	{"location": [22, 6, 0], "concentration": 200}
         // {"location": [42, 6, 0], "concentration": 80},
         // {"location": [42, 18, 0], "concentration": 200},
         // {"location": [42, 30, 0], "concentration": 200},

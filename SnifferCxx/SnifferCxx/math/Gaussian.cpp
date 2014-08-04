@@ -25,14 +25,14 @@ namespace Math {
 	// Parameter: const unit_t unit : cell unit
 	// Parameter: const size_t num : the length of return list.
 	//************************************
-	shared_ptr<vector<WindVector>> Gaussian::RandomWindVectors(const WindVector & mean, const unit_t unit, const size_t num) {
+	shared_ptr<vector<WindVector>> Gaussian::RandomWindVectors(const WindVector & mean, const unit_t range, const size_t num) {
 //        vector<shared_ptr<default_random_engine>> generators;
 //        default_random_engine generator;
 		vector<normal_distribution<wv_item_t>> distributions;
         
 		for (auto m : mean) {
 //            generators.push_back(make_shared<default_random_engine>(default_random_engine()));
-			distributions.push_back(normal_distribution<wv_item_t>(m, unit));
+			distributions.push_back(normal_distribution<wv_item_t>(m, range));
 		}
         
 		auto ret = make_shared<vector<WindVector>>();

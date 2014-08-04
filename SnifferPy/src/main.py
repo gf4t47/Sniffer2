@@ -4,7 +4,6 @@ import sys
 from filesystem import MessageParser
 from initializer import MapParser
 from virsualize import MapBuilder
-from virsualize import WindBuilder
 from virsualize import MethaneBuilder
 
 import mayavi.mlab as mb
@@ -18,20 +17,16 @@ fig = mb.figure(size=(1024, 768))
 m_dict = MapParser.parser_json(sys.argv[1])
 fig_map = MapBuilder.build_from_json(m_dict)
 
-# mp = MessageParser.parse_map(sys.argv[3])
+# mp = MessageParser.parse_map(sys.argv[2])
 # fig_map = MapBuilder.build_from_bin(mp)
 # fig_wind = WindBuilder.build(mp)
 
-hyps_his = MessageParser.parse_mtn(sys.argv[2])
+hyps_his = MessageParser.parse_mtn(sys.argv[3])
 # fig_wind.remove()
 
 fig_hyp = None
 for time_t, hyps in enumerate(hyps_his.hyps):
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
-
-    print "dect", time_t
-    for index, hyp in enumerate(hyps.hyp):
-        print "hyp", index, "= ", hyp.probability
 
 # eng = mb.get_engine()
 # scene = eng.scenes[0].scene

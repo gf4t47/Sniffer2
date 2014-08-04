@@ -19,8 +19,8 @@ namespace Math {
 	using namespace std;
 	using namespace Model;
 
-	const coord_item_t static_kernel_range = 1;
-	const auto static_kernel = *GaussianBlur::generateGaussianKernel(static_kernel_range);
+    int GaussianBlur::static_kernel_range = 2;
+	auto GaussianBlur::static_kernel = *GaussianBlur::generateGaussianKernel(static_kernel_range);
 
 	std::string GaussianBlur::kernelToString(const kernel_t & kernel) {
 		auto index = kernel.index_bases();
@@ -74,7 +74,7 @@ namespace Math {
 		return kernel;
 	}
     
-    shared_ptr<Cells> GaussianBlur::blurCell(const Coordinate &location, const double concentration, const Map3D &map) {
+    shared_ptr<Cells> GaussianBlur::blurCell(const Coordinate &location, const double concentration, const Map3D &map, int kernel_range) {
 		auto kernel = static_kernel;
 		auto step = static_kernel_range;
 
@@ -122,7 +122,7 @@ namespace Math {
 		return ret_cells;
     }
 
-	shared_ptr<Cells> GaussianBlur::blurCells(const Coordinate &location, int step, const Cells &methane_cells, const Map3D & map) {
+	shared_ptr<Cells> GaussianBlur::blurCells(const Coordinate &location, int step, const Cells &methane_cells, const Map3D & map, int kernel_range) {
         auto ret_cells = make_shared<Cells>();
         for (auto l = location[0] - step; l <= location[0] + step; l++) {
 			for (auto w = location[1] - step; w <= location[1] + step; w++) {
@@ -130,7 +130,7 @@ namespace Math {
 					Coordinate coord(l, w, h);
                     auto methane_cell = methane_cells.getCell(coord);
                     if (methane_cell && methane_cell->hasMethane()) {
-                        auto new_cells = blurCell(coord, methane_cell->getMethane().getParticleNum(), map);
+                        auto new_cells = blurCell(coord, methane_cell->getMethane().getParticleNum(), map, kernel_range);
                         ret_cells->mergeCellsByAddMethane(*new_cells);
                     }
 				}
