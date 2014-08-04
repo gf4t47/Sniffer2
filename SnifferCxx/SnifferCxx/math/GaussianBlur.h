@@ -26,6 +26,9 @@ namespace Math {
         static std::shared_ptr<Model::Cells> blurCells(const Model::Coordinate & location, int step, const Model::Cells & methane_cells, const Model::Map3D & map);
         static std::shared_ptr<kernel_t> generateGaussianKernel(int step);
         static double gaussian_pdf(const Model::Coordinate & mean, int step, const Model::Coordinate & val);
+
+	private:
+		static std::string kernelToString(const kernel_t & kernel);
     };
 }
 

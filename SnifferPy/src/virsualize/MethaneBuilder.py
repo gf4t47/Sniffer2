@@ -1,6 +1,7 @@
 __author__ = 'Kern'
 
 import numpy
+from src.filesystem import cell_pb2
 import mayavi.mlab as mb
 
 
@@ -14,7 +15,7 @@ def _cells_to_vector(cells):
     vs = numpy.zeros(size)
     ws = numpy.zeros(size)
 
-    for index, cell in enumerate(cells.cell):
+    for index, cell in enumerate(filter(lambda c: c.tag == cell_pb2.CellTag.Value('Air'), cells.cell)):
         coord = cell.coord
         xs[index] = coord.coord_item[0]
         ys[index] = coord.coord_item[1]
@@ -38,6 +39,10 @@ def _cells_list_to_vector(cells_list):
 
 def _build(vecs, fig):
     xs, ys, zs, us, vs, ws = vecs
+    if len(xs) <= 0:
+        print "len xs = ", len(xs)
+        return fig
+
     if not fig is None:
         fig.mlab_source.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
     else:
@@ -49,9 +54,10 @@ def _build(vecs, fig):
 def build(hyps, fig):
     cells_his_list = map(lambda hyp: hyp.methene_cells,
                          filter(lambda hyp: hyp.probability >= 0, hyps.hyp))
-    for cells_list in zip(*cells_his_list):
+    for index, cells_list in enumerate(zip(*cells_his_list)):
         all_vecs = _cells_list_to_vector(cells_list)
         fig = _build(all_vecs, fig)
+        print "iteration : ", index
 
     return fig
 

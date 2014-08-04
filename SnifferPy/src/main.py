@@ -33,9 +33,9 @@ for time_t, hyps in enumerate(hyps_his.hyps):
     for index, hyp in enumerate(hyps.hyp):
         print "hyp", index, "= ", hyp.probability
 
-eng = mb.get_engine()
-scene = eng.scenes[0].scene
-scene.camera.zoom(1.5)
+# eng = mb.get_engine()
+# scene = eng.scenes[0].scene
+# scene.camera.zoom(1.5)
 
 mb.show()
 

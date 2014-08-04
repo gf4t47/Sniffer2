@@ -9,6 +9,7 @@
 #include "UpdateByCell.h"
 #include "../model/Hypothesis.h"
 #include "../math/Gaussian.h"
+#include <math.h>
 
 namespace Forward {
 	using namespace std;
@@ -35,7 +36,7 @@ namespace Forward {
 	// Parameter: const Map3D & map
 	//************************************
 	shared_ptr<pos_conc_t> UpdateByCell::calcGaussianEnds(const Coordinate & startPos, const WindVector & wv, const mtn_t particle_num, const Map3D & map) const {
-		auto winds = Math::Gaussian::RandomWindVectors(wv, map.getUnit(), particle_num);
+		auto winds = Math::Gaussian::RandomWindVectors(wv, map.getUnit(), ceil(particle_num));
 		auto particle_num_per_wind = 1;
 
 		auto map_ret = make_shared<pos_conc_t>(); //a hash table used to merge the methane particles move into same cell.
@@ -125,7 +126,6 @@ namespace Forward {
 			ret_cells->mergeCellsByAddMethane(*new_cells);
 		}
 
-		auto ret = ret_cells;
-        return ret;
+		return ret_cells;
 	}
 }

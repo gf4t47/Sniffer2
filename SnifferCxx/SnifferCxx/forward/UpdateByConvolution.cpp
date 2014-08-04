@@ -30,20 +30,24 @@ namespace Forward {
 		if (!cell.hasMethane()) {
 			return make_shared<Cells>();
 		}
-        
-        auto startPos = cell.getCoordinate();
-        auto ideal_endPos =  map.calcPosition(startPos, cell.getWind().getCalcWind());
-        auto endCell = calcEndcell(startPos, ideal_endPos, map, true);
-        
-        if(endCell) {
-//            return Math::GaussianBlur::blurCell(endCell->getCoordinate(), getBlurRange(), cell.getMethane().getParticleNum(), map);
-            auto ret = make_shared<Cells>();
-            ret->updateCell(*endCell);
-            return ret;
-        }
-        
-        return make_shared<Cells>();
 
+		auto ret_cells = make_shared<Cells>();
+        
+		auto conecentration = cell.getMethane().getParticleNum();
+		if (conecentration > 1)
+		{
+			auto startPos = cell.getCoordinate();
+			auto ideal_endPos = map.calcPosition(startPos, cell.getWind().getCalcWind());
+			auto endCell = calcEndcell(startPos, ideal_endPos, map, true);
+			if (endCell) {
+				ret_cells = Math::GaussianBlur::blurCell(endCell->getCoordinate(), getBlurRange(), cell.getMethane().getParticleNum(), map);
+			}
+		}
+		else {
+			ret_cells = UpdateByCell::calcEnds(cell, map);
+		}
+
+		return ret_cells;
 	}
 
 }

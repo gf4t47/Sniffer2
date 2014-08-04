@@ -1,6 +1,6 @@
 {
-	"blurRange" : 3,
-	"forwardChecking": "byBlur",
+	"blurRange" : 1,
+	"forwardChecking": "byCell",
 	
 	"hypothesis" :
 	[

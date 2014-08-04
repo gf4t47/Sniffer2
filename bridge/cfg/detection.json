@@ -2,7 +2,7 @@
     "detection" :
     [
         {
-            "time" : 50,
+            "time" : 35,
             "leak" :
             [
             	{"location" : [25, 12, 3], "concentration" : 50},
@@ -13,7 +13,7 @@
         },
 
         {
-            "time" : 10,
+            "time" : 20,
             "leak" :
             [
             	{"location" : [50, 12, 3], "concentration" : 25},

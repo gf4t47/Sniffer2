@@ -19,8 +19,29 @@ namespace Math {
 	using namespace std;
 	using namespace Model;
 
-	const coord_item_t static_kernel_range = 2;
+	const coord_item_t static_kernel_range = 1;
 	const auto static_kernel = *GaussianBlur::generateGaussianKernel(static_kernel_range);
+
+	std::string GaussianBlur::kernelToString(const kernel_t & kernel) {
+		auto index = kernel.index_bases();
+		auto length = kernel.shape();
+		
+		ostringstream ostr;
+
+		ostr << "kernel: " << endl;
+		for (auto l = index[0]; l < index[0] + (int)length[0]; l++) {
+			for (auto w = index[1]; w < index[1] + (int)length[1]; w++) {
+				ostr << "[";
+				for (auto h = index[2]; h < index[2] + (int)length[2]; h++) {
+					ostr << kernel[l][w][h] << ", ";
+				}
+				ostr << "]";
+			}
+			ostr << endl;
+		}
+
+		return ostr.str();
+	}
 
 	double GaussianBlur::gaussian_pdf(const Model::Coordinate &mean, int step, const Model::Coordinate &val) {
 		typedef boost::math::normal::normal_distribution<> distribution_t;
@@ -54,21 +75,21 @@ namespace Math {
 	}
     
     shared_ptr<Cells> GaussianBlur::blurCell(const Coordinate &location, int step, const double concentration, const Map3D &map) {
-        auto kernel = generateGaussianKernel(step);
+		auto kernel = static_kernel;
 		for (auto l = location[0] - step; l <= location[0] + step; l++) {
 			for (auto w = location[1] - step; w <= location[1] + step; w++) {
 				for (auto h = location[2] - step; h <= location[2] + step; h++) {
 					Coordinate cell_coord(l, w, h);
 					Coordinate kernel_coord(l - location[0], w - location[1], h - location[2]);
 					if (!map.isAirCell(cell_coord)) {
-						(*kernel)(kernel_coord) = 0;
+						kernel(kernel_coord) = 0;
 					}
 				}
 			}
 		}
         
         auto ret_cells = make_shared<Cells>();
-		boost::multi_array_ref<double, 1> kernel_ref(kernel->data(), boost::extents[kernel->num_elements()]);
+		boost::multi_array_ref<double, 1> kernel_ref(kernel.data(), boost::extents[kernel.num_elements()]);
 		auto sum = accumulate(kernel_ref.begin(), kernel_ref.end(), 0.0);
 		if (sum <= 0) {
             auto cell = map.getCell(location);
@@ -78,13 +99,16 @@ namespace Math {
             return ret_cells;
 		}
         
+		//cout << kernelToString(kernel);
 		for_each(kernel_ref.begin(), kernel_ref.end(), [sum](double & item){item /= sum; });
+		//cout << kernelToString(kernel);
+		//cout << kernelToString(static_kernel);
 		for (auto l = location[0] - step; l <= location[0] + step; l++) {
 			for (auto w = location[1] - step; w <= location[1] + step; w++) {
 				for (auto h = location[2] - step; h <= location[2] + step; h++) {
 					Coordinate cell_coord(l, w, h);
                     Coordinate kernel_coord(l - location[0], w - location[1], h - location[2]);
-                    auto factor = (*kernel)(kernel_coord);
+                    auto factor = kernel(kernel_coord);
                     if (factor > 0) {
                         auto cell = map.getCell(cell_coord);
                         cell.setMethaneConcentration(concentration * factor);
