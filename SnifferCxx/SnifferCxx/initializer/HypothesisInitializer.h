@@ -31,15 +31,17 @@ namespace initializer {
     class HypothesisInitializer {
     public:
         HypothesisInitializer(std::string cfg_file);
-        std::shared_ptr<Backward::BackwardChecking> getCheckingAlg();
+        std::shared_ptr<Backward::BackwardChecking> getBackwardAlg();
+		std::shared_ptr<Forward::ForwardChecking> getForwardAlg();
         std::shared_ptr<std::vector<Model::Hypothesis>> getHyptheses();
         bool load(std::string cfg_file);
         
     public:
-        static std::unordered_map<std::string, std::function<std::shared_ptr<Forward::ForwardChecking>(int)>> String2Forward;
+        static std::unordered_map<std::string, std::function<std::shared_ptr<Forward::ForwardChecking>()>> String2Forward;
         
     private:
-        std::shared_ptr<Backward::BackwardChecking> alg_;
+        std::shared_ptr<Backward::BackwardChecking> backward_;
+		std::shared_ptr<Forward::ForwardChecking> forward_;
         std::shared_ptr<std::vector<Model::Hypothesis>> hyps_;
     };
 }

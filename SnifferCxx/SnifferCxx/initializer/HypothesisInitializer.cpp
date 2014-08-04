@@ -31,11 +31,11 @@ namespace initializer {
     const string strLocation = "location";
     const string strConcentration = "concentration";
     
-    unordered_map<string, function<shared_ptr<ForwardChecking>(int)>> HypothesisInitializer::String2Forward =
+    unordered_map<string, function<shared_ptr<ForwardChecking>()>> HypothesisInitializer::String2Forward =
     {
-        {"byCell", [](int blur_range){return make_shared<UpdateByCell>(blur_range);}},
-        {"byBlur", [](int blur_range){return make_shared<UpdateByConvolution>(blur_range);}},
-        {"byParticle", [](int blur_range){return nullptr;}}
+        {"byCell", [](){return make_shared<UpdateByCell>();}},
+        {"byBlur", [](){return make_shared<UpdateByConvolution>();}},
+        {"byParticle", [](){return nullptr;}}
     };
     
     HypothesisInitializer::HypothesisInitializer(string cfg_file)
@@ -43,9 +43,13 @@ namespace initializer {
         load(cfg_file);
     }
     
-    shared_ptr<BackwardChecking> HypothesisInitializer::getCheckingAlg() {
-        return alg_;
+    shared_ptr<BackwardChecking> HypothesisInitializer::getBackwardAlg() {
+        return backward_;
     }
+
+	shared_ptr<ForwardChecking> HypothesisInitializer::getForwardAlg() {
+		return forward_;
+	}
     
     shared_ptr<vector<Hypothesis>> HypothesisInitializer::getHyptheses() {
         return hyps_;
@@ -64,16 +68,16 @@ namespace initializer {
             blur_range = *blurRange_node;
         }
         
-        shared_ptr<ForwardChecking> forward_ptr = make_shared<UpdateByConvolution>(blur_range);
+        forward_ = make_shared<UpdateByConvolution>();
         auto forward_node = pt.get_optional<string>(strForwardChecking);
         if (forward_node) {
             auto find_ret = String2Forward.find(*forward_node);
             if (find_ret != String2Forward.end()) {
-                forward_ptr = (find_ret->second)(blur_range);
+                forward_ = (find_ret->second)();
             }
         }
         
-        alg_ = make_shared<BackwardChecking>(forward_ptr);
+        backward_ = make_shared<BackwardChecking>(blur_range);
         
         auto hyp_node = pt.get_child_optional(strHypothesis);
         if (hyp_node) {

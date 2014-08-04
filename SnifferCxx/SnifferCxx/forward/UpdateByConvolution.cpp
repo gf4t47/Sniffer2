@@ -7,8 +7,7 @@ namespace Forward {
     using namespace std;
     using namespace Model;
     
-	UpdateByConvolution::UpdateByConvolution(int blur_range)
-        :UpdateByCell(blur_range) {
+	UpdateByConvolution::UpdateByConvolution() {
 
 	}
 
@@ -40,7 +39,7 @@ namespace Forward {
 			auto ideal_endPos = map.calcPosition(startPos, cell.getWind().getCalcWind());
 			auto endCell = calcEndcell(startPos, ideal_endPos, map, true);
 			if (endCell) {
-				ret_cells = Math::GaussianBlur::blurCell(endCell->getCoordinate(), getBlurRange(), cell.getMethane().getParticleNum(), map);
+				ret_cells = Math::GaussianBlur::blurCell(endCell->getCoordinate(), cell.getMethane().getParticleNum(), map);
 			}
 		}
 		else {

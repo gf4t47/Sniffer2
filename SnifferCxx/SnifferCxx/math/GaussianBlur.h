@@ -22,7 +22,7 @@ namespace Math {
     typedef boost::multi_array<double, 3> kernel_t;
     class GaussianBlur {
     public:
-        static std::shared_ptr<Model::Cells> blurCell(const Model::Coordinate & location, int step, const double concentration, const Model::Map3D & map);
+        static std::shared_ptr<Model::Cells> blurCell(const Model::Coordinate & location, const double concentration, const Model::Map3D & map);
         static std::shared_ptr<Model::Cells> blurCells(const Model::Coordinate & location, int step, const Model::Cells & methane_cells, const Model::Map3D & map);
         static std::shared_ptr<kernel_t> generateGaussianKernel(int step);
         static double gaussian_pdf(const Model::Coordinate & mean, int step, const Model::Coordinate & val);

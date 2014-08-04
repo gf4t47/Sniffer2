@@ -25,21 +25,16 @@ namespace Forward {
     
 	class ForwardChecking {
 	public:
-        ForwardChecking(int blur_range);
+        ForwardChecking();
 		virtual ~ForwardChecking();
 
 		std::shared_ptr<Model::Cells> Deduce(Model::Hypothesis & hypothesis, const Model::Map3D & map, size_t count) const;
         std::shared_ptr<std::vector<Model::Hypothesis>> UpdateMethane(std::vector<Model::Hypothesis> & hyps, const Model::Map3D & map, size_t count) const;
-		virtual double calcGaussianBlurMean(const Model::Coordinate & location, const Model::Cells & methane_cells, const Model::Map3D & map) const;
-        
+
+		void operator()(const std::vector<Model::Hypothesis> & hyps);
+		        
     protected:
 		virtual std::shared_ptr<Model::Cells> calcEnds(const Model::Cells & cells, const Model::Map3D & map) const = 0;
-        
-    protected:
-        int getBlurRange() const;
-        
-    private:
-        int blur_range_;
 	};
 
 }

@@ -8,7 +8,6 @@
 
 #include "ForwardChecking.h"
 #include "../model/Hypothesis.h"
-#include "../math/GaussianBlur.h"
 #include "../model/Cells.h"
 #include "../model/Map3D.h"
 
@@ -16,39 +15,14 @@ namespace Forward {
     using namespace std;
     using namespace Model;
     
-    ForwardChecking::ForwardChecking(int blur_range)
-        :blur_range_(blur_range) {
+    ForwardChecking::ForwardChecking() {
         
     }
     
 	ForwardChecking::~ForwardChecking() {
 
 	}
-    
-    int ForwardChecking::getBlurRange() const{
-        return blur_range_;
-    }
-
-	//************************************
-	// Method:    calcGaussianBlurMean : use Gaussian convolution to blur the methane before output as the gamma distribution mean parameter.
-	// FullName:  Backward::BackwardChecking::calcGaussianBlurMean
-	// Access:    protected 
-	// Returns:   double
-	// Qualifier: const
-	// Parameter: const Coordinate & location
-	// Parameter: const Cells & methane_cells
-	// Parameter: const Map3D & map
-	//************************************
-	double ForwardChecking::calcGaussianBlurMean(const Coordinate & location, const Cells & methane_cells, const Map3D & map) const {
-		auto newCells = Math::GaussianBlur::blurCells(location, getBlurRange(), methane_cells, map);
-		auto locate_cell = newCells->getCell(location);
-		if (locate_cell) {
-			return locate_cell->getMethane().getMethane();
-		}
-
-		return Methane::getBackground();
-	}
-    
+   
     //************************************
 	// Method:    Deduce : enter face for this algorithm class
 	// FullName:  Forward::ForwardChecking::Deduce
@@ -94,4 +68,8 @@ namespace Forward {
         
         return ret_hyps;
     }
+
+	void ForwardChecking::operator()(const std::vector<Model::Hypothesis> & hyps) {
+
+	}
 }

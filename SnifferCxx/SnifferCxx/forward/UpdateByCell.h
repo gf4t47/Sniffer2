@@ -20,7 +20,7 @@ namespace Forward {
 
 	class UpdateByCell : public ForwardChecking {
 	public:
-        UpdateByCell(int blur_range);
+        UpdateByCell();
 		~UpdateByCell();
 
 	protected:

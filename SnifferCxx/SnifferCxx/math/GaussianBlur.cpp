@@ -74,8 +74,10 @@ namespace Math {
 		return kernel;
 	}
     
-    shared_ptr<Cells> GaussianBlur::blurCell(const Coordinate &location, int step, const double concentration, const Map3D &map) {
+    shared_ptr<Cells> GaussianBlur::blurCell(const Coordinate &location, const double concentration, const Map3D &map) {
 		auto kernel = static_kernel;
+		auto step = static_kernel_range;
+
 		for (auto l = location[0] - step; l <= location[0] + step; l++) {
 			for (auto w = location[1] - step; w <= location[1] + step; w++) {
 				for (auto h = location[2] - step; h <= location[2] + step; h++) {
@@ -128,7 +130,7 @@ namespace Math {
 					Coordinate coord(l, w, h);
                     auto methane_cell = methane_cells.getCell(coord);
                     if (methane_cell && methane_cell->hasMethane()) {
-                        auto new_cells = blurCell(coord, step, methane_cell->getMethane().getParticleNum(), map);
+                        auto new_cells = blurCell(coord, methane_cell->getMethane().getParticleNum(), map);
                         ret_cells->mergeCellsByAddMethane(*new_cells);
                     }
 				}

@@ -24,7 +24,7 @@ namespace Model {
 namespace Backward {
     class BackwardChecking {
     public:
-        BackwardChecking(std::shared_ptr<Forward::ForwardChecking> forward);
+        BackwardChecking(size_t blur_range);
         virtual ~BackwardChecking();
         
         std::shared_ptr<std::vector<Model::Hypothesis>> updateHypotheses(std::vector<Model::Hypothesis> & hyps, const Model::Map3D & map, size_t time_count, const std::vector<Model::Leak> & detections) const;
@@ -32,9 +32,13 @@ namespace Backward {
     protected:
         double calcLikehood(const Model::Hypothesis & hyp, const Model::Coordinate & detected_location, double detected_concentration, const Model::Map3D & map) const;
         void normalize(std::vector<Model::Hypothesis> & hyps) const;
+
+	private:
+		double calcGaussianBlurMean(const Model::Coordinate & location, const Model::Cells & methane_cells, const Model::Map3D & map) const;
+		size_t getBlurRange() const;
         
     private:
-        std::shared_ptr<Forward::ForwardChecking> forward_;
+		size_t blur_range_;
     };
 }
 

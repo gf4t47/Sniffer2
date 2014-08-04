@@ -15,8 +15,7 @@ namespace Forward {
 	using namespace std;
 	using namespace Model;
     
-    UpdateByCell::UpdateByCell(int blur_range)
-        :ForwardChecking(blur_range) {
+    UpdateByCell::UpdateByCell() {
         
     }
 

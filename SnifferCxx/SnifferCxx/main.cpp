@@ -80,7 +80,8 @@ int main(int argc, const char * argv[])
     
     //load hypotheses
     HypothesisInitializer hypI(argv[2]);
-    auto alg = hypI.getCheckingAlg();
+    auto backward = hypI.getBackwardAlg();
+	auto forward = hypI.getForwardAlg();
     auto hyps = hypI.getHyptheses();
     
     //load detection
@@ -90,7 +91,7 @@ int main(int argc, const char * argv[])
     hyps_hist.push_back(hyps);
     for (auto dect : *dect_vect)
     {
-        hyps = alg->updateHypotheses(*hyps, *map, dect.time_, dect.detected_);
+        hyps = backward->updateHypotheses(*hyps, *map, dect.time_, dect.detected_);
         hyps_hist.push_back(hyps);
     }
     

@@ -5,7 +5,7 @@ namespace Forward {
 
 	class UpdateByConvolution :	public UpdateByCell {
 	public:
-		UpdateByConvolution(int blur_range);
+		UpdateByConvolution();
 		virtual ~UpdateByConvolution();
        
     protected:
