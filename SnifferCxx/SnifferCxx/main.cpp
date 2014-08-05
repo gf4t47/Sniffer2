@@ -11,9 +11,11 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
+#include <thread>
 #include "initializer/HypothesisInitializer.h"
 #include "initializer/MapBuilder.h"
 #include "backwrad/BackwardChecking.h"
+#include "forward/ForwardChecking.h"
 #include "model/Map3D.h"
 #include "model/Cells.h"
 #include "filesystem/MessageBuilder.h"
@@ -22,6 +24,7 @@
 using namespace std;
 using namespace initializer;
 using namespace Model;
+using namespace Forward;
 
 
 const string strDetection = "detection";
@@ -30,6 +33,7 @@ const string strLeak = "leak";
 const string strLocation = "location";
 const string strConcentration = "concentration";
 const string strRepeat = "repeat";
+const string strMultithread = "multithread";
 
 struct detection {
     size_t time_;
@@ -37,7 +41,7 @@ struct detection {
 };
 
 
-shared_ptr<vector<detection>> load(string filename) {
+tuple<shared_ptr<vector<detection>>, bool> load(string filename) {
     using boost::property_tree::ptree;
     using boost::lexical_cast;
     
@@ -46,6 +50,8 @@ shared_ptr<vector<detection>> load(string filename) {
     
     auto dect_vec = make_shared<vector<detection>>();
     
+	auto multithread = pt.get<bool>(strMultithread);
+
     for (auto dect_node : pt.get_child(strDetection)) {
         auto dect = dect_node.second;
         
@@ -69,7 +75,7 @@ shared_ptr<vector<detection>> load(string filename) {
         }
     }
     
-    return dect_vec;
+    return make_tuple(dect_vec, multithread);
 }
 
 
@@ -87,20 +93,32 @@ int main(int argc, const char * argv[])
     auto hyps = hypI.getHyptheses();
     
     //load detection
-    auto dect_vect = load(argv[3]);
-    
-    
+	shared_ptr<vector<detection>> dect_vect;
+	bool multiple_thread;
+    tie(dect_vect, multiple_thread) = load(argv[3]);
+
     //calculation
-    bool multiple_thread = false;
     vector<shared_ptr<vector<Hypothesis>>> hyps_hist;
     hyps_hist.push_back(hyps);
     if (!multiple_thread) {
         for (auto dect : *dect_vect)
         {
-            backward->updateHypotheses(hyps, *map, dect.detected_, dect.time_, forward);
-//            hyps_hist.push_back(hyps);
+            backward->updateHypotheses(*hyps, *map, dect.detected_, dect.time_, forward);
         }
     }
+	else {
+		bool forward_alive = true;
+		std::thread forward_task(&ForwardChecking::work, forward, std::ref(*hyps), std::ref(*map), std::ref(forward_alive));
+		forward_task.detach();
+
+		for (auto dect : *dect_vect)
+		{
+			std::chrono::milliseconds dura(dect.time_ * 100);
+			std::this_thread::sleep_for(dura);
+			backward->updateHypotheses(*hyps, *map, dect.detected_, dect.time_, nullptr);
+		}
+		forward_alive = false;
+	}
     
     
     //output
@@ -116,6 +134,13 @@ int main(int argc, const char * argv[])
 	if (!mtn_msg->SerializeToOstream(&mtn_out)) {
 		cerr << "Failed to write msg" << endl;
 		return -1;
+	}
+
+	for (auto const & hyp : *hyps) {
+		for (auto const & prob : hyp.getProbabilityHistory()) {
+			cout << "{" << prob.first << ", " << prob.second << "}" << " ";
+		}
+		cout << endl;
 	}
         
     return 0;

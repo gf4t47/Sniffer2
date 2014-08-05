@@ -26,10 +26,13 @@ namespace Math {
         static std::shared_ptr<Model::Cells> blurCells(const Model::Coordinate & location, int step, const Model::Cells & methane_cells, const Model::Map3D & map, int kernel_range);
         static std::shared_ptr<kernel_t> generateGaussianKernel(int step);
         static double gaussian_pdf(const Model::Coordinate & mean, int step, const Model::Coordinate & val);
+
+	private:
+		static void resetStaticKernel(int kernel_range);
         
     public:
         static int static_kernel_range;
-        static kernel_t static_kernel;
+		static std::shared_ptr<kernel_t> static_kernel;
 
 	private:
 		static std::string kernelToString(const kernel_t & kernel);

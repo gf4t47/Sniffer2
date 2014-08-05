@@ -1,8 +1,10 @@
 {
+    "multithread" : false,
+    
     "detection" :
     [
         {
-            "time" : 10,
+            "time" : 30,
             "leak" :
             [
             	{"location" : [25, 12, 3], "concentration" : 50},
@@ -13,14 +15,14 @@
         },
 
         {
-            "time" : 20,
+            "time" : 4,
             "leak" :
             [
             	{"location" : [50, 12, 3], "concentration" : 25},
             	{"location" : [50, 12, 3], "concentration" : 12},
             	{"location" : [50, 12, 3], "concentration" : 10}
             ],
-            "repeat" : 0
+            "repeat" : 2
         }
     ]
 }

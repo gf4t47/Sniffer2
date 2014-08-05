@@ -15,7 +15,7 @@ namespace Forward {
 	using namespace std;
 	using namespace Model;
     
-    UpdateByCell::UpdateByCell(kernel_range_t kernel_range)
+    UpdateByCell::UpdateByCell(range_t kernel_range)
     :ForwardChecking(kernel_range) {
         
     }

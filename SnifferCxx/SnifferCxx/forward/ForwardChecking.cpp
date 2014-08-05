@@ -15,7 +15,7 @@ namespace Forward {
     using namespace std;
     using namespace Model;
     
-    ForwardChecking::ForwardChecking(kernel_range_t kernnel_range)
+    ForwardChecking::ForwardChecking(range_t kernnel_range)
     :kernel_range_(kernnel_range) {
         
     }
@@ -24,7 +24,7 @@ namespace Forward {
 
 	}
     
-    kernel_range_t ForwardChecking::getKernelRange() const {
+    range_t ForwardChecking::getKernelRange() const {
         return kernel_range_;
     }
    
@@ -62,10 +62,10 @@ namespace Forward {
         return ret_cells;
 	}
     
-        void ForwardChecking::UpdateMethane(shared_ptr<vector<Model::Hypothesis>> hyps, const Map3D & map, size_t count) const {
+        void ForwardChecking::UpdateMethane(vector<Model::Hypothesis> & hyps, const Map3D & map, size_t count) const {
         auto ret_hyps = make_shared<vector<Hypothesis>>();
         
-        for (auto & hyp : *hyps) {
+        for (auto & hyp : hyps) {
             Deduce(hyp, map, count);
 //            Hypothesis newHyp(hyp.getLeaks(), hyp.getProbabilityHistory(), newCells);
 //			ret_hyps->push_back(newHyp);
@@ -74,7 +74,11 @@ namespace Forward {
 //        return ret_hyps;
     }
 
-	void ForwardChecking::operator()(const std::vector<Model::Hypothesis> & hyps, const Map3D & map) {
+	void ForwardChecking::work(vector<Model::Hypothesis> & hyps, const Map3D & map, bool & alive) {
+		while (alive) {
+			UpdateMethane(hyps, map, 1);
+		}
 
+		cout << "forward working thread is over" << endl;
 	}
 }

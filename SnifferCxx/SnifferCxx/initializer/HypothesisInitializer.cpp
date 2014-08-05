@@ -15,16 +15,14 @@
 #include "../forward/UpdateByConvolution.h"
 #include "../model/Coordinate.h"
 
-using namespace std;
-using namespace Model;
-using namespace Backward;
-using namespace Forward;
-
 namespace initializer {
-    using namespace std;
+	using namespace std;
+	using namespace Model;
+	using namespace Backward;
+	using namespace Forward;
     
-    const kernel_range_t default_blurRange = 1;
-    const kernel_range_t default_kernelRange = 1;
+    const Forward::range_t default_blurRange = 1;
+    const Backward::range_t default_kernelRange = 1;
     
     const string strBlurRange = "blurRange";
     const string strKernelRange = "kernelRange";
@@ -33,11 +31,11 @@ namespace initializer {
     const string strLocation = "location";
     const string strConcentration = "concentration";
     
-    unordered_map<string, function<shared_ptr<ForwardChecking>(kernel_range_t)>> HypothesisInitializer::String2Forward =
+    unordered_map<string, function<shared_ptr<ForwardChecking>(Forward::range_t)>> HypothesisInitializer::String2Forward =
     {
-        {"byCell", [](kernel_range_t range){return make_shared<UpdateByCell>(range);}},
-        {"byBlur", [](kernel_range_t range){return make_shared<UpdateByConvolution>(range);}},
-        {"byParticle", [](kernel_range_t range){return nullptr;}}
+		{ "byCell", [](Forward::range_t range){return make_shared<UpdateByCell>(range); } },
+		{ "byBlur", [](Forward::range_t range){return make_shared<UpdateByConvolution>(range); } },
+		{ "byParticle", [](Forward::range_t range){return nullptr; } }
     };
     
     HypothesisInitializer::HypothesisInitializer(string cfg_file)
@@ -65,13 +63,13 @@ namespace initializer {
         read_json(cfg_file, pt);
         
         auto blur_range = default_blurRange;
-        auto blurRange_node = pt.get_optional<kernel_range_t>(strBlurRange);
+        auto blurRange_node = pt.get_optional<Backward::range_t>(strBlurRange);
         if (blurRange_node) {
             blur_range = *blurRange_node;
         }
         
         auto kernel_range = default_kernelRange;
-        auto kernelRange_node = pt.get_optional<kernel_range_t>(strKernelRange);
+        auto kernelRange_node = pt.get_optional<Forward::range_t>(strKernelRange);
         if (kernelRange_node) {
             kernel_range = *kernelRange_node;
         }

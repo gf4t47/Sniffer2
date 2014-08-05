@@ -99,13 +99,13 @@ namespace Backward {
     // Parameter: size_t time_count : how many iterations for forward model algorithm to carry.
     // Parameter: const vector<Leak> & detections
     //************************************
-    void BackwardChecking::updateHypotheses(shared_ptr<vector<Hypothesis>> hyps, const Map3D & map, const vector<Leak> & detections, size_t time_count, const shared_ptr<ForwardChecking> forward) const {
+    void BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, const Map3D & map, const vector<Leak> & detections, size_t time_count, const shared_ptr<ForwardChecking> forward) const {
         if(forward) {
             forward->UpdateMethane(hyps, map, time_count);
         }
         
         vector<double> hyps_probability;
-        for (auto & hyp : *hyps) {
+        for (auto & hyp : hyps) {
             double likeHood = 1.0;
             for (auto detection : detections) {
                 likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
@@ -115,7 +115,7 @@ namespace Backward {
         }
 //        cout<<endl;
         
-        normalize(*hyps, hyps_probability);
+        normalize(hyps, hyps_probability);
 //        cout<<endl;
     }
     

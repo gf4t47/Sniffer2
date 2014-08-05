@@ -19,8 +19,8 @@ namespace Math {
 	using namespace std;
 	using namespace Model;
 
-    int GaussianBlur::static_kernel_range = 2;
-	auto GaussianBlur::static_kernel = *GaussianBlur::generateGaussianKernel(static_kernel_range);
+    int GaussianBlur::static_kernel_range = 1;
+	shared_ptr<kernel_t> GaussianBlur::static_kernel = GaussianBlur::generateGaussianKernel(static_kernel_range);
 
 	std::string GaussianBlur::kernelToString(const kernel_t & kernel) {
 		auto index = kernel.index_bases();
@@ -73,9 +73,18 @@ namespace Math {
 
 		return kernel;
 	}
+
+	void GaussianBlur::resetStaticKernel(int kernel_range) {
+		if (kernel_range != static_kernel_range) {
+			static_kernel_range = kernel_range;
+			static_kernel = GaussianBlur::generateGaussianKernel(static_kernel_range);
+		}
+	}
     
     shared_ptr<Cells> GaussianBlur::blurCell(const Coordinate &location, const double concentration, const Map3D &map, int kernel_range) {
-		auto kernel = static_kernel;
+		resetStaticKernel(kernel_range);
+
+		auto kernel = *static_kernel;
 		auto step = static_kernel_range;
 
 		for (auto l = location[0] - step; l <= location[0] + step; l++) {

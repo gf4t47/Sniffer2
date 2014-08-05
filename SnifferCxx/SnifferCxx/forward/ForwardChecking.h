@@ -21,24 +21,24 @@ namespace Model {
 }
 
 namespace Forward {
-    typedef int kernel_range_t;
+    typedef int range_t;
     
 	class ForwardChecking {
 	public:
-        ForwardChecking(kernel_range_t kernel_range);
+        ForwardChecking(range_t kernel_range);
 		virtual ~ForwardChecking();
 
 		std::shared_ptr<Model::Cells> Deduce(Model::Hypothesis & hypothesis, const Model::Map3D & map, size_t count) const;
-        void UpdateMethane(std::shared_ptr<std::vector<Model::Hypothesis>> hyps, const Model::Map3D & map, size_t count) const;
+        void UpdateMethane(std::vector<Model::Hypothesis> & hyps, const Model::Map3D & map, size_t count) const;
 
-		void operator()(const std::vector<Model::Hypothesis> & hyps, const Model::Map3D & map);
+		void work(std::vector<Model::Hypothesis> & hyps, const Model::Map3D & map, bool & alive);
 		        
     protected:
 		virtual std::shared_ptr<Model::Cells> calcEnds(const Model::Cells & cells, const Model::Map3D & map) const = 0;
-        kernel_range_t getKernelRange() const;
+        range_t getKernelRange() const;
         
     private:
-        kernel_range_t kernel_range_;
+        range_t kernel_range_;
 	};
 
 }
