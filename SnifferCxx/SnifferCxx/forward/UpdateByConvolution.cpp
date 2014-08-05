@@ -7,7 +7,7 @@ namespace Forward {
     using namespace std;
     using namespace Model;
     
-    const int blur_concentration_threshold = 5;
+    const int blur_concentration_threshold = 7;
     
 	UpdateByConvolution::UpdateByConvolution(range_t kernel_range)
     :UpdateByCell(kernel_range){

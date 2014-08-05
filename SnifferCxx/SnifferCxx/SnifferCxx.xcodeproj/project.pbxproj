@@ -21,6 +21,7 @@
 		AC4AE2AB197D6C410089A6F9 /* Wind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE29F197D6C410089A6F9 /* Wind.cpp */; };
 		AC4AE2AC197D6C410089A6F9 /* WindVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2A1197D6C410089A6F9 /* WindVector.cpp */; };
 		AC4AE2B3197D7AC40089A6F9 /* BackwardChecking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */; };
+		AC5F12E51991906200ED30C5 /* InformationGain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5F12E31991906200ED30C5 /* InformationGain.cpp */; };
 		AC5F63AF1988113900C1C53E /* MessageBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5F63AD1988113900C1C53E /* MessageBuilder.cpp */; };
 		AC7D6F59198178BD0041B1E9 /* UpdateByConvolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */; };
 		ACD77E1A19894BFF0057ED65 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD77E1919894BFF0057ED65 /* main.cpp */; };
@@ -71,6 +72,8 @@
 		AC4AE2A2197D6C410089A6F9 /* WindVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindVector.h; sourceTree = "<group>"; };
 		AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackwardChecking.cpp; sourceTree = "<group>"; };
 		AC4AE2B2197D7AC40089A6F9 /* BackwardChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackwardChecking.h; sourceTree = "<group>"; };
+		AC5F12E31991906200ED30C5 /* InformationGain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InformationGain.cpp; sourceTree = "<group>"; };
+		AC5F12E41991906200ED30C5 /* InformationGain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationGain.h; sourceTree = "<group>"; };
 		AC5F63AD1988113900C1C53E /* MessageBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageBuilder.cpp; sourceTree = "<group>"; };
 		AC5F63AE1988113900C1C53E /* MessageBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBuilder.h; sourceTree = "<group>"; };
 		AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UpdateByConvolution.cpp; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 			children = (
 				AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */,
 				AC4AE2B2197D7AC40089A6F9 /* BackwardChecking.h */,
+				AC5F12E31991906200ED30C5 /* InformationGain.cpp */,
+				AC5F12E41991906200ED30C5 /* InformationGain.h */,
 			);
 			path = backwrad;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 				ACED9A231987151600E63AA5 /* cell.pb.cc in Sources */,
 				AC4AE2A4197D6C410089A6F9 /* UpdateByCell.cpp in Sources */,
 				ACED9A26198716DF00E63AA5 /* hypothesis.pb.cc in Sources */,
+				AC5F12E51991906200ED30C5 /* InformationGain.cpp in Sources */,
 				AC5F63AF1988113900C1C53E /* MessageBuilder.cpp in Sources */,
 				AC3438EB197EBF03002E37AE /* Gamma.cpp in Sources */,
 				AC4AE2AB197D6C410089A6F9 /* Wind.cpp in Sources */,

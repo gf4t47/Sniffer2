@@ -121,7 +121,7 @@ int main(int argc, const char * argv[])
 	}
     
     
-    //output
+    //message output
     auto map_msg = Filesystem::MessageBuilder::buildMessage(*map);
     fstream map_out(argv[5], ios::out | ios::trunc | ios::binary);
     if (!map_msg->SerializeToOstream(&map_out)) {
@@ -136,6 +136,7 @@ int main(int argc, const char * argv[])
 		return -1;
 	}
 
+    //print output
 	for (auto const & hyp : *hyps) {
 		for (auto const & prob : hyp.getProbabilityHistory()) {
 			cout << "{" << prob.first << ", " << prob.second << "}" << " ";

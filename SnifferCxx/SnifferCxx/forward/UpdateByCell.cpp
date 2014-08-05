@@ -126,6 +126,7 @@ namespace Forward {
 			ret_cells->mergeCellsByAddMethane(*new_cells);
 		}
 
+        cout <<"intput cells = "<<cells.size()<<" output cells = " << ret_cells->size() << endl;
 		return ret_cells;
 	}
 }

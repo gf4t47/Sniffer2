@@ -54,7 +54,9 @@ namespace Forward {
         }
         
 		for (size_t i = 0; i < count; i++) {
+//            cout<<"before merge = "<<ret_cells->size()<<endl;
 			ret_cells->mergeCellsByAddMethane(leakCells);
+//            cout<<"after merge = "<<ret_cells->size()<<endl;
 			ret_cells = calcEnds(*ret_cells, map);
             hypothesis.addCellsHistory(ret_cells);
 		}
