@@ -25,7 +25,7 @@ hyps_his = MessageParser.parse_mtn(sys.argv[3])
 # fig_wind.remove()
 
 fig_hyp = None
-for time_t, hyps in enumerate(hyps_his.hyps):
+for hyps in hyps_his.hyps:
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
 
 # eng = mb.get_engine()

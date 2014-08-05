@@ -72,6 +72,8 @@ shared_ptr<vector<detection>> load(string filename) {
     return dect_vec;
 }
 
+
+
 int main(int argc, const char * argv[])
 {
     //load map
@@ -87,14 +89,21 @@ int main(int argc, const char * argv[])
     //load detection
     auto dect_vect = load(argv[3]);
     
+    
+    //calculation
+    bool multiple_thread = false;
     vector<shared_ptr<vector<Hypothesis>>> hyps_hist;
     hyps_hist.push_back(hyps);
-    for (auto dect : *dect_vect)
-    {
-        hyps = backward->updateHypotheses(*hyps, *map, dect.time_, dect.detected_, forward);
-        hyps_hist.push_back(hyps);
+    if (!multiple_thread) {
+        for (auto dect : *dect_vect)
+        {
+            backward->updateHypotheses(hyps, *map, dect.detected_, dect.time_, forward);
+//            hyps_hist.push_back(hyps);
+        }
     }
     
+    
+    //output
     auto map_msg = Filesystem::MessageBuilder::buildMessage(*map);
     fstream map_out(argv[5], ios::out | ios::trunc | ios::binary);
     if (!map_msg->SerializeToOstream(&map_out)) {

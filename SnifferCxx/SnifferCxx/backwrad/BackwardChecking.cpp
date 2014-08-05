@@ -81,9 +81,12 @@ namespace Backward {
     // Qualifier: const
     // Parameter: vector<Hypothesis> & hyps
     //************************************
-    void BackwardChecking::normalize(vector<Hypothesis> &hyps) const{
-        auto sum = accumulate(hyps.begin(), hyps.end(), 0.0f, [](double sum, const Hypothesis & hyp){ return sum += hyp.getProbability();});
-        for_each(hyps.begin(), hyps.end(), [sum](Hypothesis & hyp){hyp.setProbability(hyp.getProbability() / sum); cout<<"Prob = " << hyp.getProbability() << " ";});
+    void BackwardChecking::normalize(vector<Hypothesis> & hyps, const vector<double> & hyps_probability) const{
+        auto sum = accumulate(hyps_probability.begin(), hyps_probability.end(), 0.0f, [](double sum, const double pro){ return sum += pro;});
+//        for_each(hyps.begin(), hyps.end(), [sum](Hypothesis & hyp){hyp.addProbability(hyp.getProbability() / sum); cout<<"Prob = " << hyp.getProbability() << " ";});
+        for(auto i = 0; i < hyps.size(); i++) {
+            hyps[i].addProbability(hyps_probability[i] / sum);
+        }
     }
     
     //************************************
@@ -96,23 +99,24 @@ namespace Backward {
     // Parameter: size_t time_count : how many iterations for forward model algorithm to carry.
     // Parameter: const vector<Leak> & detections
     //************************************
-    shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, const Map3D & map, size_t time_count, const vector<Leak> & detections, const shared_ptr<ForwardChecking> forward) const {
-        auto new_hyps = forward->UpdateMethane(hyps, map, time_count);
+    void BackwardChecking::updateHypotheses(shared_ptr<vector<Hypothesis>> hyps, const Map3D & map, const vector<Leak> & detections, size_t time_count, const shared_ptr<ForwardChecking> forward) const {
+        if(forward) {
+            forward->UpdateMethane(hyps, map, time_count);
+        }
         
-        for (auto & hyp : *new_hyps) {
-            double likeHood = 1.0f;
+        vector<double> hyps_probability;
+        for (auto & hyp : *hyps) {
+            double likeHood = 1.0;
             for (auto detection : detections) {
                 likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
             }
-            cout << "like Hood = "<<likeHood <<" ";
-            hyp.setProbability(hyp.getProbability() * likeHood);
+//            cout << "like Hood = "<<likeHood <<" ";
+            hyps_probability.push_back(hyp.getProbability() * likeHood);
         }
-        cout<<endl;
+//        cout<<endl;
         
-        normalize(*new_hyps);
-        cout<<endl;
-        
-		return new_hyps;
+        normalize(*hyps, hyps_probability);
+//        cout<<endl;
     }
     
     

@@ -62,19 +62,19 @@ namespace Forward {
         return ret_cells;
 	}
     
-    shared_ptr<vector<Hypothesis>> ForwardChecking::UpdateMethane(vector<Hypothesis> & hyps, const Map3D & map, size_t count) const {
+        void ForwardChecking::UpdateMethane(shared_ptr<vector<Model::Hypothesis>> hyps, const Map3D & map, size_t count) const {
         auto ret_hyps = make_shared<vector<Hypothesis>>();
         
-        for (auto & hyp : hyps) {
-            auto newCells = Deduce(hyp, map, count);
-            Hypothesis newHyp(hyp.getLeaks(), hyp.getProbability(), newCells);
-			ret_hyps->push_back(newHyp);
+        for (auto & hyp : *hyps) {
+            Deduce(hyp, map, count);
+//            Hypothesis newHyp(hyp.getLeaks(), hyp.getProbabilityHistory(), newCells);
+//			ret_hyps->push_back(newHyp);
         }
         
-        return ret_hyps;
+//        return ret_hyps;
     }
 
-	void ForwardChecking::operator()(const std::vector<Model::Hypothesis> & hyps) {
+	void ForwardChecking::operator()(const std::vector<Model::Hypothesis> & hyps, const Map3D & map) {
 
 	}
 }

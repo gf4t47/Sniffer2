@@ -51,7 +51,13 @@ namespace Filesystem {
 			auto msg_hyps = msg_hyps_his->add_hyps();
 			for (auto const & hyp : *hyps) {
 				auto msg_hyp = msg_hyps->add_hyp();
-				msg_hyp->set_probability(hyp.getProbability());
+                
+                
+                for (auto const & prob : hyp.getProbabilityHistory()) {
+                    auto msg_prob = msg_hyp->add_probability();
+                    msg_prob->set_index(prob.first);
+                    msg_prob->set_prob(prob.second);
+                }
 
 				for (auto const & leak : hyp.getLeaks()) {
 					auto msg_leak = msg_hyp->add_leak();

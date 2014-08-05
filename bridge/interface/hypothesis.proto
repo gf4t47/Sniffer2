@@ -8,7 +8,12 @@ message Leak {
 	}
 
 message Hypothesis {
-	required double probability = 1;
+	message Probability {
+		required int32 index = 1;
+		required double prob = 2;
+	}
+	
+	repeated Probability probability = 1;
 	repeated Leak leak = 2;
 	repeated Cells methene_cells = 3;
 }
