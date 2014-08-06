@@ -120,7 +120,6 @@ int main(int argc, const char * argv[])
 		forward_alive = false;
 	}
     
-    
     //message output
     auto map_msg = Filesystem::MessageBuilder::buildMessage(*map);
     fstream map_out(argv[5], ios::out | ios::trunc | ios::binary);

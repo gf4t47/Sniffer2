@@ -13,8 +13,6 @@
 #include "../math/GaussianBlur.h"
 
 namespace Backward {
-    const double gamma_scale = 1.0;
-    
     using namespace std;
     using namespace Model;
     using namespace Forward;
@@ -70,7 +68,7 @@ namespace Backward {
     //************************************
     double BackwardChecking::calcLikehood(const Hypothesis & hyp, const Coordinate & detected_location, double detected_concentration, const Map3D & map) const {
         auto mean = calcGaussianBlurMean(detected_location, *hyp.getMethaneCells(), map);
-        return Math::Gamma::calcGammaPdf(mean, gamma_scale, detected_concentration);
+        return Math::Gamma::calcGammaPdf(detected_concentration, mean);
     }
     
     //************************************
@@ -83,7 +81,6 @@ namespace Backward {
     //************************************
     void BackwardChecking::normalize(vector<Hypothesis> & hyps, const vector<double> & hyps_probability) const{
         auto sum = accumulate(hyps_probability.begin(), hyps_probability.end(), 0.0, [](double sum, const double pro){ return sum += pro;});
-//        for_each(hyps.begin(), hyps.end(), [sum](Hypothesis & hyp){hyp.addProbability(hyp.getProbability() / sum); cout<<"Prob = " << hyp.getProbability() << " ";});
         for(auto i = 0; i < hyps.size(); i++) {
             hyps[i].addProbability(hyps_probability[i] / sum);
         }
@@ -110,13 +107,11 @@ namespace Backward {
             for (auto detection : detections) {
                 likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
             }
-            cout << "like Hood = "<<likeHood <<" ";
+            
             hyps_probability.push_back(hyp.getProbability() * likeHood);
         }
-        cout<<endl;
         
         normalize(hyps, hyps_probability);
-        cout<<endl;
     }
     
     

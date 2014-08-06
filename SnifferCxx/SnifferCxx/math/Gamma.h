@@ -11,9 +11,11 @@
 
 
 namespace Math {
+    const double default_gamma_scale = 1.0;
+    
     class Gamma {
     public:
-        static double calcGammaPdf(double shape, double scale, double detected);
+        static double calcGammaPdf(double detected, double shape, double scale = default_gamma_scale);
     };
 }
 

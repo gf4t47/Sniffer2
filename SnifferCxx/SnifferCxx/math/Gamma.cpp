@@ -12,7 +12,7 @@
 namespace Math {
     using namespace boost;
     
-    double Gamma::calcGammaPdf(double shape, double scale, double detected) {
+    double Gamma::calcGammaPdf(double detected, double shape, double scale /* default_gamma_scale */) {
         return math::gamma_p_derivative(shape, detected / scale) / scale;
     }
 }
