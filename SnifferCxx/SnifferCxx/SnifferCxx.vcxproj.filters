@@ -5,9 +5,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="cfg">
-      <UniqueIdentifier>{545c8a5c-36b7-4cd5-9ae8-271fe0fa9783}</UniqueIdentifier>
-    </Filter>
     <Filter Include="backward">
       <UniqueIdentifier>{a4146118-f4ce-483e-8a13-df8b81b4a00b}</UniqueIdentifier>
     </Filter>
@@ -89,6 +86,9 @@
       <Filter>initializer</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="backwrad\InformationGain.cpp">
+      <Filter>backward</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="model\Cell.h">
@@ -151,24 +151,8 @@
     <ClInclude Include="initializer\MapBuilder.h">
       <Filter>initializer</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cfg\detection.json">
-      <Filter>cfg</Filter>
-    </None>
-    <None Include="cfg\hypothesis.json">
-      <Filter>cfg</Filter>
-    </None>
-    <None Include="cfg\map.json">
-      <Filter>cfg</Filter>
-    </None>
-    <None Include="cfg\output.bin">
-      <Filter>cfg</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="cfg\output.txt">
-      <Filter>cfg</Filter>
-    </Text>
+    <ClInclude Include="backwrad\InformationGain.h">
+      <Filter>backward</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

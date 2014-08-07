@@ -177,6 +177,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="backwrad\BackwardChecking.cpp" />
+    <ClCompile Include="backwrad\InformationGain.cpp" />
     <ClCompile Include="filesystem\cell.pb.cc" />
     <ClCompile Include="filesystem\hypothesis.pb.cc" />
     <ClCompile Include="filesystem\MessageBuilder.cpp" />
@@ -200,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="backwrad\BackwardChecking.h" />
+    <ClInclude Include="backwrad\InformationGain.h" />
     <ClInclude Include="filesystem\cell.pb.h" />
     <ClInclude Include="filesystem\hypothesis.pb.h" />
     <ClInclude Include="filesystem\MessageBuilder.h" />
@@ -219,15 +221,6 @@
     <ClInclude Include="model\Methane.h" />
     <ClInclude Include="model\Wind.h" />
     <ClInclude Include="model\WindVector.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cfg\detection.json" />
-    <None Include="cfg\hypothesis.json" />
-    <None Include="cfg\map.json" />
-    <None Include="cfg\output.bin" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="cfg\output.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

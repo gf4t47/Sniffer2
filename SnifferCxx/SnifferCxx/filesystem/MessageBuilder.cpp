@@ -45,18 +45,14 @@ namespace Filesystem {
     }
     
     shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const vector<shared_ptr<vector<Model::Hypothesis>>> & hyps_his) {
-        const double threshold_one = 0.00;
         const double ideal_cells = 500000;
         
         double total_cells = 0.0;
         for (auto hyps : hyps_his) {
-            auto hyp_probability_threshold = threshold_one / hyps->size();
             for (auto const & hyp : *hyps) {
                 for (auto i=0; i<hyp.getCelllsHistory().size(); i++) {
                     auto const & cells = hyp.getCelllsHistory()[i];
-                    if (hyp.getProbabilityByIteration(i) >= hyp_probability_threshold) {
-                        total_cells += cells->size();
-                    }
+                    total_cells += cells->size();
                 }
             }
         }
@@ -67,9 +63,7 @@ namespace Filesystem {
 
 		for (auto hyps : hyps_his) {
 			auto msg_hyps = msg_hyps_his->add_hyps();
-			for (auto const & hyp : *hyps) {
-                auto hyp_probability_threshold = threshold_one / hyps->size();
-                
+			for (auto const & hyp : *hyps) {               
                 auto msg_hyp = msg_hyps->add_hyp();
                 
                 for (auto const & prob : hyp.getProbabilityHistory()) {
@@ -91,7 +85,7 @@ namespace Filesystem {
                 
                 for (auto i = 0; i < hyp.getCelllsHistory().size(); i++) {
                     auto const & cells = hyp.getCelllsHistory()[i];
-                    if (hyp.getProbabilityByIteration(i) < hyp_probability_threshold || (cell_interval > 1 && i % cell_interval != 0)) {
+                    if (cell_interval > 1 && i % cell_interval != 0) {
                         continue;
                     }
                     
