@@ -71,6 +71,16 @@ namespace Model {
         return 0.0;
     }
     
+    double Hypothesis::getProbabilityByIteration(int index) const {
+        for (auto prob : probability_his_) {
+            if (index <= prob.first) {
+                return prob.second;
+            }
+        }
+        
+        return getProbability();
+    }
+    
     void Hypothesis::addProbability(double val) {
         probability_his_.push_back(make_pair(getCurrentCellsHisIndex(), val));
     }

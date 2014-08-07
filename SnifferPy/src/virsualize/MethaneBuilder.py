@@ -52,8 +52,8 @@ def _build(vecs, fig):
 
 
 def build(hyps, fig):
-    cells_his_list = map(lambda hyp: hyp.methene_cells, filter(lambda hyp: hyp.probability >= 0, hyps.hyp))
-    # cells_his_list = hyps.hyp
+    # cells_his_list = map(lambda hyp: hyp.methene_cells, filter(lambda hyp: hyp.probability >= 0, hyps.hyp))
+    cells_his_list = map(lambda hyp: hyp.methene_cells, hyps.hyp)
     for index, cells_list in enumerate(zip(*cells_his_list)):
         all_vecs = _cells_list_to_vector(cells_list)
         fig = _build(all_vecs, fig)

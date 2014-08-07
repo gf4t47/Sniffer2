@@ -56,13 +56,13 @@ namespace Backward {
         return copy_hyps;
     }
     
-    entropy_t InformationGain::calcInforGain(const Coordinate & candidate, const vector<Hypothesis> &hyps) const{
-        auto new_hyps = *updateHypothesis(candidate, hyps);
+    entropy_t InformationGain::calcInforGain(const Coordinate & candidate, const vector<Hypothesis> & hyps) const{
+        auto new_hyps = updateHypothesis(candidate, hyps);
         
         entropy_t ret_sum = 0.0;
         
         for (auto i=0; i < hyps.size(); i++) {
-            ret_sum += (entropy(hyps[i]) - entropy(new_hyps[i])) * hyps[i].getProbability();
+            ret_sum += (entropy(hyps[i]) - entropy((*new_hyps)[i])) * hyps[i].getProbability();
         }
         
         return ret_sum;

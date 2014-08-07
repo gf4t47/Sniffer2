@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnifferCxx/model/Hypothesis.cpp"
-            timestampString = "428889814.213929"
+            timestampString = "429059632.482517"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "Hypothesis::addProbability(double val)"
             landmarkType = "5">
          </BreakpointContent>
@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnifferCxx/backwrad/BackwardChecking.cpp"
-            timestampString = "428956589.631083"
+            timestampString = "429055716.509331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "BackwardChecking::updateHypotheses(vector&lt;Hypothesis&gt; &amp; hyps, const Map3D &amp; map, const vector&lt;Leak&gt; &amp; detections, size_t time_count, const shared_ptr&lt;ForwardChecking&gt; forward)"
             landmarkType = "5">
          </BreakpointContent>
@@ -104,11 +104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnifferCxx/backwrad/BackwardChecking.cpp"
-            timestampString = "428956590.340364"
+            timestampString = "429055716.509331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "BackwardChecking::updateHypotheses(vector&lt;Hypothesis&gt; &amp; hyps, const Map3D &amp; map, const vector&lt;Leak&gt; &amp; detections, size_t time_count, const shared_ptr&lt;ForwardChecking&gt; forward)"
             landmarkType = "5">
          </BreakpointContent>
@@ -120,12 +120,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnifferCxx/backwrad/BackwardChecking.cpp"
-            timestampString = "428956615.764189"
+            timestampString = "429055716.509331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "BackwardChecking::normalize(vector&lt;Hypothesis&gt; &amp; hyps, const vector&lt;double&gt; &amp; hyps_probability)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SnifferCxx/filesystem/MessageBuilder.cpp"
+            timestampString = "429059632.482517"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "MessageBuilder::buildMessage(const vector&lt;shared_ptr&lt;vector&lt;Model::Hypothesis&gt;&gt;&gt; &amp; hyps_his)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

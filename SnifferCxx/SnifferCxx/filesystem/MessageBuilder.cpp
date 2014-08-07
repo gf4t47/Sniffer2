@@ -45,41 +45,65 @@ namespace Filesystem {
     }
     
     shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const vector<shared_ptr<vector<Model::Hypothesis>>> & hyps_his) {
+        const double threshold_one = 0.00;
+        const double ideal_cells = 500000;
+        
+        double total_cells = 0.0;
+        for (auto hyps : hyps_his) {
+            auto hyp_probability_threshold = threshold_one / hyps->size();
+            for (auto const & hyp : *hyps) {
+                for (auto i=0; i<hyp.getCelllsHistory().size(); i++) {
+                    auto const & cells = hyp.getCelllsHistory()[i];
+                    if (hyp.getProbabilityByIteration(i) >= hyp_probability_threshold) {
+                        total_cells += cells->size();
+                    }
+                }
+            }
+        }
+        
+        size_t cell_interval = round(total_cells / ideal_cells);
+        
 		auto msg_hyps_his = make_shared<Hypotheses_history>();
 
 		for (auto hyps : hyps_his) {
 			auto msg_hyps = msg_hyps_his->add_hyps();
 			for (auto const & hyp : *hyps) {
-				auto msg_hyp = msg_hyps->add_hyp();
+                auto hyp_probability_threshold = threshold_one / hyps->size();
                 
+                auto msg_hyp = msg_hyps->add_hyp();
                 
                 for (auto const & prob : hyp.getProbabilityHistory()) {
                     auto msg_prob = msg_hyp->add_probability();
                     msg_prob->set_index(prob.first);
                     msg_prob->set_prob(prob.second);
                 }
-
-				for (auto const & leak : hyp.getLeaks()) {
-					auto msg_leak = msg_hyp->add_leak();
-					msg_leak->set_concentration(leak.concentration_);
-
-					auto msg_coord = new Coordinate();
-					for (auto const & item : leak.location_) {
-						msg_coord->add_coord_item(item);
-					}
-					msg_leak->set_allocated_location(msg_coord);
-				}
-
-				for (auto const & cells : hyp.getCelllsHistory()) {
-					auto msg_cells = msg_hyp->add_methene_cells();
-
-					for (auto const & cell_pair : *cells) {
-						auto const & cell = cell_pair.second;
-
-						auto msg_cell = msg_cells->add_cell();
+                
+                for (auto const & leak : hyp.getLeaks()) {
+                    auto msg_leak = msg_hyp->add_leak();
+                    msg_leak->set_concentration(leak.concentration_);
+                    
+                    auto msg_coord = new Coordinate();
+                    for (auto const & item : leak.location_) {
+                        msg_coord->add_coord_item(item);
+                    }
+                    msg_leak->set_allocated_location(msg_coord);
+                }
+                
+                for (auto i = 0; i < hyp.getCelllsHistory().size(); i++) {
+                    auto const & cells = hyp.getCelllsHistory()[i];
+                    if (hyp.getProbabilityByIteration(i) < hyp_probability_threshold || (cell_interval > 1 && i % cell_interval != 0)) {
+                        continue;
+                    }
+                    
+                    auto msg_cells = msg_hyp->add_methene_cells();
+                    
+                    for (auto const & cell_pair : *cells) {
+                        auto const & cell = cell_pair.second;
+                        
+                        auto msg_cell = msg_cells->add_cell();
                         buildCellMessage(cell, msg_cell);
-					}
-				}
+                    }
+                }
 			}
 		}
 

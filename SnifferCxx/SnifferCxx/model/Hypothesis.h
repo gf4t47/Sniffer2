@@ -24,6 +24,7 @@ namespace Model {
 		const std::vector<Leak> & getLeaks() const;
         
         double getProbability() const;
+        double getProbabilityByIteration(int index) const;
         void addProbability(double val);
         const std::vector<std::pair<int, double>> & getProbabilityHistory() const;
         
