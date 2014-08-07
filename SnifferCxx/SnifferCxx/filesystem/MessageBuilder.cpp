@@ -27,14 +27,14 @@ namespace Filesystem {
         auto msg_startIndex = new Coordinate();
         auto startIndex = map.getStartIndex();
         for (int i = 0; i < 3; i++) {
-            msg_startIndex->add_coord_item(*startIndex++);
+            msg_startIndex->add_coord_item((int)*startIndex++);
         }
         msg_map->set_allocated_startindex(msg_startIndex);
         
         auto msg_boudary = new Coordinate();
         auto boudary = map.getBoundary();
         for (int i = 0; i < 3; i++) {
-            msg_boudary->add_coord_item(*boudary++);
+            msg_boudary->add_coord_item((int)*boudary++);
         }
         msg_map->set_allocated_boundary(msg_boudary);
         
@@ -66,11 +66,7 @@ namespace Filesystem {
 			for (auto const & hyp : *hyps) {               
                 auto msg_hyp = msg_hyps->add_hyp();
                 
-                for (auto const & prob : hyp.getProbabilityHistory()) {
-                    auto msg_prob = msg_hyp->add_probability();
-                    msg_prob->set_index(prob.first);
-                    msg_prob->set_prob(prob.second);
-                }
+                msg_hyp->set_probability(hyp.getProbability());
                 
                 for (auto const & leak : hyp.getLeaks()) {
                     auto msg_leak = msg_hyp->add_leak();

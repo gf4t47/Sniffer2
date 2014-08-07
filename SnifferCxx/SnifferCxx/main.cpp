@@ -134,14 +134,6 @@ int main(int argc, const char * argv[])
 		cerr << "Failed to write msg" << endl;
 		return -1;
 	}
-
-    //print output
-	for (auto const & hyp : *hyps) {
-		for (auto const & prob : hyp.getProbabilityHistory()) {
-			cout << "{" << prob.first << ", " << prob.second << "}" << " ";
-		}
-		cout << endl;
-	}
         
     return 0;
 }

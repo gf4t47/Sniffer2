@@ -50,30 +50,31 @@ namespace Forward {
         auto methane_cells = hypothesis.getMethaneCells();
         auto ret_cells = make_shared<Cells>();
         if (methane_cells) {
-            ret_cells = make_shared<Cells>(*hypothesis.getMethaneCells()); //copy construtor here to storage the history of a hypothesis.
+            ret_cells = make_shared<Cells>(*hypothesis.getMethaneCells()); //copy construtor here to storage the history of methane cells.
         }
         
 		for (size_t i = 0; i < count; i++) {
-//            cout<<"before merge = "<<ret_cells->size()<<endl;
+
 			ret_cells->mergeCellsByAddMethane(leakCells);
-//            cout<<"after merge = "<<ret_cells->size()<<endl;
 			ret_cells = calcEnds(*ret_cells, map);
-            hypothesis.addCellsHistory(ret_cells);
+            if (i < count - 1) {
+                hypothesis.addCellsHistory(ret_cells);
+            }
 		}
         
         return ret_cells;
 	}
     
-        void ForwardChecking::UpdateMethane(vector<Model::Hypothesis> & hyps, const Map3D & map, size_t count) const {
+    shared_ptr<vector<Hypothesis>> ForwardChecking::UpdateMethane(vector<Model::Hypothesis> & hyps, const Map3D & map, size_t count) const {
         auto ret_hyps = make_shared<vector<Hypothesis>>();
         
         for (auto & hyp : hyps) {
-            Deduce(hyp, map, count);
-//            Hypothesis newHyp(hyp.getLeaks(), hyp.getProbabilityHistory(), newCells);
-//			ret_hyps->push_back(newHyp);
+            auto newCells = Deduce(hyp, map, count);
+            Hypothesis newHyp(hyp.getLeaks(), hyp.getProbability(), newCells);
+			ret_hyps->push_back(newHyp);
         }
         
-//        return ret_hyps;
+        return ret_hyps;
     }
 
 	void ForwardChecking::work(vector<Model::Hypothesis> & hyps, const Map3D & map, bool & alive) {

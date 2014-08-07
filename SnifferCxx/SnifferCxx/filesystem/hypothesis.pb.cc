@@ -23,9 +23,6 @@ namespace {
 const ::google::protobuf::Descriptor* Leak_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Leak_reflection_ = NULL;
-const ::google::protobuf::Descriptor* Probability_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  Probability_reflection_ = NULL;
 const ::google::protobuf::Descriptor* Hypothesis_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Hypothesis_reflection_ = NULL;
@@ -61,23 +58,7 @@ void protobuf_AssignDesc_hypothesis_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Leak));
-  Probability_descriptor_ = file->message_type(1);
-  static const int Probability_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Probability, index_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Probability, prob_),
-  };
-  Probability_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      Probability_descriptor_,
-      Probability::default_instance_,
-      Probability_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Probability, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Probability, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(Probability));
-  Hypothesis_descriptor_ = file->message_type(2);
+  Hypothesis_descriptor_ = file->message_type(1);
   static const int Hypothesis_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypothesis, probability_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypothesis, leak_),
@@ -94,7 +75,7 @@ void protobuf_AssignDesc_hypothesis_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Hypothesis));
-  Hypotheses_descriptor_ = file->message_type(3);
+  Hypotheses_descriptor_ = file->message_type(2);
   static const int Hypotheses_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypotheses, hyp_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypotheses, detection_),
@@ -110,7 +91,7 @@ void protobuf_AssignDesc_hypothesis_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Hypotheses));
-  Hypotheses_history_descriptor_ = file->message_type(4);
+  Hypotheses_history_descriptor_ = file->message_type(3);
   static const int Hypotheses_history_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypotheses_history, hyps_),
   };
@@ -140,8 +121,6 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Leak_descriptor_, &Leak::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    Probability_descriptor_, &Probability::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Hypothesis_descriptor_, &Hypothesis::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Hypotheses_descriptor_, &Hypotheses::default_instance());
@@ -154,8 +133,6 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void protobuf_ShutdownFile_hypothesis_2eproto() {
   delete Leak::default_instance_;
   delete Leak_reflection_;
-  delete Probability::default_instance_;
-  delete Probability_reflection_;
   delete Hypothesis::default_instance_;
   delete Hypothesis_reflection_;
   delete Hypotheses::default_instance_;
@@ -174,25 +151,21 @@ void protobuf_AddDesc_hypothesis_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\020hypothesis.proto\022\nFilesystem\032\ncell.pro"
     "to\"G\n\004Leak\022(\n\010location\030\001 \002(\0132\026.Filesyste"
-    "m.Coordinate\022\025\n\rconcentration\030\002 \002(\001\"*\n\013P"
-    "robability\022\r\n\005index\030\001 \002(\005\022\014\n\004prob\030\002 \002(\001\""
-    "\204\001\n\nHypothesis\022,\n\013probability\030\001 \003(\0132\027.Fi"
-    "lesystem.Probability\022\036\n\004leak\030\002 \003(\0132\020.Fil"
-    "esystem.Leak\022(\n\rmethene_cells\030\003 \003(\0132\021.Fi"
-    "lesystem.Cells\"V\n\nHypotheses\022#\n\003hyp\030\001 \003("
-    "\0132\026.Filesystem.Hypothesis\022#\n\tdetection\030\002"
-    " \003(\0132\020.Filesystem.Leak\":\n\022Hypotheses_his"
-    "tory\022$\n\004hyps\030\001 \003(\0132\026.Filesystem.Hypothes"
-    "es", 442);
+    "m.Coordinate\022\025\n\rconcentration\030\002 \002(\001\"k\n\nH"
+    "ypothesis\022\023\n\013probability\030\001 \002(\001\022\036\n\004leak\030\002"
+    " \003(\0132\020.Filesystem.Leak\022(\n\rmethene_cells\030"
+    "\003 \003(\0132\021.Filesystem.Cells\"V\n\nHypotheses\022#"
+    "\n\003hyp\030\001 \003(\0132\026.Filesystem.Hypothesis\022#\n\td"
+    "etection\030\002 \003(\0132\020.Filesystem.Leak\":\n\022Hypo"
+    "theses_history\022$\n\004hyps\030\001 \003(\0132\026.Filesyste"
+    "m.Hypotheses", 372);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "hypothesis.proto", &protobuf_RegisterTypes);
   Leak::default_instance_ = new Leak();
-  Probability::default_instance_ = new Probability();
   Hypothesis::default_instance_ = new Hypothesis();
   Hypotheses::default_instance_ = new Hypotheses();
   Hypotheses_history::default_instance_ = new Hypotheses_history();
   Leak::default_instance_->InitAsDefaultInstance();
-  Probability::default_instance_->InitAsDefaultInstance();
   Hypothesis::default_instance_->InitAsDefaultInstance();
   Hypotheses::default_instance_->InitAsDefaultInstance();
   Hypotheses_history::default_instance_->InitAsDefaultInstance();
@@ -461,253 +434,6 @@ void Leak::Swap(Leak* other) {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Probability::kIndexFieldNumber;
-const int Probability::kProbFieldNumber;
-#endif  // !_MSC_VER
-
-Probability::Probability()
-  : ::google::protobuf::Message() {
-  SharedCtor();
-}
-
-void Probability::InitAsDefaultInstance() {
-}
-
-Probability::Probability(const Probability& from)
-  : ::google::protobuf::Message() {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void Probability::SharedCtor() {
-  _cached_size_ = 0;
-  index_ = 0;
-  prob_ = 0;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-Probability::~Probability() {
-  SharedDtor();
-}
-
-void Probability::SharedDtor() {
-  if (this != default_instance_) {
-  }
-}
-
-void Probability::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* Probability::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Probability_descriptor_;
-}
-
-const Probability& Probability::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_hypothesis_2eproto();
-  return *default_instance_;
-}
-
-Probability* Probability::default_instance_ = NULL;
-
-Probability* Probability::New() const {
-  return new Probability;
-}
-
-void Probability::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    index_ = 0;
-    prob_ = 0;
-  }
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool Probability::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 index = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &index_)));
-          set_has_index();
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectTag(17)) goto parse_prob;
-        break;
-      }
-
-      // required double prob = 2;
-      case 2: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
-         parse_prob:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &prob_)));
-          set_has_prob();
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void Probability::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // required int32 index = 1;
-  if (has_index()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->index(), output);
-  }
-
-  // required double prob = 2;
-  if (has_prob()) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->prob(), output);
-  }
-
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* Probability::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // required int32 index = 1;
-  if (has_index()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->index(), target);
-  }
-
-  // required double prob = 2;
-  if (has_prob()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->prob(), target);
-  }
-
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int Probability::ByteSize() const {
-  int total_size = 0;
-
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required int32 index = 1;
-    if (has_index()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->index());
-    }
-
-    // required double prob = 2;
-    if (has_prob()) {
-      total_size += 1 + 8;
-    }
-
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void Probability::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const Probability* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const Probability*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void Probability::MergeFrom(const Probability& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_index()) {
-      set_index(from.index());
-    }
-    if (from.has_prob()) {
-      set_prob(from.prob());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void Probability::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void Probability::CopyFrom(const Probability& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool Probability::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
-
-  return true;
-}
-
-void Probability::Swap(Probability* other) {
-  if (other != this) {
-    std::swap(index_, other->index_);
-    std::swap(prob_, other->prob_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata Probability::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = Probability_descriptor_;
-  metadata.reflection = Probability_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-#ifndef _MSC_VER
 const int Hypothesis::kProbabilityFieldNumber;
 const int Hypothesis::kLeakFieldNumber;
 const int Hypothesis::kMetheneCellsFieldNumber;
@@ -729,6 +455,7 @@ Hypothesis::Hypothesis(const Hypothesis& from)
 
 void Hypothesis::SharedCtor() {
   _cached_size_ = 0;
+  probability_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -763,7 +490,9 @@ Hypothesis* Hypothesis::New() const {
 }
 
 void Hypothesis::Clear() {
-  probability_.Clear();
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    probability_ = 0;
+  }
   leak_.Clear();
   methene_cells_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -776,17 +505,17 @@ bool Hypothesis::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .Filesystem.Probability probability = 1;
+      // required double probability = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-         parse_probability:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_probability()));
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &probability_)));
+          set_has_probability();
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(10)) goto parse_probability;
         if (input->ExpectTag(18)) goto parse_leak;
         break;
       }
@@ -839,10 +568,9 @@ bool Hypothesis::MergePartialFromCodedStream(
 
 void Hypothesis::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .Filesystem.Probability probability = 1;
-  for (int i = 0; i < this->probability_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->probability(i), output);
+  // required double probability = 1;
+  if (has_probability()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->probability(), output);
   }
 
   // repeated .Filesystem.Leak leak = 2;
@@ -865,11 +593,9 @@ void Hypothesis::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Hypothesis::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .Filesystem.Probability probability = 1;
-  for (int i = 0; i < this->probability_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->probability(i), target);
+  // required double probability = 1;
+  if (has_probability()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->probability(), target);
   }
 
   // repeated .Filesystem.Leak leak = 2;
@@ -896,14 +622,13 @@ void Hypothesis::SerializeWithCachedSizes(
 int Hypothesis::ByteSize() const {
   int total_size = 0;
 
-  // repeated .Filesystem.Probability probability = 1;
-  total_size += 1 * this->probability_size();
-  for (int i = 0; i < this->probability_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->probability(i));
-  }
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required double probability = 1;
+    if (has_probability()) {
+      total_size += 1 + 8;
+    }
 
+  }
   // repeated .Filesystem.Leak leak = 2;
   total_size += 1 * this->leak_size();
   for (int i = 0; i < this->leak_size(); i++) {
@@ -945,9 +670,13 @@ void Hypothesis::MergeFrom(const ::google::protobuf::Message& from) {
 
 void Hypothesis::MergeFrom(const Hypothesis& from) {
   GOOGLE_CHECK_NE(&from, this);
-  probability_.MergeFrom(from.probability_);
   leak_.MergeFrom(from.leak_);
   methene_cells_.MergeFrom(from.methene_cells_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_probability()) {
+      set_probability(from.probability());
+    }
+  }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -964,10 +693,8 @@ void Hypothesis::CopyFrom(const Hypothesis& from) {
 }
 
 bool Hypothesis::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
 
-  for (int i = 0; i < probability_size(); i++) {
-    if (!this->probability(i).IsInitialized()) return false;
-  }
   for (int i = 0; i < leak_size(); i++) {
     if (!this->leak(i).IsInitialized()) return false;
   }
@@ -979,7 +706,7 @@ bool Hypothesis::IsInitialized() const {
 
 void Hypothesis::Swap(Hypothesis* other) {
   if (other != this) {
-    probability_.Swap(&other->probability_);
+    std::swap(probability_, other->probability_);
     leak_.Swap(&other->leak_);
     methene_cells_.Swap(&other->methene_cells_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);

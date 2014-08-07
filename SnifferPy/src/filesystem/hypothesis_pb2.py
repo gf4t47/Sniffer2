@@ -14,7 +14,7 @@ import cell_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='hypothesis.proto',
   package='Filesystem',
-  serialized_pb='\n\x10hypothesis.proto\x12\nFilesystem\x1a\ncell.proto\"G\n\x04Leak\x12(\n\x08location\x18\x01 \x02(\x0b\x32\x16.Filesystem.Coordinate\x12\x15\n\rconcentration\x18\x02 \x02(\x01\"*\n\x0bProbability\x12\r\n\x05index\x18\x01 \x02(\x05\x12\x0c\n\x04prob\x18\x02 \x02(\x01\"\x84\x01\n\nHypothesis\x12,\n\x0bprobability\x18\x01 \x03(\x0b\x32\x17.Filesystem.Probability\x12\x1e\n\x04leak\x18\x02 \x03(\x0b\x32\x10.Filesystem.Leak\x12(\n\rmethene_cells\x18\x03 \x03(\x0b\x32\x11.Filesystem.Cells\"V\n\nHypotheses\x12#\n\x03hyp\x18\x01 \x03(\x0b\x32\x16.Filesystem.Hypothesis\x12#\n\tdetection\x18\x02 \x03(\x0b\x32\x10.Filesystem.Leak\":\n\x12Hypotheses_history\x12$\n\x04hyps\x18\x01 \x03(\x0b\x32\x16.Filesystem.Hypotheses')
+  serialized_pb='\n\x10hypothesis.proto\x12\nFilesystem\x1a\ncell.proto\"G\n\x04Leak\x12(\n\x08location\x18\x01 \x02(\x0b\x32\x16.Filesystem.Coordinate\x12\x15\n\rconcentration\x18\x02 \x02(\x01\"k\n\nHypothesis\x12\x13\n\x0bprobability\x18\x01 \x02(\x01\x12\x1e\n\x04leak\x18\x02 \x03(\x0b\x32\x10.Filesystem.Leak\x12(\n\rmethene_cells\x18\x03 \x03(\x0b\x32\x11.Filesystem.Cells\"V\n\nHypotheses\x12#\n\x03hyp\x18\x01 \x03(\x0b\x32\x16.Filesystem.Hypothesis\x12#\n\tdetection\x18\x02 \x03(\x0b\x32\x10.Filesystem.Leak\":\n\x12Hypotheses_history\x12$\n\x04hyps\x18\x01 \x03(\x0b\x32\x16.Filesystem.Hypotheses')
 
 
 
@@ -54,41 +54,6 @@ _LEAK = _descriptor.Descriptor(
 )
 
 
-_PROBABILITY = _descriptor.Descriptor(
-  name='Probability',
-  full_name='Filesystem.Probability',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='index', full_name='Filesystem.Probability.index', index=0,
-      number=1, type=5, cpp_type=1, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='prob', full_name='Filesystem.Probability.prob', index=1,
-      number=2, type=1, cpp_type=5, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  extension_ranges=[],
-  serialized_start=117,
-  serialized_end=159,
-)
-
-
 _HYPOTHESIS = _descriptor.Descriptor(
   name='Hypothesis',
   full_name='Filesystem.Hypothesis',
@@ -98,8 +63,8 @@ _HYPOTHESIS = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='probability', full_name='Filesystem.Hypothesis.probability', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
+      number=1, type=1, cpp_type=5, label=2,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -126,8 +91,8 @@ _HYPOTHESIS = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=162,
-  serialized_end=294,
+  serialized_start=117,
+  serialized_end=224,
 )
 
 
@@ -161,8 +126,8 @@ _HYPOTHESES = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=296,
-  serialized_end=382,
+  serialized_start=226,
+  serialized_end=312,
 )
 
 
@@ -189,19 +154,17 @@ _HYPOTHESES_HISTORY = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=384,
-  serialized_end=442,
+  serialized_start=314,
+  serialized_end=372,
 )
 
 _LEAK.fields_by_name['location'].message_type = cell_pb2._COORDINATE
-_HYPOTHESIS.fields_by_name['probability'].message_type = _PROBABILITY
 _HYPOTHESIS.fields_by_name['leak'].message_type = _LEAK
 _HYPOTHESIS.fields_by_name['methene_cells'].message_type = cell_pb2._CELLS
 _HYPOTHESES.fields_by_name['hyp'].message_type = _HYPOTHESIS
 _HYPOTHESES.fields_by_name['detection'].message_type = _LEAK
 _HYPOTHESES_HISTORY.fields_by_name['hyps'].message_type = _HYPOTHESES
 DESCRIPTOR.message_types_by_name['Leak'] = _LEAK
-DESCRIPTOR.message_types_by_name['Probability'] = _PROBABILITY
 DESCRIPTOR.message_types_by_name['Hypothesis'] = _HYPOTHESIS
 DESCRIPTOR.message_types_by_name['Hypotheses'] = _HYPOTHESES
 DESCRIPTOR.message_types_by_name['Hypotheses_history'] = _HYPOTHESES_HISTORY
@@ -211,12 +174,6 @@ class Leak(_message.Message):
   DESCRIPTOR = _LEAK
 
   # @@protoc_insertion_point(class_scope:Filesystem.Leak)
-
-class Probability(_message.Message):
-  __metaclass__ = _reflection.GeneratedProtocolMessageType
-  DESCRIPTOR = _PROBABILITY
-
-  # @@protoc_insertion_point(class_scope:Filesystem.Probability)
 
 class Hypothesis(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType

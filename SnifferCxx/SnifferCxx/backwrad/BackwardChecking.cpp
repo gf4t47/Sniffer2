@@ -82,7 +82,7 @@ namespace Backward {
     void BackwardChecking::normalize(vector<Hypothesis> & hyps, const vector<double> & hyps_probability) const{
         auto sum = accumulate(hyps_probability.begin(), hyps_probability.end(), 0.0, [](double sum, const double pro){ return sum += pro;});
         for(auto i = 0; i < hyps.size(); i++) {
-            hyps[i].addProbability(hyps_probability[i] / sum);
+            hyps[i].setProbability(hyps_probability[i] / sum);
         }
     }
     
@@ -96,13 +96,14 @@ namespace Backward {
     // Parameter: size_t time_count : how many iterations for forward model algorithm to carry.
     // Parameter: const vector<Leak> & detections
     //************************************
-    void BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, const Map3D & map, const vector<Leak> & detections, size_t time_count, const shared_ptr<ForwardChecking> forward) const {
+    shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, const Map3D & map, const vector<Leak> & detections, size_t time_count, const shared_ptr<ForwardChecking> forward) const {
+        auto ret_hyps = make_shared<vector<Hypothesis>>(hyps);
         if(forward) {
-            forward->UpdateMethane(hyps, map, time_count);
+            ret_hyps = forward->UpdateMethane(hyps, map, time_count);
         }
         
         vector<double> hyps_probability;
-        for (auto & hyp : hyps) {
+        for (auto const & hyp : *ret_hyps) {
             double likeHood = 1.0;
             for (auto detection : detections) {
                 likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
@@ -111,7 +112,9 @@ namespace Backward {
             hyps_probability.push_back(hyp.getProbability() * likeHood);
         }
         
-        normalize(hyps, hyps_probability);
+        normalize(*ret_hyps, hyps_probability);
+        
+        return ret_hyps;
     }
     
     

@@ -35,7 +35,6 @@ void protobuf_AssignDesc_hypothesis_2eproto();
 void protobuf_ShutdownFile_hypothesis_2eproto();
 
 class Leak;
-class Probability;
 class Hypothesis;
 class Hypotheses;
 class Hypotheses_history;
@@ -136,98 +135,6 @@ class Leak : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
-class Probability : public ::google::protobuf::Message {
- public:
-  Probability();
-  virtual ~Probability();
-
-  Probability(const Probability& from);
-
-  inline Probability& operator=(const Probability& from) {
-    CopyFrom(from);
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const Probability& default_instance();
-
-  void Swap(Probability* other);
-
-  // implements Message ----------------------------------------------
-
-  Probability* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Probability& from);
-  void MergeFrom(const Probability& from);
-  void Clear();
-  bool IsInitialized() const;
-
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const;
-  public:
-
-  ::google::protobuf::Metadata GetMetadata() const;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // required int32 index = 1;
-  inline bool has_index() const;
-  inline void clear_index();
-  static const int kIndexFieldNumber = 1;
-  inline ::google::protobuf::int32 index() const;
-  inline void set_index(::google::protobuf::int32 value);
-
-  // required double prob = 2;
-  inline bool has_prob() const;
-  inline void clear_prob();
-  static const int kProbFieldNumber = 2;
-  inline double prob() const;
-  inline void set_prob(double value);
-
-  // @@protoc_insertion_point(class_scope:Filesystem.Probability)
- private:
-  inline void set_has_index();
-  inline void clear_has_index();
-  inline void set_has_prob();
-  inline void clear_has_prob();
-
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-
-  double prob_;
-  ::google::protobuf::int32 index_;
-
-  mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
-
-  friend void  protobuf_AddDesc_hypothesis_2eproto();
-  friend void protobuf_AssignDesc_hypothesis_2eproto();
-  friend void protobuf_ShutdownFile_hypothesis_2eproto();
-
-  void InitAsDefaultInstance();
-  static Probability* default_instance_;
-};
-// -------------------------------------------------------------------
-
 class Hypothesis : public ::google::protobuf::Message {
  public:
   Hypothesis();
@@ -282,17 +189,12 @@ class Hypothesis : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated .Filesystem.Probability probability = 1;
-  inline int probability_size() const;
+  // required double probability = 1;
+  inline bool has_probability() const;
   inline void clear_probability();
   static const int kProbabilityFieldNumber = 1;
-  inline const ::Filesystem::Probability& probability(int index) const;
-  inline ::Filesystem::Probability* mutable_probability(int index);
-  inline ::Filesystem::Probability* add_probability();
-  inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Probability >&
-      probability() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Probability >*
-      mutable_probability();
+  inline double probability() const;
+  inline void set_probability(double value);
 
   // repeated .Filesystem.Leak leak = 2;
   inline int leak_size() const;
@@ -320,10 +222,12 @@ class Hypothesis : public ::google::protobuf::Message {
 
   // @@protoc_insertion_point(class_scope:Filesystem.Hypothesis)
  private:
+  inline void set_has_probability();
+  inline void clear_has_probability();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::google::protobuf::RepeatedPtrField< ::Filesystem::Probability > probability_;
+  double probability_;
   ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak > leak_;
   ::google::protobuf::RepeatedPtrField< ::Filesystem::Cells > methene_cells_;
 
@@ -589,79 +493,28 @@ inline void Leak::set_concentration(double value) {
 
 // -------------------------------------------------------------------
 
-// Probability
-
-// required int32 index = 1;
-inline bool Probability::has_index() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void Probability::set_has_index() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void Probability::clear_has_index() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline void Probability::clear_index() {
-  index_ = 0;
-  clear_has_index();
-}
-inline ::google::protobuf::int32 Probability::index() const {
-  return index_;
-}
-inline void Probability::set_index(::google::protobuf::int32 value) {
-  set_has_index();
-  index_ = value;
-}
-
-// required double prob = 2;
-inline bool Probability::has_prob() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void Probability::set_has_prob() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void Probability::clear_has_prob() {
-  _has_bits_[0] &= ~0x00000002u;
-}
-inline void Probability::clear_prob() {
-  prob_ = 0;
-  clear_has_prob();
-}
-inline double Probability::prob() const {
-  return prob_;
-}
-inline void Probability::set_prob(double value) {
-  set_has_prob();
-  prob_ = value;
-}
-
-// -------------------------------------------------------------------
-
 // Hypothesis
 
-// repeated .Filesystem.Probability probability = 1;
-inline int Hypothesis::probability_size() const {
-  return probability_.size();
+// required double probability = 1;
+inline bool Hypothesis::has_probability() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Hypothesis::set_has_probability() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Hypothesis::clear_has_probability() {
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void Hypothesis::clear_probability() {
-  probability_.Clear();
+  probability_ = 0;
+  clear_has_probability();
 }
-inline const ::Filesystem::Probability& Hypothesis::probability(int index) const {
-  return probability_.Get(index);
-}
-inline ::Filesystem::Probability* Hypothesis::mutable_probability(int index) {
-  return probability_.Mutable(index);
-}
-inline ::Filesystem::Probability* Hypothesis::add_probability() {
-  return probability_.Add();
-}
-inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Probability >&
-Hypothesis::probability() const {
+inline double Hypothesis::probability() const {
   return probability_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Probability >*
-Hypothesis::mutable_probability() {
-  return &probability_;
+inline void Hypothesis::set_probability(double value) {
+  set_has_probability();
+  probability_ = value;
 }
 
 // repeated .Filesystem.Leak leak = 2;
