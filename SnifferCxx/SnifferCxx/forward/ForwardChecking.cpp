@@ -77,9 +77,17 @@ namespace Forward {
         return ret_hyps;
     }
 
-	void ForwardChecking::work(vector<Model::Hypothesis> & hyps, const Map3D & map, bool & alive) {
-		while (alive) {
-			UpdateMethane(hyps, map, 1);
+	void ForwardChecking::work(shared_ptr<vector<Model::Hypothesis>> hyps, const Map3D & map, boost::tribool & alive, vector<shared_ptr<vector<Hypothesis>>> & hyps_his) {
+		auto exec_hyps = hyps;
+		while (!alive) {
+			if (boost::indeterminate(alive)) {
+				hyps_his.push_back(exec_hyps);
+				exec_hyps = make_shared<vector<Model::Hypothesis>>(*exec_hyps);
+				alive = true;
+
+			}
+
+			UpdateMethane(*exec_hyps, map, 1);
 		}
 
 		cout << "forward working thread is over" << endl;

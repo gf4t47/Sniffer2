@@ -11,6 +11,7 @@
 
 #include <memory>
 #include <vector>
+#include <boost/logic/tribool.hpp>
 
 namespace Model {
     class Cell;
@@ -31,9 +32,8 @@ namespace Forward {
 		std::shared_ptr<Model::Cells> Deduce(Model::Hypothesis & hypothesis, const Model::Map3D & map, size_t count) const;
         std::shared_ptr<std::vector<Model::Hypothesis>> UpdateMethane(std::vector<Model::Hypothesis> & hyps, const Model::Map3D & map, size_t count) const;
 
-		void work(std::vector<Model::Hypothesis> & hyps, const Model::Map3D & map, bool & alive);
-        void operator()()
-		        
+		void work(std::shared_ptr<std::vector<Model::Hypothesis>> hyps, const Model::Map3D & map, boost::tribool & alive, std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his);
+				        
     protected:
 		virtual std::shared_ptr<Model::Cells> calcEnds(const Model::Cells & cells, const Model::Map3D & map) const = 0;
         range_t getKernelRange() const;

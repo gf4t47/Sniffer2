@@ -11,6 +11,8 @@
 #include "../model/Map3D.h"
 #include "../math/Gamma.h"
 #include "../math/GaussianBlur.h"
+//#include <boost/log/sources/record_ostream.hpp>
+#include <boost/log/sources/severity_feature.hpp>
 
 namespace Backward {
     using namespace std;
@@ -108,7 +110,7 @@ namespace Backward {
             for (auto detection : detections) {
                 likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
             }
-            
+			BOOST_LOG_SEV(lg_, info) << "" << endl;;
             hyps_probability.push_back(hyp.getProbability() * likeHood);
         }
         

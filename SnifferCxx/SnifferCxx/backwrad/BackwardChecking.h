@@ -10,6 +10,7 @@
 #define __SnifferCxx__BackwardChecking__
 #include <memory>
 #include <vector>
+#include <boost/log/sources/logger.hpp>
 #include "../model/Hypothesis.h"
 
 namespace Forward {
@@ -43,6 +44,7 @@ namespace Backward {
     private:
 		range_t blur_range_;
         range_t kernel_range_;
+		boost::log::sources::logger lg_;
     };
 }
 

@@ -11,6 +11,16 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
+
+#include <boost/log/core.hpp>
+#include <boost/log/trivial.hpp>
+#include <boost/log/expressions.hpp>
+#include <boost/log/sinks/text_file_backend.hpp>
+#include <boost/log/utility/setup/file.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
+#include <boost/log/sources/severity_logger.hpp>
+#include <boost/log/sources/record_ostream.hpp>
+
 #include <thread>
 #include "initializer/HypothesisInitializer.h"
 #include "initializer/MapBuilder.h"
@@ -22,10 +32,7 @@
 #include "filesystem/hypothesis.pb.h"
 
 using namespace std;
-using namespace initializer;
 using namespace Model;
-using namespace Forward;
-
 
 const string strDetection = "detection";
 const string strTime = "time";
@@ -79,9 +86,35 @@ tuple<shared_ptr<vector<detection>>, bool> load(string filename) {
 }
 
 
+void init_log(string filename)
+{
+	namespace logging = boost::log;
+	namespace keywords = boost::log::keywords;
+	namespace sinks = boost::log::sinks;
+
+	logging::add_file_log
+		(
+		keywords::file_name = filename,
+		keywords::rotation_size = 10 * 1024 * 1024,
+		keywords::time_based_rotation = sinks::file::rotation_at_time_point(0, 0, 0),
+		keywords::format = "[%TimeStamp%]: %Message%"
+		);
+
+	logging::add_common_attributes();
+
+	logging::core::get()->set_filter
+		(
+		logging::trivial::severity >= logging::trivial::info
+		);
+}
 
 int main(int argc, const char * argv[])
 {
+	using namespace initializer;
+	using namespace Forward;
+
+	init_log(argv[6]);
+
     //load map
     MapBuilder mb(argv[1]);
     auto map = mb.build();
@@ -107,8 +140,8 @@ int main(int argc, const char * argv[])
         }
     }
 	else {
-		bool forward_alive = true;
-		std::thread forward_task(&ForwardChecking::work, forward, std::ref(*hyps), std::ref(*map), std::ref(forward_alive));
+		boost::tribool forward_alive = true;
+		std::thread forward_task(&ForwardChecking::work, forward, hyps, std::ref(*map), std::ref(forward_alive), std::ref(hyps_hist));
 		forward_task.detach();
 
 		for (auto dect : *dect_vect)
