@@ -11,8 +11,7 @@
 #include "../model/Map3D.h"
 #include "../math/Gamma.h"
 #include "../math/GaussianBlur.h"
-//#include <boost/log/sources/record_ostream.hpp>
-#include <boost/log/sources/severity_feature.hpp>
+#include <boost/log/sources/record_ostream.hpp>
 
 namespace Backward {
     using namespace std;
@@ -70,7 +69,14 @@ namespace Backward {
     //************************************
     double BackwardChecking::calcLikehood(const Hypothesis & hyp, const Coordinate & detected_location, double detected_concentration, const Map3D & map) const {
         auto mean = calcGaussianBlurMean(detected_location, *hyp.getMethaneCells(), map);
-        return Math::Gamma::calcGammaPdf(detected_concentration, mean);
+        auto ret = Math::Gamma::calcGammaPdf(detected_concentration, mean);
+        
+        BOOST_LOG_SEV(lg_, severity_level::debug) << "mean = " << mean;
+        BOOST_LOG_SEV(lg_, severity_level::debug) << "detected location = " << detected_location;
+        BOOST_LOG_SEV(lg_, severity_level::debug) << "detected concentration = " << detected_concentration;
+        BOOST_LOG_SEV(lg_, severity_level::debug) << "likehood = " << ret;
+        
+        return ret;
     }
     
     //************************************
@@ -84,7 +90,8 @@ namespace Backward {
     void BackwardChecking::normalize(vector<Hypothesis> & hyps, const vector<double> & hyps_probability) const{
         auto sum = accumulate(hyps_probability.begin(), hyps_probability.end(), 0.0, [](double sum, const double pro){ return sum += pro;});
         for(auto i = 0; i < hyps.size(); i++) {
-            hyps[i].setProbability(hyps_probability[i] / sum);
+            auto prob = hyps_probability[i] / sum;
+            hyps[i].setProbability(prob);
         }
     }
     
@@ -99,6 +106,10 @@ namespace Backward {
     // Parameter: const vector<Leak> & detections
     //************************************
     shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, const Map3D & map, const vector<Leak> & detections, size_t time_count, const shared_ptr<ForwardChecking> forward) const {
+        namespace logging = boost::log;
+        namespace keywords = boost::log::keywords;
+        namespace sinks = boost::log::sinks;
+        
         auto ret_hyps = make_shared<vector<Hypothesis>>(hyps);
         if(forward) {
             ret_hyps = forward->UpdateMethane(hyps, map, time_count);
@@ -110,11 +121,14 @@ namespace Backward {
             for (auto detection : detections) {
                 likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
             }
-			BOOST_LOG_SEV(lg_, info) << "" << endl;;
             hyps_probability.push_back(hyp.getProbability() * likeHood);
         }
         
         normalize(*ret_hyps, hyps_probability);
+        
+        for (int i=0; i<ret_hyps->size(); i++) {
+            BOOST_LOG_SEV(lg_, severity_level::info) << "hyp"<<i<<"'s prob = " << (*ret_hyps)[i].getProbability();
+        }
         
         return ret_hyps;
     }

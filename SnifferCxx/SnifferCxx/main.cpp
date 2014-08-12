@@ -6,121 +6,43 @@
 //  Copyright (c) 2014 JPL. All rights reserved.
 //
 
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
-#include <boost/lexical_cast.hpp>
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/archive/text_iarchive.hpp>
-
-#include <boost/log/core.hpp>
-#include <boost/log/trivial.hpp>
-#include <boost/log/expressions.hpp>
-#include <boost/log/sinks/text_file_backend.hpp>
-#include <boost/log/utility/setup/file.hpp>
-#include <boost/log/utility/setup/common_attributes.hpp>
-#include <boost/log/sources/severity_logger.hpp>
-#include <boost/log/sources/record_ostream.hpp>
-
 #include <thread>
+#include <fstream>
 #include "initializer/HypothesisInitializer.h"
 #include "initializer/MapBuilder.h"
+#include "initializer/DetectionInitializer.h"
 #include "backwrad/BackwardChecking.h"
 #include "forward/ForwardChecking.h"
-#include "model/Map3D.h"
-#include "model/Cells.h"
 #include "filesystem/MessageBuilder.h"
 #include "filesystem/hypothesis.pb.h"
+#include "filesystem/dect.pb.h"
 
 using namespace std;
 using namespace Model;
-
-const string strDetection = "detection";
-const string strTime = "time";
-const string strLeak = "leak";
-const string strLocation = "location";
-const string strConcentration = "concentration";
-const string strRepeat = "repeat";
-const string strMultithread = "multithread";
-
-struct detection {
-    size_t time_;
-    vector<Leak> detected_;
-};
-
-
-tuple<shared_ptr<vector<detection>>, bool> load(string filename) {
-    using boost::property_tree::ptree;
-    using boost::lexical_cast;
-    
-    ptree pt;
-    read_json(filename, pt);
-    
-    auto dect_vec = make_shared<vector<detection>>();
-    
-	auto multithread = pt.get<bool>(strMultithread);
-
-    for (auto dect_node : pt.get_child(strDetection)) {
-        auto dect = dect_node.second;
-        
-        detection detection;
-        
-        detection.time_ = dect.get<size_t>(strTime);
-        for (auto leak_node : dect.get_child(strLeak)) {
-            auto leak = leak_node.second;
-            
-            Leak detected;
-            auto location = leak.get_child(strLocation);
-            transform(location.begin(), location.end(), detected.location_.begin(), [](ptree::value_type & v){return lexical_cast<coord_item_t>(v.second.data());});
-            detected.concentration_ = leak.get<mtn_t>(strConcentration);
-            
-            detection.detected_.push_back(detected);
-        }
-        
-        auto repeat = dect.get<size_t>(strRepeat);
-        for (auto i = 0; i < repeat; i++) {
-            dect_vec->push_back(detection);
-        }
-    }
-    
-    return make_tuple(dect_vec, multithread);
-}
-
-
-void init_log(string filename)
-{
-	namespace logging = boost::log;
-	namespace keywords = boost::log::keywords;
-	namespace sinks = boost::log::sinks;
-
-	logging::add_file_log
-		(
-		keywords::file_name = filename,
-		keywords::rotation_size = 10 * 1024 * 1024,
-		keywords::time_based_rotation = sinks::file::rotation_at_time_point(0, 0, 0),
-		keywords::format = "[%TimeStamp%]: %Message%"
-		);
-
-	logging::add_common_attributes();
-
-	logging::core::get()->set_filter
-		(
-		logging::trivial::severity >= logging::trivial::info
-		);
-}
 
 int main(int argc, const char * argv[])
 {
 	using namespace initializer;
 	using namespace Forward;
-
-	init_log(argv[6]);
+    
+    if (argc < 7) {
+        cerr << argv[0] << " Missing some argument to indicate input files" << endl;
+        return -1;
+    }
+    
+    string map_cfg = argv[1];
+    string hyps_cfg = argv[2];
+    string dect_cfg = argv[3];
+    string mtn_output = argv[4];
+    string map_output = argv[5];
+    string dect_output = argv[6];
 
     //load map
-    MapBuilder mb(argv[1]);
+    MapBuilder mb(map_cfg);
     auto map = mb.build();
     
     //load hypotheses
-    HypothesisInitializer hypI(argv[2]);
+    HypothesisInitializer hypI(hyps_cfg);
     auto backward = hypI.getBackwardAlg();
 	auto forward = hypI.getForwardAlg();
     auto hyps = hypI.getHyptheses();
@@ -128,7 +50,7 @@ int main(int argc, const char * argv[])
     //load detection
 	shared_ptr<vector<detection>> dect_vect;
 	bool multiple_thread;
-    tie(dect_vect, multiple_thread) = load(argv[3]);
+    tie(dect_vect, multiple_thread) = DetectionInitializer::load(dect_cfg);
 
     //calculation
     vector<shared_ptr<vector<Hypothesis>>> hyps_hist;
@@ -136,7 +58,8 @@ int main(int argc, const char * argv[])
     if (!multiple_thread) {
         for (auto dect : *dect_vect)
         {
-            backward->updateHypotheses(*hyps, *map, dect.detected_, dect.time_, forward);
+            hyps = backward->updateHypotheses(*hyps, *map, dect.detected_, dect.time_, forward);
+            hyps_hist.push_back(hyps);
         }
     }
 	else {
@@ -155,14 +78,21 @@ int main(int argc, const char * argv[])
     
     //message output
     auto map_msg = Filesystem::MessageBuilder::buildMessage(*map);
-    fstream map_out(argv[5], ios::out | ios::trunc | ios::binary);
+    fstream map_out(map_output, ios::out | ios::trunc | ios::binary);
     if (!map_msg->SerializeToOstream(&map_out)) {
         cerr << "Failed to write msg" << endl;
 		return -1;
     }
+    
+    auto dect_msg = Filesystem::MessageBuilder::buildMessage(*dect_vect);
+    fstream dect_out(dect_output, ios::out | ios::trunc | ios::binary);
+    if (!dect_msg->SerializeToOstream(&dect_out)) {
+        cerr << "Failed to write msg" << endl;
+		return -1;
+    }
 
-	auto mtn_msg = Filesystem::MessageBuilder::buildMessage(hyps_hist);
-	fstream mtn_out(argv[4], ios::out | ios::trunc | ios::binary);
+	auto mtn_msg = Filesystem::MessageBuilder::buildMessage(hyps_hist, hypI.getIdealCells());
+	fstream mtn_out(mtn_output, ios::out | ios::trunc | ios::binary);
 	if (!mtn_msg->SerializeToOstream(&mtn_out)) {
 		cerr << "Failed to write msg" << endl;
 		return -1;

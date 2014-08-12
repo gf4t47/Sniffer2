@@ -11,7 +11,7 @@
 namespace Model {
 	using namespace std;
 
-	const double background = 0.25;
+	const double background = 0.05;
 
 	Methane::Methane()
 		:concentration_(0.0f) {

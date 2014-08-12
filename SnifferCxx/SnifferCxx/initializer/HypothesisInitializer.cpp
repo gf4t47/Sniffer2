@@ -30,6 +30,7 @@ namespace initializer {
     const string strHypothesis = "hypothesis";
     const string strLocation = "location";
     const string strConcentration = "concentration";
+    const string strIdealCells = "outputCells";
     
     unordered_map<string, function<shared_ptr<ForwardChecking>(Forward::range_t)>> HypothesisInitializer::String2Forward =
     {
@@ -55,6 +56,10 @@ namespace initializer {
         return hyps_;
     }
     
+    ideal_t HypothesisInitializer::getIdealCells() {
+        return ideal_cells_;
+    }
+    
     bool HypothesisInitializer::load(string cfg_file) {
         using boost::property_tree::ptree;
         using boost::lexical_cast;
@@ -72,6 +77,14 @@ namespace initializer {
         auto kernelRange_node = pt.get_optional<Forward::range_t>(strKernelRange);
         if (kernelRange_node) {
             kernel_range = *kernelRange_node;
+        }
+        
+        auto ideal_cells_node = pt.get_optional<ideal_t>(strIdealCells);
+        if (ideal_cells_node) {
+            ideal_cells_ = *ideal_cells_node;
+        }
+        else {
+            ideal_cells_ = numeric_limits<ideal_t>::max();
         }
         
         forward_ = make_shared<UpdateByCell>(kernel_range);

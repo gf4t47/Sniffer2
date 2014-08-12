@@ -4,12 +4,10 @@
     "detection" :
     [
         {
-            "time" : 50,
+            "time" : 100,
             "leak" :
             [
-            	{"location" : [25, 12, 3], "concentration" : 50},
-            	{"location" : [25, 12, 3], "concentration" : 30},
-            	{"location" : [25, 12, 3], "concentration" : 20}
+            	{"location" : [95, 11, 0], "concentration" : 0.1}
             ],
             "repeat" : 1
         },
@@ -18,11 +16,9 @@
             "time" : 30,
             "leak" :
             [
-            	{"location" : [50, 12, 3], "concentration" : 25},
-            	{"location" : [50, 12, 3], "concentration" : 12},
-            	{"location" : [50, 12, 3], "concentration" : 10}
+            	{"location" : [89, 23, 0], "concentration" : 0.5}
             ],
-            "repeat" : 2
+            "repeat" : 1
         },
 
 
@@ -30,30 +26,18 @@
             "time" : 30,
             "leak" :
             [
-                {"location" : [75, 12, 3], "concentration" : 25},
-                {"location" : [75, 12, 3], "concentration" : 12},
-                {"location" : [75, 12, 3], "concentration" : 10}
+                {"location" : [78, 35, 0], "concentration" : 2.5}
             ],
-            "repeat" : 2
+            "repeat" : 1
         },
 
         {
             "time" : 30,
             "leak" :
             [
-                {"location" : [99, 12, 3], "concentration" : 25},
-                {"location" : [99, 12, 3], "concentration" : 12},
-                {"location" : [99, 12, 3], "concentration" : 10}
+                {"location" : [70, 47, 0], "concentration" : 1.0}
             ],
             "repeat" : 1
         }
-    ],
-
-    "candidate" :
-    [
-        [25, 12, 3],
-        [50, 12, 3],
-        [75, 12, 3],
-        [99, 12, 3]
     ]
 }

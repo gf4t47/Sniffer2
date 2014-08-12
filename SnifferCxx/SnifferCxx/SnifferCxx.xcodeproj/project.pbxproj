@@ -20,10 +20,12 @@
 		AC4AE2AA197D6C410089A6F9 /* Methane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE29C197D6C410089A6F9 /* Methane.cpp */; };
 		AC4AE2AB197D6C410089A6F9 /* Wind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE29F197D6C410089A6F9 /* Wind.cpp */; };
 		AC4AE2AC197D6C410089A6F9 /* WindVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2A1197D6C410089A6F9 /* WindVector.cpp */; };
-		AC4AE2B3197D7AC40089A6F9 /* BackwardChecking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */; };
+		AC4AE2B3197D7AC40089A6F9 /* BackwardChecking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */; settings = {COMPILER_FLAGS = "-DBOOST_LOG_DYN_LINK"; }; };
 		AC5F12E51991906200ED30C5 /* InformationGain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5F12E31991906200ED30C5 /* InformationGain.cpp */; };
 		AC5F63AF1988113900C1C53E /* MessageBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5F63AD1988113900C1C53E /* MessageBuilder.cpp */; };
 		AC7D6F59198178BD0041B1E9 /* UpdateByConvolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */; };
+		ACB63F121999668E000FF6A9 /* DetectionInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACB63F101999668E000FF6A9 /* DetectionInitializer.cpp */; };
+		ACB63F151999766E000FF6A9 /* dect.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = ACB63F131999766E000FF6A9 /* dect.pb.cc */; };
 		ACD77E1A19894BFF0057ED65 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD77E1919894BFF0057ED65 /* main.cpp */; };
 		ACD77E2019894C060057ED65 /* HypothesisInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD77E1C19894C060057ED65 /* HypothesisInitializer.cpp */; };
 		ACD77E2119894C060057ED65 /* MapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD77E1E19894C060057ED65 /* MapBuilder.cpp */; };
@@ -78,6 +80,10 @@
 		AC5F63AE1988113900C1C53E /* MessageBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBuilder.h; sourceTree = "<group>"; };
 		AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UpdateByConvolution.cpp; sourceTree = "<group>"; };
 		AC7D6F58198178BD0041B1E9 /* UpdateByConvolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateByConvolution.h; sourceTree = "<group>"; };
+		ACB63F101999668E000FF6A9 /* DetectionInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DetectionInitializer.cpp; sourceTree = "<group>"; };
+		ACB63F111999668E000FF6A9 /* DetectionInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetectionInitializer.h; sourceTree = "<group>"; };
+		ACB63F131999766E000FF6A9 /* dect.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dect.pb.cc; sourceTree = "<group>"; };
+		ACB63F141999766E000FF6A9 /* dect.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dect.pb.h; sourceTree = "<group>"; };
 		ACD77E1919894BFF0057ED65 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ACD77E1C19894C060057ED65 /* HypothesisInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HypothesisInitializer.cpp; sourceTree = "<group>"; };
 		ACD77E1D19894C060057ED65 /* HypothesisInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypothesisInitializer.h; sourceTree = "<group>"; };
@@ -169,6 +175,8 @@
 				ACD77E1D19894C060057ED65 /* HypothesisInitializer.h */,
 				ACD77E1E19894C060057ED65 /* MapBuilder.cpp */,
 				ACD77E1F19894C060057ED65 /* MapBuilder.h */,
+				ACB63F101999668E000FF6A9 /* DetectionInitializer.cpp */,
+				ACB63F111999668E000FF6A9 /* DetectionInitializer.h */,
 			);
 			path = initializer;
 			sourceTree = "<group>";
@@ -199,6 +207,8 @@
 		ACED99E21986E91700E63AA5 /* filesystem */ = {
 			isa = PBXGroup;
 			children = (
+				ACB63F131999766E000FF6A9 /* dect.pb.cc */,
+				ACB63F141999766E000FF6A9 /* dect.pb.h */,
 				ACED9A24198716DF00E63AA5 /* hypothesis.pb.cc */,
 				ACED9A25198716DF00E63AA5 /* hypothesis.pb.h */,
 				ACED9A211987151600E63AA5 /* cell.pb.cc */,
@@ -266,11 +276,13 @@
 				AC4AE2AC197D6C410089A6F9 /* WindVector.cpp in Sources */,
 				AC4AE2A9197D6C410089A6F9 /* Map3D.cpp in Sources */,
 				AC7D6F59198178BD0041B1E9 /* UpdateByConvolution.cpp in Sources */,
+				ACB63F151999766E000FF6A9 /* dect.pb.cc in Sources */,
 				ACED9A231987151600E63AA5 /* cell.pb.cc in Sources */,
 				AC4AE2A4197D6C410089A6F9 /* UpdateByCell.cpp in Sources */,
 				ACED9A26198716DF00E63AA5 /* hypothesis.pb.cc in Sources */,
 				AC5F12E51991906200ED30C5 /* InformationGain.cpp in Sources */,
 				AC5F63AF1988113900C1C53E /* MessageBuilder.cpp in Sources */,
+				ACB63F121999668E000FF6A9 /* DetectionInitializer.cpp in Sources */,
 				AC3438EB197EBF03002E37AE /* Gamma.cpp in Sources */,
 				AC4AE2AB197D6C410089A6F9 /* Wind.cpp in Sources */,
 				AC4AE2AA197D6C410089A6F9 /* Methane.cpp in Sources */,
@@ -377,6 +389,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lboost_system",
+					"-lboost_log-mt",
 					"-lboost_serialization",
 					"-lprotobuf",
 				);
@@ -400,6 +413,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lboost_system",
+					"-lboost_log-mt",
 					"-lboost_serialization",
 					"-lprotobuf",
 				);

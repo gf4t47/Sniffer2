@@ -2,6 +2,7 @@ __author__ = 'Kern'
 
 import hypothesis_pb2
 import cell_pb2
+import dect_pb2
 
 
 def parse_mtn(msg_file):
@@ -22,3 +23,13 @@ def parse_map(map_file):
     msg.close()
 
     return mp
+
+
+def parse_dect(dect_file):
+    dect = dect_pb2.Detections()
+
+    with open(dect_file, "rb") as msg:
+        dect.ParseFromString(msg.read())
+    msg.close()
+
+    return dect

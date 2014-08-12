@@ -10,7 +10,8 @@
 #define __SnifferCxx__BackwardChecking__
 #include <memory>
 #include <vector>
-#include <boost/log/sources/logger.hpp>
+#include <boost/log/sources/severity_feature.hpp>
+#include <boost/log/sources/severity_logger.hpp>
 #include "../model/Hypothesis.h"
 
 namespace Forward {
@@ -21,6 +22,15 @@ namespace Model {
     class Map3D;
     class Coordinate;
 }
+
+enum severity_level
+{
+    trace,
+    debug,
+    info,
+    error,
+    critical
+};
 
 namespace Backward {
     typedef int range_t;
@@ -44,7 +54,7 @@ namespace Backward {
     private:
 		range_t blur_range_;
         range_t kernel_range_;
-		boost::log::sources::logger lg_;
+		mutable boost::log::sources::severity_logger<severity_level> lg_;
     };
 }
 

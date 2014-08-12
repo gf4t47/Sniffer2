@@ -18,18 +18,22 @@ namespace Model {
     class Hypothesis;
     class Map3D;
     class Cell;
-    struct Leak;
+}
+
+namespace initializer {
+    struct detection;
 }
 
 namespace Filesystem {
     class Hypotheses_history;
+    class Detections;
     class Cell;
     class Map;
-
     
     class MessageBuilder {
     public:
-        static std::shared_ptr<Filesystem::Hypotheses_history> buildMessage(const std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his);
+        static std::shared_ptr<Filesystem::Hypotheses_history> buildMessage(const std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his, size_t ideal_cells);
+        static std::shared_ptr<Filesystem::Detections> buildMessage(const std::vector<initializer::detection> & detections);
         static std::shared_ptr<Filesystem::Map> buildMessage(const Model::Map3D & map);
         
     private:

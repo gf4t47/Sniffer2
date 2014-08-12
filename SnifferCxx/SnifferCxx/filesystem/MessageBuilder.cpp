@@ -8,9 +8,11 @@
 
 #include "MessageBuilder.h"
 #include "hypothesis.pb.h"
+#include "dect.pb.h"
 #include "../model/Hypothesis.h"
 #include "../model/Cells.h"
 #include "../model/Map3D.h"
+#include "../initializer/DetectionInitializer.h"
 
 namespace Filesystem {
     using namespace std;
@@ -20,6 +22,28 @@ namespace Filesystem {
 			{ Model::CellTag::Building, CellTag::Building },
 			{ Model::CellTag::Ground, CellTag::Ground }
 	};
+    
+    shared_ptr<Detections> MessageBuilder::buildMessage(const vector<initializer::detection> & detections) {
+        auto msg_dects = make_shared<Detections>();
+        
+        for (auto detection : detections) {
+            auto msg_dect = msg_dects->add_dect();
+            msg_dect->set_time(detection.time_);
+            for (auto leak : detection.detected_) {
+                auto msg_leak = msg_dect->add_leak();
+                
+                msg_leak->set_concentration(leak.concentration_);
+                
+                auto msg_coord = new Coordinate();
+                for (auto const & item : leak.location_) {
+                    msg_coord->add_coord_item(item);
+                }
+                msg_leak->set_allocated_location(msg_coord);
+            }
+        }
+        
+        return msg_dects;
+    }
     
     shared_ptr<Map> MessageBuilder::buildMessage(const Model::Map3D & map) {
         auto msg_map = make_shared<Map>();
@@ -44,9 +68,7 @@ namespace Filesystem {
         return msg_map;
     }
     
-    shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const vector<shared_ptr<vector<Model::Hypothesis>>> & hyps_his) {
-        const double ideal_cells = 500000;
-        
+    shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const vector<shared_ptr<vector<Model::Hypothesis>>> & hyps_his, size_t ideal_cells) {
         double total_cells = 0.0;
         for (auto hyps : hyps_his) {
             for (auto const & hyp : *hyps) {

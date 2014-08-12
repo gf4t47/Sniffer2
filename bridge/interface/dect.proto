@@ -1,0 +1,12 @@
+import "hypothesis.proto";
+
+package Filesystem;
+
+message Detection {
+	required int32 time = 1;
+	repeated Leak leak = 2;
+}
+
+message Detections {
+	repeated Detection dect = 1;
+}
