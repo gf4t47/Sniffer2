@@ -11,7 +11,7 @@
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/lexical_cast.hpp>
 
-namespace initializer {
+namespace Initializer {
     using namespace std;
     using namespace Model;
     
@@ -23,21 +23,21 @@ namespace initializer {
     const string strRepeat = "repeat";
     const string strMultithread = "multithread";
     
-    tuple<shared_ptr<vector<detection>>, bool> DetectionInitializer::load(string filename) {
+    tuple<shared_ptr<vector<Detection>>, bool> DetectionInitializer::load(string filename) {
         using boost::property_tree::ptree;
         using boost::lexical_cast;
         
         ptree pt;
         read_json(filename, pt);
         
-        auto dect_vec = make_shared<vector<detection>>();
+        auto dect_vec = make_shared<vector<Detection>>();
         
         auto multithread = pt.get<bool>(strMultithread);
         
         for (auto dect_node : pt.get_child(strDetection)) {
             auto dect = dect_node.second;
             
-            detection detection;
+            Detection detection;
             
             detection.time_ = dect.get<int>(strTime);
             for (auto leak_node : dect.get_child(strLeak)) {

@@ -28,16 +28,16 @@ namespace Forward {
     class ForwardChecking;
 }
 
-namespace initializer {
+namespace Initializer {
     typedef size_t ideal_t;
     
     class HypothesisInitializer {
     public:
         HypothesisInitializer(std::string cfg_file);
-        std::shared_ptr<Backward::BackwardChecking> getBackwardAlg();
-		std::shared_ptr<Forward::ForwardChecking> getForwardAlg();
-        std::shared_ptr<std::vector<Model::Hypothesis>> getHyptheses();
-        ideal_t getIdealCells();
+        std::shared_ptr<Backward::BackwardChecking> getBackwardAlg() const;
+		std::shared_ptr<Forward::ForwardChecking> getForwardAlg() const;
+        std::shared_ptr<std::vector<Model::Hypothesis>> getHyptheses() const;
+        ideal_t getIdealCells() const;
         bool load(std::string cfg_file);
         
     public:

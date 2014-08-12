@@ -89,6 +89,12 @@
     <ClCompile Include="backwrad\InformationGain.cpp">
       <Filter>backward</Filter>
     </ClCompile>
+    <ClCompile Include="initializer\DetectionInitializer.cpp">
+      <Filter>initializer</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\dect.pb.cc">
+      <Filter>filesystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="model\Cell.h">
@@ -153,6 +159,12 @@
     </ClInclude>
     <ClInclude Include="backwrad\InformationGain.h">
       <Filter>backward</Filter>
+    </ClInclude>
+    <ClInclude Include="initializer\DetectionInitializer.h">
+      <Filter>initializer</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\dect.pb.h">
+      <Filter>filesystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

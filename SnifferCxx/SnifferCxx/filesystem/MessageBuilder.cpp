@@ -23,7 +23,7 @@ namespace Filesystem {
 			{ Model::CellTag::Ground, CellTag::Ground }
 	};
     
-    shared_ptr<Detections> MessageBuilder::buildMessage(const vector<initializer::detection> & detections) {
+    shared_ptr<Detections> MessageBuilder::buildMessage(const vector<Initializer::Detection> & detections) {
         auto msg_dects = make_shared<Detections>();
         
         for (auto detection : detections) {

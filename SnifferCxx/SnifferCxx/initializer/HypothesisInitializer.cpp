@@ -15,7 +15,8 @@
 #include "../forward/UpdateByConvolution.h"
 #include "../model/Coordinate.h"
 
-namespace initializer {
+
+namespace Initializer {
 	using namespace std;
 	using namespace Model;
 	using namespace Backward;
@@ -44,19 +45,19 @@ namespace initializer {
         load(cfg_file);
     }
     
-    shared_ptr<BackwardChecking> HypothesisInitializer::getBackwardAlg() {
+    shared_ptr<BackwardChecking> HypothesisInitializer::getBackwardAlg() const {
         return backward_;
     }
 
-	shared_ptr<ForwardChecking> HypothesisInitializer::getForwardAlg() {
+	shared_ptr<ForwardChecking> HypothesisInitializer::getForwardAlg() const {
 		return forward_;
 	}
     
-    shared_ptr<vector<Hypothesis>> HypothesisInitializer::getHyptheses() {
+    shared_ptr<vector<Hypothesis>> HypothesisInitializer::getHyptheses() const {
         return hyps_;
     }
     
-    ideal_t HypothesisInitializer::getIdealCells() {
+    ideal_t HypothesisInitializer::getIdealCells() const {
         return ideal_cells_;
     }
     
@@ -84,7 +85,7 @@ namespace initializer {
             ideal_cells_ = *ideal_cells_node;
         }
         else {
-            ideal_cells_ = numeric_limits<ideal_t>::max();
+			ideal_cells_ = std::numeric_limits<ideal_t>::max();
         }
         
         forward_ = make_shared<UpdateByCell>(kernel_range);
@@ -102,13 +103,13 @@ namespace initializer {
         if (hyp_node) {
             vector<vector<Leak>> all_hypothesis_leaks;
             for (auto hyp : *hyp_node) {
-                auto hyp_tree = hyp.second;
+                auto hyp_val = hyp.second;
                 
                 Leak leak;
-                auto node_location = hyp_tree.get_child(strLocation);
+                auto node_location = hyp_val.get_child(strLocation);
                 transform(node_location.begin(), node_location.end(), leak.location_.begin(), [](ptree::value_type & v){return lexical_cast<coord_item_t>(v.second.data());});
                 
-                leak.concentration_ = hyp_tree.get<mtn_t>(strConcentration);
+                leak.concentration_ = hyp_val.get<mtn_t>(strConcentration);
                 
                 vector<Leak> leak_vec;
                 leak_vec.push_back(leak);

@@ -20,8 +20,8 @@ namespace Model {
     class Cell;
 }
 
-namespace initializer {
-    struct detection;
+namespace Initializer {
+    struct Detection;
 }
 
 namespace Filesystem {
@@ -33,7 +33,7 @@ namespace Filesystem {
     class MessageBuilder {
     public:
         static std::shared_ptr<Filesystem::Hypotheses_history> buildMessage(const std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his, size_t ideal_cells);
-        static std::shared_ptr<Filesystem::Detections> buildMessage(const std::vector<initializer::detection> & detections);
+        static std::shared_ptr<Filesystem::Detections> buildMessage(const std::vector<Initializer::Detection> & detections);
         static std::shared_ptr<Filesystem::Map> buildMessage(const Model::Map3D & map);
         
     private:

@@ -12,15 +12,15 @@
 #include "../model/Hypothesis.h"
 #include <memory>
 
-namespace initializer {
-    struct detection {
+namespace Initializer {
+    struct Detection {
         int time_;
         std::vector<Model::Leak> detected_;
     };
     
     class DetectionInitializer {
     public:
-        static std::tuple<std::shared_ptr<std::vector<detection>>, bool> load(std::string filename);
+        static std::tuple<std::shared_ptr<std::vector<Detection>>, bool> load(std::string filename);
         
     };
 }

@@ -14,7 +14,7 @@
 #include <boost/optional.hpp>
 #include "Cell.h"
 
-namespace initializer {
+namespace Initializer {
     class MapBuilder;
 }
 
@@ -39,7 +39,7 @@ namespace Model{
 		std::shared_ptr<Cell> calcCollisionByFullPath(const Coordinate & startPos, const Coordinate & endPos) const;
 		std::shared_ptr<Cell> calcCollisionByEndCell(const Coordinate & startPos, const Coordinate & endPos) const;
 
-		friend class initializer::MapBuilder;
+		friend class Initializer::MapBuilder;
 
 	protected:
         void updateWind(const WindVector & wind);

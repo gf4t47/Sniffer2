@@ -8,6 +8,8 @@
 
 #include <thread>
 #include <fstream>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 #include "initializer/HypothesisInitializer.h"
 #include "initializer/MapBuilder.h"
 #include "initializer/DetectionInitializer.h"
@@ -16,13 +18,14 @@
 #include "filesystem/MessageBuilder.h"
 #include "filesystem/hypothesis.pb.h"
 #include "filesystem/dect.pb.h"
+#include "model/Map3D.h"
 
 using namespace std;
 using namespace Model;
 
 int main(int argc, const char * argv[])
 {
-	using namespace initializer;
+	using namespace Initializer;
 	using namespace Forward;
     
     if (argc < 7) {
@@ -40,15 +43,15 @@ int main(int argc, const char * argv[])
     //load map
     MapBuilder mb(map_cfg);
     auto map = mb.build();
-    
-    //load hypotheses
-    HypothesisInitializer hypI(hyps_cfg);
-    auto backward = hypI.getBackwardAlg();
+
+	//load hypotheses
+	HypothesisInitializer hypI(hyps_cfg);
+	auto backward = hypI.getBackwardAlg();
 	auto forward = hypI.getForwardAlg();
-    auto hyps = hypI.getHyptheses();
+	auto hyps = hypI.getHyptheses();
     
     //load detection
-	shared_ptr<vector<detection>> dect_vect;
+	shared_ptr<vector<Detection>> dect_vect;
 	bool multiple_thread;
     tie(dect_vect, multiple_thread) = DetectionInitializer::load(dect_cfg);
 

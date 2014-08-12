@@ -117,6 +117,8 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\tools\boost-1_56_0_b1;C:\tools\protobuf\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/DNOMINMAX %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,6 +167,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\tools\boost-1_56_0_b1;C:\tools\protobuf\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -179,11 +182,13 @@
     <ClCompile Include="backwrad\BackwardChecking.cpp" />
     <ClCompile Include="backwrad\InformationGain.cpp" />
     <ClCompile Include="filesystem\cell.pb.cc" />
+    <ClCompile Include="filesystem\dect.pb.cc" />
     <ClCompile Include="filesystem\hypothesis.pb.cc" />
     <ClCompile Include="filesystem\MessageBuilder.cpp" />
     <ClCompile Include="forward\ForwardChecking.cpp" />
     <ClCompile Include="forward\UpdateByCell.cpp" />
     <ClCompile Include="forward\UpdateByConvolution.cpp" />
+    <ClCompile Include="initializer\DetectionInitializer.cpp" />
     <ClCompile Include="initializer\HypothesisInitializer.cpp" />
     <ClCompile Include="initializer\MapBuilder.cpp" />
     <ClCompile Include="main.cpp" />
@@ -203,11 +208,13 @@
     <ClInclude Include="backwrad\BackwardChecking.h" />
     <ClInclude Include="backwrad\InformationGain.h" />
     <ClInclude Include="filesystem\cell.pb.h" />
+    <ClInclude Include="filesystem\dect.pb.h" />
     <ClInclude Include="filesystem\hypothesis.pb.h" />
     <ClInclude Include="filesystem\MessageBuilder.h" />
     <ClInclude Include="forward\ForwardChecking.h" />
     <ClInclude Include="forward\UpdateByCell.h" />
     <ClInclude Include="forward\UpdateByConvolution.h" />
+    <ClInclude Include="initializer\DetectionInitializer.h" />
     <ClInclude Include="initializer\HypothesisInitializer.h" />
     <ClInclude Include="initializer\MapBuilder.h" />
     <ClInclude Include="math\Gamma.h" />
