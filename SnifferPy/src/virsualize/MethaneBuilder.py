@@ -39,9 +39,9 @@ def _cells_list_to_vector(cells_list):
 
 def _build(vecs, fig):
     xs, ys, zs, us, vs, ws = vecs
-    if len(xs) <= 0:
-        print "len xs = ", len(xs)
-        return fig
+    # if len(xs) <= 0:
+    #     print "len xs = ", len(xs)
+    #     return fig
 
     if not fig is None:
         fig.mlab_source.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)

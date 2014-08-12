@@ -31,11 +31,11 @@ dects = MessageParser.parse_dect(dect_output)
 hyps_his = MessageParser.parse_mtn(mtn_output)
 # fig_wind.remove()
 
-fig_hyp = MethaneBuilder.build(hyps_his.hyps[0], None)
+# fig_hyp = MethaneBuilder.build(hyps_his.hyps[0], None)
 fig_dect = None
 for hyps, dect in zip(hyps_his.hyps[1:], dects.dect):
     fig_dect = DetectionBuilder.build(dect, hyps, fig_dect)
-    fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
+    # fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
 
 # eng = mb.get_engine()
 # scene = eng.scenes[0].scene

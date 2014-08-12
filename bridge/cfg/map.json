@@ -1,43 +1,23 @@
 {
-    "multithread" : false,
+	"boundary": [100, 50, 10],
+    "wind": [1.5, 1.5, 0.25],
+    "unit": 1,
+    "potential": 3,
     
-    "detection" :
+    "building":
     [
-        {
-            "time" : 100,
-            "leak" :
-            [
-            	{"location" : [95, 11, 0], "concentration" : 0.1}
-            ],
-            "repeat" : 1
-        },
-
-        {
-            "time" : 30,
-            "leak" :
-            [
-            	{"location" : [89, 23, 0], "concentration" : 0.5}
-            ],
-            "repeat" : 1
-        },
-
-
-        {
-            "time" : 30,
-            "leak" :
-            [
-                {"location" : [78, 35, 0], "concentration" : 2.5}
-            ],
-            "repeat" : 1
-        },
-
-        {
-            "time" : 30,
-            "leak" :
-            [
-                {"location" : [70, 47, 0], "concentration" : 1.0}
-            ],
-            "repeat" : 1
-        }
+    	{"location": [12, 6, 0], "boundary":[4, 4, 10]},
+    	{"location": [36, 6, 0], "boundary":[2, 4, 6]},
+    	{"location": [36, 18, 0], "boundary":[4, 4, 4]},
+    	{"location": [36, 30, 0], "boundary":[4, 2, 5]},
+    	{"location": [36, 42, 0], "boundary":[2, 3, 4]},
+    	{"location": [60, 6, 0], "boundary":[2, 4, 3]},
+    	{"location": [60, 18, 0], "boundary":[5, 4, 2]},
+    	{"location": [60, 30, 0], "boundary":[2, 1, 4]},
+    	{"location": [60, 42, 0], "boundary":[1, 4, 10]},
+    	{"location": [84, 6, 0], "boundary":[2, 4, 4]},
+    	{"location": [84, 18, 0], "boundary":[3, 4, 7]},
+    	{"location": [84, 30, 0], "boundary":[2, 3, 2]},
+    	{"location": [84, 42, 0], "boundary":[2, 4, 4]}
     ]
 }

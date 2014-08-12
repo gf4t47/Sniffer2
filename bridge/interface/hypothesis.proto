@@ -15,7 +15,6 @@ message Hypothesis {
 
 message Hypotheses {
 	repeated Hypothesis hyp = 1;
-	repeated Leak detection = 2;
 }
 
 message Hypotheses_history {

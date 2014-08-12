@@ -76,9 +76,8 @@ void protobuf_AssignDesc_hypothesis_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Hypothesis));
   Hypotheses_descriptor_ = file->message_type(2);
-  static const int Hypotheses_offsets_[2] = {
+  static const int Hypotheses_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypotheses, hyp_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypotheses, detection_),
   };
   Hypotheses_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -154,11 +153,10 @@ void protobuf_AddDesc_hypothesis_2eproto() {
     "m.Coordinate\022\025\n\rconcentration\030\002 \002(\001\"k\n\nH"
     "ypothesis\022\023\n\013probability\030\001 \002(\001\022\036\n\004leak\030\002"
     " \003(\0132\020.Filesystem.Leak\022(\n\rmethene_cells\030"
-    "\003 \003(\0132\021.Filesystem.Cells\"V\n\nHypotheses\022#"
-    "\n\003hyp\030\001 \003(\0132\026.Filesystem.Hypothesis\022#\n\td"
-    "etection\030\002 \003(\0132\020.Filesystem.Leak\":\n\022Hypo"
-    "theses_history\022$\n\004hyps\030\001 \003(\0132\026.Filesyste"
-    "m.Hypotheses", 372);
+    "\003 \003(\0132\021.Filesystem.Cells\"1\n\nHypotheses\022#"
+    "\n\003hyp\030\001 \003(\0132\026.Filesystem.Hypothesis\":\n\022H"
+    "ypotheses_history\022$\n\004hyps\030\001 \003(\0132\026.Filesy"
+    "stem.Hypotheses", 335);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "hypothesis.proto", &protobuf_RegisterTypes);
   Leak::default_instance_ = new Leak();
@@ -728,7 +726,6 @@ void Hypothesis::Swap(Hypothesis* other) {
 
 #ifndef _MSC_VER
 const int Hypotheses::kHypFieldNumber;
-const int Hypotheses::kDetectionFieldNumber;
 #endif  // !_MSC_VER
 
 Hypotheses::Hypotheses()
@@ -782,7 +779,6 @@ Hypotheses* Hypotheses::New() const {
 
 void Hypotheses::Clear() {
   hyp_.Clear();
-  detection_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -804,21 +800,6 @@ bool Hypotheses::MergePartialFromCodedStream(
           goto handle_uninterpreted;
         }
         if (input->ExpectTag(10)) goto parse_hyp;
-        if (input->ExpectTag(18)) goto parse_detection;
-        break;
-      }
-
-      // repeated .Filesystem.Leak detection = 2;
-      case 2: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-         parse_detection:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_detection()));
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectTag(18)) goto parse_detection;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -847,12 +828,6 @@ void Hypotheses::SerializeWithCachedSizes(
       1, this->hyp(i), output);
   }
 
-  // repeated .Filesystem.Leak detection = 2;
-  for (int i = 0; i < this->detection_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, this->detection(i), output);
-  }
-
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -866,13 +841,6 @@ void Hypotheses::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         1, this->hyp(i), target);
-  }
-
-  // repeated .Filesystem.Leak detection = 2;
-  for (int i = 0; i < this->detection_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        2, this->detection(i), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -891,14 +859,6 @@ int Hypotheses::ByteSize() const {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         this->hyp(i));
-  }
-
-  // repeated .Filesystem.Leak detection = 2;
-  total_size += 1 * this->detection_size();
-  for (int i = 0; i < this->detection_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->detection(i));
   }
 
   if (!unknown_fields().empty()) {
@@ -927,7 +887,6 @@ void Hypotheses::MergeFrom(const ::google::protobuf::Message& from) {
 void Hypotheses::MergeFrom(const Hypotheses& from) {
   GOOGLE_CHECK_NE(&from, this);
   hyp_.MergeFrom(from.hyp_);
-  detection_.MergeFrom(from.detection_);
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -948,16 +907,12 @@ bool Hypotheses::IsInitialized() const {
   for (int i = 0; i < hyp_size(); i++) {
     if (!this->hyp(i).IsInitialized()) return false;
   }
-  for (int i = 0; i < detection_size(); i++) {
-    if (!this->detection(i).IsInitialized()) return false;
-  }
   return true;
 }
 
 void Hypotheses::Swap(Hypotheses* other) {
   if (other != this) {
     hyp_.Swap(&other->hyp_);
-    detection_.Swap(&other->detection_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

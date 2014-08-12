@@ -104,16 +104,17 @@ namespace Initializer {
             vector<vector<Leak>> all_hypothesis_leaks;
             for (auto hyp : *hyp_node) {
                 auto hyp_val = hyp.second;
-                
-                Leak leak;
-                auto node_location = hyp_val.get_child(strLocation);
-                transform(node_location.begin(), node_location.end(), leak.location_.begin(), [](ptree::value_type & v){return lexical_cast<coord_item_t>(v.second.data());});
-                
-                leak.concentration_ = hyp_val.get<mtn_t>(strConcentration);
-                
-                vector<Leak> leak_vec;
-                leak_vec.push_back(leak);
-                
+
+				vector<Leak> leak_vec;
+				for (auto leak_node : hyp.second) {
+					Leak leak;
+					leak.concentration_ = leak_node.second.get<mtn_t>(strConcentration);
+
+					auto node_location = leak_node.second.get_child(strLocation);
+					transform(node_location.begin(), node_location.end(), leak.location_.begin(), [](ptree::value_type & v){return lexical_cast<coord_item_t>(v.second.data()); });
+
+					leak_vec.push_back(leak);
+				}                
                 all_hypothesis_leaks.push_back(leak_vec);
             }
             
@@ -121,6 +122,8 @@ namespace Initializer {
                 Hypothesis hyp(leak_vec, 1.0 / (double)all_hypothesis_leaks.size());
                 hyps_->push_back(hyp);
             }
+
+			return true;
         }
         
         return false;

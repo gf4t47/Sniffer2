@@ -309,28 +309,15 @@ class Hypotheses : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Hypothesis >*
       mutable_hyp();
 
-  // repeated .Filesystem.Leak detection = 2;
-  inline int detection_size() const;
-  inline void clear_detection();
-  static const int kDetectionFieldNumber = 2;
-  inline const ::Filesystem::Leak& detection(int index) const;
-  inline ::Filesystem::Leak* mutable_detection(int index);
-  inline ::Filesystem::Leak* add_detection();
-  inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >&
-      detection() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >*
-      mutable_detection();
-
   // @@protoc_insertion_point(class_scope:Filesystem.Hypotheses)
  private:
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::RepeatedPtrField< ::Filesystem::Hypothesis > hyp_;
-  ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak > detection_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
 
   friend void  protobuf_AddDesc_hypothesis_2eproto();
   friend void protobuf_AssignDesc_hypothesis_2eproto();
@@ -594,31 +581,6 @@ Hypotheses::hyp() const {
 inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Hypothesis >*
 Hypotheses::mutable_hyp() {
   return &hyp_;
-}
-
-// repeated .Filesystem.Leak detection = 2;
-inline int Hypotheses::detection_size() const {
-  return detection_.size();
-}
-inline void Hypotheses::clear_detection() {
-  detection_.Clear();
-}
-inline const ::Filesystem::Leak& Hypotheses::detection(int index) const {
-  return detection_.Get(index);
-}
-inline ::Filesystem::Leak* Hypotheses::mutable_detection(int index) {
-  return detection_.Mutable(index);
-}
-inline ::Filesystem::Leak* Hypotheses::add_detection() {
-  return detection_.Add();
-}
-inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >&
-Hypotheses::detection() const {
-  return detection_;
-}
-inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >*
-Hypotheses::mutable_detection() {
-  return &detection_;
 }
 
 // -------------------------------------------------------------------
