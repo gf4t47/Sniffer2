@@ -16,7 +16,7 @@
             "time" : 30,
             "leak" :
             [
-            	{"location" : [89, 23, 0], "concentration" : 0.5}
+            	{"location" : [85, 23, 0], "concentration" : 0.5}
             ],
             "repeat" : 1
         },
@@ -26,7 +26,7 @@
             "time" : 30,
             "leak" :
             [
-                {"location" : [78, 35, 0], "concentration" : 2.5}
+                {"location" : [78, 35, 0], "concentration" : 3.5}
             ],
             "repeat" : 1
         },

@@ -13,7 +13,9 @@ namespace Model {
     }
 
 	Hypothesis::Hypothesis(const vector<Leak> & leaks, double probability)
-		:leaks_(leaks) {
+		:leaks_(leaks),
+    probability_(probability) {
+        
 	}
 
     Hypothesis::Hypothesis(const vector<Leak> & leaks, double probability, const shared_ptr<Cells> initial_cells)

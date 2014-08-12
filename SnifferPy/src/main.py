@@ -3,9 +3,9 @@ __author__ = 'Kern'
 import sys
 from filesystem import MessageParser
 from initializer import MapParser
-from virsualize import MapBuilder
-from virsualize import MethaneBuilder
-from virsualize import DetectionBuilder
+from visualize import MapBuilder
+from visualize import MethaneBuilder
+from visualize import DetectionBuilder
 
 import mayavi.mlab as mb
 
@@ -27,15 +27,16 @@ fig_map = MapBuilder.build_from_json(m_dict)
 # fig_map = MapBuilder.build_from_bin(mp)
 # fig_wind = WindBuilder.build(mp)
 
-dects = MessageParser.parse_dect(dect_output)
-hyps_his = MessageParser.parse_mtn(mtn_output)
+dects = MessageParser.parse_dect(dect_output).dect
+hyps_his = MessageParser.parse_mtn(mtn_output).hyps
 # fig_wind.remove()
 
-# fig_hyp = MethaneBuilder.build(hyps_his.hyps[0], None)
+
+fig_hyp = MethaneBuilder.build(hyps_his[0], None)
 fig_dect = None
-for hyps, dect in zip(hyps_his.hyps[1:], dects.dect):
+for hyps, dect in zip(hyps_his[1:], dects):
     fig_dect = DetectionBuilder.build(dect, hyps, fig_dect)
-    # fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
+    fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
 
 # eng = mb.get_engine()
 # scene = eng.scenes[0].scene

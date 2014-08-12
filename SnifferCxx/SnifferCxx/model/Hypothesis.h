@@ -37,6 +37,7 @@ namespace Model {
         std::vector<Leak> leaks_;
         double probability_;
         std::vector<const std::shared_ptr<Cells>> cells_update_his_;
+        
         mutable std::mutex cells_his_mutex_;
 	};
 }
