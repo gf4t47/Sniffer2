@@ -1,4 +1,4 @@
-package Filesystem;
+package Message;
 
 message Coordinate {
 		repeated int32 coord_item = 1;

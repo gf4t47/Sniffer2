@@ -1,6 +1,6 @@
 import "hypothesis.proto";
 
-package Filesystem;
+package Message;
 
 message Detection {
 	required int32 time = 1;

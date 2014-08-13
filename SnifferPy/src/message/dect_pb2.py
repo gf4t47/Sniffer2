@@ -13,28 +13,28 @@ import hypothesis_pb2
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='dect.proto',
-  package='Filesystem',
-  serialized_pb='\n\ndect.proto\x12\nFilesystem\x1a\x10hypothesis.proto\"9\n\tDetection\x12\x0c\n\x04time\x18\x01 \x02(\x05\x12\x1e\n\x04leak\x18\x02 \x03(\x0b\x32\x10.Filesystem.Leak\"1\n\nDetections\x12#\n\x04\x64\x65\x63t\x18\x01 \x03(\x0b\x32\x15.Filesystem.Detection')
+  package='Message',
+  serialized_pb='\n\ndect.proto\x12\x07Message\x1a\x10hypothesis.proto\"6\n\tDetection\x12\x0c\n\x04time\x18\x01 \x02(\x05\x12\x1b\n\x04leak\x18\x02 \x03(\x0b\x32\r.Message.Leak\".\n\nDetections\x12 \n\x04\x64\x65\x63t\x18\x01 \x03(\x0b\x32\x12.Message.Detection')
 
 
 
 
 _DETECTION = _descriptor.Descriptor(
   name='Detection',
-  full_name='Filesystem.Detection',
+  full_name='Message.Detection',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='time', full_name='Filesystem.Detection.time', index=0,
+      name='time', full_name='Message.Detection.time', index=0,
       number=1, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='leak', full_name='Filesystem.Detection.leak', index=1,
+      name='leak', full_name='Message.Detection.leak', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -49,20 +49,20 @@ _DETECTION = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=44,
-  serialized_end=101,
+  serialized_start=41,
+  serialized_end=95,
 )
 
 
 _DETECTIONS = _descriptor.Descriptor(
   name='Detections',
-  full_name='Filesystem.Detections',
+  full_name='Message.Detections',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dect', full_name='Filesystem.Detections.dect', index=0,
+      name='dect', full_name='Message.Detections.dect', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -77,8 +77,8 @@ _DETECTIONS = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=103,
-  serialized_end=152,
+  serialized_start=97,
+  serialized_end=143,
 )
 
 _DETECTION.fields_by_name['leak'].message_type = hypothesis_pb2._LEAK
@@ -90,13 +90,13 @@ class Detection(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _DETECTION
 
-  # @@protoc_insertion_point(class_scope:Filesystem.Detection)
+  # @@protoc_insertion_point(class_scope:Message.Detection)
 
 class Detections(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _DETECTIONS
 
-  # @@protoc_insertion_point(class_scope:Filesystem.Detections)
+  # @@protoc_insertion_point(class_scope:Message.Detections)
 
 
 # @@protoc_insertion_point(module_scope)

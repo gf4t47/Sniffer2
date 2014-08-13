@@ -27,7 +27,7 @@
 #include "hypothesis.pb.h"
 // @@protoc_insertion_point(includes)
 
-namespace Filesystem {
+namespace Message {
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_dect_2eproto();
@@ -100,26 +100,26 @@ class Detection : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 time() const;
   inline void set_time(::google::protobuf::int32 value);
 
-  // repeated .Filesystem.Leak leak = 2;
+  // repeated .Message.Leak leak = 2;
   inline int leak_size() const;
   inline void clear_leak();
   static const int kLeakFieldNumber = 2;
-  inline const ::Filesystem::Leak& leak(int index) const;
-  inline ::Filesystem::Leak* mutable_leak(int index);
-  inline ::Filesystem::Leak* add_leak();
-  inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >&
+  inline const ::Message::Leak& leak(int index) const;
+  inline ::Message::Leak* mutable_leak(int index);
+  inline ::Message::Leak* add_leak();
+  inline const ::google::protobuf::RepeatedPtrField< ::Message::Leak >&
       leak() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >*
+  inline ::google::protobuf::RepeatedPtrField< ::Message::Leak >*
       mutable_leak();
 
-  // @@protoc_insertion_point(class_scope:Filesystem.Detection)
+  // @@protoc_insertion_point(class_scope:Message.Detection)
  private:
   inline void set_has_time();
   inline void clear_has_time();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak > leak_;
+  ::google::protobuf::RepeatedPtrField< ::Message::Leak > leak_;
   ::google::protobuf::int32 time_;
 
   mutable int _cached_size_;
@@ -188,24 +188,24 @@ class Detections : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated .Filesystem.Detection dect = 1;
+  // repeated .Message.Detection dect = 1;
   inline int dect_size() const;
   inline void clear_dect();
   static const int kDectFieldNumber = 1;
-  inline const ::Filesystem::Detection& dect(int index) const;
-  inline ::Filesystem::Detection* mutable_dect(int index);
-  inline ::Filesystem::Detection* add_dect();
-  inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Detection >&
+  inline const ::Message::Detection& dect(int index) const;
+  inline ::Message::Detection* mutable_dect(int index);
+  inline ::Message::Detection* add_dect();
+  inline const ::google::protobuf::RepeatedPtrField< ::Message::Detection >&
       dect() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Detection >*
+  inline ::google::protobuf::RepeatedPtrField< ::Message::Detection >*
       mutable_dect();
 
-  // @@protoc_insertion_point(class_scope:Filesystem.Detections)
+  // @@protoc_insertion_point(class_scope:Message.Detections)
  private:
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::google::protobuf::RepeatedPtrField< ::Filesystem::Detection > dect_;
+  ::google::protobuf::RepeatedPtrField< ::Message::Detection > dect_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -246,27 +246,27 @@ inline void Detection::set_time(::google::protobuf::int32 value) {
   time_ = value;
 }
 
-// repeated .Filesystem.Leak leak = 2;
+// repeated .Message.Leak leak = 2;
 inline int Detection::leak_size() const {
   return leak_.size();
 }
 inline void Detection::clear_leak() {
   leak_.Clear();
 }
-inline const ::Filesystem::Leak& Detection::leak(int index) const {
+inline const ::Message::Leak& Detection::leak(int index) const {
   return leak_.Get(index);
 }
-inline ::Filesystem::Leak* Detection::mutable_leak(int index) {
+inline ::Message::Leak* Detection::mutable_leak(int index) {
   return leak_.Mutable(index);
 }
-inline ::Filesystem::Leak* Detection::add_leak() {
+inline ::Message::Leak* Detection::add_leak() {
   return leak_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >&
+inline const ::google::protobuf::RepeatedPtrField< ::Message::Leak >&
 Detection::leak() const {
   return leak_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Leak >*
+inline ::google::protobuf::RepeatedPtrField< ::Message::Leak >*
 Detection::mutable_leak() {
   return &leak_;
 }
@@ -275,27 +275,27 @@ Detection::mutable_leak() {
 
 // Detections
 
-// repeated .Filesystem.Detection dect = 1;
+// repeated .Message.Detection dect = 1;
 inline int Detections::dect_size() const {
   return dect_.size();
 }
 inline void Detections::clear_dect() {
   dect_.Clear();
 }
-inline const ::Filesystem::Detection& Detections::dect(int index) const {
+inline const ::Message::Detection& Detections::dect(int index) const {
   return dect_.Get(index);
 }
-inline ::Filesystem::Detection* Detections::mutable_dect(int index) {
+inline ::Message::Detection* Detections::mutable_dect(int index) {
   return dect_.Mutable(index);
 }
-inline ::Filesystem::Detection* Detections::add_dect() {
+inline ::Message::Detection* Detections::add_dect() {
   return dect_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Detection >&
+inline const ::google::protobuf::RepeatedPtrField< ::Message::Detection >&
 Detections::dect() const {
   return dect_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Detection >*
+inline ::google::protobuf::RepeatedPtrField< ::Message::Detection >*
 Detections::mutable_dect() {
   return &dect_;
 }
@@ -303,7 +303,7 @@ Detections::mutable_dect() {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace Filesystem
+}  // namespace Message
 
 #ifndef SWIG
 namespace google {

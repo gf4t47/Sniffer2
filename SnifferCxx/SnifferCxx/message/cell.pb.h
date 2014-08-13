@@ -27,7 +27,7 @@
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
-namespace Filesystem {
+namespace Message {
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_cell_2eproto();
@@ -130,7 +130,7 @@ class Coordinate : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_coord_item();
 
-  // @@protoc_insertion_point(class_scope:Filesystem.Coordinate)
+  // @@protoc_insertion_point(class_scope:Message.Coordinate)
  private:
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
@@ -215,7 +215,7 @@ class Cell_WindVector : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedField< double >*
       mutable_wv_item();
 
-  // @@protoc_insertion_point(class_scope:Filesystem.Cell.WindVector)
+  // @@protoc_insertion_point(class_scope:Message.Cell.WindVector)
  private:
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
@@ -288,25 +288,25 @@ class Cell_Wind : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required .Filesystem.Cell.WindVector wind = 1;
+  // required .Message.Cell.WindVector wind = 1;
   inline bool has_wind() const;
   inline void clear_wind();
   static const int kWindFieldNumber = 1;
-  inline const ::Filesystem::Cell_WindVector& wind() const;
-  inline ::Filesystem::Cell_WindVector* mutable_wind();
-  inline ::Filesystem::Cell_WindVector* release_wind();
-  inline void set_allocated_wind(::Filesystem::Cell_WindVector* wind);
+  inline const ::Message::Cell_WindVector& wind() const;
+  inline ::Message::Cell_WindVector* mutable_wind();
+  inline ::Message::Cell_WindVector* release_wind();
+  inline void set_allocated_wind(::Message::Cell_WindVector* wind);
 
-  // required .Filesystem.Cell.WindVector potential = 2;
+  // required .Message.Cell.WindVector potential = 2;
   inline bool has_potential() const;
   inline void clear_potential();
   static const int kPotentialFieldNumber = 2;
-  inline const ::Filesystem::Cell_WindVector& potential() const;
-  inline ::Filesystem::Cell_WindVector* mutable_potential();
-  inline ::Filesystem::Cell_WindVector* release_potential();
-  inline void set_allocated_potential(::Filesystem::Cell_WindVector* potential);
+  inline const ::Message::Cell_WindVector& potential() const;
+  inline ::Message::Cell_WindVector* mutable_potential();
+  inline ::Message::Cell_WindVector* release_potential();
+  inline void set_allocated_potential(::Message::Cell_WindVector* potential);
 
-  // @@protoc_insertion_point(class_scope:Filesystem.Cell.Wind)
+  // @@protoc_insertion_point(class_scope:Message.Cell.Wind)
  private:
   inline void set_has_wind();
   inline void clear_has_wind();
@@ -315,8 +315,8 @@ class Cell_Wind : public ::google::protobuf::Message {
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::Filesystem::Cell_WindVector* wind_;
-  ::Filesystem::Cell_WindVector* potential_;
+  ::Message::Cell_WindVector* wind_;
+  ::Message::Cell_WindVector* potential_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
@@ -391,7 +391,7 @@ class Cell_Methane : public ::google::protobuf::Message {
   inline double concentration() const;
   inline void set_concentration(double value);
 
-  // @@protoc_insertion_point(class_scope:Filesystem.Cell.Methane)
+  // @@protoc_insertion_point(class_scope:Message.Cell.Methane)
  private:
   inline void set_has_concentration();
   inline void clear_has_concentration();
@@ -470,41 +470,41 @@ class Cell : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required .Filesystem.Coordinate coord = 1;
+  // required .Message.Coordinate coord = 1;
   inline bool has_coord() const;
   inline void clear_coord();
   static const int kCoordFieldNumber = 1;
-  inline const ::Filesystem::Coordinate& coord() const;
-  inline ::Filesystem::Coordinate* mutable_coord();
-  inline ::Filesystem::Coordinate* release_coord();
-  inline void set_allocated_coord(::Filesystem::Coordinate* coord);
+  inline const ::Message::Coordinate& coord() const;
+  inline ::Message::Coordinate* mutable_coord();
+  inline ::Message::Coordinate* release_coord();
+  inline void set_allocated_coord(::Message::Coordinate* coord);
 
-  // required .Filesystem.CellTag tag = 2;
+  // required .Message.CellTag tag = 2;
   inline bool has_tag() const;
   inline void clear_tag();
   static const int kTagFieldNumber = 2;
-  inline ::Filesystem::CellTag tag() const;
-  inline void set_tag(::Filesystem::CellTag value);
+  inline ::Message::CellTag tag() const;
+  inline void set_tag(::Message::CellTag value);
 
-  // required .Filesystem.Cell.Methane mtn = 3;
+  // required .Message.Cell.Methane mtn = 3;
   inline bool has_mtn() const;
   inline void clear_mtn();
   static const int kMtnFieldNumber = 3;
-  inline const ::Filesystem::Cell_Methane& mtn() const;
-  inline ::Filesystem::Cell_Methane* mutable_mtn();
-  inline ::Filesystem::Cell_Methane* release_mtn();
-  inline void set_allocated_mtn(::Filesystem::Cell_Methane* mtn);
+  inline const ::Message::Cell_Methane& mtn() const;
+  inline ::Message::Cell_Methane* mutable_mtn();
+  inline ::Message::Cell_Methane* release_mtn();
+  inline void set_allocated_mtn(::Message::Cell_Methane* mtn);
 
-  // required .Filesystem.Cell.Wind wind = 4;
+  // required .Message.Cell.Wind wind = 4;
   inline bool has_wind() const;
   inline void clear_wind();
   static const int kWindFieldNumber = 4;
-  inline const ::Filesystem::Cell_Wind& wind() const;
-  inline ::Filesystem::Cell_Wind* mutable_wind();
-  inline ::Filesystem::Cell_Wind* release_wind();
-  inline void set_allocated_wind(::Filesystem::Cell_Wind* wind);
+  inline const ::Message::Cell_Wind& wind() const;
+  inline ::Message::Cell_Wind* mutable_wind();
+  inline ::Message::Cell_Wind* release_wind();
+  inline void set_allocated_wind(::Message::Cell_Wind* wind);
 
-  // @@protoc_insertion_point(class_scope:Filesystem.Cell)
+  // @@protoc_insertion_point(class_scope:Message.Cell)
  private:
   inline void set_has_coord();
   inline void clear_has_coord();
@@ -517,9 +517,9 @@ class Cell : public ::google::protobuf::Message {
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::Filesystem::Coordinate* coord_;
-  ::Filesystem::Cell_Methane* mtn_;
-  ::Filesystem::Cell_Wind* wind_;
+  ::Message::Coordinate* coord_;
+  ::Message::Cell_Methane* mtn_;
+  ::Message::Cell_Wind* wind_;
   int tag_;
 
   mutable int _cached_size_;
@@ -588,24 +588,24 @@ class Cells : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated .Filesystem.Cell cell = 1;
+  // repeated .Message.Cell cell = 1;
   inline int cell_size() const;
   inline void clear_cell();
   static const int kCellFieldNumber = 1;
-  inline const ::Filesystem::Cell& cell(int index) const;
-  inline ::Filesystem::Cell* mutable_cell(int index);
-  inline ::Filesystem::Cell* add_cell();
-  inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >&
+  inline const ::Message::Cell& cell(int index) const;
+  inline ::Message::Cell* mutable_cell(int index);
+  inline ::Message::Cell* add_cell();
+  inline const ::google::protobuf::RepeatedPtrField< ::Message::Cell >&
       cell() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >*
+  inline ::google::protobuf::RepeatedPtrField< ::Message::Cell >*
       mutable_cell();
 
-  // @@protoc_insertion_point(class_scope:Filesystem.Cells)
+  // @@protoc_insertion_point(class_scope:Message.Cells)
  private:
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell > cell_;
+  ::google::protobuf::RepeatedPtrField< ::Message::Cell > cell_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -673,37 +673,37 @@ class Map : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required .Filesystem.Coordinate startIndex = 1;
+  // required .Message.Coordinate startIndex = 1;
   inline bool has_startindex() const;
   inline void clear_startindex();
   static const int kStartIndexFieldNumber = 1;
-  inline const ::Filesystem::Coordinate& startindex() const;
-  inline ::Filesystem::Coordinate* mutable_startindex();
-  inline ::Filesystem::Coordinate* release_startindex();
-  inline void set_allocated_startindex(::Filesystem::Coordinate* startindex);
+  inline const ::Message::Coordinate& startindex() const;
+  inline ::Message::Coordinate* mutable_startindex();
+  inline ::Message::Coordinate* release_startindex();
+  inline void set_allocated_startindex(::Message::Coordinate* startindex);
 
-  // required .Filesystem.Coordinate boundary = 2;
+  // required .Message.Coordinate boundary = 2;
   inline bool has_boundary() const;
   inline void clear_boundary();
   static const int kBoundaryFieldNumber = 2;
-  inline const ::Filesystem::Coordinate& boundary() const;
-  inline ::Filesystem::Coordinate* mutable_boundary();
-  inline ::Filesystem::Coordinate* release_boundary();
-  inline void set_allocated_boundary(::Filesystem::Coordinate* boundary);
+  inline const ::Message::Coordinate& boundary() const;
+  inline ::Message::Coordinate* mutable_boundary();
+  inline ::Message::Coordinate* release_boundary();
+  inline void set_allocated_boundary(::Message::Coordinate* boundary);
 
-  // repeated .Filesystem.Cell cell = 3;
+  // repeated .Message.Cell cell = 3;
   inline int cell_size() const;
   inline void clear_cell();
   static const int kCellFieldNumber = 3;
-  inline const ::Filesystem::Cell& cell(int index) const;
-  inline ::Filesystem::Cell* mutable_cell(int index);
-  inline ::Filesystem::Cell* add_cell();
-  inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >&
+  inline const ::Message::Cell& cell(int index) const;
+  inline ::Message::Cell* mutable_cell(int index);
+  inline ::Message::Cell* add_cell();
+  inline const ::google::protobuf::RepeatedPtrField< ::Message::Cell >&
       cell() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >*
+  inline ::google::protobuf::RepeatedPtrField< ::Message::Cell >*
       mutable_cell();
 
-  // @@protoc_insertion_point(class_scope:Filesystem.Map)
+  // @@protoc_insertion_point(class_scope:Message.Map)
  private:
   inline void set_has_startindex();
   inline void clear_has_startindex();
@@ -712,9 +712,9 @@ class Map : public ::google::protobuf::Message {
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::Filesystem::Coordinate* startindex_;
-  ::Filesystem::Coordinate* boundary_;
-  ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell > cell_;
+  ::Message::Coordinate* startindex_;
+  ::Message::Coordinate* boundary_;
+  ::google::protobuf::RepeatedPtrField< ::Message::Cell > cell_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
@@ -791,7 +791,7 @@ Cell_WindVector::mutable_wv_item() {
 
 // Cell_Wind
 
-// required .Filesystem.Cell.WindVector wind = 1;
+// required .Message.Cell.WindVector wind = 1;
 inline bool Cell_Wind::has_wind() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -802,24 +802,24 @@ inline void Cell_Wind::clear_has_wind() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Cell_Wind::clear_wind() {
-  if (wind_ != NULL) wind_->::Filesystem::Cell_WindVector::Clear();
+  if (wind_ != NULL) wind_->::Message::Cell_WindVector::Clear();
   clear_has_wind();
 }
-inline const ::Filesystem::Cell_WindVector& Cell_Wind::wind() const {
+inline const ::Message::Cell_WindVector& Cell_Wind::wind() const {
   return wind_ != NULL ? *wind_ : *default_instance_->wind_;
 }
-inline ::Filesystem::Cell_WindVector* Cell_Wind::mutable_wind() {
+inline ::Message::Cell_WindVector* Cell_Wind::mutable_wind() {
   set_has_wind();
-  if (wind_ == NULL) wind_ = new ::Filesystem::Cell_WindVector;
+  if (wind_ == NULL) wind_ = new ::Message::Cell_WindVector;
   return wind_;
 }
-inline ::Filesystem::Cell_WindVector* Cell_Wind::release_wind() {
+inline ::Message::Cell_WindVector* Cell_Wind::release_wind() {
   clear_has_wind();
-  ::Filesystem::Cell_WindVector* temp = wind_;
+  ::Message::Cell_WindVector* temp = wind_;
   wind_ = NULL;
   return temp;
 }
-inline void Cell_Wind::set_allocated_wind(::Filesystem::Cell_WindVector* wind) {
+inline void Cell_Wind::set_allocated_wind(::Message::Cell_WindVector* wind) {
   delete wind_;
   wind_ = wind;
   if (wind) {
@@ -829,7 +829,7 @@ inline void Cell_Wind::set_allocated_wind(::Filesystem::Cell_WindVector* wind) {
   }
 }
 
-// required .Filesystem.Cell.WindVector potential = 2;
+// required .Message.Cell.WindVector potential = 2;
 inline bool Cell_Wind::has_potential() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -840,24 +840,24 @@ inline void Cell_Wind::clear_has_potential() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void Cell_Wind::clear_potential() {
-  if (potential_ != NULL) potential_->::Filesystem::Cell_WindVector::Clear();
+  if (potential_ != NULL) potential_->::Message::Cell_WindVector::Clear();
   clear_has_potential();
 }
-inline const ::Filesystem::Cell_WindVector& Cell_Wind::potential() const {
+inline const ::Message::Cell_WindVector& Cell_Wind::potential() const {
   return potential_ != NULL ? *potential_ : *default_instance_->potential_;
 }
-inline ::Filesystem::Cell_WindVector* Cell_Wind::mutable_potential() {
+inline ::Message::Cell_WindVector* Cell_Wind::mutable_potential() {
   set_has_potential();
-  if (potential_ == NULL) potential_ = new ::Filesystem::Cell_WindVector;
+  if (potential_ == NULL) potential_ = new ::Message::Cell_WindVector;
   return potential_;
 }
-inline ::Filesystem::Cell_WindVector* Cell_Wind::release_potential() {
+inline ::Message::Cell_WindVector* Cell_Wind::release_potential() {
   clear_has_potential();
-  ::Filesystem::Cell_WindVector* temp = potential_;
+  ::Message::Cell_WindVector* temp = potential_;
   potential_ = NULL;
   return temp;
 }
-inline void Cell_Wind::set_allocated_potential(::Filesystem::Cell_WindVector* potential) {
+inline void Cell_Wind::set_allocated_potential(::Message::Cell_WindVector* potential) {
   delete potential_;
   potential_ = potential;
   if (potential) {
@@ -897,7 +897,7 @@ inline void Cell_Methane::set_concentration(double value) {
 
 // Cell
 
-// required .Filesystem.Coordinate coord = 1;
+// required .Message.Coordinate coord = 1;
 inline bool Cell::has_coord() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -908,24 +908,24 @@ inline void Cell::clear_has_coord() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Cell::clear_coord() {
-  if (coord_ != NULL) coord_->::Filesystem::Coordinate::Clear();
+  if (coord_ != NULL) coord_->::Message::Coordinate::Clear();
   clear_has_coord();
 }
-inline const ::Filesystem::Coordinate& Cell::coord() const {
+inline const ::Message::Coordinate& Cell::coord() const {
   return coord_ != NULL ? *coord_ : *default_instance_->coord_;
 }
-inline ::Filesystem::Coordinate* Cell::mutable_coord() {
+inline ::Message::Coordinate* Cell::mutable_coord() {
   set_has_coord();
-  if (coord_ == NULL) coord_ = new ::Filesystem::Coordinate;
+  if (coord_ == NULL) coord_ = new ::Message::Coordinate;
   return coord_;
 }
-inline ::Filesystem::Coordinate* Cell::release_coord() {
+inline ::Message::Coordinate* Cell::release_coord() {
   clear_has_coord();
-  ::Filesystem::Coordinate* temp = coord_;
+  ::Message::Coordinate* temp = coord_;
   coord_ = NULL;
   return temp;
 }
-inline void Cell::set_allocated_coord(::Filesystem::Coordinate* coord) {
+inline void Cell::set_allocated_coord(::Message::Coordinate* coord) {
   delete coord_;
   coord_ = coord;
   if (coord) {
@@ -935,7 +935,7 @@ inline void Cell::set_allocated_coord(::Filesystem::Coordinate* coord) {
   }
 }
 
-// required .Filesystem.CellTag tag = 2;
+// required .Message.CellTag tag = 2;
 inline bool Cell::has_tag() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -949,16 +949,16 @@ inline void Cell::clear_tag() {
   tag_ = 1;
   clear_has_tag();
 }
-inline ::Filesystem::CellTag Cell::tag() const {
-  return static_cast< ::Filesystem::CellTag >(tag_);
+inline ::Message::CellTag Cell::tag() const {
+  return static_cast< ::Message::CellTag >(tag_);
 }
-inline void Cell::set_tag(::Filesystem::CellTag value) {
-  assert(::Filesystem::CellTag_IsValid(value));
+inline void Cell::set_tag(::Message::CellTag value) {
+  assert(::Message::CellTag_IsValid(value));
   set_has_tag();
   tag_ = value;
 }
 
-// required .Filesystem.Cell.Methane mtn = 3;
+// required .Message.Cell.Methane mtn = 3;
 inline bool Cell::has_mtn() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -969,24 +969,24 @@ inline void Cell::clear_has_mtn() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void Cell::clear_mtn() {
-  if (mtn_ != NULL) mtn_->::Filesystem::Cell_Methane::Clear();
+  if (mtn_ != NULL) mtn_->::Message::Cell_Methane::Clear();
   clear_has_mtn();
 }
-inline const ::Filesystem::Cell_Methane& Cell::mtn() const {
+inline const ::Message::Cell_Methane& Cell::mtn() const {
   return mtn_ != NULL ? *mtn_ : *default_instance_->mtn_;
 }
-inline ::Filesystem::Cell_Methane* Cell::mutable_mtn() {
+inline ::Message::Cell_Methane* Cell::mutable_mtn() {
   set_has_mtn();
-  if (mtn_ == NULL) mtn_ = new ::Filesystem::Cell_Methane;
+  if (mtn_ == NULL) mtn_ = new ::Message::Cell_Methane;
   return mtn_;
 }
-inline ::Filesystem::Cell_Methane* Cell::release_mtn() {
+inline ::Message::Cell_Methane* Cell::release_mtn() {
   clear_has_mtn();
-  ::Filesystem::Cell_Methane* temp = mtn_;
+  ::Message::Cell_Methane* temp = mtn_;
   mtn_ = NULL;
   return temp;
 }
-inline void Cell::set_allocated_mtn(::Filesystem::Cell_Methane* mtn) {
+inline void Cell::set_allocated_mtn(::Message::Cell_Methane* mtn) {
   delete mtn_;
   mtn_ = mtn;
   if (mtn) {
@@ -996,7 +996,7 @@ inline void Cell::set_allocated_mtn(::Filesystem::Cell_Methane* mtn) {
   }
 }
 
-// required .Filesystem.Cell.Wind wind = 4;
+// required .Message.Cell.Wind wind = 4;
 inline bool Cell::has_wind() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -1007,24 +1007,24 @@ inline void Cell::clear_has_wind() {
   _has_bits_[0] &= ~0x00000008u;
 }
 inline void Cell::clear_wind() {
-  if (wind_ != NULL) wind_->::Filesystem::Cell_Wind::Clear();
+  if (wind_ != NULL) wind_->::Message::Cell_Wind::Clear();
   clear_has_wind();
 }
-inline const ::Filesystem::Cell_Wind& Cell::wind() const {
+inline const ::Message::Cell_Wind& Cell::wind() const {
   return wind_ != NULL ? *wind_ : *default_instance_->wind_;
 }
-inline ::Filesystem::Cell_Wind* Cell::mutable_wind() {
+inline ::Message::Cell_Wind* Cell::mutable_wind() {
   set_has_wind();
-  if (wind_ == NULL) wind_ = new ::Filesystem::Cell_Wind;
+  if (wind_ == NULL) wind_ = new ::Message::Cell_Wind;
   return wind_;
 }
-inline ::Filesystem::Cell_Wind* Cell::release_wind() {
+inline ::Message::Cell_Wind* Cell::release_wind() {
   clear_has_wind();
-  ::Filesystem::Cell_Wind* temp = wind_;
+  ::Message::Cell_Wind* temp = wind_;
   wind_ = NULL;
   return temp;
 }
-inline void Cell::set_allocated_wind(::Filesystem::Cell_Wind* wind) {
+inline void Cell::set_allocated_wind(::Message::Cell_Wind* wind) {
   delete wind_;
   wind_ = wind;
   if (wind) {
@@ -1038,27 +1038,27 @@ inline void Cell::set_allocated_wind(::Filesystem::Cell_Wind* wind) {
 
 // Cells
 
-// repeated .Filesystem.Cell cell = 1;
+// repeated .Message.Cell cell = 1;
 inline int Cells::cell_size() const {
   return cell_.size();
 }
 inline void Cells::clear_cell() {
   cell_.Clear();
 }
-inline const ::Filesystem::Cell& Cells::cell(int index) const {
+inline const ::Message::Cell& Cells::cell(int index) const {
   return cell_.Get(index);
 }
-inline ::Filesystem::Cell* Cells::mutable_cell(int index) {
+inline ::Message::Cell* Cells::mutable_cell(int index) {
   return cell_.Mutable(index);
 }
-inline ::Filesystem::Cell* Cells::add_cell() {
+inline ::Message::Cell* Cells::add_cell() {
   return cell_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >&
+inline const ::google::protobuf::RepeatedPtrField< ::Message::Cell >&
 Cells::cell() const {
   return cell_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >*
+inline ::google::protobuf::RepeatedPtrField< ::Message::Cell >*
 Cells::mutable_cell() {
   return &cell_;
 }
@@ -1067,7 +1067,7 @@ Cells::mutable_cell() {
 
 // Map
 
-// required .Filesystem.Coordinate startIndex = 1;
+// required .Message.Coordinate startIndex = 1;
 inline bool Map::has_startindex() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1078,24 +1078,24 @@ inline void Map::clear_has_startindex() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Map::clear_startindex() {
-  if (startindex_ != NULL) startindex_->::Filesystem::Coordinate::Clear();
+  if (startindex_ != NULL) startindex_->::Message::Coordinate::Clear();
   clear_has_startindex();
 }
-inline const ::Filesystem::Coordinate& Map::startindex() const {
+inline const ::Message::Coordinate& Map::startindex() const {
   return startindex_ != NULL ? *startindex_ : *default_instance_->startindex_;
 }
-inline ::Filesystem::Coordinate* Map::mutable_startindex() {
+inline ::Message::Coordinate* Map::mutable_startindex() {
   set_has_startindex();
-  if (startindex_ == NULL) startindex_ = new ::Filesystem::Coordinate;
+  if (startindex_ == NULL) startindex_ = new ::Message::Coordinate;
   return startindex_;
 }
-inline ::Filesystem::Coordinate* Map::release_startindex() {
+inline ::Message::Coordinate* Map::release_startindex() {
   clear_has_startindex();
-  ::Filesystem::Coordinate* temp = startindex_;
+  ::Message::Coordinate* temp = startindex_;
   startindex_ = NULL;
   return temp;
 }
-inline void Map::set_allocated_startindex(::Filesystem::Coordinate* startindex) {
+inline void Map::set_allocated_startindex(::Message::Coordinate* startindex) {
   delete startindex_;
   startindex_ = startindex;
   if (startindex) {
@@ -1105,7 +1105,7 @@ inline void Map::set_allocated_startindex(::Filesystem::Coordinate* startindex) 
   }
 }
 
-// required .Filesystem.Coordinate boundary = 2;
+// required .Message.Coordinate boundary = 2;
 inline bool Map::has_boundary() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1116,24 +1116,24 @@ inline void Map::clear_has_boundary() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void Map::clear_boundary() {
-  if (boundary_ != NULL) boundary_->::Filesystem::Coordinate::Clear();
+  if (boundary_ != NULL) boundary_->::Message::Coordinate::Clear();
   clear_has_boundary();
 }
-inline const ::Filesystem::Coordinate& Map::boundary() const {
+inline const ::Message::Coordinate& Map::boundary() const {
   return boundary_ != NULL ? *boundary_ : *default_instance_->boundary_;
 }
-inline ::Filesystem::Coordinate* Map::mutable_boundary() {
+inline ::Message::Coordinate* Map::mutable_boundary() {
   set_has_boundary();
-  if (boundary_ == NULL) boundary_ = new ::Filesystem::Coordinate;
+  if (boundary_ == NULL) boundary_ = new ::Message::Coordinate;
   return boundary_;
 }
-inline ::Filesystem::Coordinate* Map::release_boundary() {
+inline ::Message::Coordinate* Map::release_boundary() {
   clear_has_boundary();
-  ::Filesystem::Coordinate* temp = boundary_;
+  ::Message::Coordinate* temp = boundary_;
   boundary_ = NULL;
   return temp;
 }
-inline void Map::set_allocated_boundary(::Filesystem::Coordinate* boundary) {
+inline void Map::set_allocated_boundary(::Message::Coordinate* boundary) {
   delete boundary_;
   boundary_ = boundary;
   if (boundary) {
@@ -1143,27 +1143,27 @@ inline void Map::set_allocated_boundary(::Filesystem::Coordinate* boundary) {
   }
 }
 
-// repeated .Filesystem.Cell cell = 3;
+// repeated .Message.Cell cell = 3;
 inline int Map::cell_size() const {
   return cell_.size();
 }
 inline void Map::clear_cell() {
   cell_.Clear();
 }
-inline const ::Filesystem::Cell& Map::cell(int index) const {
+inline const ::Message::Cell& Map::cell(int index) const {
   return cell_.Get(index);
 }
-inline ::Filesystem::Cell* Map::mutable_cell(int index) {
+inline ::Message::Cell* Map::mutable_cell(int index) {
   return cell_.Mutable(index);
 }
-inline ::Filesystem::Cell* Map::add_cell() {
+inline ::Message::Cell* Map::add_cell() {
   return cell_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >&
+inline const ::google::protobuf::RepeatedPtrField< ::Message::Cell >&
 Map::cell() const {
   return cell_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Filesystem::Cell >*
+inline ::google::protobuf::RepeatedPtrField< ::Message::Cell >*
 Map::mutable_cell() {
   return &cell_;
 }
@@ -1171,15 +1171,15 @@ Map::mutable_cell() {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace Filesystem
+}  // namespace Message
 
 #ifndef SWIG
 namespace google {
 namespace protobuf {
 
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::Filesystem::CellTag>() {
-  return ::Filesystem::CellTag_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::Message::CellTag>() {
+  return ::Message::CellTag_descriptor();
 }
 
 }  // namespace google

@@ -16,7 +16,7 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
-namespace Filesystem {
+namespace Message {
 
 namespace {
 
@@ -100,12 +100,12 @@ void protobuf_AddDesc_dect_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  ::Filesystem::protobuf_AddDesc_hypothesis_2eproto();
+  ::Message::protobuf_AddDesc_hypothesis_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\ndect.proto\022\nFilesystem\032\020hypothesis.pro"
-    "to\"9\n\tDetection\022\014\n\004time\030\001 \002(\005\022\036\n\004leak\030\002 "
-    "\003(\0132\020.Filesystem.Leak\"1\n\nDetections\022#\n\004d"
-    "ect\030\001 \003(\0132\025.Filesystem.Detection", 152);
+    "\n\ndect.proto\022\007Message\032\020hypothesis.proto\""
+    "6\n\tDetection\022\014\n\004time\030\001 \002(\005\022\033\n\004leak\030\002 \003(\013"
+    "2\r.Message.Leak\".\n\nDetections\022 \n\004dect\030\001 "
+    "\003(\0132\022.Message.Detection", 143);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "dect.proto", &protobuf_RegisterTypes);
   Detection::default_instance_ = new Detection();
@@ -209,7 +209,7 @@ bool Detection::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .Filesystem.Leak leak = 2;
+      // repeated .Message.Leak leak = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -247,7 +247,7 @@ void Detection::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->time(), output);
   }
 
-  // repeated .Filesystem.Leak leak = 2;
+  // repeated .Message.Leak leak = 2;
   for (int i = 0; i < this->leak_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2, this->leak(i), output);
@@ -266,7 +266,7 @@ void Detection::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->time(), target);
   }
 
-  // repeated .Filesystem.Leak leak = 2;
+  // repeated .Message.Leak leak = 2;
   for (int i = 0; i < this->leak_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -292,7 +292,7 @@ int Detection::ByteSize() const {
     }
 
   }
-  // repeated .Filesystem.Leak leak = 2;
+  // repeated .Message.Leak leak = 2;
   total_size += 1 * this->leak_size();
   for (int i = 0; i < this->leak_size(); i++) {
     total_size +=
@@ -441,7 +441,7 @@ bool Detections::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .Filesystem.Detection dect = 1;
+      // repeated .Message.Detection dect = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -474,7 +474,7 @@ bool Detections::MergePartialFromCodedStream(
 
 void Detections::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .Filesystem.Detection dect = 1;
+  // repeated .Message.Detection dect = 1;
   for (int i = 0; i < this->dect_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->dect(i), output);
@@ -488,7 +488,7 @@ void Detections::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Detections::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .Filesystem.Detection dect = 1;
+  // repeated .Message.Detection dect = 1;
   for (int i = 0; i < this->dect_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -505,7 +505,7 @@ void Detections::SerializeWithCachedSizes(
 int Detections::ByteSize() const {
   int total_size = 0;
 
-  // repeated .Filesystem.Detection dect = 1;
+  // repeated .Message.Detection dect = 1;
   total_size += 1 * this->dect_size();
   for (int i = 0; i < this->dect_size(); i++) {
     total_size +=
@@ -582,6 +582,6 @@ void Detections::Swap(Detections* other) {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace Filesystem
+}  // namespace Message
 
 // @@protoc_insertion_point(global_scope)

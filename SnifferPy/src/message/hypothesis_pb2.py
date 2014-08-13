@@ -13,28 +13,28 @@ import cell_pb2
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='hypothesis.proto',
-  package='Filesystem',
-  serialized_pb='\n\x10hypothesis.proto\x12\nFilesystem\x1a\ncell.proto\"G\n\x04Leak\x12(\n\x08location\x18\x01 \x02(\x0b\x32\x16.Filesystem.Coordinate\x12\x15\n\rconcentration\x18\x02 \x02(\x01\"k\n\nHypothesis\x12\x13\n\x0bprobability\x18\x01 \x02(\x01\x12\x1e\n\x04leak\x18\x02 \x03(\x0b\x32\x10.Filesystem.Leak\x12(\n\rmethene_cells\x18\x03 \x03(\x0b\x32\x11.Filesystem.Cells\"1\n\nHypotheses\x12#\n\x03hyp\x18\x01 \x03(\x0b\x32\x16.Filesystem.Hypothesis\":\n\x12Hypotheses_history\x12$\n\x04hyps\x18\x01 \x03(\x0b\x32\x16.Filesystem.Hypotheses')
+  package='Message',
+  serialized_pb='\n\x10hypothesis.proto\x12\x07Message\x1a\ncell.proto\"D\n\x04Leak\x12%\n\x08location\x18\x01 \x02(\x0b\x32\x13.Message.Coordinate\x12\x15\n\rconcentration\x18\x02 \x02(\x01\"e\n\nHypothesis\x12\x13\n\x0bprobability\x18\x01 \x02(\x01\x12\x1b\n\x04leak\x18\x02 \x03(\x0b\x32\r.Message.Leak\x12%\n\rmethene_cells\x18\x03 \x03(\x0b\x32\x0e.Message.Cells\".\n\nHypotheses\x12 \n\x03hyp\x18\x01 \x03(\x0b\x32\x13.Message.Hypothesis\"7\n\x12Hypotheses_history\x12!\n\x04hyps\x18\x01 \x03(\x0b\x32\x13.Message.Hypotheses')
 
 
 
 
 _LEAK = _descriptor.Descriptor(
   name='Leak',
-  full_name='Filesystem.Leak',
+  full_name='Message.Leak',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='location', full_name='Filesystem.Leak.location', index=0,
+      name='location', full_name='Message.Leak.location', index=0,
       number=1, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='concentration', full_name='Filesystem.Leak.concentration', index=1,
+      name='concentration', full_name='Message.Leak.concentration', index=1,
       number=2, type=1, cpp_type=5, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -49,34 +49,34 @@ _LEAK = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=44,
-  serialized_end=115,
+  serialized_start=41,
+  serialized_end=109,
 )
 
 
 _HYPOTHESIS = _descriptor.Descriptor(
   name='Hypothesis',
-  full_name='Filesystem.Hypothesis',
+  full_name='Message.Hypothesis',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='probability', full_name='Filesystem.Hypothesis.probability', index=0,
+      name='probability', full_name='Message.Hypothesis.probability', index=0,
       number=1, type=1, cpp_type=5, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='leak', full_name='Filesystem.Hypothesis.leak', index=1,
+      name='leak', full_name='Message.Hypothesis.leak', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='methene_cells', full_name='Filesystem.Hypothesis.methene_cells', index=2,
+      name='methene_cells', full_name='Message.Hypothesis.methene_cells', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -91,20 +91,20 @@ _HYPOTHESIS = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=117,
-  serialized_end=224,
+  serialized_start=111,
+  serialized_end=212,
 )
 
 
 _HYPOTHESES = _descriptor.Descriptor(
   name='Hypotheses',
-  full_name='Filesystem.Hypotheses',
+  full_name='Message.Hypotheses',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='hyp', full_name='Filesystem.Hypotheses.hyp', index=0,
+      name='hyp', full_name='Message.Hypotheses.hyp', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -119,20 +119,20 @@ _HYPOTHESES = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=226,
-  serialized_end=275,
+  serialized_start=214,
+  serialized_end=260,
 )
 
 
 _HYPOTHESES_HISTORY = _descriptor.Descriptor(
   name='Hypotheses_history',
-  full_name='Filesystem.Hypotheses_history',
+  full_name='Message.Hypotheses_history',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='hyps', full_name='Filesystem.Hypotheses_history.hyps', index=0,
+      name='hyps', full_name='Message.Hypotheses_history.hyps', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -147,8 +147,8 @@ _HYPOTHESES_HISTORY = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=277,
-  serialized_end=335,
+  serialized_start=262,
+  serialized_end=317,
 )
 
 _LEAK.fields_by_name['location'].message_type = cell_pb2._COORDINATE
@@ -165,25 +165,25 @@ class Leak(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _LEAK
 
-  # @@protoc_insertion_point(class_scope:Filesystem.Leak)
+  # @@protoc_insertion_point(class_scope:Message.Leak)
 
 class Hypothesis(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _HYPOTHESIS
 
-  # @@protoc_insertion_point(class_scope:Filesystem.Hypothesis)
+  # @@protoc_insertion_point(class_scope:Message.Hypothesis)
 
 class Hypotheses(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _HYPOTHESES
 
-  # @@protoc_insertion_point(class_scope:Filesystem.Hypotheses)
+  # @@protoc_insertion_point(class_scope:Message.Hypotheses)
 
 class Hypotheses_history(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _HYPOTHESES_HISTORY
 
-  # @@protoc_insertion_point(class_scope:Filesystem.Hypotheses_history)
+  # @@protoc_insertion_point(class_scope:Message.Hypotheses_history)
 
 
 # @@protoc_insertion_point(module_scope)

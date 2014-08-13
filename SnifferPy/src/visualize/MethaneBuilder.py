@@ -1,11 +1,11 @@
 __author__ = 'Kern'
 
 import numpy
-from src.filesystem import cell_pb2
+from src.message import cell_pb2
 import mayavi.mlab as mb
+import time
 
-
-def _cells_to_vector(cells):
+def _cells_to_vector(cells, scale_facotr):
     size = len(cells.cell)
     xs = numpy.zeros(size, dtype=int)
     ys = numpy.zeros(size, dtype=int)
@@ -23,15 +23,15 @@ def _cells_to_vector(cells):
 
         methane = cell.mtn
         concentration = methane.concentration
-        us[index] = concentration
-        vs[index] = concentration
-        ws[index] = concentration
+        us[index] = concentration * scale_facotr
+        vs[index] = concentration * scale_facotr
+        ws[index] = concentration * scale_facotr
 
     return xs, ys, zs, us, vs, ws
 
 
 def _cells_list_to_vector(cells_list):
-    all_vec_list = [_cells_to_vector(cells) for cells in cells_list]
+    all_vec_list = [_cells_to_vector(cells, 1) for cells in cells_list]
     return reduce(
         lambda vec_list1, vec_list2: map(lambda vec1, vec2: numpy.concatenate((vec1, vec2)), vec_list1, vec_list2),
         all_vec_list)
@@ -43,11 +43,17 @@ def _build(vecs, fig):
     #     print "len xs = ", len(xs)
     #     return fig
 
+    print "vec length = ", len(xs), len(ys), len(zs), len(us), len(vs), len(ws)
+    # time.sleep(0.1)
+
     if not fig is None:
         fig.mlab_source.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
     else:
-        fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2, scale_mode="vector", scale_factor=0.1,
-                          mode="2dtriangle")
+        fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2, scale_mode="vector", scale_factor=0.1, mode="2dtriangle")
+
+    # time.sleep(0.1)
+    print fig
+
     return fig
 
 

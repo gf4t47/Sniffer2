@@ -15,9 +15,9 @@
 #include "initializer/DetectionInitializer.h"
 #include "backwrad/BackwardChecking.h"
 #include "forward/ForwardChecking.h"
-#include "filesystem/MessageBuilder.h"
-#include "filesystem/hypothesis.pb.h"
-#include "filesystem/dect.pb.h"
+#include "message/MessageBuilder.h"
+#include "message/hypothesis.pb.h"
+#include "message/dect.pb.h"
 #include "model/Map3D.h"
 
 using namespace std;
@@ -80,21 +80,21 @@ int main(int argc, const char * argv[])
 	}
     
     //message output
-    auto map_msg = Filesystem::MessageBuilder::buildMessage(*map);
+    auto map_msg = Message::MessageBuilder::buildMessage(*map);
     fstream map_out(map_output, ios::out | ios::trunc | ios::binary);
     if (!map_msg->SerializeToOstream(&map_out)) {
         cerr << "Failed to write msg" << endl;
 		return -1;
     }
     
-    auto dect_msg = Filesystem::MessageBuilder::buildMessage(*dect_vect);
+    auto dect_msg = Message::MessageBuilder::buildMessage(*dect_vect);
     fstream dect_out(dect_output, ios::out | ios::trunc | ios::binary);
     if (!dect_msg->SerializeToOstream(&dect_out)) {
         cerr << "Failed to write msg" << endl;
 		return -1;
     }
 
-	auto mtn_msg = Filesystem::MessageBuilder::buildMessage(hyps_hist, hypI.getIdealCells());
+	auto mtn_msg = Message::MessageBuilder::buildMessage(hyps_hist, hypI.getIdealCells());
 	fstream mtn_out(mtn_output, ios::out | ios::trunc | ios::binary);
 	if (!mtn_msg->SerializeToOstream(&mtn_out)) {
 		cerr << "Failed to write msg" << endl;
