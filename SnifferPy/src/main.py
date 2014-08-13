@@ -43,10 +43,6 @@ hyps_his = MessageParser.parse_mtn(mtn_output).hyps
 fig_hyp = MethaneBuilder.build(hyps_his[0], None)
 fig_dect = None
 for hyps, dect in zip(hyps_his[1:], dects):
-    if not fig_hyp is None:
-        fig_hyp.remove()
-        fig_hyp = None
-
     fig_dect = DetectionBuilder.build(dect, hyps, fig_dect)
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
 

@@ -21,8 +21,7 @@ def _cells_to_vector(cells, scale_facotr):
         ys[index] = coord.coord_item[1]
         zs[index] = coord.coord_item[2]
 
-        methane = cell.mtn
-        concentration = methane.concentration
+        concentration = cell.mtn.concentration
         us[index] = concentration * scale_facotr
         vs[index] = concentration * scale_facotr
         ws[index] = concentration * scale_facotr
@@ -30,8 +29,8 @@ def _cells_to_vector(cells, scale_facotr):
     return xs, ys, zs, us, vs, ws
 
 
-def _cells_list_to_vector(cells_list):
-    all_vec_list = [_cells_to_vector(cells, 1) for cells in cells_list]
+def _cells_list_to_vector(cells_list, prob_list):
+    all_vec_list = [_cells_to_vector(cells, prob) for cells, prob in zip(cells_list, prob_list)]
     return reduce(
         lambda vec_list1, vec_list2: map(lambda vec1, vec2: numpy.concatenate((vec1, vec2)), vec_list1, vec_list2),
         all_vec_list)
@@ -43,25 +42,28 @@ def _build(vecs, fig):
     #     print "len xs = ", len(xs)
     #     return fig
 
-    print "vec length = ", len(xs), len(ys), len(zs), len(us), len(vs), len(ws)
+    # print "vec length = ", len(xs), len(ys), len(zs), len(us), len(vs), len(ws)
     # time.sleep(0.1)
 
     if not fig is None:
         fig.mlab_source.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
     else:
-        fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2, scale_mode="vector", scale_factor=0.1, mode="2dtriangle")
+        fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_mode="vector", mode="2dtriangle")
+        fig.glyph.scale_mode = 'scale_by_vector'
 
     # time.sleep(0.1)
-    print fig
+    # print fig
 
     return fig
 
 
 def build(hyps, fig):
-    print map(lambda hyp : hyp.probability, hyps.hyp)
-    cells_his_list = map(lambda hyp: hyp.methene_cells, hyps.hyp)
-    for index, cells_list in enumerate(zip(*cells_his_list)):
-        all_vecs = _cells_list_to_vector(cells_list)
+    print "probability =", map(lambda hyp : hyp.probability, hyps.hyp)
+    # prob_list = [hyp.probability for hyp in hyps.hyp]
+    prob_list = [1, 1, 1]
+    cells_his_list = [hyp.methene_cells for hyp in hyps.hyp]
+    for cells_list in zip(*cells_his_list):
+        all_vecs = _cells_list_to_vector(cells_list, prob_list)
         fig = _build(all_vecs, fig)
 
     return fig
