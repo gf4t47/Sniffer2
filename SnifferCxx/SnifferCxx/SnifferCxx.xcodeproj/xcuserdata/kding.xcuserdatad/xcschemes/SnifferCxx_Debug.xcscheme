@@ -82,6 +82,10 @@
             argument = "/Users/kding/Desktop/Sniffer2/bridge/output/dect.bin"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Users/kding/Desktop/Sniffer2/bridge/output/can.bin"
+            isEnabled = "YES">
+         </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>

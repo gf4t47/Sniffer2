@@ -14,6 +14,7 @@
 #include "initializer/MapBuilder.h"
 #include "initializer/DetectionInitializer.h"
 #include "backwrad/BackwardChecking.h"
+#include "backwrad/InformationGain.h"
 #include "forward/ForwardChecking.h"
 #include "message/MessageBuilder.h"
 #include "message/hypothesis.pb.h"
@@ -27,8 +28,9 @@ int main(int argc, const char * argv[])
 {
 	using namespace Initializer;
 	using namespace Forward;
+    using namespace Backward;
     
-    if (argc < 7) {
+    if (argc < 8) {
         cerr << argv[0] << " Missing some argument to indicate input files" << endl;
         return -1;
     }
@@ -39,6 +41,7 @@ int main(int argc, const char * argv[])
     string mtn_output = argv[4];
     string map_output = argv[5];
     string dect_output = argv[6];
+    string can_output= argv[7];
 
     //load map
     MapBuilder mb(map_cfg);
@@ -52,17 +55,31 @@ int main(int argc, const char * argv[])
     
     //load detection
 	shared_ptr<vector<Detection>> dect_vect;
+	shared_ptr<vector<Detection>> can_vect;
 	bool multiple_thread;
-    tie(dect_vect, multiple_thread) = DetectionInitializer::load(dect_cfg);
+    tie(dect_vect, can_vect, multiple_thread) = DetectionInitializer::load(dect_cfg);
 
     //calculation
     vector<shared_ptr<vector<Hypothesis>>> hyps_hist;
+    vector<shared_ptr<vector<Hypothesis>>> hyps_future;
     hyps_hist.push_back(hyps);
     if (!multiple_thread) {
-        for (auto dect : *dect_vect)
+        for (auto const & dect : *dect_vect)
         {
             hyps = backward->updateHypotheses(*hyps, *map, dect.detected_, dect.time_, forward);
             hyps_hist.push_back(hyps);
+        }
+        
+        InformationGain infoGain(*forward, *backward, *map);
+        for (auto & candidate : *can_vect) {
+            infoGain.setTime(candidate.time_);
+            
+            vector<Coordinate> locations(candidate.detected_.size());
+            transform(candidate.detected_.begin(), candidate.detected_.end(), locations.begin(), [](const Leak & can){return can.location_; });
+            auto gain_vec = infoGain.calcInforGains(locations, *hyps);
+            for (int i = 0; i < candidate.detected_.size(); i++) {
+                candidate.detected_[i].concentration_ = gain_vec[i];
+            }
         }
     }
 	else {
@@ -70,7 +87,7 @@ int main(int argc, const char * argv[])
 		std::thread forward_task(&ForwardChecking::work, forward, hyps, std::ref(*map), std::ref(forward_alive), std::ref(hyps_hist));
 		forward_task.detach();
 
-		for (auto dect : *dect_vect)
+		for (auto const & dect : *dect_vect)
 		{
 			std::chrono::milliseconds dura(dect.time_ * 100);
 			std::this_thread::sleep_for(dura);
@@ -90,6 +107,13 @@ int main(int argc, const char * argv[])
     auto dect_msg = Message::MessageBuilder::buildMessage(*dect_vect);
     fstream dect_out(dect_output, ios::out | ios::trunc | ios::binary);
     if (!dect_msg->SerializeToOstream(&dect_out)) {
+        cerr << "Failed to write msg" << endl;
+		return -1;
+    }
+    
+    auto can_msg = Message::MessageBuilder::buildMessage(*can_vect);
+    fstream can_out(can_output, ios::out | ios::trunc | ios::binary);
+    if (!can_msg->SerializeToOstream(&can_out)) {
         cerr << "Failed to write msg" << endl;
 		return -1;
     }

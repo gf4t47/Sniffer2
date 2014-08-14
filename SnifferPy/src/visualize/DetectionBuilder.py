@@ -35,9 +35,9 @@ def build(dect, hyps, fig):
     # print loc, vec
 
     if not fig is None:
-        fig.mlab_source.set(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
-    else:
-        fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2, scale_mode="vector", scale_factor=1, mode="2dthick_arrow", colormap="Set3")
+        fig.glyph.color_mode = 'color_by_scalar'
+
+    fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_factor=1.0, mode="2dthick_arrow", colormap="cool")
 
     # print fig
 
