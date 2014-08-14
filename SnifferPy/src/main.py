@@ -43,10 +43,14 @@ candidates = MessageParser.parse_dect(can_output).dect
 hyps_his = MessageParser.parse_mtn(mtn_output).hyps
 # fig_wind.remove()
 
-fig_hyp = MethaneBuilder.build(hyps_his[0], (None, None))
+fig_hyp = MethaneBuilder.build(hyps_his[0], [None, None])
 fig_dect = None
+
 for hyps, dect in zip(hyps_his[1:], dects):
     fig_dect = DetectionBuilder.build(dect, hyps, fig_dect)
+
+    map(lambda fig: fig.remove(), filter(lambda fig: not fig is None, fig_hyp))
+    fig_hyp = [None, None]
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
 
 fig_can = None

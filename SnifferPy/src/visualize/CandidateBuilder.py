@@ -15,14 +15,14 @@ def build(candidate, fig):
     ws = numpy.empty(size)
 
     for index, (loc, infor_gain) in enumerate([(leak.location, leak.concentration) for leak in candidate.leak]):
-        print infor_gain
+        print "information gain =", loc.coord_item, "->", infor_gain
         xs[index], ys[index], zs[index] = loc.coord_item
         us[index] = infor_gain
         vs[index] = infor_gain
         ws[index] = infor_gain
 
     if fig is None:
-        fig = mb.quiver3d(xs, ys, zs, us, vs, ws, scale_mode="vector", mode="2dcross", colormap="cool")
+        fig = mb.quiver3d(xs, ys, zs, us, vs, ws, scale_mode="vector", mode="2dcross", colormap="Spectral")
     else:
         fig.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
 

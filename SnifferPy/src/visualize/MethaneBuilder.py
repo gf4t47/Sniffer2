@@ -39,8 +39,8 @@ def _cells_list_to_vector(cells_list):
 def _build(vecs, fig, color):
     xs, ys, zs, us, vs, ws = vecs
 
-    print "vec length = ", len(xs), len(ys), len(zs), len(us), len(vs), len(ws)
-    time.sleep(0.1)
+    # print "vec length = ", len(xs), len(ys), len(zs), len(us), len(vs), len(ws)
+    # time.sleep(0.1)
 
     if not fig is None:
         fig.mlab_source.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
@@ -48,8 +48,8 @@ def _build(vecs, fig, color):
         fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_mode="vector", mode="2dtriangle", colormap=color)
         fig.glyph.scale_mode = 'scale_by_vector'
 
-    time.sleep(0.1)
-    print fig
+    # time.sleep(0.1)
+    # print fig
 
     return fig
 

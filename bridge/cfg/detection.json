@@ -49,8 +49,8 @@
     		[
     			{"location" : [55, 37, 0]},
     			{"location" : [55, 27, 0]},
-    			{"location" : [85, 27, 0]},
-    			{"location" : [85, 37, 0]}
+    			{"location" : [75, 27, 0]},
+    			{"location" : [75, 37, 0]}
     		],
     		"repeat" : 1
     	}

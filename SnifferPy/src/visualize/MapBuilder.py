@@ -16,8 +16,8 @@ def _build_surface(start_index, boundary):
     xs, ys = numpy.mgrid[start_index[0]: start_index[0] + boundary[0], start_index[1]: start_index[1] + boundary[1]]
     zs = numpy.zeros(xs.shape)
     zs.fill(start_index[2])
-    surf_fig = mb.surf(xs, ys, zs, colormap="Accent", warp_scale="auto")
-    return surf_fig
+
+    return mb.surf(xs, ys, zs, colormap="Accent", warp_scale="auto")
 
 
 def _build_building(location, boundary):
@@ -38,9 +38,6 @@ def _build_buildings(bld_cells):
     vecs[3] = numpy.ones(len(vecs[1]))
 
     return vecs
-
-def _build_wind(air_cells):
-    pass
 
 
 def build_from_json(m_dict):
