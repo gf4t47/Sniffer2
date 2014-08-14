@@ -8,9 +8,6 @@
     <Filter Include="backward">
       <UniqueIdentifier>{a4146118-f4ce-483e-8a13-df8b81b4a00b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="filesystem">
-      <UniqueIdentifier>{d9adc8e1-09cd-4172-b2ac-7f155062e8a7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="forward">
       <UniqueIdentifier>{7b134845-092c-4cae-a062-b44aee3e45fd}</UniqueIdentifier>
     </Filter>
@@ -22,6 +19,9 @@
     </Filter>
     <Filter Include="initializer">
       <UniqueIdentifier>{f971397b-66c7-4b2d-a305-97fc4f6ac1ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="message">
+      <UniqueIdentifier>{2f097f1b-3a00-4ee0-9c0c-e16bf952a42d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -70,15 +70,6 @@
     <ClCompile Include="model\WindVector.cpp">
       <Filter>model</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\cell.pb.cc">
-      <Filter>filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\hypothesis.pb.cc">
-      <Filter>filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\MessageBuilder.cpp">
-      <Filter>filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="initializer\HypothesisInitializer.cpp">
       <Filter>initializer</Filter>
     </ClCompile>
@@ -92,8 +83,17 @@
     <ClCompile Include="initializer\DetectionInitializer.cpp">
       <Filter>initializer</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\dect.pb.cc">
-      <Filter>filesystem</Filter>
+    <ClCompile Include="message\cell.pb.cc">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\dect.pb.cc">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\hypothesis.pb.cc">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\MessageBuilder.cpp">
+      <Filter>message</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,15 +142,6 @@
     <ClInclude Include="forward\UpdateByConvolution.h">
       <Filter>forward</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\cell.pb.h">
-      <Filter>filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\hypothesis.pb.h">
-      <Filter>filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\MessageBuilder.h">
-      <Filter>filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="initializer\HypothesisInitializer.h">
       <Filter>initializer</Filter>
     </ClInclude>
@@ -163,8 +154,17 @@
     <ClInclude Include="initializer\DetectionInitializer.h">
       <Filter>initializer</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\dect.pb.h">
-      <Filter>filesystem</Filter>
+    <ClInclude Include="message\cell.pb.h">
+      <Filter>message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\dect.pb.h">
+      <Filter>message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\hypothesis.pb.h">
+      <Filter>message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\MessageBuilder.h">
+      <Filter>message</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

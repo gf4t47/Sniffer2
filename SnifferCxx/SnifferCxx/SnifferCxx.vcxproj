@@ -182,10 +182,6 @@
   <ItemGroup>
     <ClCompile Include="backwrad\BackwardChecking.cpp" />
     <ClCompile Include="backwrad\InformationGain.cpp" />
-    <ClCompile Include="filesystem\cell.pb.cc" />
-    <ClCompile Include="filesystem\dect.pb.cc" />
-    <ClCompile Include="filesystem\hypothesis.pb.cc" />
-    <ClCompile Include="filesystem\MessageBuilder.cpp" />
     <ClCompile Include="forward\ForwardChecking.cpp" />
     <ClCompile Include="forward\UpdateByCell.cpp" />
     <ClCompile Include="forward\UpdateByConvolution.cpp" />
@@ -196,6 +192,10 @@
     <ClCompile Include="math\Gamma.cpp" />
     <ClCompile Include="math\Gaussian.cpp" />
     <ClCompile Include="math\GaussianBlur.cpp" />
+    <ClCompile Include="message\cell.pb.cc" />
+    <ClCompile Include="message\dect.pb.cc" />
+    <ClCompile Include="message\hypothesis.pb.cc" />
+    <ClCompile Include="message\MessageBuilder.cpp" />
     <ClCompile Include="model\Cell.cpp" />
     <ClCompile Include="model\Cells.cpp" />
     <ClCompile Include="model\Coordinate.cpp" />
@@ -208,10 +208,6 @@
   <ItemGroup>
     <ClInclude Include="backwrad\BackwardChecking.h" />
     <ClInclude Include="backwrad\InformationGain.h" />
-    <ClInclude Include="filesystem\cell.pb.h" />
-    <ClInclude Include="filesystem\dect.pb.h" />
-    <ClInclude Include="filesystem\hypothesis.pb.h" />
-    <ClInclude Include="filesystem\MessageBuilder.h" />
     <ClInclude Include="forward\ForwardChecking.h" />
     <ClInclude Include="forward\UpdateByCell.h" />
     <ClInclude Include="forward\UpdateByConvolution.h" />
@@ -221,6 +217,10 @@
     <ClInclude Include="math\Gamma.h" />
     <ClInclude Include="math\Gaussian.h" />
     <ClInclude Include="math\GaussianBlur.h" />
+    <ClInclude Include="message\cell.pb.h" />
+    <ClInclude Include="message\dect.pb.h" />
+    <ClInclude Include="message\hypothesis.pb.h" />
+    <ClInclude Include="message\MessageBuilder.h" />
     <ClInclude Include="model\Cell.h" />
     <ClInclude Include="model\Cells.h" />
     <ClInclude Include="model\Coordinate.h" />

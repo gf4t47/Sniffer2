@@ -8,6 +8,7 @@
 
 #include "Gaussian.h"
 #include <random>
+#include <chrono>
 
 namespace Math {
     using namespace std;
