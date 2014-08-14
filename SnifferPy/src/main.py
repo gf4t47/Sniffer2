@@ -6,6 +6,7 @@ from initializer import MapParser
 from visualize import MapBuilder
 from visualize import MethaneBuilder
 from visualize import DetectionBuilder
+from visualize import CandidateBuilder
 
 import mayavi.mlab as mb
 
@@ -45,10 +46,12 @@ hyps_his = MessageParser.parse_mtn(mtn_output).hyps
 fig_hyp = MethaneBuilder.build(hyps_his[0], (None, None))
 fig_dect = None
 for hyps, dect in zip(hyps_his[1:], dects):
-    # fig_dect = DetectionBuilder.build(dect, hyps, fig_dect)
+    fig_dect = DetectionBuilder.build(dect, hyps, fig_dect)
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
 
-
+fig_can = None
+for can in candidates:
+    fig_can = CandidateBuilder.build(can, fig_can)
 
 mb.show()
 

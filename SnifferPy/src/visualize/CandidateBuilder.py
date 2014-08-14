@@ -5,12 +5,25 @@ import numpy
 import mayavi.mlab as mb
 
 
-def build(dect, hyps, fig):
-    
+def build(candidate, fig):
+    size = len(candidate.leak)
+    xs = numpy.empty(size, dtype=int)
+    ys = numpy.empty(size, dtype=int)
+    zs = numpy.empty(size, dtype=int)
+    us = numpy.empty(size)
+    vs = numpy.empty(size)
+    ws = numpy.empty(size)
 
-    if not fig is None:
-        fig.glyph.color_mode = 'color_by_scalar'
+    for index, (loc, infor_gain) in enumerate([(leak.location, leak.concentration) for leak in candidate.leak]):
+        print infor_gain
+        xs[index], ys[index], zs[index] = loc.coord_item
+        us[index] = infor_gain
+        vs[index] = infor_gain
+        ws[index] = infor_gain
 
-    fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_factor=1.0, mode="2dthick_arrow", colormap="cool")
+    if fig is None:
+        fig = mb.quiver3d(xs, ys, zs, us, vs, ws, scale_mode="vector", mode="2dcross", colormap="cool")
+    else:
+        fig.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
 
     return fig
