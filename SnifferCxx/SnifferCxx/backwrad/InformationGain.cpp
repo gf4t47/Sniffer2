@@ -25,6 +25,21 @@ namespace Backward {
      *  @param forward  reference of the forward checking algorithm
      *  @param backward reference of the backwrad checking algorithm
      *  @param map      reference of the map
+     */
+    InformationGain::InformationGain(const ForwardChecking & forward, const BackwardChecking & backward, const Map3D & map)
+    :forward_(forward),
+    backward_(backward),
+    map_(map),
+    time_count_(0) {
+        
+    }
+    
+    /**
+     *  construct a information gain calculator
+     *
+     *  @param forward  reference of the forward checking algorithm
+     *  @param backward reference of the backwrad checking algorithm
+     *  @param map      reference of the map
      *  @param count    how long you assume for the future || how much iterations you will push the forward checking algorith
      */
     InformationGain::InformationGain(const ForwardChecking & forward, const BackwardChecking & backward, const Map3D & map, size_t count)
@@ -38,6 +53,10 @@ namespace Backward {
     
     InformationGain::~InformationGain() {
         
+    }
+    
+    void InformationGain::setTime(size_t time_count) {
+        time_count_ = time_count;
     }
 
 
@@ -69,31 +88,6 @@ namespace Backward {
     
     
     /**
-     *  update our forward model, calculate the new probability for all hypotheses
-     *
-     *  @param candidate push all the hypothses update seerval steps and active one candiate detection
-     *  @param hyps      all virtual worlds for all the hypotheses
-     *
-     *  @return the updated hypohteses with new probability in futrue time
-     */
-    shared_ptr<vector<Hypothesis>> InformationGain::updateHypothesis(const Coordinate & candidate, const vector<Hypothesis> & hyps) const {
-        auto copy_hyps = make_shared<vector<Hypothesis>>(hyps);
-        
-        forward_.UpdateMethane(*copy_hyps, map_, time_count_);
-        
-        vector<double> probs;
-        for (auto const & hyp : *copy_hyps) {
-            auto prob = calcLikehood(hyp, candidate, map_) * hyp.getProbability();
-            probs.push_back(prob);
-        }
-        
-        backward_.normalize(*copy_hyps, probs);
-
-        return copy_hyps;
-    }
-    
-    
-    /**
      *  calculate information gain by sum the entropy for all hypotheses together for one candidate
      *
      *  @param candidate one coordinate candidate for detection
@@ -101,13 +95,18 @@ namespace Backward {
      *
      *  @return expected information gain
      */
-    entropy_t InformationGain::calcInforGain(const Coordinate & candidate, const vector<Hypothesis> & hyps) const{
-        auto new_hyps = updateHypothesis(candidate, hyps);
+    entropy_t InformationGain::calcInforGain(const Coordinate & candidate, const vector<Hypothesis> & hyps, vector<Hypothesis> & future_hyps) const{
+        vector<double> probs;
+        for (auto const & hyp : future_hyps) {
+            auto prob = calcLikehood(hyp, candidate, map_) * hyp.getProbability();
+            probs.push_back(prob);
+        }
+        backward_.normalize(future_hyps, probs);
         
         entropy_t ret_sum = 0.0;
         
         for (auto i=0; i < hyps.size(); i++) {
-            ret_sum += (entropy(hyps[i]) - entropy((*new_hyps)[i])) * hyps[i].getProbability();
+            ret_sum += (entropy(hyps[i]) - entropy(future_hyps[i])) * hyps[i].getProbability();
         }
         
         return ret_sum;
@@ -122,11 +121,14 @@ namespace Backward {
      *
      *  @return a set of score maped to all candidates
      */
-    vector<entropy_t> InformationGain::calcInforGain(const vector<Coordinate> & candidates, const vector<Hypothesis> & hyps) const{
+    vector<entropy_t> InformationGain::calcInforGains(const vector<Coordinate> & candidates, const vector<Hypothesis> & hyps) const{
+        auto copy_hyps = make_shared<vector<Hypothesis>>(hyps);
+        auto future_hyps = forward_.UpdateMethane(*copy_hyps, map_, time_count_);
+        
         vector<entropy_t> ret_vec;
         
         for(auto const & coord : candidates) {
-            ret_vec.push_back(calcInforGain(coord, hyps));
+            ret_vec.push_back(calcInforGain(coord, hyps, *future_hyps));
         }
         
         return ret_vec;

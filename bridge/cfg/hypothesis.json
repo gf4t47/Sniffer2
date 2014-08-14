@@ -2,7 +2,7 @@
 	"blurRange" : 3,
     "kernelRange" : 1, 
 	"forwardChecking" : "byCell",
-    "outputCells" : 500000,
+    "outputCells" : 400000,
 	
 	"hypothesis" :
 	[
