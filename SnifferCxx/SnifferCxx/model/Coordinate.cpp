@@ -13,14 +13,12 @@
 namespace Model {
 	using namespace std;
 
-	Coordinate::Coordinate()
-		:coord_t{ { 0, 0, 0 } } {
-
+	Coordinate::Coordinate() {
+		*this = coord_t{ { 0, 0, 0 } };
 	}
 
-	Coordinate::Coordinate(coord_item_t x, coord_item_t y, coord_item_t z)
-		: coord_t{ { x, y, z } } {
-
+	Coordinate::Coordinate(coord_item_t x, coord_item_t y, coord_item_t z) {
+		*this = coord_t{ { x, y, z } };
 	}
     
     double Coordinate::calcNorm() const {
@@ -43,6 +41,16 @@ namespace Model {
 		WindVector ret;
 		transform(begin(), end(), ret.begin(), [norm](const coord_item_t & it) {return it / norm; });
 		return ret;
+	}
+
+	Coordinate & Coordinate::operator= (const coord_t & rhs) {
+		if (this == &rhs) {
+			return *this;
+		}
+
+		copy(rhs.begin(), rhs.end(), this->begin());
+
+		return *this;
 	}
 
 	ostream& operator<<(ostream& os, const Coordinate& coord)

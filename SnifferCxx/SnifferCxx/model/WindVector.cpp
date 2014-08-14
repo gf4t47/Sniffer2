@@ -13,14 +13,13 @@
 namespace Model {
 	using namespace std;
 
-	WindVector::WindVector()
-		:wv_t{ { 0.0f, 0.0f, 0.0f } } {
+	WindVector::WindVector() {
+		*this = wv_t{ { 0, 0, 0 } };
 
 	}
 
-	WindVector::WindVector(wv_item_t x, wv_item_t y, wv_item_t z)
-		: wv_t{ { x, y, z } } {
-
+	WindVector::WindVector(wv_item_t x, wv_item_t y, wv_item_t z) {
+		*this = wv_t{ { x, y, z } };
 	}
 
     wv_item_t WindVector::calcNorm() const {
@@ -37,6 +36,16 @@ namespace Model {
 		Coordinate ret;
 		transform(begin(), end(), ret.begin(), [unit](const wv_item_t & it) {return it / unit; });
 		return ret;
+	}
+
+	WindVector & WindVector::operator= (const wv_t & rhs) {
+		if (this == &rhs) {
+			return *this;
+		}
+
+		copy(rhs.begin(), rhs.end(), this->begin());
+
+		return *this;
 	}
 
 	ostream& operator<<(ostream& os, const WindVector& wv)

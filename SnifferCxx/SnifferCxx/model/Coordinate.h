@@ -31,6 +31,7 @@ namespace Model {
 		Coordinate operator+ (const Coordinate & oth) const;
         Coordinate operator- (const Coordinate & oth) const;
         WindVector operator/ (const double & norm) const;
+		Coordinate & operator= (const coord_t & rhs);
 
 		friend std::ostream& operator<<(std::ostream& os, const Coordinate& coord);
         
