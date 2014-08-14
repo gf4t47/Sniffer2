@@ -406,6 +406,9 @@ void Leak::CopyFrom(const Leak& from) {
 bool Leak::IsInitialized() const {
   if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
 
+  if (has_location()) {
+    if (!this->location().IsInitialized()) return false;
+  }
   return true;
 }
 

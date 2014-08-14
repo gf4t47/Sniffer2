@@ -1,7 +1,9 @@
 package Message;
 
 message Coordinate {
-		repeated int32 coord_item = 1;
+		required int32 coord_x = 1;
+		required int32 coord_y = 2;
+		required int32 coord_z = 3;
 	}
 
 enum CellTag {
@@ -12,7 +14,9 @@ enum CellTag {
 	
 message Cell {
 	message WindVector {
-		repeated double wv_item = 1;
+		required double wv_x = 1;
+		required double wv_y = 2;
+		required double wv_z = 3;
 	}
 
 	message Wind {

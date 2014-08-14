@@ -118,27 +118,44 @@ class Coordinate : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated int32 coord_item = 1;
-  inline int coord_item_size() const;
-  inline void clear_coord_item();
-  static const int kCoordItemFieldNumber = 1;
-  inline ::google::protobuf::int32 coord_item(int index) const;
-  inline void set_coord_item(int index, ::google::protobuf::int32 value);
-  inline void add_coord_item(::google::protobuf::int32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-      coord_item() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-      mutable_coord_item();
+  // required int32 coord_x = 1;
+  inline bool has_coord_x() const;
+  inline void clear_coord_x();
+  static const int kCoordXFieldNumber = 1;
+  inline ::google::protobuf::int32 coord_x() const;
+  inline void set_coord_x(::google::protobuf::int32 value);
+
+  // required int32 coord_y = 2;
+  inline bool has_coord_y() const;
+  inline void clear_coord_y();
+  static const int kCoordYFieldNumber = 2;
+  inline ::google::protobuf::int32 coord_y() const;
+  inline void set_coord_y(::google::protobuf::int32 value);
+
+  // required int32 coord_z = 3;
+  inline bool has_coord_z() const;
+  inline void clear_coord_z();
+  static const int kCoordZFieldNumber = 3;
+  inline ::google::protobuf::int32 coord_z() const;
+  inline void set_coord_z(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:Message.Coordinate)
  private:
+  inline void set_has_coord_x();
+  inline void clear_has_coord_x();
+  inline void set_has_coord_y();
+  inline void clear_has_coord_y();
+  inline void set_has_coord_z();
+  inline void clear_has_coord_z();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > coord_item_;
+  ::google::protobuf::int32 coord_x_;
+  ::google::protobuf::int32 coord_y_;
+  ::google::protobuf::int32 coord_z_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
 
   friend void  protobuf_AddDesc_cell_2eproto();
   friend void protobuf_AssignDesc_cell_2eproto();
@@ -203,27 +220,44 @@ class Cell_WindVector : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated double wv_item = 1;
-  inline int wv_item_size() const;
-  inline void clear_wv_item();
-  static const int kWvItemFieldNumber = 1;
-  inline double wv_item(int index) const;
-  inline void set_wv_item(int index, double value);
-  inline void add_wv_item(double value);
-  inline const ::google::protobuf::RepeatedField< double >&
-      wv_item() const;
-  inline ::google::protobuf::RepeatedField< double >*
-      mutable_wv_item();
+  // required double wv_x = 1;
+  inline bool has_wv_x() const;
+  inline void clear_wv_x();
+  static const int kWvXFieldNumber = 1;
+  inline double wv_x() const;
+  inline void set_wv_x(double value);
+
+  // required double wv_y = 2;
+  inline bool has_wv_y() const;
+  inline void clear_wv_y();
+  static const int kWvYFieldNumber = 2;
+  inline double wv_y() const;
+  inline void set_wv_y(double value);
+
+  // required double wv_z = 3;
+  inline bool has_wv_z() const;
+  inline void clear_wv_z();
+  static const int kWvZFieldNumber = 3;
+  inline double wv_z() const;
+  inline void set_wv_z(double value);
 
   // @@protoc_insertion_point(class_scope:Message.Cell.WindVector)
  private:
+  inline void set_has_wv_x();
+  inline void clear_has_wv_x();
+  inline void set_has_wv_y();
+  inline void clear_has_wv_y();
+  inline void set_has_wv_z();
+  inline void clear_has_wv_z();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::google::protobuf::RepeatedField< double > wv_item_;
+  double wv_x_;
+  double wv_y_;
+  double wv_z_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
 
   friend void  protobuf_AddDesc_cell_2eproto();
   friend void protobuf_AssignDesc_cell_2eproto();
@@ -733,58 +767,140 @@ class Map : public ::google::protobuf::Message {
 
 // Coordinate
 
-// repeated int32 coord_item = 1;
-inline int Coordinate::coord_item_size() const {
-  return coord_item_.size();
+// required int32 coord_x = 1;
+inline bool Coordinate::has_coord_x() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void Coordinate::clear_coord_item() {
-  coord_item_.Clear();
+inline void Coordinate::set_has_coord_x() {
+  _has_bits_[0] |= 0x00000001u;
 }
-inline ::google::protobuf::int32 Coordinate::coord_item(int index) const {
-  return coord_item_.Get(index);
+inline void Coordinate::clear_has_coord_x() {
+  _has_bits_[0] &= ~0x00000001u;
 }
-inline void Coordinate::set_coord_item(int index, ::google::protobuf::int32 value) {
-  coord_item_.Set(index, value);
+inline void Coordinate::clear_coord_x() {
+  coord_x_ = 0;
+  clear_has_coord_x();
 }
-inline void Coordinate::add_coord_item(::google::protobuf::int32 value) {
-  coord_item_.Add(value);
+inline ::google::protobuf::int32 Coordinate::coord_x() const {
+  return coord_x_;
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-Coordinate::coord_item() const {
-  return coord_item_;
+inline void Coordinate::set_coord_x(::google::protobuf::int32 value) {
+  set_has_coord_x();
+  coord_x_ = value;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-Coordinate::mutable_coord_item() {
-  return &coord_item_;
+
+// required int32 coord_y = 2;
+inline bool Coordinate::has_coord_y() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Coordinate::set_has_coord_y() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Coordinate::clear_has_coord_y() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Coordinate::clear_coord_y() {
+  coord_y_ = 0;
+  clear_has_coord_y();
+}
+inline ::google::protobuf::int32 Coordinate::coord_y() const {
+  return coord_y_;
+}
+inline void Coordinate::set_coord_y(::google::protobuf::int32 value) {
+  set_has_coord_y();
+  coord_y_ = value;
+}
+
+// required int32 coord_z = 3;
+inline bool Coordinate::has_coord_z() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void Coordinate::set_has_coord_z() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void Coordinate::clear_has_coord_z() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void Coordinate::clear_coord_z() {
+  coord_z_ = 0;
+  clear_has_coord_z();
+}
+inline ::google::protobuf::int32 Coordinate::coord_z() const {
+  return coord_z_;
+}
+inline void Coordinate::set_coord_z(::google::protobuf::int32 value) {
+  set_has_coord_z();
+  coord_z_ = value;
 }
 
 // -------------------------------------------------------------------
 
 // Cell_WindVector
 
-// repeated double wv_item = 1;
-inline int Cell_WindVector::wv_item_size() const {
-  return wv_item_.size();
+// required double wv_x = 1;
+inline bool Cell_WindVector::has_wv_x() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void Cell_WindVector::clear_wv_item() {
-  wv_item_.Clear();
+inline void Cell_WindVector::set_has_wv_x() {
+  _has_bits_[0] |= 0x00000001u;
 }
-inline double Cell_WindVector::wv_item(int index) const {
-  return wv_item_.Get(index);
+inline void Cell_WindVector::clear_has_wv_x() {
+  _has_bits_[0] &= ~0x00000001u;
 }
-inline void Cell_WindVector::set_wv_item(int index, double value) {
-  wv_item_.Set(index, value);
+inline void Cell_WindVector::clear_wv_x() {
+  wv_x_ = 0;
+  clear_has_wv_x();
 }
-inline void Cell_WindVector::add_wv_item(double value) {
-  wv_item_.Add(value);
+inline double Cell_WindVector::wv_x() const {
+  return wv_x_;
 }
-inline const ::google::protobuf::RepeatedField< double >&
-Cell_WindVector::wv_item() const {
-  return wv_item_;
+inline void Cell_WindVector::set_wv_x(double value) {
+  set_has_wv_x();
+  wv_x_ = value;
 }
-inline ::google::protobuf::RepeatedField< double >*
-Cell_WindVector::mutable_wv_item() {
-  return &wv_item_;
+
+// required double wv_y = 2;
+inline bool Cell_WindVector::has_wv_y() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Cell_WindVector::set_has_wv_y() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Cell_WindVector::clear_has_wv_y() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Cell_WindVector::clear_wv_y() {
+  wv_y_ = 0;
+  clear_has_wv_y();
+}
+inline double Cell_WindVector::wv_y() const {
+  return wv_y_;
+}
+inline void Cell_WindVector::set_wv_y(double value) {
+  set_has_wv_y();
+  wv_y_ = value;
+}
+
+// required double wv_z = 3;
+inline bool Cell_WindVector::has_wv_z() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void Cell_WindVector::set_has_wv_z() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void Cell_WindVector::clear_has_wv_z() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void Cell_WindVector::clear_wv_z() {
+  wv_z_ = 0;
+  clear_has_wv_z();
+}
+inline double Cell_WindVector::wv_z() const {
+  return wv_z_;
+}
+inline void Cell_WindVector::set_wv_z(double value) {
+  set_has_wv_z();
+  wv_z_ = value;
 }
 
 // -------------------------------------------------------------------

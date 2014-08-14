@@ -14,7 +14,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='cell.proto',
   package='Message',
-  serialized_pb='\n\ncell.proto\x12\x07Message\" \n\nCoordinate\x12\x12\n\ncoord_item\x18\x01 \x03(\x05\"\xad\x02\n\x04\x43\x65ll\x12\"\n\x05\x63oord\x18\x01 \x02(\x0b\x32\x13.Message.Coordinate\x12\x1d\n\x03tag\x18\x02 \x02(\x0e\x32\x10.Message.CellTag\x12\"\n\x03mtn\x18\x03 \x02(\x0b\x32\x15.Message.Cell.Methane\x12 \n\x04wind\x18\x04 \x02(\x0b\x32\x12.Message.Cell.Wind\x1a\x1d\n\nWindVector\x12\x0f\n\x07wv_item\x18\x01 \x03(\x01\x1a[\n\x04Wind\x12&\n\x04wind\x18\x01 \x02(\x0b\x32\x18.Message.Cell.WindVector\x12+\n\tpotential\x18\x02 \x02(\x0b\x32\x18.Message.Cell.WindVector\x1a \n\x07Methane\x12\x15\n\rconcentration\x18\x01 \x02(\x01\"$\n\x05\x43\x65lls\x12\x1b\n\x04\x63\x65ll\x18\x01 \x03(\x0b\x32\r.Message.Cell\"r\n\x03Map\x12\'\n\nstartIndex\x18\x01 \x02(\x0b\x32\x13.Message.Coordinate\x12%\n\x08\x62oundary\x18\x02 \x02(\x0b\x32\x13.Message.Coordinate\x12\x1b\n\x04\x63\x65ll\x18\x03 \x03(\x0b\x32\r.Message.Cell*,\n\x07\x43\x65llTag\x12\x07\n\x03\x41ir\x10\x01\x12\n\n\x06Ground\x10\x02\x12\x0c\n\x08\x42uilding\x10\x03')
+  serialized_pb='\n\ncell.proto\x12\x07Message\"?\n\nCoordinate\x12\x0f\n\x07\x63oord_x\x18\x01 \x02(\x05\x12\x0f\n\x07\x63oord_y\x18\x02 \x02(\x05\x12\x0f\n\x07\x63oord_z\x18\x03 \x02(\x05\"\xc6\x02\n\x04\x43\x65ll\x12\"\n\x05\x63oord\x18\x01 \x02(\x0b\x32\x13.Message.Coordinate\x12\x1d\n\x03tag\x18\x02 \x02(\x0e\x32\x10.Message.CellTag\x12\"\n\x03mtn\x18\x03 \x02(\x0b\x32\x15.Message.Cell.Methane\x12 \n\x04wind\x18\x04 \x02(\x0b\x32\x12.Message.Cell.Wind\x1a\x36\n\nWindVector\x12\x0c\n\x04wv_x\x18\x01 \x02(\x01\x12\x0c\n\x04wv_y\x18\x02 \x02(\x01\x12\x0c\n\x04wv_z\x18\x03 \x02(\x01\x1a[\n\x04Wind\x12&\n\x04wind\x18\x01 \x02(\x0b\x32\x18.Message.Cell.WindVector\x12+\n\tpotential\x18\x02 \x02(\x0b\x32\x18.Message.Cell.WindVector\x1a \n\x07Methane\x12\x15\n\rconcentration\x18\x01 \x02(\x01\"$\n\x05\x43\x65lls\x12\x1b\n\x04\x63\x65ll\x18\x01 \x03(\x0b\x32\r.Message.Cell\"r\n\x03Map\x12\'\n\nstartIndex\x18\x01 \x02(\x0b\x32\x13.Message.Coordinate\x12%\n\x08\x62oundary\x18\x02 \x02(\x0b\x32\x13.Message.Coordinate\x12\x1b\n\x04\x63\x65ll\x18\x03 \x03(\x0b\x32\r.Message.Cell*,\n\x07\x43\x65llTag\x12\x07\n\x03\x41ir\x10\x01\x12\n\n\x06Ground\x10\x02\x12\x0c\n\x08\x42uilding\x10\x03')
 
 _CELLTAG = _descriptor.EnumDescriptor(
   name='CellTag',
@@ -37,8 +37,8 @@ _CELLTAG = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=515,
-  serialized_end=559,
+  serialized_start=571,
+  serialized_end=615,
 )
 
 CellTag = enum_type_wrapper.EnumTypeWrapper(_CELLTAG)
@@ -56,9 +56,23 @@ _COORDINATE = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='coord_item', full_name='Message.Coordinate.coord_item', index=0,
-      number=1, type=5, cpp_type=1, label=3,
-      has_default_value=False, default_value=[],
+      name='coord_x', full_name='Message.Coordinate.coord_x', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='coord_y', full_name='Message.Coordinate.coord_y', index=1,
+      number=2, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='coord_z', full_name='Message.Coordinate.coord_z', index=2,
+      number=3, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -72,7 +86,7 @@ _COORDINATE = _descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=23,
-  serialized_end=55,
+  serialized_end=86,
 )
 
 
@@ -84,9 +98,23 @@ _CELL_WINDVECTOR = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='wv_item', full_name='Message.Cell.WindVector.wv_item', index=0,
-      number=1, type=1, cpp_type=5, label=3,
-      has_default_value=False, default_value=[],
+      name='wv_x', full_name='Message.Cell.WindVector.wv_x', index=0,
+      number=1, type=1, cpp_type=5, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='wv_y', full_name='Message.Cell.WindVector.wv_y', index=1,
+      number=2, type=1, cpp_type=5, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='wv_z', full_name='Message.Cell.WindVector.wv_z', index=2,
+      number=3, type=1, cpp_type=5, label=2,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -99,8 +127,8 @@ _CELL_WINDVECTOR = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=203,
-  serialized_end=232,
+  serialized_start=234,
+  serialized_end=288,
 )
 
 _CELL_WIND = _descriptor.Descriptor(
@@ -133,8 +161,8 @@ _CELL_WIND = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=234,
-  serialized_end=325,
+  serialized_start=290,
+  serialized_end=381,
 )
 
 _CELL_METHANE = _descriptor.Descriptor(
@@ -160,8 +188,8 @@ _CELL_METHANE = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=327,
-  serialized_end=359,
+  serialized_start=383,
+  serialized_end=415,
 )
 
 _CELL = _descriptor.Descriptor(
@@ -208,8 +236,8 @@ _CELL = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=58,
-  serialized_end=359,
+  serialized_start=89,
+  serialized_end=415,
 )
 
 
@@ -236,8 +264,8 @@ _CELLS = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=361,
-  serialized_end=397,
+  serialized_start=417,
+  serialized_end=453,
 )
 
 
@@ -278,8 +306,8 @@ _MAP = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=399,
-  serialized_end=513,
+  serialized_start=455,
+  serialized_end=569,
 )
 
 _CELL_WINDVECTOR.containing_type = _CELL;

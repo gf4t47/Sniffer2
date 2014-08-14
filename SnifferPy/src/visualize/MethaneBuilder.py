@@ -17,9 +17,9 @@ def _cells_to_vector(cells):
 
     for index, cell in enumerate(filter(lambda c: c.tag == cell_pb2.CellTag.Value('Air'), cells.cell)):
         coord = cell.coord
-        xs[index] = coord.coord_item[0]
-        ys[index] = coord.coord_item[1]
-        zs[index] = coord.coord_item[2]
+        xs[index] = coord.coord_x
+        ys[index] = coord.coord_y
+        zs[index] = coord.coord_z
 
         concentration = cell.mtn.concentration
         us[index] = concentration

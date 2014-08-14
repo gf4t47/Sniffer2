@@ -35,9 +35,9 @@ namespace Message {
                 msg_leak->set_concentration(leak.concentration_);
                 
                 auto msg_coord = new Coordinate();
-                for (auto const & item : leak.location_) {
-                    msg_coord->add_coord_item(item);
-                }
+				msg_coord->set_coord_x(leak.location_[0]);
+				msg_coord->set_coord_y(leak.location_[1]);
+				msg_coord->set_coord_z(leak.location_[2]);            
                 msg_leak->set_allocated_location(msg_coord);
             }
         }
@@ -50,16 +50,16 @@ namespace Message {
         
         auto msg_startIndex = new Coordinate();
         auto startIndex = map.getStartIndex();
-        for (int i = 0; i < 3; i++) {
-            msg_startIndex->add_coord_item((int)*startIndex++);
-        }
+		msg_startIndex->set_coord_x(*startIndex);
+		msg_startIndex->set_coord_y(*(startIndex + 1));
+		msg_startIndex->set_coord_z(*(startIndex + 2));
         msg_map->set_allocated_startindex(msg_startIndex);
         
         auto msg_boudary = new Coordinate();
         auto boudary = map.getBoundary();
-        for (int i = 0; i < 3; i++) {
-            msg_boudary->add_coord_item((int)*boudary++);
-        }
+		msg_boudary->set_coord_x(*boudary);
+		msg_boudary->set_coord_y(*(boudary + 1));
+		msg_boudary->set_coord_z(*(boudary + 2));
         msg_map->set_allocated_boundary(msg_boudary);
         
         boost::const_multi_array_ref<Model::Cell, 1> map_ref(map.data(), boost::extents[map.num_elements()]);
@@ -95,9 +95,9 @@ namespace Message {
                     msg_leak->set_concentration(leak.concentration_);
                     
                     auto msg_coord = new Coordinate();
-                    for (auto const & item : leak.location_) {
-                        msg_coord->add_coord_item(item);
-                    }
+					msg_coord->set_coord_x(leak.location_[0]);
+					msg_coord->set_coord_y(leak.location_[1]);
+					msg_coord->set_coord_z(leak.location_[2]);
                     msg_leak->set_allocated_location(msg_coord);
                 }
                 
@@ -128,9 +128,10 @@ namespace Message {
         
         //set cell coordinate
         auto msg_coord = new Coordinate();
-        for (auto const & item : cell.getCoordinate()) {
-            msg_coord->add_coord_item(item);
-        }
+		auto const & coord = cell.getCoordinate();
+		msg_coord->set_coord_x(coord[0]);
+		msg_coord->set_coord_y(coord[1]);
+		msg_coord->set_coord_z(coord[2]);
         msg_cell->set_allocated_coord(msg_coord);
         
         //set cell methane
@@ -142,15 +143,17 @@ namespace Message {
         auto msg_wind = new Cell::Wind();
         
         auto msg_windvector = new Cell::WindVector();
-        for (auto const & item : cell.getWind().getWV()) {
-            msg_windvector->add_wv_item(item);
-        }
+		auto const & wv = cell.getWind().getWV();
+		msg_windvector->set_wv_x(wv[0]);
+		msg_windvector->set_wv_y(wv[1]);
+		msg_windvector->set_wv_z(wv[2]);
         msg_wind->set_allocated_wind(msg_windvector);
         
         auto msg_potential = new Cell::WindVector();
-        for (auto const & item : cell.getWind().getPotential()) {
-            msg_potential->add_wv_item(item);
-        }
+		auto const & pt = cell.getWind().getPotential();
+		msg_potential->set_wv_x(pt[0]);
+		msg_potential->set_wv_x(pt[1]);
+		msg_potential->set_wv_x(pt[2]);
         msg_wind->set_allocated_potential(msg_potential);
         
         msg_cell->set_allocated_wind(msg_wind);

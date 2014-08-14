@@ -53,8 +53,10 @@ void protobuf_AssignDesc_cell_2eproto() {
       "cell.proto");
   GOOGLE_CHECK(file != NULL);
   Coordinate_descriptor_ = file->message_type(0);
-  static const int Coordinate_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Coordinate, coord_item_),
+  static const int Coordinate_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Coordinate, coord_x_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Coordinate, coord_y_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Coordinate, coord_z_),
   };
   Coordinate_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -86,8 +88,10 @@ void protobuf_AssignDesc_cell_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Cell));
   Cell_WindVector_descriptor_ = Cell_descriptor_->nested_type(0);
-  static const int Cell_WindVector_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Cell_WindVector, wv_item_),
+  static const int Cell_WindVector_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Cell_WindVector, wv_x_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Cell_WindVector, wv_y_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Cell_WindVector, wv_z_),
   };
   Cell_WindVector_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -218,20 +222,22 @@ void protobuf_AddDesc_cell_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\ncell.proto\022\007Message\" \n\nCoordinate\022\022\n\nc"
-    "oord_item\030\001 \003(\005\"\255\002\n\004Cell\022\"\n\005coord\030\001 \002(\0132"
-    "\023.Message.Coordinate\022\035\n\003tag\030\002 \002(\0162\020.Mess"
-    "age.CellTag\022\"\n\003mtn\030\003 \002(\0132\025.Message.Cell."
-    "Methane\022 \n\004wind\030\004 \002(\0132\022.Message.Cell.Win"
-    "d\032\035\n\nWindVector\022\017\n\007wv_item\030\001 \003(\001\032[\n\004Wind"
-    "\022&\n\004wind\030\001 \002(\0132\030.Message.Cell.WindVector"
-    "\022+\n\tpotential\030\002 \002(\0132\030.Message.Cell.WindV"
-    "ector\032 \n\007Methane\022\025\n\rconcentration\030\001 \002(\001\""
-    "$\n\005Cells\022\033\n\004cell\030\001 \003(\0132\r.Message.Cell\"r\n"
-    "\003Map\022\'\n\nstartIndex\030\001 \002(\0132\023.Message.Coord"
-    "inate\022%\n\010boundary\030\002 \002(\0132\023.Message.Coordi"
-    "nate\022\033\n\004cell\030\003 \003(\0132\r.Message.Cell*,\n\007Cel"
-    "lTag\022\007\n\003Air\020\001\022\n\n\006Ground\020\002\022\014\n\010Building\020\003", 559);
+    "\n\ncell.proto\022\007Message\"\?\n\nCoordinate\022\017\n\007c"
+    "oord_x\030\001 \002(\005\022\017\n\007coord_y\030\002 \002(\005\022\017\n\007coord_z"
+    "\030\003 \002(\005\"\306\002\n\004Cell\022\"\n\005coord\030\001 \002(\0132\023.Message"
+    ".Coordinate\022\035\n\003tag\030\002 \002(\0162\020.Message.CellT"
+    "ag\022\"\n\003mtn\030\003 \002(\0132\025.Message.Cell.Methane\022 "
+    "\n\004wind\030\004 \002(\0132\022.Message.Cell.Wind\0326\n\nWind"
+    "Vector\022\014\n\004wv_x\030\001 \002(\001\022\014\n\004wv_y\030\002 \002(\001\022\014\n\004wv"
+    "_z\030\003 \002(\001\032[\n\004Wind\022&\n\004wind\030\001 \002(\0132\030.Message"
+    ".Cell.WindVector\022+\n\tpotential\030\002 \002(\0132\030.Me"
+    "ssage.Cell.WindVector\032 \n\007Methane\022\025\n\rconc"
+    "entration\030\001 \002(\001\"$\n\005Cells\022\033\n\004cell\030\001 \003(\0132\r"
+    ".Message.Cell\"r\n\003Map\022\'\n\nstartIndex\030\001 \002(\013"
+    "2\023.Message.Coordinate\022%\n\010boundary\030\002 \002(\0132"
+    "\023.Message.Coordinate\022\033\n\004cell\030\003 \003(\0132\r.Mes"
+    "sage.Cell*,\n\007CellTag\022\007\n\003Air\020\001\022\n\n\006Ground\020"
+    "\002\022\014\n\010Building\020\003", 615);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cell.proto", &protobuf_RegisterTypes);
   Coordinate::default_instance_ = new Coordinate();
@@ -276,7 +282,9 @@ bool CellTag_IsValid(int value) {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Coordinate::kCoordItemFieldNumber;
+const int Coordinate::kCoordXFieldNumber;
+const int Coordinate::kCoordYFieldNumber;
+const int Coordinate::kCoordZFieldNumber;
 #endif  // !_MSC_VER
 
 Coordinate::Coordinate()
@@ -295,6 +303,9 @@ Coordinate::Coordinate(const Coordinate& from)
 
 void Coordinate::SharedCtor() {
   _cached_size_ = 0;
+  coord_x_ = 0;
+  coord_y_ = 0;
+  coord_z_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -329,7 +340,11 @@ Coordinate* Coordinate::New() const {
 }
 
 void Coordinate::Clear() {
-  coord_item_.Clear();
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    coord_x_ = 0;
+    coord_y_ = 0;
+    coord_z_ = 0;
+  }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -340,24 +355,49 @@ bool Coordinate::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated int32 coord_item = 1;
+      // required int32 coord_x = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-         parse_coord_item:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 1, 8, input, this->mutable_coord_item())));
-        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
-                   == ::google::protobuf::internal::WireFormatLite::
-                      WIRETYPE_LENGTH_DELIMITED) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, this->mutable_coord_item())));
+                 input, &coord_x_)));
+          set_has_coord_x();
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(8)) goto parse_coord_item;
+        if (input->ExpectTag(16)) goto parse_coord_y;
+        break;
+      }
+
+      // required int32 coord_y = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_coord_y:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &coord_y_)));
+          set_has_coord_y();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(24)) goto parse_coord_z;
+        break;
+      }
+
+      // required int32 coord_z = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_coord_z:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &coord_z_)));
+          set_has_coord_z();
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -380,10 +420,19 @@ bool Coordinate::MergePartialFromCodedStream(
 
 void Coordinate::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated int32 coord_item = 1;
-  for (int i = 0; i < this->coord_item_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(
-      1, this->coord_item(i), output);
+  // required int32 coord_x = 1;
+  if (has_coord_x()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->coord_x(), output);
+  }
+
+  // required int32 coord_y = 2;
+  if (has_coord_y()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->coord_y(), output);
+  }
+
+  // required int32 coord_z = 3;
+  if (has_coord_z()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->coord_z(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -394,10 +443,19 @@ void Coordinate::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Coordinate::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated int32 coord_item = 1;
-  for (int i = 0; i < this->coord_item_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteInt32ToArray(1, this->coord_item(i), target);
+  // required int32 coord_x = 1;
+  if (has_coord_x()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->coord_x(), target);
+  }
+
+  // required int32 coord_y = 2;
+  if (has_coord_y()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->coord_y(), target);
+  }
+
+  // required int32 coord_z = 3;
+  if (has_coord_z()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->coord_z(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -410,16 +468,29 @@ void Coordinate::SerializeWithCachedSizes(
 int Coordinate::ByteSize() const {
   int total_size = 0;
 
-  // repeated int32 coord_item = 1;
-  {
-    int data_size = 0;
-    for (int i = 0; i < this->coord_item_size(); i++) {
-      data_size += ::google::protobuf::internal::WireFormatLite::
-        Int32Size(this->coord_item(i));
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required int32 coord_x = 1;
+    if (has_coord_x()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->coord_x());
     }
-    total_size += 1 * this->coord_item_size() + data_size;
-  }
 
+    // required int32 coord_y = 2;
+    if (has_coord_y()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->coord_y());
+    }
+
+    // required int32 coord_z = 3;
+    if (has_coord_z()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->coord_z());
+    }
+
+  }
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -445,7 +516,17 @@ void Coordinate::MergeFrom(const ::google::protobuf::Message& from) {
 
 void Coordinate::MergeFrom(const Coordinate& from) {
   GOOGLE_CHECK_NE(&from, this);
-  coord_item_.MergeFrom(from.coord_item_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_coord_x()) {
+      set_coord_x(from.coord_x());
+    }
+    if (from.has_coord_y()) {
+      set_coord_y(from.coord_y());
+    }
+    if (from.has_coord_z()) {
+      set_coord_z(from.coord_z());
+    }
+  }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -462,13 +543,16 @@ void Coordinate::CopyFrom(const Coordinate& from) {
 }
 
 bool Coordinate::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
 
   return true;
 }
 
 void Coordinate::Swap(Coordinate* other) {
   if (other != this) {
-    coord_item_.Swap(&other->coord_item_);
+    std::swap(coord_x_, other->coord_x_);
+    std::swap(coord_y_, other->coord_y_);
+    std::swap(coord_z_, other->coord_z_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -487,7 +571,9 @@ void Coordinate::Swap(Coordinate* other) {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Cell_WindVector::kWvItemFieldNumber;
+const int Cell_WindVector::kWvXFieldNumber;
+const int Cell_WindVector::kWvYFieldNumber;
+const int Cell_WindVector::kWvZFieldNumber;
 #endif  // !_MSC_VER
 
 Cell_WindVector::Cell_WindVector()
@@ -506,6 +592,9 @@ Cell_WindVector::Cell_WindVector(const Cell_WindVector& from)
 
 void Cell_WindVector::SharedCtor() {
   _cached_size_ = 0;
+  wv_x_ = 0;
+  wv_y_ = 0;
+  wv_z_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -540,7 +629,11 @@ Cell_WindVector* Cell_WindVector::New() const {
 }
 
 void Cell_WindVector::Clear() {
-  wv_item_.Clear();
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    wv_x_ = 0;
+    wv_y_ = 0;
+    wv_z_ = 0;
+  }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -551,24 +644,49 @@ bool Cell_WindVector::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated double wv_item = 1;
+      // required double wv_x = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
-         parse_wv_item:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 1, 9, input, this->mutable_wv_item())));
-        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
-                   == ::google::protobuf::internal::WireFormatLite::
-                      WIRETYPE_LENGTH_DELIMITED) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, this->mutable_wv_item())));
+                 input, &wv_x_)));
+          set_has_wv_x();
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(9)) goto parse_wv_item;
+        if (input->ExpectTag(17)) goto parse_wv_y;
+        break;
+      }
+
+      // required double wv_y = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+         parse_wv_y:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &wv_y_)));
+          set_has_wv_y();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(25)) goto parse_wv_z;
+        break;
+      }
+
+      // required double wv_z = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+         parse_wv_z:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &wv_z_)));
+          set_has_wv_z();
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -591,10 +709,19 @@ bool Cell_WindVector::MergePartialFromCodedStream(
 
 void Cell_WindVector::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated double wv_item = 1;
-  for (int i = 0; i < this->wv_item_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(
-      1, this->wv_item(i), output);
+  // required double wv_x = 1;
+  if (has_wv_x()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->wv_x(), output);
+  }
+
+  // required double wv_y = 2;
+  if (has_wv_y()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->wv_y(), output);
+  }
+
+  // required double wv_z = 3;
+  if (has_wv_z()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(3, this->wv_z(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -605,10 +732,19 @@ void Cell_WindVector::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Cell_WindVector::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated double wv_item = 1;
-  for (int i = 0; i < this->wv_item_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteDoubleToArray(1, this->wv_item(i), target);
+  // required double wv_x = 1;
+  if (has_wv_x()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->wv_x(), target);
+  }
+
+  // required double wv_y = 2;
+  if (has_wv_y()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->wv_y(), target);
+  }
+
+  // required double wv_z = 3;
+  if (has_wv_z()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(3, this->wv_z(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -621,13 +757,23 @@ void Cell_WindVector::SerializeWithCachedSizes(
 int Cell_WindVector::ByteSize() const {
   int total_size = 0;
 
-  // repeated double wv_item = 1;
-  {
-    int data_size = 0;
-    data_size = 8 * this->wv_item_size();
-    total_size += 1 * this->wv_item_size() + data_size;
-  }
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required double wv_x = 1;
+    if (has_wv_x()) {
+      total_size += 1 + 8;
+    }
 
+    // required double wv_y = 2;
+    if (has_wv_y()) {
+      total_size += 1 + 8;
+    }
+
+    // required double wv_z = 3;
+    if (has_wv_z()) {
+      total_size += 1 + 8;
+    }
+
+  }
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -653,7 +799,17 @@ void Cell_WindVector::MergeFrom(const ::google::protobuf::Message& from) {
 
 void Cell_WindVector::MergeFrom(const Cell_WindVector& from) {
   GOOGLE_CHECK_NE(&from, this);
-  wv_item_.MergeFrom(from.wv_item_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_wv_x()) {
+      set_wv_x(from.wv_x());
+    }
+    if (from.has_wv_y()) {
+      set_wv_y(from.wv_y());
+    }
+    if (from.has_wv_z()) {
+      set_wv_z(from.wv_z());
+    }
+  }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -670,13 +826,16 @@ void Cell_WindVector::CopyFrom(const Cell_WindVector& from) {
 }
 
 bool Cell_WindVector::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
 
   return true;
 }
 
 void Cell_WindVector::Swap(Cell_WindVector* other) {
   if (other != this) {
-    wv_item_.Swap(&other->wv_item_);
+    std::swap(wv_x_, other->wv_x_);
+    std::swap(wv_y_, other->wv_y_);
+    std::swap(wv_z_, other->wv_z_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -929,6 +1088,12 @@ void Cell_Wind::CopyFrom(const Cell_Wind& from) {
 bool Cell_Wind::IsInitialized() const {
   if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
 
+  if (has_wind()) {
+    if (!this->wind().IsInitialized()) return false;
+  }
+  if (has_potential()) {
+    if (!this->potential().IsInitialized()) return false;
+  }
   return true;
 }
 
@@ -1484,6 +1649,9 @@ void Cell::CopyFrom(const Cell& from) {
 bool Cell::IsInitialized() const {
   if ((_has_bits_[0] & 0x0000000f) != 0x0000000f) return false;
 
+  if (has_coord()) {
+    if (!this->coord().IsInitialized()) return false;
+  }
   if (has_mtn()) {
     if (!this->mtn().IsInitialized()) return false;
   }
@@ -1996,6 +2164,12 @@ void Map::CopyFrom(const Map& from) {
 bool Map::IsInitialized() const {
   if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
 
+  if (has_startindex()) {
+    if (!this->startindex().IsInitialized()) return false;
+  }
+  if (has_boundary()) {
+    if (!this->boundary().IsInitialized()) return false;
+  }
   for (int i = 0; i < cell_size(); i++) {
     if (!this->cell(i).IsInitialized()) return false;
   }
