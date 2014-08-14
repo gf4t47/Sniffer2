@@ -20,8 +20,7 @@ namespace Initializer {
     
     class DetectionInitializer {
     public:
-        static std::tuple<std::shared_ptr<std::vector<Detection>>, bool> load(std::string filename);
-        
+        static std::tuple<std::shared_ptr<std::vector<Detection>>, std::shared_ptr<std::vector<Detection>>, bool> load(std::string filename);
     };
 }
 

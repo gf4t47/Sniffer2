@@ -29,14 +29,15 @@ namespace Backward {
     
     class InformationGain {
     public:
+        InformationGain(const Forward::ForwardChecking & forward, const BackwardChecking & backward, const Model::Map3D & map);
         InformationGain(const Forward::ForwardChecking & forward, const BackwardChecking & backward, const Model::Map3D & map, size_t count);
         virtual ~InformationGain();
         
-        entropy_t calcInforGain(const Model::Coordinate & candidate, const std::vector<Model::Hypothesis> & hyps) const;
-        std::vector<entropy_t> calcInforGain(const std::vector<Model::Coordinate> & candidates, const std::vector<Model::Hypothesis> & hyps) const;
+        std::vector<entropy_t> calcInforGains(const std::vector<Model::Coordinate> & candidates, const std::vector<Model::Hypothesis> & hyps) const;
+        void setTime(size_t time_count);
         
     private:
-        std::shared_ptr<std::vector<Model::Hypothesis>> updateHypothesis(const Model::Coordinate & candidate, const std::vector<Model::Hypothesis> & hyps) const;
+        entropy_t calcInforGain(const Model::Coordinate & candidate, const std::vector<Model::Hypothesis> & hyps, std::vector<Model::Hypothesis> & future_hyps) const;
         double calcLikehood(const Model::Hypothesis & hyp, const Model::Coordinate & detected_location, const Model::Map3D & map) const;
         entropy_t entropy(const Model::Hypothesis & hyp) const;
         
