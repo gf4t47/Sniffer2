@@ -1,4 +1,4 @@
-package Message;
+package Msg;
 
 message Coordinate {
 		required int32 coord_x = 1;

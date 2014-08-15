@@ -1,6 +1,6 @@
 import "hypothesis.proto";
 
-package Message;
+package Msg;
 
 message Detection {
 	required int32 time = 1;

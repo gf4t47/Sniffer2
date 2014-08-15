@@ -1,7 +1,7 @@
 __author__ = 'Kern'
 
 import numpy
-from src.message import cell_pb2
+from src.Msg import cell_pb2
 import mayavi.mlab as mb
 import time
 
@@ -15,7 +15,7 @@ def _cells_to_vector(cells):
     vs = numpy.zeros(size)
     ws = numpy.zeros(size)
 
-    for index, cell in enumerate(filter(lambda c: c.tag == cell_pb2.CellTag.Value('Air'), cells.cell)):
+    for index, cell in enumerate(filter(lambda c: c.tag == cell_pb2.Air, cells.cell)):
         coord = cell.coord
         xs[index] = coord.coord_x
         ys[index] = coord.coord_y

@@ -1,6 +1,6 @@
 import "cell.proto";
 
-package Message;
+package Msg;
 
 message Leak {
 		required Coordinate location = 1;

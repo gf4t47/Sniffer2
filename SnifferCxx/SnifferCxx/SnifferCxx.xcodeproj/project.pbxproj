@@ -382,11 +382,12 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/local/include,
+					/usr/local/Cellar/boost/1.55.0_2/include,
+					/usr/local/Cellar/protobuf241/2.4.1/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/lib,
-					"/usr/local/build-protobuf/protobuf/lib",
+					/usr/local/Cellar/boost/1.55.0_2/lib,
+					/usr/local/Cellar/protobuf241/2.4.1/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-lboost_system",
@@ -406,11 +407,12 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/local/include,
+					/usr/local/Cellar/boost/1.55.0_2/include,
+					/usr/local/Cellar/protobuf241/2.4.1/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/lib,
-					"/usr/local/build-protobuf/protobuf/lib",
+					/usr/local/Cellar/boost/1.55.0_2/lib,
+					/usr/local/Cellar/protobuf241/2.4.1/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-lboost_system",

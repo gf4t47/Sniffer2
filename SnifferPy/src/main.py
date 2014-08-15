@@ -1,7 +1,8 @@
 __author__ = 'Kern'
 
 import sys
-from message import MessageParser
+# from Msg import MessageParserPalm as MessageParser
+from Msg import MessageParserPb as MessageParser
 from initializer import MapParser
 from visualize import MapBuilder
 from visualize import MethaneBuilder

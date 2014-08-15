@@ -1,2 +1,2 @@
-protoc -I=../interface/ --cpp_out=../../SnifferCxx/SnifferCxx/message ../interface/cell.proto ../interface/hypothesis.proto ../interface/dect.proto
-protoc -I=../interface/ --python_out=../../SnifferPy/src/message ../interface/cell.proto ../interface/hypothesis.proto ../interface/dect.proto
+protoc -I=../interface/ --cpp_out=../../SnifferCxx/SnifferCxx/message ../interface/*.proto
+protoc -I=../interface/ --python_out=../../SnifferPy/src/message ../interface/*.proto
