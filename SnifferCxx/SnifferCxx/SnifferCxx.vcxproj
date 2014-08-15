@@ -86,7 +86,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\tools\boost_1_56_0;C:\tools\protobuf\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\tools\boost_1_56_0;C:\tools\protobuf241\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnablePREfast>false</EnablePREfast>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalOptions>/DNOMINMAX %(AdditionalOptions)</AdditionalOptions>
@@ -94,8 +94,9 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\tools\boost_1_56_0\lib32-msvc-12.0;C:\tools\protobuf\lib32_debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\tools\boost_1_56_0\lib32-msvc-12.0;C:\tools\protobuf241\lib32_debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libprotoc.lib;libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile />
     </Link>
     <CustomBuildStep>
       <Command>
@@ -116,7 +117,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\tools\boost_1_56_0;C:\tools\protobuf\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\tools\boost_1_56_0;C:\tools\protobuf241\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <AdditionalOptions>/DNOMINMAX %(AdditionalOptions)</AdditionalOptions>
@@ -124,8 +125,9 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\tools\boost_1_56_0\lib64-msvc-12.0;C:\tools\protobuf\lib64_debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\tools\boost_1_56_0\lib64-msvc-12.0;C:\tools\protobuf241\lib64_debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libprotoc.lib;libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile />
     </Link>
     <CustomBuildStep>
       <Command>
@@ -145,7 +147,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\tools\boost_1_56_0;C:\tools\protobuf\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\tools\boost_1_56_0;C:\tools\protobuf241\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalOptions>/DNOMINMAX %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -154,8 +156,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\tools\boost_1_56_0\lib32-msvc-12.0;C:\tools\protobuf\lib32_release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\tools\boost_1_56_0\lib32-msvc-12.0;C:\tools\protobuf241\lib32_release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libprotoc.lib;libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile />
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -167,7 +170,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\tools\boost_1_56_0;C:\tools\protobuf\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\tools\boost_1_56_0;C:\tools\protobuf241\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <AdditionalOptions>/DNOMINMAX %(AdditionalOptions)</AdditionalOptions>
@@ -177,7 +180,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\tools\boost_1_56_0\lib64-msvc-12.0;C:\tools\protobuf\lib64_release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\tools\boost_1_56_0\lib64-msvc-12.0;C:\tools\protobuf241\lib64_release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libprotoc.lib;libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -194,10 +197,6 @@
     <ClCompile Include="math\Gamma.cpp" />
     <ClCompile Include="math\Gaussian.cpp" />
     <ClCompile Include="math\GaussianBlur.cpp" />
-    <ClCompile Include="message\cell.pb.cc" />
-    <ClCompile Include="message\dect.pb.cc" />
-    <ClCompile Include="message\hypothesis.pb.cc" />
-    <ClCompile Include="message\MessageBuilder.cpp" />
     <ClCompile Include="model\Cell.cpp" />
     <ClCompile Include="model\Cells.cpp" />
     <ClCompile Include="model\Coordinate.cpp" />
@@ -206,6 +205,10 @@
     <ClCompile Include="model\Methane.cpp" />
     <ClCompile Include="model\Wind.cpp" />
     <ClCompile Include="model\WindVector.cpp" />
+    <ClCompile Include="protomsg\cell.pb.cc" />
+    <ClCompile Include="protomsg\dect.pb.cc" />
+    <ClCompile Include="protomsg\hypothesis.pb.cc" />
+    <ClCompile Include="protomsg\MessageBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="backwrad\BackwardChecking.h" />
@@ -219,10 +222,6 @@
     <ClInclude Include="math\Gamma.h" />
     <ClInclude Include="math\Gaussian.h" />
     <ClInclude Include="math\GaussianBlur.h" />
-    <ClInclude Include="message\cell.pb.h" />
-    <ClInclude Include="message\dect.pb.h" />
-    <ClInclude Include="message\hypothesis.pb.h" />
-    <ClInclude Include="message\MessageBuilder.h" />
     <ClInclude Include="model\Cell.h" />
     <ClInclude Include="model\Cells.h" />
     <ClInclude Include="model\Coordinate.h" />
@@ -231,6 +230,10 @@
     <ClInclude Include="model\Methane.h" />
     <ClInclude Include="model\Wind.h" />
     <ClInclude Include="model\WindVector.h" />
+    <ClInclude Include="protomsg\cell.pb.h" />
+    <ClInclude Include="protomsg\dect.pb.h" />
+    <ClInclude Include="protomsg\hypothesis.pb.h" />
+    <ClInclude Include="protomsg\MessageBuilder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

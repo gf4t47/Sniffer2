@@ -13,7 +13,7 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
-namespace Msg {
+namespace ProtoMsg {
 
 namespace {
 
@@ -219,21 +219,22 @@ void protobuf_AddDesc_cell_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\ncell.proto\022\003Msg\"\?\n\nCoordinate\022\017\n\007coord"
-    "_x\030\001 \002(\005\022\017\n\007coord_y\030\002 \002(\005\022\017\n\007coord_z\030\003 \002"
-    "(\005\"\256\002\n\004Cell\022\036\n\005coord\030\001 \002(\0132\017.Msg.Coordin"
-    "ate\022\031\n\003tag\030\002 \002(\0162\014.Msg.CellTag\022\036\n\003mtn\030\003 "
-    "\002(\0132\021.Msg.Cell.Methane\022\034\n\004wind\030\004 \002(\0132\016.M"
-    "sg.Cell.Wind\0326\n\nWindVector\022\014\n\004wv_x\030\001 \002(\001"
-    "\022\014\n\004wv_y\030\002 \002(\001\022\014\n\004wv_z\030\003 \002(\001\032S\n\004Wind\022\"\n\004"
-    "wind\030\001 \002(\0132\024.Msg.Cell.WindVector\022\'\n\tpote"
-    "ntial\030\002 \002(\0132\024.Msg.Cell.WindVector\032 \n\007Met"
-    "hane\022\025\n\rconcentration\030\001 \002(\001\" \n\005Cells\022\027\n\004"
-    "cell\030\001 \003(\0132\t.Msg.Cell\"f\n\003Map\022#\n\nstartInd"
-    "ex\030\001 \002(\0132\017.Msg.Coordinate\022!\n\010boundary\030\002 "
-    "\002(\0132\017.Msg.Coordinate\022\027\n\004cell\030\003 \003(\0132\t.Msg"
-    ".Cell*,\n\007CellTag\022\007\n\003Air\020\001\022\n\n\006Ground\020\002\022\014\n"
-    "\010Building\020\003", 571);
+    "\n\ncell.proto\022\010ProtoMsg\"\?\n\nCoordinate\022\017\n\007"
+    "coord_x\030\001 \002(\005\022\017\n\007coord_y\030\002 \002(\005\022\017\n\007coord_"
+    "z\030\003 \002(\005\"\314\002\n\004Cell\022#\n\005coord\030\001 \002(\0132\024.ProtoM"
+    "sg.Coordinate\022\036\n\003tag\030\002 \002(\0162\021.ProtoMsg.Ce"
+    "llTag\022#\n\003mtn\030\003 \002(\0132\026.ProtoMsg.Cell.Metha"
+    "ne\022!\n\004wind\030\004 \002(\0132\023.ProtoMsg.Cell.Wind\0326\n"
+    "\nWindVector\022\014\n\004wv_x\030\001 \002(\001\022\014\n\004wv_y\030\002 \002(\001\022"
+    "\014\n\004wv_z\030\003 \002(\001\032]\n\004Wind\022\'\n\004wind\030\001 \002(\0132\031.Pr"
+    "otoMsg.Cell.WindVector\022,\n\tpotential\030\002 \002("
+    "\0132\031.ProtoMsg.Cell.WindVector\032 \n\007Methane\022"
+    "\025\n\rconcentration\030\001 \002(\001\"%\n\005Cells\022\034\n\004cell\030"
+    "\001 \003(\0132\016.ProtoMsg.Cell\"u\n\003Map\022(\n\nstartInd"
+    "ex\030\001 \002(\0132\024.ProtoMsg.Coordinate\022&\n\010bounda"
+    "ry\030\002 \002(\0132\024.ProtoMsg.Coordinate\022\034\n\004cell\030\003"
+    " \003(\0132\016.ProtoMsg.Cell*,\n\007CellTag\022\007\n\003Air\020\001"
+    "\022\n\n\006Ground\020\002\022\014\n\010Building\020\003", 626);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cell.proto", &protobuf_RegisterTypes);
   Coordinate::default_instance_ = new Coordinate();
@@ -859,8 +860,8 @@ Cell_Wind::Cell_Wind()
 }
 
 void Cell_Wind::InitAsDefaultInstance() {
-  wind_ = const_cast< ::Msg::Cell_WindVector*>(&::Msg::Cell_WindVector::default_instance());
-  potential_ = const_cast< ::Msg::Cell_WindVector*>(&::Msg::Cell_WindVector::default_instance());
+  wind_ = const_cast< ::ProtoMsg::Cell_WindVector*>(&::ProtoMsg::Cell_WindVector::default_instance());
+  potential_ = const_cast< ::ProtoMsg::Cell_WindVector*>(&::ProtoMsg::Cell_WindVector::default_instance());
 }
 
 Cell_Wind::Cell_Wind(const Cell_Wind& from)
@@ -910,10 +911,10 @@ Cell_Wind* Cell_Wind::New() const {
 void Cell_Wind::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_wind()) {
-      if (wind_ != NULL) wind_->::Msg::Cell_WindVector::Clear();
+      if (wind_ != NULL) wind_->::ProtoMsg::Cell_WindVector::Clear();
     }
     if (has_potential()) {
-      if (potential_ != NULL) potential_->::Msg::Cell_WindVector::Clear();
+      if (potential_ != NULL) potential_->::ProtoMsg::Cell_WindVector::Clear();
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -926,7 +927,7 @@ bool Cell_Wind::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .Msg.Cell.WindVector wind = 1;
+      // required .ProtoMsg.Cell.WindVector wind = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -939,7 +940,7 @@ bool Cell_Wind::MergePartialFromCodedStream(
         break;
       }
       
-      // required .Msg.Cell.WindVector potential = 2;
+      // required .ProtoMsg.Cell.WindVector potential = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -971,13 +972,13 @@ bool Cell_Wind::MergePartialFromCodedStream(
 
 void Cell_Wind::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .Msg.Cell.WindVector wind = 1;
+  // required .ProtoMsg.Cell.WindVector wind = 1;
   if (has_wind()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->wind(), output);
   }
   
-  // required .Msg.Cell.WindVector potential = 2;
+  // required .ProtoMsg.Cell.WindVector potential = 2;
   if (has_potential()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2, this->potential(), output);
@@ -991,14 +992,14 @@ void Cell_Wind::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Cell_Wind::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .Msg.Cell.WindVector wind = 1;
+  // required .ProtoMsg.Cell.WindVector wind = 1;
   if (has_wind()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         1, this->wind(), target);
   }
   
-  // required .Msg.Cell.WindVector potential = 2;
+  // required .ProtoMsg.Cell.WindVector potential = 2;
   if (has_potential()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -1016,14 +1017,14 @@ int Cell_Wind::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .Msg.Cell.WindVector wind = 1;
+    // required .ProtoMsg.Cell.WindVector wind = 1;
     if (has_wind()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->wind());
     }
     
-    // required .Msg.Cell.WindVector potential = 2;
+    // required .ProtoMsg.Cell.WindVector potential = 2;
     if (has_potential()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -1058,10 +1059,10 @@ void Cell_Wind::MergeFrom(const Cell_Wind& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_wind()) {
-      mutable_wind()->::Msg::Cell_WindVector::MergeFrom(from.wind());
+      mutable_wind()->::ProtoMsg::Cell_WindVector::MergeFrom(from.wind());
     }
     if (from.has_potential()) {
-      mutable_potential()->::Msg::Cell_WindVector::MergeFrom(from.potential());
+      mutable_potential()->::ProtoMsg::Cell_WindVector::MergeFrom(from.potential());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -1331,9 +1332,9 @@ Cell::Cell()
 }
 
 void Cell::InitAsDefaultInstance() {
-  coord_ = const_cast< ::Msg::Coordinate*>(&::Msg::Coordinate::default_instance());
-  mtn_ = const_cast< ::Msg::Cell_Methane*>(&::Msg::Cell_Methane::default_instance());
-  wind_ = const_cast< ::Msg::Cell_Wind*>(&::Msg::Cell_Wind::default_instance());
+  coord_ = const_cast< ::ProtoMsg::Coordinate*>(&::ProtoMsg::Coordinate::default_instance());
+  mtn_ = const_cast< ::ProtoMsg::Cell_Methane*>(&::ProtoMsg::Cell_Methane::default_instance());
+  wind_ = const_cast< ::ProtoMsg::Cell_Wind*>(&::ProtoMsg::Cell_Wind::default_instance());
 }
 
 Cell::Cell(const Cell& from)
@@ -1386,14 +1387,14 @@ Cell* Cell::New() const {
 void Cell::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_coord()) {
-      if (coord_ != NULL) coord_->::Msg::Coordinate::Clear();
+      if (coord_ != NULL) coord_->::ProtoMsg::Coordinate::Clear();
     }
     tag_ = 1;
     if (has_mtn()) {
-      if (mtn_ != NULL) mtn_->::Msg::Cell_Methane::Clear();
+      if (mtn_ != NULL) mtn_->::ProtoMsg::Cell_Methane::Clear();
     }
     if (has_wind()) {
-      if (wind_ != NULL) wind_->::Msg::Cell_Wind::Clear();
+      if (wind_ != NULL) wind_->::ProtoMsg::Cell_Wind::Clear();
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -1406,7 +1407,7 @@ bool Cell::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .Msg.Coordinate coord = 1;
+      // required .ProtoMsg.Coordinate coord = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -1419,7 +1420,7 @@ bool Cell::MergePartialFromCodedStream(
         break;
       }
       
-      // required .Msg.CellTag tag = 2;
+      // required .ProtoMsg.CellTag tag = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1428,8 +1429,8 @@ bool Cell::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (Msg::CellTag_IsValid(value)) {
-            set_tag(static_cast< Msg::CellTag >(value));
+          if (ProtoMsg::CellTag_IsValid(value)) {
+            set_tag(static_cast< ProtoMsg::CellTag >(value));
           } else {
             mutable_unknown_fields()->AddVarint(2, value);
           }
@@ -1440,7 +1441,7 @@ bool Cell::MergePartialFromCodedStream(
         break;
       }
       
-      // required .Msg.Cell.Methane mtn = 3;
+      // required .ProtoMsg.Cell.Methane mtn = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -1454,7 +1455,7 @@ bool Cell::MergePartialFromCodedStream(
         break;
       }
       
-      // required .Msg.Cell.Wind wind = 4;
+      // required .ProtoMsg.Cell.Wind wind = 4;
       case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -1486,25 +1487,25 @@ bool Cell::MergePartialFromCodedStream(
 
 void Cell::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .Msg.Coordinate coord = 1;
+  // required .ProtoMsg.Coordinate coord = 1;
   if (has_coord()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->coord(), output);
   }
   
-  // required .Msg.CellTag tag = 2;
+  // required .ProtoMsg.CellTag tag = 2;
   if (has_tag()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       2, this->tag(), output);
   }
   
-  // required .Msg.Cell.Methane mtn = 3;
+  // required .ProtoMsg.Cell.Methane mtn = 3;
   if (has_mtn()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       3, this->mtn(), output);
   }
   
-  // required .Msg.Cell.Wind wind = 4;
+  // required .ProtoMsg.Cell.Wind wind = 4;
   if (has_wind()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       4, this->wind(), output);
@@ -1518,27 +1519,27 @@ void Cell::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Cell::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .Msg.Coordinate coord = 1;
+  // required .ProtoMsg.Coordinate coord = 1;
   if (has_coord()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         1, this->coord(), target);
   }
   
-  // required .Msg.CellTag tag = 2;
+  // required .ProtoMsg.CellTag tag = 2;
   if (has_tag()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       2, this->tag(), target);
   }
   
-  // required .Msg.Cell.Methane mtn = 3;
+  // required .ProtoMsg.Cell.Methane mtn = 3;
   if (has_mtn()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         3, this->mtn(), target);
   }
   
-  // required .Msg.Cell.Wind wind = 4;
+  // required .ProtoMsg.Cell.Wind wind = 4;
   if (has_wind()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -1556,27 +1557,27 @@ int Cell::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .Msg.Coordinate coord = 1;
+    // required .ProtoMsg.Coordinate coord = 1;
     if (has_coord()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->coord());
     }
     
-    // required .Msg.CellTag tag = 2;
+    // required .ProtoMsg.CellTag tag = 2;
     if (has_tag()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->tag());
     }
     
-    // required .Msg.Cell.Methane mtn = 3;
+    // required .ProtoMsg.Cell.Methane mtn = 3;
     if (has_mtn()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->mtn());
     }
     
-    // required .Msg.Cell.Wind wind = 4;
+    // required .ProtoMsg.Cell.Wind wind = 4;
     if (has_wind()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -1611,16 +1612,16 @@ void Cell::MergeFrom(const Cell& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_coord()) {
-      mutable_coord()->::Msg::Coordinate::MergeFrom(from.coord());
+      mutable_coord()->::ProtoMsg::Coordinate::MergeFrom(from.coord());
     }
     if (from.has_tag()) {
       set_tag(from.tag());
     }
     if (from.has_mtn()) {
-      mutable_mtn()->::Msg::Cell_Methane::MergeFrom(from.mtn());
+      mutable_mtn()->::ProtoMsg::Cell_Methane::MergeFrom(from.mtn());
     }
     if (from.has_wind()) {
-      mutable_wind()->::Msg::Cell_Wind::MergeFrom(from.wind());
+      mutable_wind()->::ProtoMsg::Cell_Wind::MergeFrom(from.wind());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -1740,7 +1741,7 @@ bool Cells::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .Msg.Cell cell = 1;
+      // repeated .ProtoMsg.Cell cell = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -1773,7 +1774,7 @@ bool Cells::MergePartialFromCodedStream(
 
 void Cells::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .Msg.Cell cell = 1;
+  // repeated .ProtoMsg.Cell cell = 1;
   for (int i = 0; i < this->cell_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->cell(i), output);
@@ -1787,7 +1788,7 @@ void Cells::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Cells::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .Msg.Cell cell = 1;
+  // repeated .ProtoMsg.Cell cell = 1;
   for (int i = 0; i < this->cell_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -1804,7 +1805,7 @@ void Cells::SerializeWithCachedSizes(
 int Cells::ByteSize() const {
   int total_size = 0;
   
-  // repeated .Msg.Cell cell = 1;
+  // repeated .ProtoMsg.Cell cell = 1;
   total_size += 1 * this->cell_size();
   for (int i = 0; i < this->cell_size(); i++) {
     total_size +=
@@ -1893,8 +1894,8 @@ Map::Map()
 }
 
 void Map::InitAsDefaultInstance() {
-  startindex_ = const_cast< ::Msg::Coordinate*>(&::Msg::Coordinate::default_instance());
-  boundary_ = const_cast< ::Msg::Coordinate*>(&::Msg::Coordinate::default_instance());
+  startindex_ = const_cast< ::ProtoMsg::Coordinate*>(&::ProtoMsg::Coordinate::default_instance());
+  boundary_ = const_cast< ::ProtoMsg::Coordinate*>(&::ProtoMsg::Coordinate::default_instance());
 }
 
 Map::Map(const Map& from)
@@ -1944,10 +1945,10 @@ Map* Map::New() const {
 void Map::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_startindex()) {
-      if (startindex_ != NULL) startindex_->::Msg::Coordinate::Clear();
+      if (startindex_ != NULL) startindex_->::ProtoMsg::Coordinate::Clear();
     }
     if (has_boundary()) {
-      if (boundary_ != NULL) boundary_->::Msg::Coordinate::Clear();
+      if (boundary_ != NULL) boundary_->::ProtoMsg::Coordinate::Clear();
     }
   }
   cell_.Clear();
@@ -1961,7 +1962,7 @@ bool Map::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .Msg.Coordinate startIndex = 1;
+      // required .ProtoMsg.Coordinate startIndex = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -1974,7 +1975,7 @@ bool Map::MergePartialFromCodedStream(
         break;
       }
       
-      // required .Msg.Coordinate boundary = 2;
+      // required .ProtoMsg.Coordinate boundary = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -1988,7 +1989,7 @@ bool Map::MergePartialFromCodedStream(
         break;
       }
       
-      // repeated .Msg.Cell cell = 3;
+      // repeated .ProtoMsg.Cell cell = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -2021,19 +2022,19 @@ bool Map::MergePartialFromCodedStream(
 
 void Map::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .Msg.Coordinate startIndex = 1;
+  // required .ProtoMsg.Coordinate startIndex = 1;
   if (has_startindex()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->startindex(), output);
   }
   
-  // required .Msg.Coordinate boundary = 2;
+  // required .ProtoMsg.Coordinate boundary = 2;
   if (has_boundary()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2, this->boundary(), output);
   }
   
-  // repeated .Msg.Cell cell = 3;
+  // repeated .ProtoMsg.Cell cell = 3;
   for (int i = 0; i < this->cell_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       3, this->cell(i), output);
@@ -2047,21 +2048,21 @@ void Map::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Map::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .Msg.Coordinate startIndex = 1;
+  // required .ProtoMsg.Coordinate startIndex = 1;
   if (has_startindex()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         1, this->startindex(), target);
   }
   
-  // required .Msg.Coordinate boundary = 2;
+  // required .ProtoMsg.Coordinate boundary = 2;
   if (has_boundary()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         2, this->boundary(), target);
   }
   
-  // repeated .Msg.Cell cell = 3;
+  // repeated .ProtoMsg.Cell cell = 3;
   for (int i = 0; i < this->cell_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -2079,14 +2080,14 @@ int Map::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .Msg.Coordinate startIndex = 1;
+    // required .ProtoMsg.Coordinate startIndex = 1;
     if (has_startindex()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->startindex());
     }
     
-    // required .Msg.Coordinate boundary = 2;
+    // required .ProtoMsg.Coordinate boundary = 2;
     if (has_boundary()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -2094,7 +2095,7 @@ int Map::ByteSize() const {
     }
     
   }
-  // repeated .Msg.Cell cell = 3;
+  // repeated .ProtoMsg.Cell cell = 3;
   total_size += 1 * this->cell_size();
   for (int i = 0; i < this->cell_size(); i++) {
     total_size +=
@@ -2130,10 +2131,10 @@ void Map::MergeFrom(const Map& from) {
   cell_.MergeFrom(from.cell_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_startindex()) {
-      mutable_startindex()->::Msg::Coordinate::MergeFrom(from.startindex());
+      mutable_startindex()->::ProtoMsg::Coordinate::MergeFrom(from.startindex());
     }
     if (from.has_boundary()) {
-      mutable_boundary()->::Msg::Coordinate::MergeFrom(from.boundary());
+      mutable_boundary()->::ProtoMsg::Coordinate::MergeFrom(from.boundary());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -2188,6 +2189,6 @@ void Map::Swap(Map* other) {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace Msg
+}  // namespace ProtoMsg
 
 // @@protoc_insertion_point(global_scope)

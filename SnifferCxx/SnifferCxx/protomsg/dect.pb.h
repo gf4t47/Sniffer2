@@ -26,7 +26,7 @@
 #include "hypothesis.pb.h"
 // @@protoc_insertion_point(includes)
 
-namespace Msg {
+namespace ProtoMsg {
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_dect_2eproto();
@@ -99,26 +99,26 @@ class Detection : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 time() const;
   inline void set_time(::google::protobuf::int32 value);
   
-  // repeated .Msg.Leak leak = 2;
+  // repeated .ProtoMsg.Leak leak = 2;
   inline int leak_size() const;
   inline void clear_leak();
   static const int kLeakFieldNumber = 2;
-  inline const ::Msg::Leak& leak(int index) const;
-  inline ::Msg::Leak* mutable_leak(int index);
-  inline ::Msg::Leak* add_leak();
-  inline const ::google::protobuf::RepeatedPtrField< ::Msg::Leak >&
+  inline const ::ProtoMsg::Leak& leak(int index) const;
+  inline ::ProtoMsg::Leak* mutable_leak(int index);
+  inline ::ProtoMsg::Leak* add_leak();
+  inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Leak >&
       leak() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Msg::Leak >*
+  inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Leak >*
       mutable_leak();
   
-  // @@protoc_insertion_point(class_scope:Msg.Detection)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Detection)
  private:
   inline void set_has_time();
   inline void clear_has_time();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::google::protobuf::RepeatedPtrField< ::Msg::Leak > leak_;
+  ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Leak > leak_;
   ::google::protobuf::int32 time_;
   
   mutable int _cached_size_;
@@ -187,24 +187,24 @@ class Detections : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // repeated .Msg.Detection dect = 1;
+  // repeated .ProtoMsg.Detection dect = 1;
   inline int dect_size() const;
   inline void clear_dect();
   static const int kDectFieldNumber = 1;
-  inline const ::Msg::Detection& dect(int index) const;
-  inline ::Msg::Detection* mutable_dect(int index);
-  inline ::Msg::Detection* add_dect();
-  inline const ::google::protobuf::RepeatedPtrField< ::Msg::Detection >&
+  inline const ::ProtoMsg::Detection& dect(int index) const;
+  inline ::ProtoMsg::Detection* mutable_dect(int index);
+  inline ::ProtoMsg::Detection* add_dect();
+  inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Detection >&
       dect() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Msg::Detection >*
+  inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Detection >*
       mutable_dect();
   
-  // @@protoc_insertion_point(class_scope:Msg.Detections)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Detections)
  private:
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::google::protobuf::RepeatedPtrField< ::Msg::Detection > dect_;
+  ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Detection > dect_;
   
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -245,27 +245,27 @@ inline void Detection::set_time(::google::protobuf::int32 value) {
   time_ = value;
 }
 
-// repeated .Msg.Leak leak = 2;
+// repeated .ProtoMsg.Leak leak = 2;
 inline int Detection::leak_size() const {
   return leak_.size();
 }
 inline void Detection::clear_leak() {
   leak_.Clear();
 }
-inline const ::Msg::Leak& Detection::leak(int index) const {
+inline const ::ProtoMsg::Leak& Detection::leak(int index) const {
   return leak_.Get(index);
 }
-inline ::Msg::Leak* Detection::mutable_leak(int index) {
+inline ::ProtoMsg::Leak* Detection::mutable_leak(int index) {
   return leak_.Mutable(index);
 }
-inline ::Msg::Leak* Detection::add_leak() {
+inline ::ProtoMsg::Leak* Detection::add_leak() {
   return leak_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Msg::Leak >&
+inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Leak >&
 Detection::leak() const {
   return leak_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Msg::Leak >*
+inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Leak >*
 Detection::mutable_leak() {
   return &leak_;
 }
@@ -274,27 +274,27 @@ Detection::mutable_leak() {
 
 // Detections
 
-// repeated .Msg.Detection dect = 1;
+// repeated .ProtoMsg.Detection dect = 1;
 inline int Detections::dect_size() const {
   return dect_.size();
 }
 inline void Detections::clear_dect() {
   dect_.Clear();
 }
-inline const ::Msg::Detection& Detections::dect(int index) const {
+inline const ::ProtoMsg::Detection& Detections::dect(int index) const {
   return dect_.Get(index);
 }
-inline ::Msg::Detection* Detections::mutable_dect(int index) {
+inline ::ProtoMsg::Detection* Detections::mutable_dect(int index) {
   return dect_.Mutable(index);
 }
-inline ::Msg::Detection* Detections::add_dect() {
+inline ::ProtoMsg::Detection* Detections::add_dect() {
   return dect_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Msg::Detection >&
+inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Detection >&
 Detections::dect() const {
   return dect_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Msg::Detection >*
+inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Detection >*
 Detections::mutable_dect() {
   return &dect_;
 }
@@ -302,7 +302,7 @@ Detections::mutable_dect() {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace Msg
+}  // namespace ProtoMsg
 
 #ifndef SWIG
 namespace google {

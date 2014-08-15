@@ -16,9 +16,9 @@
 #include "backwrad/BackwardChecking.h"
 #include "backwrad/InformationGain.h"
 #include "forward/ForwardChecking.h"
-#include "message/MessageBuilder.h"
-#include "message/hypothesis.pb.h"
-#include "message/dect.pb.h"
+#include "protomsg/MessageBuilder.h"
+#include "protomsg/hypothesis.pb.h"
+#include "protomsg/dect.pb.h"
 #include "model/Map3D.h"
 
 using namespace std;
@@ -97,28 +97,28 @@ int main(int argc, const char * argv[])
 	}
     
     //message output
-    auto map_msg = Msg::MessageBuilder::buildMessage(*map);
+    auto map_msg = ProtoMsg::MessageBuilder::buildMessage(*map);
     fstream map_out(map_output, ios::out | ios::trunc | ios::binary);
     if (!map_msg->SerializeToOstream(&map_out)) {
         cerr << "Failed to write msg" << endl;
 		return -1;
     }
     
-    auto dect_msg = Msg::MessageBuilder::buildMessage(*dect_vect);
+    auto dect_msg = ProtoMsg::MessageBuilder::buildMessage(*dect_vect);
     fstream dect_out(dect_output, ios::out | ios::trunc | ios::binary);
     if (!dect_msg->SerializeToOstream(&dect_out)) {
         cerr << "Failed to write msg" << endl;
 		return -1;
     }
     
-    auto can_msg = Msg::MessageBuilder::buildMessage(*can_vect);
+    auto can_msg = ProtoMsg::MessageBuilder::buildMessage(*can_vect);
     fstream can_out(can_output, ios::out | ios::trunc | ios::binary);
     if (!can_msg->SerializeToOstream(&can_out)) {
         cerr << "Failed to write msg" << endl;
 		return -1;
     }
 
-	auto mtn_msg = Msg::MessageBuilder::buildMessage(hyps_hist, hypI.getIdealCells());
+	auto mtn_msg = ProtoMsg::MessageBuilder::buildMessage(hyps_hist, hypI.getIdealCells());
 	fstream mtn_out(mtn_output, ios::out | ios::trunc | ios::binary);
 	if (!mtn_msg->SerializeToOstream(&mtn_out)) {
 		cerr << "Failed to write msg" << endl;

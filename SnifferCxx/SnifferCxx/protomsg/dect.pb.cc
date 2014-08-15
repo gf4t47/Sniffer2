@@ -13,7 +13,7 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
-namespace Msg {
+namespace ProtoMsg {
 
 namespace {
 
@@ -97,12 +97,12 @@ void protobuf_AddDesc_dect_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  ::Msg::protobuf_AddDesc_hypothesis_2eproto();
+  ::ProtoMsg::protobuf_AddDesc_hypothesis_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\ndect.proto\022\003Msg\032\020hypothesis.proto\"2\n\tD"
-    "etection\022\014\n\004time\030\001 \002(\005\022\027\n\004leak\030\002 \003(\0132\t.M"
-    "sg.Leak\"*\n\nDetections\022\034\n\004dect\030\001 \003(\0132\016.Ms"
-    "g.Detection", 131);
+    "\n\ndect.proto\022\010ProtoMsg\032\020hypothesis.proto"
+    "\"7\n\tDetection\022\014\n\004time\030\001 \002(\005\022\034\n\004leak\030\002 \003("
+    "\0132\016.ProtoMsg.Leak\"/\n\nDetections\022!\n\004dect\030"
+    "\001 \003(\0132\023.ProtoMsg.Detection", 146);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "dect.proto", &protobuf_RegisterTypes);
   Detection::default_instance_ = new Detection();
@@ -206,7 +206,7 @@ bool Detection::MergePartialFromCodedStream(
         break;
       }
       
-      // repeated .Msg.Leak leak = 2;
+      // repeated .ProtoMsg.Leak leak = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -244,7 +244,7 @@ void Detection::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->time(), output);
   }
   
-  // repeated .Msg.Leak leak = 2;
+  // repeated .ProtoMsg.Leak leak = 2;
   for (int i = 0; i < this->leak_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2, this->leak(i), output);
@@ -263,7 +263,7 @@ void Detection::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->time(), target);
   }
   
-  // repeated .Msg.Leak leak = 2;
+  // repeated .ProtoMsg.Leak leak = 2;
   for (int i = 0; i < this->leak_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -289,7 +289,7 @@ int Detection::ByteSize() const {
     }
     
   }
-  // repeated .Msg.Leak leak = 2;
+  // repeated .ProtoMsg.Leak leak = 2;
   total_size += 1 * this->leak_size();
   for (int i = 0; i < this->leak_size(); i++) {
     total_size +=
@@ -437,7 +437,7 @@ bool Detections::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .Msg.Detection dect = 1;
+      // repeated .ProtoMsg.Detection dect = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -470,7 +470,7 @@ bool Detections::MergePartialFromCodedStream(
 
 void Detections::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .Msg.Detection dect = 1;
+  // repeated .ProtoMsg.Detection dect = 1;
   for (int i = 0; i < this->dect_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->dect(i), output);
@@ -484,7 +484,7 @@ void Detections::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Detections::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .Msg.Detection dect = 1;
+  // repeated .ProtoMsg.Detection dect = 1;
   for (int i = 0; i < this->dect_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -501,7 +501,7 @@ void Detections::SerializeWithCachedSizes(
 int Detections::ByteSize() const {
   int total_size = 0;
   
-  // repeated .Msg.Detection dect = 1;
+  // repeated .ProtoMsg.Detection dect = 1;
   total_size += 1 * this->dect_size();
   for (int i = 0; i < this->dect_size(); i++) {
     total_size +=
@@ -578,6 +578,6 @@ void Detections::Swap(Detections* other) {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace Msg
+}  // namespace ProtoMsg
 
 // @@protoc_insertion_point(global_scope)

@@ -10,12 +10,12 @@ from google.protobuf import descriptor_pb2
 
 DESCRIPTOR = descriptor.FileDescriptor(
   name='cell.proto',
-  package='Msg',
-  serialized_pb='\n\ncell.proto\x12\x03Msg\"?\n\nCoordinate\x12\x0f\n\x07\x63oord_x\x18\x01 \x02(\x05\x12\x0f\n\x07\x63oord_y\x18\x02 \x02(\x05\x12\x0f\n\x07\x63oord_z\x18\x03 \x02(\x05\"\xae\x02\n\x04\x43\x65ll\x12\x1e\n\x05\x63oord\x18\x01 \x02(\x0b\x32\x0f.Msg.Coordinate\x12\x19\n\x03tag\x18\x02 \x02(\x0e\x32\x0c.Msg.CellTag\x12\x1e\n\x03mtn\x18\x03 \x02(\x0b\x32\x11.Msg.Cell.Methane\x12\x1c\n\x04wind\x18\x04 \x02(\x0b\x32\x0e.Msg.Cell.Wind\x1a\x36\n\nWindVector\x12\x0c\n\x04wv_x\x18\x01 \x02(\x01\x12\x0c\n\x04wv_y\x18\x02 \x02(\x01\x12\x0c\n\x04wv_z\x18\x03 \x02(\x01\x1aS\n\x04Wind\x12\"\n\x04wind\x18\x01 \x02(\x0b\x32\x14.Msg.Cell.WindVector\x12\'\n\tpotential\x18\x02 \x02(\x0b\x32\x14.Msg.Cell.WindVector\x1a \n\x07Methane\x12\x15\n\rconcentration\x18\x01 \x02(\x01\" \n\x05\x43\x65lls\x12\x17\n\x04\x63\x65ll\x18\x01 \x03(\x0b\x32\t.Msg.Cell\"f\n\x03Map\x12#\n\nstartIndex\x18\x01 \x02(\x0b\x32\x0f.Msg.Coordinate\x12!\n\x08\x62oundary\x18\x02 \x02(\x0b\x32\x0f.Msg.Coordinate\x12\x17\n\x04\x63\x65ll\x18\x03 \x03(\x0b\x32\t.Msg.Cell*,\n\x07\x43\x65llTag\x12\x07\n\x03\x41ir\x10\x01\x12\n\n\x06Ground\x10\x02\x12\x0c\n\x08\x42uilding\x10\x03')
+  package='ProtoMsg',
+  serialized_pb='\n\ncell.proto\x12\x08ProtoMsg\"?\n\nCoordinate\x12\x0f\n\x07\x63oord_x\x18\x01 \x02(\x05\x12\x0f\n\x07\x63oord_y\x18\x02 \x02(\x05\x12\x0f\n\x07\x63oord_z\x18\x03 \x02(\x05\"\xcc\x02\n\x04\x43\x65ll\x12#\n\x05\x63oord\x18\x01 \x02(\x0b\x32\x14.ProtoMsg.Coordinate\x12\x1e\n\x03tag\x18\x02 \x02(\x0e\x32\x11.ProtoMsg.CellTag\x12#\n\x03mtn\x18\x03 \x02(\x0b\x32\x16.ProtoMsg.Cell.Methane\x12!\n\x04wind\x18\x04 \x02(\x0b\x32\x13.ProtoMsg.Cell.Wind\x1a\x36\n\nWindVector\x12\x0c\n\x04wv_x\x18\x01 \x02(\x01\x12\x0c\n\x04wv_y\x18\x02 \x02(\x01\x12\x0c\n\x04wv_z\x18\x03 \x02(\x01\x1a]\n\x04Wind\x12\'\n\x04wind\x18\x01 \x02(\x0b\x32\x19.ProtoMsg.Cell.WindVector\x12,\n\tpotential\x18\x02 \x02(\x0b\x32\x19.ProtoMsg.Cell.WindVector\x1a \n\x07Methane\x12\x15\n\rconcentration\x18\x01 \x02(\x01\"%\n\x05\x43\x65lls\x12\x1c\n\x04\x63\x65ll\x18\x01 \x03(\x0b\x32\x0e.ProtoMsg.Cell\"u\n\x03Map\x12(\n\nstartIndex\x18\x01 \x02(\x0b\x32\x14.ProtoMsg.Coordinate\x12&\n\x08\x62oundary\x18\x02 \x02(\x0b\x32\x14.ProtoMsg.Coordinate\x12\x1c\n\x04\x63\x65ll\x18\x03 \x03(\x0b\x32\x0e.ProtoMsg.Cell*,\n\x07\x43\x65llTag\x12\x07\n\x03\x41ir\x10\x01\x12\n\n\x06Ground\x10\x02\x12\x0c\n\x08\x42uilding\x10\x03')
 
 _CELLTAG = descriptor.EnumDescriptor(
   name='CellTag',
-  full_name='Msg.CellTag',
+  full_name='ProtoMsg.CellTag',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -34,8 +34,8 @@ _CELLTAG = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=527,
-  serialized_end=571,
+  serialized_start=582,
+  serialized_end=626,
 )
 
 
@@ -47,27 +47,27 @@ Building = 3
 
 _COORDINATE = descriptor.Descriptor(
   name='Coordinate',
-  full_name='Msg.Coordinate',
+  full_name='ProtoMsg.Coordinate',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='coord_x', full_name='Msg.Coordinate.coord_x', index=0,
+      name='coord_x', full_name='ProtoMsg.Coordinate.coord_x', index=0,
       number=1, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='coord_y', full_name='Msg.Coordinate.coord_y', index=1,
+      name='coord_y', full_name='ProtoMsg.Coordinate.coord_y', index=1,
       number=2, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='coord_z', full_name='Msg.Coordinate.coord_z', index=2,
+      name='coord_z', full_name='ProtoMsg.Coordinate.coord_z', index=2,
       number=3, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -82,34 +82,34 @@ _COORDINATE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=19,
-  serialized_end=82,
+  serialized_start=24,
+  serialized_end=87,
 )
 
 
 _CELL_WINDVECTOR = descriptor.Descriptor(
   name='WindVector',
-  full_name='Msg.Cell.WindVector',
+  full_name='ProtoMsg.Cell.WindVector',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='wv_x', full_name='Msg.Cell.WindVector.wv_x', index=0,
+      name='wv_x', full_name='ProtoMsg.Cell.WindVector.wv_x', index=0,
       number=1, type=1, cpp_type=5, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='wv_y', full_name='Msg.Cell.WindVector.wv_y', index=1,
+      name='wv_y', full_name='ProtoMsg.Cell.WindVector.wv_y', index=1,
       number=2, type=1, cpp_type=5, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='wv_z', full_name='Msg.Cell.WindVector.wv_z', index=2,
+      name='wv_z', full_name='ProtoMsg.Cell.WindVector.wv_z', index=2,
       number=3, type=1, cpp_type=5, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -124,26 +124,26 @@ _CELL_WINDVECTOR = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=214,
-  serialized_end=268,
+  serialized_start=239,
+  serialized_end=293,
 )
 
 _CELL_WIND = descriptor.Descriptor(
   name='Wind',
-  full_name='Msg.Cell.Wind',
+  full_name='ProtoMsg.Cell.Wind',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='wind', full_name='Msg.Cell.Wind.wind', index=0,
+      name='wind', full_name='ProtoMsg.Cell.Wind.wind', index=0,
       number=1, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='potential', full_name='Msg.Cell.Wind.potential', index=1,
+      name='potential', full_name='ProtoMsg.Cell.Wind.potential', index=1,
       number=2, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -158,19 +158,19 @@ _CELL_WIND = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=270,
-  serialized_end=353,
+  serialized_start=295,
+  serialized_end=388,
 )
 
 _CELL_METHANE = descriptor.Descriptor(
   name='Methane',
-  full_name='Msg.Cell.Methane',
+  full_name='ProtoMsg.Cell.Methane',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='concentration', full_name='Msg.Cell.Methane.concentration', index=0,
+      name='concentration', full_name='ProtoMsg.Cell.Methane.concentration', index=0,
       number=1, type=1, cpp_type=5, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -185,40 +185,40 @@ _CELL_METHANE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=355,
-  serialized_end=387,
+  serialized_start=390,
+  serialized_end=422,
 )
 
 _CELL = descriptor.Descriptor(
   name='Cell',
-  full_name='Msg.Cell',
+  full_name='ProtoMsg.Cell',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='coord', full_name='Msg.Cell.coord', index=0,
+      name='coord', full_name='ProtoMsg.Cell.coord', index=0,
       number=1, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='tag', full_name='Msg.Cell.tag', index=1,
+      name='tag', full_name='ProtoMsg.Cell.tag', index=1,
       number=2, type=14, cpp_type=8, label=2,
       has_default_value=False, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='mtn', full_name='Msg.Cell.mtn', index=2,
+      name='mtn', full_name='ProtoMsg.Cell.mtn', index=2,
       number=3, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='wind', full_name='Msg.Cell.wind', index=3,
+      name='wind', full_name='ProtoMsg.Cell.wind', index=3,
       number=4, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -233,20 +233,20 @@ _CELL = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=85,
-  serialized_end=387,
+  serialized_start=90,
+  serialized_end=422,
 )
 
 
 _CELLS = descriptor.Descriptor(
   name='Cells',
-  full_name='Msg.Cells',
+  full_name='ProtoMsg.Cells',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='cell', full_name='Msg.Cells.cell', index=0,
+      name='cell', full_name='ProtoMsg.Cells.cell', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -261,34 +261,34 @@ _CELLS = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=389,
-  serialized_end=421,
+  serialized_start=424,
+  serialized_end=461,
 )
 
 
 _MAP = descriptor.Descriptor(
   name='Map',
-  full_name='Msg.Map',
+  full_name='ProtoMsg.Map',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='startIndex', full_name='Msg.Map.startIndex', index=0,
+      name='startIndex', full_name='ProtoMsg.Map.startIndex', index=0,
       number=1, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='boundary', full_name='Msg.Map.boundary', index=1,
+      name='boundary', full_name='ProtoMsg.Map.boundary', index=1,
       number=2, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='cell', full_name='Msg.Map.cell', index=2,
+      name='cell', full_name='ProtoMsg.Map.cell', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -303,8 +303,8 @@ _MAP = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=423,
-  serialized_end=525,
+  serialized_start=463,
+  serialized_end=580,
 )
 
 _CELL_WINDVECTOR.containing_type = _CELL;
@@ -329,7 +329,7 @@ class Coordinate(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _COORDINATE
   
-  # @@protoc_insertion_point(class_scope:Msg.Coordinate)
+  # @@protoc_insertion_point(class_scope:ProtoMsg.Coordinate)
 
 class Cell(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
@@ -338,33 +338,33 @@ class Cell(message.Message):
     __metaclass__ = reflection.GeneratedProtocolMessageType
     DESCRIPTOR = _CELL_WINDVECTOR
     
-    # @@protoc_insertion_point(class_scope:Msg.Cell.WindVector)
+    # @@protoc_insertion_point(class_scope:ProtoMsg.Cell.WindVector)
   
   class Wind(message.Message):
     __metaclass__ = reflection.GeneratedProtocolMessageType
     DESCRIPTOR = _CELL_WIND
     
-    # @@protoc_insertion_point(class_scope:Msg.Cell.Wind)
+    # @@protoc_insertion_point(class_scope:ProtoMsg.Cell.Wind)
   
   class Methane(message.Message):
     __metaclass__ = reflection.GeneratedProtocolMessageType
     DESCRIPTOR = _CELL_METHANE
     
-    # @@protoc_insertion_point(class_scope:Msg.Cell.Methane)
+    # @@protoc_insertion_point(class_scope:ProtoMsg.Cell.Methane)
   DESCRIPTOR = _CELL
   
-  # @@protoc_insertion_point(class_scope:Msg.Cell)
+  # @@protoc_insertion_point(class_scope:ProtoMsg.Cell)
 
 class Cells(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _CELLS
   
-  # @@protoc_insertion_point(class_scope:Msg.Cells)
+  # @@protoc_insertion_point(class_scope:ProtoMsg.Cells)
 
 class Map(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _MAP
   
-  # @@protoc_insertion_point(class_scope:Msg.Map)
+  # @@protoc_insertion_point(class_scope:ProtoMsg.Map)
 
 # @@protoc_insertion_point(module_scope)

@@ -24,7 +24,7 @@ namespace Initializer {
     struct Detection;
 }
 
-namespace Msg {
+namespace ProtoMsg {
     class Hypotheses_history;
     class Detections;
     class Cell;
@@ -32,12 +32,12 @@ namespace Msg {
     
     class MessageBuilder {
     public:
-        static std::shared_ptr<Msg::Hypotheses_history> buildMessage(const std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his, size_t ideal_cells);
-        static std::shared_ptr<Msg::Detections> buildMessage(const std::vector<Initializer::Detection> & detections);
-        static std::shared_ptr<Msg::Map> buildMessage(const Model::Map3D & map);
+        static std::shared_ptr<ProtoMsg::Hypotheses_history> buildMessage(const std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his, size_t ideal_cells);
+        static std::shared_ptr<ProtoMsg::Detections> buildMessage(const std::vector<Initializer::Detection> & detections);
+        static std::shared_ptr<ProtoMsg::Map> buildMessage(const Model::Map3D & map);
         
     private:
-        static bool buildCellMessage(const Model::Cell & cell, Msg::Cell * msg_cell);
+        static bool buildCellMessage(const Model::Cell & cell, ProtoMsg::Cell * msg_cell);
 
 	public:
 		static std::unordered_map<Model::CellTag, CellTag, Model::enum_hash> Tag2Msg;

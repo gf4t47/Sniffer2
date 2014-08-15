@@ -25,7 +25,7 @@
 #include <google/protobuf/generated_message_reflection.h>
 // @@protoc_insertion_point(includes)
 
-namespace Msg {
+namespace ProtoMsg {
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_cell_2eproto();
@@ -137,7 +137,7 @@ class Coordinate : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 coord_z() const;
   inline void set_coord_z(::google::protobuf::int32 value);
   
-  // @@protoc_insertion_point(class_scope:Msg.Coordinate)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Coordinate)
  private:
   inline void set_has_coord_x();
   inline void clear_has_coord_x();
@@ -239,7 +239,7 @@ class Cell_WindVector : public ::google::protobuf::Message {
   inline double wv_z() const;
   inline void set_wv_z(double value);
   
-  // @@protoc_insertion_point(class_scope:Msg.Cell.WindVector)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Cell.WindVector)
  private:
   inline void set_has_wv_x();
   inline void clear_has_wv_x();
@@ -320,23 +320,23 @@ class Cell_Wind : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // required .Msg.Cell.WindVector wind = 1;
+  // required .ProtoMsg.Cell.WindVector wind = 1;
   inline bool has_wind() const;
   inline void clear_wind();
   static const int kWindFieldNumber = 1;
-  inline const ::Msg::Cell_WindVector& wind() const;
-  inline ::Msg::Cell_WindVector* mutable_wind();
-  inline ::Msg::Cell_WindVector* release_wind();
+  inline const ::ProtoMsg::Cell_WindVector& wind() const;
+  inline ::ProtoMsg::Cell_WindVector* mutable_wind();
+  inline ::ProtoMsg::Cell_WindVector* release_wind();
   
-  // required .Msg.Cell.WindVector potential = 2;
+  // required .ProtoMsg.Cell.WindVector potential = 2;
   inline bool has_potential() const;
   inline void clear_potential();
   static const int kPotentialFieldNumber = 2;
-  inline const ::Msg::Cell_WindVector& potential() const;
-  inline ::Msg::Cell_WindVector* mutable_potential();
-  inline ::Msg::Cell_WindVector* release_potential();
+  inline const ::ProtoMsg::Cell_WindVector& potential() const;
+  inline ::ProtoMsg::Cell_WindVector* mutable_potential();
+  inline ::ProtoMsg::Cell_WindVector* release_potential();
   
-  // @@protoc_insertion_point(class_scope:Msg.Cell.Wind)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Cell.Wind)
  private:
   inline void set_has_wind();
   inline void clear_has_wind();
@@ -345,8 +345,8 @@ class Cell_Wind : public ::google::protobuf::Message {
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::Msg::Cell_WindVector* wind_;
-  ::Msg::Cell_WindVector* potential_;
+  ::ProtoMsg::Cell_WindVector* wind_;
+  ::ProtoMsg::Cell_WindVector* potential_;
   
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
@@ -421,7 +421,7 @@ class Cell_Methane : public ::google::protobuf::Message {
   inline double concentration() const;
   inline void set_concentration(double value);
   
-  // @@protoc_insertion_point(class_scope:Msg.Cell.Methane)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Cell.Methane)
  private:
   inline void set_has_concentration();
   inline void clear_has_concentration();
@@ -500,38 +500,38 @@ class Cell : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // required .Msg.Coordinate coord = 1;
+  // required .ProtoMsg.Coordinate coord = 1;
   inline bool has_coord() const;
   inline void clear_coord();
   static const int kCoordFieldNumber = 1;
-  inline const ::Msg::Coordinate& coord() const;
-  inline ::Msg::Coordinate* mutable_coord();
-  inline ::Msg::Coordinate* release_coord();
+  inline const ::ProtoMsg::Coordinate& coord() const;
+  inline ::ProtoMsg::Coordinate* mutable_coord();
+  inline ::ProtoMsg::Coordinate* release_coord();
   
-  // required .Msg.CellTag tag = 2;
+  // required .ProtoMsg.CellTag tag = 2;
   inline bool has_tag() const;
   inline void clear_tag();
   static const int kTagFieldNumber = 2;
-  inline Msg::CellTag tag() const;
-  inline void set_tag(Msg::CellTag value);
+  inline ProtoMsg::CellTag tag() const;
+  inline void set_tag(ProtoMsg::CellTag value);
   
-  // required .Msg.Cell.Methane mtn = 3;
+  // required .ProtoMsg.Cell.Methane mtn = 3;
   inline bool has_mtn() const;
   inline void clear_mtn();
   static const int kMtnFieldNumber = 3;
-  inline const ::Msg::Cell_Methane& mtn() const;
-  inline ::Msg::Cell_Methane* mutable_mtn();
-  inline ::Msg::Cell_Methane* release_mtn();
+  inline const ::ProtoMsg::Cell_Methane& mtn() const;
+  inline ::ProtoMsg::Cell_Methane* mutable_mtn();
+  inline ::ProtoMsg::Cell_Methane* release_mtn();
   
-  // required .Msg.Cell.Wind wind = 4;
+  // required .ProtoMsg.Cell.Wind wind = 4;
   inline bool has_wind() const;
   inline void clear_wind();
   static const int kWindFieldNumber = 4;
-  inline const ::Msg::Cell_Wind& wind() const;
-  inline ::Msg::Cell_Wind* mutable_wind();
-  inline ::Msg::Cell_Wind* release_wind();
+  inline const ::ProtoMsg::Cell_Wind& wind() const;
+  inline ::ProtoMsg::Cell_Wind* mutable_wind();
+  inline ::ProtoMsg::Cell_Wind* release_wind();
   
-  // @@protoc_insertion_point(class_scope:Msg.Cell)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Cell)
  private:
   inline void set_has_coord();
   inline void clear_has_coord();
@@ -544,9 +544,9 @@ class Cell : public ::google::protobuf::Message {
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::Msg::Coordinate* coord_;
-  ::Msg::Cell_Methane* mtn_;
-  ::Msg::Cell_Wind* wind_;
+  ::ProtoMsg::Coordinate* coord_;
+  ::ProtoMsg::Cell_Methane* mtn_;
+  ::ProtoMsg::Cell_Wind* wind_;
   int tag_;
   
   mutable int _cached_size_;
@@ -615,24 +615,24 @@ class Cells : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // repeated .Msg.Cell cell = 1;
+  // repeated .ProtoMsg.Cell cell = 1;
   inline int cell_size() const;
   inline void clear_cell();
   static const int kCellFieldNumber = 1;
-  inline const ::Msg::Cell& cell(int index) const;
-  inline ::Msg::Cell* mutable_cell(int index);
-  inline ::Msg::Cell* add_cell();
-  inline const ::google::protobuf::RepeatedPtrField< ::Msg::Cell >&
+  inline const ::ProtoMsg::Cell& cell(int index) const;
+  inline ::ProtoMsg::Cell* mutable_cell(int index);
+  inline ::ProtoMsg::Cell* add_cell();
+  inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell >&
       cell() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Msg::Cell >*
+  inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell >*
       mutable_cell();
   
-  // @@protoc_insertion_point(class_scope:Msg.Cells)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Cells)
  private:
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::google::protobuf::RepeatedPtrField< ::Msg::Cell > cell_;
+  ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell > cell_;
   
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -700,35 +700,35 @@ class Map : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // required .Msg.Coordinate startIndex = 1;
+  // required .ProtoMsg.Coordinate startIndex = 1;
   inline bool has_startindex() const;
   inline void clear_startindex();
   static const int kStartIndexFieldNumber = 1;
-  inline const ::Msg::Coordinate& startindex() const;
-  inline ::Msg::Coordinate* mutable_startindex();
-  inline ::Msg::Coordinate* release_startindex();
+  inline const ::ProtoMsg::Coordinate& startindex() const;
+  inline ::ProtoMsg::Coordinate* mutable_startindex();
+  inline ::ProtoMsg::Coordinate* release_startindex();
   
-  // required .Msg.Coordinate boundary = 2;
+  // required .ProtoMsg.Coordinate boundary = 2;
   inline bool has_boundary() const;
   inline void clear_boundary();
   static const int kBoundaryFieldNumber = 2;
-  inline const ::Msg::Coordinate& boundary() const;
-  inline ::Msg::Coordinate* mutable_boundary();
-  inline ::Msg::Coordinate* release_boundary();
+  inline const ::ProtoMsg::Coordinate& boundary() const;
+  inline ::ProtoMsg::Coordinate* mutable_boundary();
+  inline ::ProtoMsg::Coordinate* release_boundary();
   
-  // repeated .Msg.Cell cell = 3;
+  // repeated .ProtoMsg.Cell cell = 3;
   inline int cell_size() const;
   inline void clear_cell();
   static const int kCellFieldNumber = 3;
-  inline const ::Msg::Cell& cell(int index) const;
-  inline ::Msg::Cell* mutable_cell(int index);
-  inline ::Msg::Cell* add_cell();
-  inline const ::google::protobuf::RepeatedPtrField< ::Msg::Cell >&
+  inline const ::ProtoMsg::Cell& cell(int index) const;
+  inline ::ProtoMsg::Cell* mutable_cell(int index);
+  inline ::ProtoMsg::Cell* add_cell();
+  inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell >&
       cell() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Msg::Cell >*
+  inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell >*
       mutable_cell();
   
-  // @@protoc_insertion_point(class_scope:Msg.Map)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Map)
  private:
   inline void set_has_startindex();
   inline void clear_has_startindex();
@@ -737,9 +737,9 @@ class Map : public ::google::protobuf::Message {
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::Msg::Coordinate* startindex_;
-  ::Msg::Coordinate* boundary_;
-  ::google::protobuf::RepeatedPtrField< ::Msg::Cell > cell_;
+  ::ProtoMsg::Coordinate* startindex_;
+  ::ProtoMsg::Coordinate* boundary_;
+  ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell > cell_;
   
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
@@ -898,7 +898,7 @@ inline void Cell_WindVector::set_wv_z(double value) {
 
 // Cell_Wind
 
-// required .Msg.Cell.WindVector wind = 1;
+// required .ProtoMsg.Cell.WindVector wind = 1;
 inline bool Cell_Wind::has_wind() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -909,25 +909,25 @@ inline void Cell_Wind::clear_has_wind() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Cell_Wind::clear_wind() {
-  if (wind_ != NULL) wind_->::Msg::Cell_WindVector::Clear();
+  if (wind_ != NULL) wind_->::ProtoMsg::Cell_WindVector::Clear();
   clear_has_wind();
 }
-inline const ::Msg::Cell_WindVector& Cell_Wind::wind() const {
+inline const ::ProtoMsg::Cell_WindVector& Cell_Wind::wind() const {
   return wind_ != NULL ? *wind_ : *default_instance_->wind_;
 }
-inline ::Msg::Cell_WindVector* Cell_Wind::mutable_wind() {
+inline ::ProtoMsg::Cell_WindVector* Cell_Wind::mutable_wind() {
   set_has_wind();
-  if (wind_ == NULL) wind_ = new ::Msg::Cell_WindVector;
+  if (wind_ == NULL) wind_ = new ::ProtoMsg::Cell_WindVector;
   return wind_;
 }
-inline ::Msg::Cell_WindVector* Cell_Wind::release_wind() {
+inline ::ProtoMsg::Cell_WindVector* Cell_Wind::release_wind() {
   clear_has_wind();
-  ::Msg::Cell_WindVector* temp = wind_;
+  ::ProtoMsg::Cell_WindVector* temp = wind_;
   wind_ = NULL;
   return temp;
 }
 
-// required .Msg.Cell.WindVector potential = 2;
+// required .ProtoMsg.Cell.WindVector potential = 2;
 inline bool Cell_Wind::has_potential() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -938,20 +938,20 @@ inline void Cell_Wind::clear_has_potential() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void Cell_Wind::clear_potential() {
-  if (potential_ != NULL) potential_->::Msg::Cell_WindVector::Clear();
+  if (potential_ != NULL) potential_->::ProtoMsg::Cell_WindVector::Clear();
   clear_has_potential();
 }
-inline const ::Msg::Cell_WindVector& Cell_Wind::potential() const {
+inline const ::ProtoMsg::Cell_WindVector& Cell_Wind::potential() const {
   return potential_ != NULL ? *potential_ : *default_instance_->potential_;
 }
-inline ::Msg::Cell_WindVector* Cell_Wind::mutable_potential() {
+inline ::ProtoMsg::Cell_WindVector* Cell_Wind::mutable_potential() {
   set_has_potential();
-  if (potential_ == NULL) potential_ = new ::Msg::Cell_WindVector;
+  if (potential_ == NULL) potential_ = new ::ProtoMsg::Cell_WindVector;
   return potential_;
 }
-inline ::Msg::Cell_WindVector* Cell_Wind::release_potential() {
+inline ::ProtoMsg::Cell_WindVector* Cell_Wind::release_potential() {
   clear_has_potential();
-  ::Msg::Cell_WindVector* temp = potential_;
+  ::ProtoMsg::Cell_WindVector* temp = potential_;
   potential_ = NULL;
   return temp;
 }
@@ -986,7 +986,7 @@ inline void Cell_Methane::set_concentration(double value) {
 
 // Cell
 
-// required .Msg.Coordinate coord = 1;
+// required .ProtoMsg.Coordinate coord = 1;
 inline bool Cell::has_coord() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -997,25 +997,25 @@ inline void Cell::clear_has_coord() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Cell::clear_coord() {
-  if (coord_ != NULL) coord_->::Msg::Coordinate::Clear();
+  if (coord_ != NULL) coord_->::ProtoMsg::Coordinate::Clear();
   clear_has_coord();
 }
-inline const ::Msg::Coordinate& Cell::coord() const {
+inline const ::ProtoMsg::Coordinate& Cell::coord() const {
   return coord_ != NULL ? *coord_ : *default_instance_->coord_;
 }
-inline ::Msg::Coordinate* Cell::mutable_coord() {
+inline ::ProtoMsg::Coordinate* Cell::mutable_coord() {
   set_has_coord();
-  if (coord_ == NULL) coord_ = new ::Msg::Coordinate;
+  if (coord_ == NULL) coord_ = new ::ProtoMsg::Coordinate;
   return coord_;
 }
-inline ::Msg::Coordinate* Cell::release_coord() {
+inline ::ProtoMsg::Coordinate* Cell::release_coord() {
   clear_has_coord();
-  ::Msg::Coordinate* temp = coord_;
+  ::ProtoMsg::Coordinate* temp = coord_;
   coord_ = NULL;
   return temp;
 }
 
-// required .Msg.CellTag tag = 2;
+// required .ProtoMsg.CellTag tag = 2;
 inline bool Cell::has_tag() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1029,16 +1029,16 @@ inline void Cell::clear_tag() {
   tag_ = 1;
   clear_has_tag();
 }
-inline Msg::CellTag Cell::tag() const {
-  return static_cast< Msg::CellTag >(tag_);
+inline ProtoMsg::CellTag Cell::tag() const {
+  return static_cast< ProtoMsg::CellTag >(tag_);
 }
-inline void Cell::set_tag(Msg::CellTag value) {
-  GOOGLE_DCHECK(Msg::CellTag_IsValid(value));
+inline void Cell::set_tag(ProtoMsg::CellTag value) {
+  GOOGLE_DCHECK(ProtoMsg::CellTag_IsValid(value));
   set_has_tag();
   tag_ = value;
 }
 
-// required .Msg.Cell.Methane mtn = 3;
+// required .ProtoMsg.Cell.Methane mtn = 3;
 inline bool Cell::has_mtn() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -1049,25 +1049,25 @@ inline void Cell::clear_has_mtn() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void Cell::clear_mtn() {
-  if (mtn_ != NULL) mtn_->::Msg::Cell_Methane::Clear();
+  if (mtn_ != NULL) mtn_->::ProtoMsg::Cell_Methane::Clear();
   clear_has_mtn();
 }
-inline const ::Msg::Cell_Methane& Cell::mtn() const {
+inline const ::ProtoMsg::Cell_Methane& Cell::mtn() const {
   return mtn_ != NULL ? *mtn_ : *default_instance_->mtn_;
 }
-inline ::Msg::Cell_Methane* Cell::mutable_mtn() {
+inline ::ProtoMsg::Cell_Methane* Cell::mutable_mtn() {
   set_has_mtn();
-  if (mtn_ == NULL) mtn_ = new ::Msg::Cell_Methane;
+  if (mtn_ == NULL) mtn_ = new ::ProtoMsg::Cell_Methane;
   return mtn_;
 }
-inline ::Msg::Cell_Methane* Cell::release_mtn() {
+inline ::ProtoMsg::Cell_Methane* Cell::release_mtn() {
   clear_has_mtn();
-  ::Msg::Cell_Methane* temp = mtn_;
+  ::ProtoMsg::Cell_Methane* temp = mtn_;
   mtn_ = NULL;
   return temp;
 }
 
-// required .Msg.Cell.Wind wind = 4;
+// required .ProtoMsg.Cell.Wind wind = 4;
 inline bool Cell::has_wind() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -1078,20 +1078,20 @@ inline void Cell::clear_has_wind() {
   _has_bits_[0] &= ~0x00000008u;
 }
 inline void Cell::clear_wind() {
-  if (wind_ != NULL) wind_->::Msg::Cell_Wind::Clear();
+  if (wind_ != NULL) wind_->::ProtoMsg::Cell_Wind::Clear();
   clear_has_wind();
 }
-inline const ::Msg::Cell_Wind& Cell::wind() const {
+inline const ::ProtoMsg::Cell_Wind& Cell::wind() const {
   return wind_ != NULL ? *wind_ : *default_instance_->wind_;
 }
-inline ::Msg::Cell_Wind* Cell::mutable_wind() {
+inline ::ProtoMsg::Cell_Wind* Cell::mutable_wind() {
   set_has_wind();
-  if (wind_ == NULL) wind_ = new ::Msg::Cell_Wind;
+  if (wind_ == NULL) wind_ = new ::ProtoMsg::Cell_Wind;
   return wind_;
 }
-inline ::Msg::Cell_Wind* Cell::release_wind() {
+inline ::ProtoMsg::Cell_Wind* Cell::release_wind() {
   clear_has_wind();
-  ::Msg::Cell_Wind* temp = wind_;
+  ::ProtoMsg::Cell_Wind* temp = wind_;
   wind_ = NULL;
   return temp;
 }
@@ -1100,27 +1100,27 @@ inline ::Msg::Cell_Wind* Cell::release_wind() {
 
 // Cells
 
-// repeated .Msg.Cell cell = 1;
+// repeated .ProtoMsg.Cell cell = 1;
 inline int Cells::cell_size() const {
   return cell_.size();
 }
 inline void Cells::clear_cell() {
   cell_.Clear();
 }
-inline const ::Msg::Cell& Cells::cell(int index) const {
+inline const ::ProtoMsg::Cell& Cells::cell(int index) const {
   return cell_.Get(index);
 }
-inline ::Msg::Cell* Cells::mutable_cell(int index) {
+inline ::ProtoMsg::Cell* Cells::mutable_cell(int index) {
   return cell_.Mutable(index);
 }
-inline ::Msg::Cell* Cells::add_cell() {
+inline ::ProtoMsg::Cell* Cells::add_cell() {
   return cell_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Msg::Cell >&
+inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell >&
 Cells::cell() const {
   return cell_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Msg::Cell >*
+inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell >*
 Cells::mutable_cell() {
   return &cell_;
 }
@@ -1129,7 +1129,7 @@ Cells::mutable_cell() {
 
 // Map
 
-// required .Msg.Coordinate startIndex = 1;
+// required .ProtoMsg.Coordinate startIndex = 1;
 inline bool Map::has_startindex() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1140,25 +1140,25 @@ inline void Map::clear_has_startindex() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Map::clear_startindex() {
-  if (startindex_ != NULL) startindex_->::Msg::Coordinate::Clear();
+  if (startindex_ != NULL) startindex_->::ProtoMsg::Coordinate::Clear();
   clear_has_startindex();
 }
-inline const ::Msg::Coordinate& Map::startindex() const {
+inline const ::ProtoMsg::Coordinate& Map::startindex() const {
   return startindex_ != NULL ? *startindex_ : *default_instance_->startindex_;
 }
-inline ::Msg::Coordinate* Map::mutable_startindex() {
+inline ::ProtoMsg::Coordinate* Map::mutable_startindex() {
   set_has_startindex();
-  if (startindex_ == NULL) startindex_ = new ::Msg::Coordinate;
+  if (startindex_ == NULL) startindex_ = new ::ProtoMsg::Coordinate;
   return startindex_;
 }
-inline ::Msg::Coordinate* Map::release_startindex() {
+inline ::ProtoMsg::Coordinate* Map::release_startindex() {
   clear_has_startindex();
-  ::Msg::Coordinate* temp = startindex_;
+  ::ProtoMsg::Coordinate* temp = startindex_;
   startindex_ = NULL;
   return temp;
 }
 
-// required .Msg.Coordinate boundary = 2;
+// required .ProtoMsg.Coordinate boundary = 2;
 inline bool Map::has_boundary() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1169,45 +1169,45 @@ inline void Map::clear_has_boundary() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void Map::clear_boundary() {
-  if (boundary_ != NULL) boundary_->::Msg::Coordinate::Clear();
+  if (boundary_ != NULL) boundary_->::ProtoMsg::Coordinate::Clear();
   clear_has_boundary();
 }
-inline const ::Msg::Coordinate& Map::boundary() const {
+inline const ::ProtoMsg::Coordinate& Map::boundary() const {
   return boundary_ != NULL ? *boundary_ : *default_instance_->boundary_;
 }
-inline ::Msg::Coordinate* Map::mutable_boundary() {
+inline ::ProtoMsg::Coordinate* Map::mutable_boundary() {
   set_has_boundary();
-  if (boundary_ == NULL) boundary_ = new ::Msg::Coordinate;
+  if (boundary_ == NULL) boundary_ = new ::ProtoMsg::Coordinate;
   return boundary_;
 }
-inline ::Msg::Coordinate* Map::release_boundary() {
+inline ::ProtoMsg::Coordinate* Map::release_boundary() {
   clear_has_boundary();
-  ::Msg::Coordinate* temp = boundary_;
+  ::ProtoMsg::Coordinate* temp = boundary_;
   boundary_ = NULL;
   return temp;
 }
 
-// repeated .Msg.Cell cell = 3;
+// repeated .ProtoMsg.Cell cell = 3;
 inline int Map::cell_size() const {
   return cell_.size();
 }
 inline void Map::clear_cell() {
   cell_.Clear();
 }
-inline const ::Msg::Cell& Map::cell(int index) const {
+inline const ::ProtoMsg::Cell& Map::cell(int index) const {
   return cell_.Get(index);
 }
-inline ::Msg::Cell* Map::mutable_cell(int index) {
+inline ::ProtoMsg::Cell* Map::mutable_cell(int index) {
   return cell_.Mutable(index);
 }
-inline ::Msg::Cell* Map::add_cell() {
+inline ::ProtoMsg::Cell* Map::add_cell() {
   return cell_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Msg::Cell >&
+inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell >&
 Map::cell() const {
   return cell_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Msg::Cell >*
+inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell >*
 Map::mutable_cell() {
   return &cell_;
 }
@@ -1215,15 +1215,15 @@ Map::mutable_cell() {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace Msg
+}  // namespace ProtoMsg
 
 #ifndef SWIG
 namespace google {
 namespace protobuf {
 
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< Msg::CellTag>() {
-  return Msg::CellTag_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ProtoMsg::CellTag>() {
+  return ProtoMsg::CellTag_descriptor();
 }
 
 }  // namespace google

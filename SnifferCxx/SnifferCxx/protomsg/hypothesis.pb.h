@@ -26,7 +26,7 @@
 #include "cell.pb.h"
 // @@protoc_insertion_point(includes)
 
-namespace Msg {
+namespace ProtoMsg {
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_hypothesis_2eproto();
@@ -94,13 +94,13 @@ class Leak : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // required .Msg.Coordinate location = 1;
+  // required .ProtoMsg.Coordinate location = 1;
   inline bool has_location() const;
   inline void clear_location();
   static const int kLocationFieldNumber = 1;
-  inline const ::Msg::Coordinate& location() const;
-  inline ::Msg::Coordinate* mutable_location();
-  inline ::Msg::Coordinate* release_location();
+  inline const ::ProtoMsg::Coordinate& location() const;
+  inline ::ProtoMsg::Coordinate* mutable_location();
+  inline ::ProtoMsg::Coordinate* release_location();
   
   // required double concentration = 2;
   inline bool has_concentration() const;
@@ -109,7 +109,7 @@ class Leak : public ::google::protobuf::Message {
   inline double concentration() const;
   inline void set_concentration(double value);
   
-  // @@protoc_insertion_point(class_scope:Msg.Leak)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Leak)
  private:
   inline void set_has_location();
   inline void clear_has_location();
@@ -118,7 +118,7 @@ class Leak : public ::google::protobuf::Message {
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::Msg::Coordinate* location_;
+  ::ProtoMsg::Coordinate* location_;
   double concentration_;
   
   mutable int _cached_size_;
@@ -194,31 +194,31 @@ class Hypothesis : public ::google::protobuf::Message {
   inline double probability() const;
   inline void set_probability(double value);
   
-  // repeated .Msg.Leak leak = 2;
+  // repeated .ProtoMsg.Leak leak = 2;
   inline int leak_size() const;
   inline void clear_leak();
   static const int kLeakFieldNumber = 2;
-  inline const ::Msg::Leak& leak(int index) const;
-  inline ::Msg::Leak* mutable_leak(int index);
-  inline ::Msg::Leak* add_leak();
-  inline const ::google::protobuf::RepeatedPtrField< ::Msg::Leak >&
+  inline const ::ProtoMsg::Leak& leak(int index) const;
+  inline ::ProtoMsg::Leak* mutable_leak(int index);
+  inline ::ProtoMsg::Leak* add_leak();
+  inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Leak >&
       leak() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Msg::Leak >*
+  inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Leak >*
       mutable_leak();
   
-  // repeated .Msg.Cells methene_cells = 3;
+  // repeated .ProtoMsg.Cells methene_cells = 3;
   inline int methene_cells_size() const;
   inline void clear_methene_cells();
   static const int kMetheneCellsFieldNumber = 3;
-  inline const ::Msg::Cells& methene_cells(int index) const;
-  inline ::Msg::Cells* mutable_methene_cells(int index);
-  inline ::Msg::Cells* add_methene_cells();
-  inline const ::google::protobuf::RepeatedPtrField< ::Msg::Cells >&
+  inline const ::ProtoMsg::Cells& methene_cells(int index) const;
+  inline ::ProtoMsg::Cells* mutable_methene_cells(int index);
+  inline ::ProtoMsg::Cells* add_methene_cells();
+  inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cells >&
       methene_cells() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Msg::Cells >*
+  inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cells >*
       mutable_methene_cells();
   
-  // @@protoc_insertion_point(class_scope:Msg.Hypothesis)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Hypothesis)
  private:
   inline void set_has_probability();
   inline void clear_has_probability();
@@ -226,8 +226,8 @@ class Hypothesis : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   double probability_;
-  ::google::protobuf::RepeatedPtrField< ::Msg::Leak > leak_;
-  ::google::protobuf::RepeatedPtrField< ::Msg::Cells > methene_cells_;
+  ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Leak > leak_;
+  ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cells > methene_cells_;
   
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
@@ -295,24 +295,24 @@ class Hypotheses : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // repeated .Msg.Hypothesis hyp = 1;
+  // repeated .ProtoMsg.Hypothesis hyp = 1;
   inline int hyp_size() const;
   inline void clear_hyp();
   static const int kHypFieldNumber = 1;
-  inline const ::Msg::Hypothesis& hyp(int index) const;
-  inline ::Msg::Hypothesis* mutable_hyp(int index);
-  inline ::Msg::Hypothesis* add_hyp();
-  inline const ::google::protobuf::RepeatedPtrField< ::Msg::Hypothesis >&
+  inline const ::ProtoMsg::Hypothesis& hyp(int index) const;
+  inline ::ProtoMsg::Hypothesis* mutable_hyp(int index);
+  inline ::ProtoMsg::Hypothesis* add_hyp();
+  inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Hypothesis >&
       hyp() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Msg::Hypothesis >*
+  inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Hypothesis >*
       mutable_hyp();
   
-  // @@protoc_insertion_point(class_scope:Msg.Hypotheses)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Hypotheses)
  private:
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::google::protobuf::RepeatedPtrField< ::Msg::Hypothesis > hyp_;
+  ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Hypothesis > hyp_;
   
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -380,24 +380,24 @@ class Hypotheses_history : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // repeated .Msg.Hypotheses hyps = 1;
+  // repeated .ProtoMsg.Hypotheses hyps = 1;
   inline int hyps_size() const;
   inline void clear_hyps();
   static const int kHypsFieldNumber = 1;
-  inline const ::Msg::Hypotheses& hyps(int index) const;
-  inline ::Msg::Hypotheses* mutable_hyps(int index);
-  inline ::Msg::Hypotheses* add_hyps();
-  inline const ::google::protobuf::RepeatedPtrField< ::Msg::Hypotheses >&
+  inline const ::ProtoMsg::Hypotheses& hyps(int index) const;
+  inline ::ProtoMsg::Hypotheses* mutable_hyps(int index);
+  inline ::ProtoMsg::Hypotheses* add_hyps();
+  inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Hypotheses >&
       hyps() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Msg::Hypotheses >*
+  inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Hypotheses >*
       mutable_hyps();
   
-  // @@protoc_insertion_point(class_scope:Msg.Hypotheses_history)
+  // @@protoc_insertion_point(class_scope:ProtoMsg.Hypotheses_history)
  private:
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::google::protobuf::RepeatedPtrField< ::Msg::Hypotheses > hyps_;
+  ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Hypotheses > hyps_;
   
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -416,7 +416,7 @@ class Hypotheses_history : public ::google::protobuf::Message {
 
 // Leak
 
-// required .Msg.Coordinate location = 1;
+// required .ProtoMsg.Coordinate location = 1;
 inline bool Leak::has_location() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -427,20 +427,20 @@ inline void Leak::clear_has_location() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Leak::clear_location() {
-  if (location_ != NULL) location_->::Msg::Coordinate::Clear();
+  if (location_ != NULL) location_->::ProtoMsg::Coordinate::Clear();
   clear_has_location();
 }
-inline const ::Msg::Coordinate& Leak::location() const {
+inline const ::ProtoMsg::Coordinate& Leak::location() const {
   return location_ != NULL ? *location_ : *default_instance_->location_;
 }
-inline ::Msg::Coordinate* Leak::mutable_location() {
+inline ::ProtoMsg::Coordinate* Leak::mutable_location() {
   set_has_location();
-  if (location_ == NULL) location_ = new ::Msg::Coordinate;
+  if (location_ == NULL) location_ = new ::ProtoMsg::Coordinate;
   return location_;
 }
-inline ::Msg::Coordinate* Leak::release_location() {
+inline ::ProtoMsg::Coordinate* Leak::release_location() {
   clear_has_location();
-  ::Msg::Coordinate* temp = location_;
+  ::ProtoMsg::Coordinate* temp = location_;
   location_ = NULL;
   return temp;
 }
@@ -493,52 +493,52 @@ inline void Hypothesis::set_probability(double value) {
   probability_ = value;
 }
 
-// repeated .Msg.Leak leak = 2;
+// repeated .ProtoMsg.Leak leak = 2;
 inline int Hypothesis::leak_size() const {
   return leak_.size();
 }
 inline void Hypothesis::clear_leak() {
   leak_.Clear();
 }
-inline const ::Msg::Leak& Hypothesis::leak(int index) const {
+inline const ::ProtoMsg::Leak& Hypothesis::leak(int index) const {
   return leak_.Get(index);
 }
-inline ::Msg::Leak* Hypothesis::mutable_leak(int index) {
+inline ::ProtoMsg::Leak* Hypothesis::mutable_leak(int index) {
   return leak_.Mutable(index);
 }
-inline ::Msg::Leak* Hypothesis::add_leak() {
+inline ::ProtoMsg::Leak* Hypothesis::add_leak() {
   return leak_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Msg::Leak >&
+inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Leak >&
 Hypothesis::leak() const {
   return leak_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Msg::Leak >*
+inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Leak >*
 Hypothesis::mutable_leak() {
   return &leak_;
 }
 
-// repeated .Msg.Cells methene_cells = 3;
+// repeated .ProtoMsg.Cells methene_cells = 3;
 inline int Hypothesis::methene_cells_size() const {
   return methene_cells_.size();
 }
 inline void Hypothesis::clear_methene_cells() {
   methene_cells_.Clear();
 }
-inline const ::Msg::Cells& Hypothesis::methene_cells(int index) const {
+inline const ::ProtoMsg::Cells& Hypothesis::methene_cells(int index) const {
   return methene_cells_.Get(index);
 }
-inline ::Msg::Cells* Hypothesis::mutable_methene_cells(int index) {
+inline ::ProtoMsg::Cells* Hypothesis::mutable_methene_cells(int index) {
   return methene_cells_.Mutable(index);
 }
-inline ::Msg::Cells* Hypothesis::add_methene_cells() {
+inline ::ProtoMsg::Cells* Hypothesis::add_methene_cells() {
   return methene_cells_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Msg::Cells >&
+inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cells >&
 Hypothesis::methene_cells() const {
   return methene_cells_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Msg::Cells >*
+inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cells >*
 Hypothesis::mutable_methene_cells() {
   return &methene_cells_;
 }
@@ -547,27 +547,27 @@ Hypothesis::mutable_methene_cells() {
 
 // Hypotheses
 
-// repeated .Msg.Hypothesis hyp = 1;
+// repeated .ProtoMsg.Hypothesis hyp = 1;
 inline int Hypotheses::hyp_size() const {
   return hyp_.size();
 }
 inline void Hypotheses::clear_hyp() {
   hyp_.Clear();
 }
-inline const ::Msg::Hypothesis& Hypotheses::hyp(int index) const {
+inline const ::ProtoMsg::Hypothesis& Hypotheses::hyp(int index) const {
   return hyp_.Get(index);
 }
-inline ::Msg::Hypothesis* Hypotheses::mutable_hyp(int index) {
+inline ::ProtoMsg::Hypothesis* Hypotheses::mutable_hyp(int index) {
   return hyp_.Mutable(index);
 }
-inline ::Msg::Hypothesis* Hypotheses::add_hyp() {
+inline ::ProtoMsg::Hypothesis* Hypotheses::add_hyp() {
   return hyp_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Msg::Hypothesis >&
+inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Hypothesis >&
 Hypotheses::hyp() const {
   return hyp_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Msg::Hypothesis >*
+inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Hypothesis >*
 Hypotheses::mutable_hyp() {
   return &hyp_;
 }
@@ -576,27 +576,27 @@ Hypotheses::mutable_hyp() {
 
 // Hypotheses_history
 
-// repeated .Msg.Hypotheses hyps = 1;
+// repeated .ProtoMsg.Hypotheses hyps = 1;
 inline int Hypotheses_history::hyps_size() const {
   return hyps_.size();
 }
 inline void Hypotheses_history::clear_hyps() {
   hyps_.Clear();
 }
-inline const ::Msg::Hypotheses& Hypotheses_history::hyps(int index) const {
+inline const ::ProtoMsg::Hypotheses& Hypotheses_history::hyps(int index) const {
   return hyps_.Get(index);
 }
-inline ::Msg::Hypotheses* Hypotheses_history::mutable_hyps(int index) {
+inline ::ProtoMsg::Hypotheses* Hypotheses_history::mutable_hyps(int index) {
   return hyps_.Mutable(index);
 }
-inline ::Msg::Hypotheses* Hypotheses_history::add_hyps() {
+inline ::ProtoMsg::Hypotheses* Hypotheses_history::add_hyps() {
   return hyps_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Msg::Hypotheses >&
+inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Hypotheses >&
 Hypotheses_history::hyps() const {
   return hyps_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Msg::Hypotheses >*
+inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Hypotheses >*
 Hypotheses_history::mutable_hyps() {
   return &hyps_;
 }
@@ -604,7 +604,7 @@ Hypotheses_history::mutable_hyps() {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace Msg
+}  // namespace ProtoMsg
 
 #ifndef SWIG
 namespace google {

@@ -20,7 +20,7 @@
     <Filter Include="initializer">
       <UniqueIdentifier>{f971397b-66c7-4b2d-a305-97fc4f6ac1ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="message">
+    <Filter Include="protomsg">
       <UniqueIdentifier>{2f097f1b-3a00-4ee0-9c0c-e16bf952a42d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -83,17 +83,17 @@
     <ClCompile Include="initializer\DetectionInitializer.cpp">
       <Filter>initializer</Filter>
     </ClCompile>
-    <ClCompile Include="message\cell.pb.cc">
-      <Filter>message</Filter>
+    <ClCompile Include="protomsg\cell.pb.cc">
+      <Filter>protomsg</Filter>
     </ClCompile>
-    <ClCompile Include="message\dect.pb.cc">
-      <Filter>message</Filter>
+    <ClCompile Include="protomsg\dect.pb.cc">
+      <Filter>protomsg</Filter>
     </ClCompile>
-    <ClCompile Include="message\hypothesis.pb.cc">
-      <Filter>message</Filter>
+    <ClCompile Include="protomsg\hypothesis.pb.cc">
+      <Filter>protomsg</Filter>
     </ClCompile>
-    <ClCompile Include="message\MessageBuilder.cpp">
-      <Filter>message</Filter>
+    <ClCompile Include="protomsg\MessageBuilder.cpp">
+      <Filter>protomsg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,17 +154,17 @@
     <ClInclude Include="initializer\DetectionInitializer.h">
       <Filter>initializer</Filter>
     </ClInclude>
-    <ClInclude Include="message\cell.pb.h">
-      <Filter>message</Filter>
+    <ClInclude Include="protomsg\cell.pb.h">
+      <Filter>protomsg</Filter>
     </ClInclude>
-    <ClInclude Include="message\dect.pb.h">
-      <Filter>message</Filter>
+    <ClInclude Include="protomsg\dect.pb.h">
+      <Filter>protomsg</Filter>
     </ClInclude>
-    <ClInclude Include="message\hypothesis.pb.h">
-      <Filter>message</Filter>
+    <ClInclude Include="protomsg\hypothesis.pb.h">
+      <Filter>protomsg</Filter>
     </ClInclude>
-    <ClInclude Include="message\MessageBuilder.h">
-      <Filter>message</Filter>
+    <ClInclude Include="protomsg\MessageBuilder.h">
+      <Filter>protomsg</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

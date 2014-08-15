@@ -14,7 +14,7 @@
 #include "../model/Map3D.h"
 #include "../initializer/DetectionInitializer.h"
 
-namespace Msg {
+namespace ProtoMsg {
     using namespace std;
 
 	unordered_map<Model::CellTag, CellTag, Model::enum_hash> MessageBuilder::Tag2Msg = { 

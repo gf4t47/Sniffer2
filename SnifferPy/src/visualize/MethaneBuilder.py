@@ -1,7 +1,7 @@
 __author__ = 'Kern'
 
 import numpy
-from src.Msg import cell_pb2
+from src.protomsg import cell_pb2
 import mayavi.mlab as mb
 import time
 

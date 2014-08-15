@@ -2,7 +2,7 @@ __author__ = 'kding'
 
 import numpy
 import mayavi.mlab as mb
-from src.Msg import cell_pb2
+from src.protomsg import cell_pb2
 
 strBoundary = "boundary"
 strLocation = "location"

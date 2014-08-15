@@ -11,28 +11,28 @@ import hypothesis_pb2
 
 DESCRIPTOR = descriptor.FileDescriptor(
   name='dect.proto',
-  package='Msg',
-  serialized_pb='\n\ndect.proto\x12\x03Msg\x1a\x10hypothesis.proto\"2\n\tDetection\x12\x0c\n\x04time\x18\x01 \x02(\x05\x12\x17\n\x04leak\x18\x02 \x03(\x0b\x32\t.Msg.Leak\"*\n\nDetections\x12\x1c\n\x04\x64\x65\x63t\x18\x01 \x03(\x0b\x32\x0e.Msg.Detection')
+  package='ProtoMsg',
+  serialized_pb='\n\ndect.proto\x12\x08ProtoMsg\x1a\x10hypothesis.proto\"7\n\tDetection\x12\x0c\n\x04time\x18\x01 \x02(\x05\x12\x1c\n\x04leak\x18\x02 \x03(\x0b\x32\x0e.ProtoMsg.Leak\"/\n\nDetections\x12!\n\x04\x64\x65\x63t\x18\x01 \x03(\x0b\x32\x13.ProtoMsg.Detection')
 
 
 
 
 _DETECTION = descriptor.Descriptor(
   name='Detection',
-  full_name='Msg.Detection',
+  full_name='ProtoMsg.Detection',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='time', full_name='Msg.Detection.time', index=0,
+      name='time', full_name='ProtoMsg.Detection.time', index=0,
       number=1, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='leak', full_name='Msg.Detection.leak', index=1,
+      name='leak', full_name='ProtoMsg.Detection.leak', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -47,20 +47,20 @@ _DETECTION = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=37,
-  serialized_end=87,
+  serialized_start=42,
+  serialized_end=97,
 )
 
 
 _DETECTIONS = descriptor.Descriptor(
   name='Detections',
-  full_name='Msg.Detections',
+  full_name='ProtoMsg.Detections',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='dect', full_name='Msg.Detections.dect', index=0,
+      name='dect', full_name='ProtoMsg.Detections.dect', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -75,8 +75,8 @@ _DETECTIONS = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=89,
-  serialized_end=131,
+  serialized_start=99,
+  serialized_end=146,
 )
 
 _DETECTION.fields_by_name['leak'].message_type = hypothesis_pb2._LEAK
@@ -88,12 +88,12 @@ class Detection(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _DETECTION
   
-  # @@protoc_insertion_point(class_scope:Msg.Detection)
+  # @@protoc_insertion_point(class_scope:ProtoMsg.Detection)
 
 class Detections(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _DETECTIONS
   
-  # @@protoc_insertion_point(class_scope:Msg.Detections)
+  # @@protoc_insertion_point(class_scope:ProtoMsg.Detections)
 
 # @@protoc_insertion_point(module_scope)
