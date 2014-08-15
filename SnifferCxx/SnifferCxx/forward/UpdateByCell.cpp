@@ -65,7 +65,7 @@ namespace Forward {
 	// Parameter: const Coordinate & endPos
 	// Parameter: const Map3D & map
 	//************************************
-	shared_ptr<Cell> UpdateByCell::calcEndcell(const Coordinate & statPos, const Coordinate & endPos, const Map3D & map, bool checkFullPath /* = false*/) const {
+	shared_ptr<Cell> UpdateByCell::calcEndcell(const Coordinate & statPos, const Coordinate & endPos, const Map3D & map, bool checkFullPath /* = true*/) const {
 		if (checkFullPath)
 		{
 			return map.calcCollisionByFullPath(statPos, endPos);

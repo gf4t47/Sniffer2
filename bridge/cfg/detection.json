@@ -26,7 +26,7 @@
             "time" : 30,
             "dect" :
             [
-                {"location" : [78, 35, 0], "concentration" : 3.5}
+                {"location" : [78, 35, 0], "concentration" : 4.5}
             ],
             "repeat" : 1
         },
@@ -47,15 +47,15 @@
     		"time" : 30,
     		"dect" :
     		[
-                {"location" : [45, 37, 0]},
-                {"location" : [45, 27, 0]},
                 {"location" : [45, 17, 0]},
-    			{"location" : [60, 37, 0]},
+                {"location" : [45, 27, 0]},
+                {"location" : [45, 37, 0]},
+    			{"location" : [60, 17, 0]},
     			{"location" : [60, 27, 0]},
-                {"location" : [60, 17, 0]},
-    			{"location" : [75, 37, 0]},
+                {"location" : [60, 37, 0]},
+    			{"location" : [75, 17, 0]},
     			{"location" : [75, 27, 0]},
-                {"location" : [75, 27, 0]}
+                {"location" : [75, 37, 0]}
     		],
     		"repeat" : 1
     	}

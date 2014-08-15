@@ -21,11 +21,11 @@
 #include "protomsg/dect.pb.h"
 #include "model/Map3D.h"
 
-using namespace std;
-using namespace Model;
 
 int main(int argc, const char * argv[])
 {
+    using namespace std;
+    using namespace Model;
 	using namespace Initializer;
 	using namespace Forward;
     using namespace Backward;
@@ -61,7 +61,7 @@ int main(int argc, const char * argv[])
 
     //calculation
     vector<shared_ptr<vector<Hypothesis>>> hyps_hist;
-    vector<shared_ptr<vector<Hypothesis>>> hyps_future;
+//    vector<shared_ptr<vector<Hypothesis>>> hyps_future;
     hyps_hist.push_back(hyps);
     if (!multiple_thread) {
         for (auto const & dect : *dect_vect)

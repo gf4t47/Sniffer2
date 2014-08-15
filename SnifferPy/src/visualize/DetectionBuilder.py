@@ -16,7 +16,7 @@ def _loc_vector_calculator(detected_location, vec_scale):
 def build(dect, hyps, fig):
     pair_list = map(lambda leak:
                     (numpy.array([leak.location.coord_x, leak.location.coord_y, leak.location.coord_z]),
-                     sum([_loc_vector_calculator(leak.location, 10)(hyp) for hyp in hyps.hyp]) / len(hyps.hyp) if len(
+                     sum([_loc_vector_calculator(leak.location, len(hyps.hyp))(hyp) for hyp in hyps.hyp]) / len(hyps.hyp) if len(
                          hyps.hyp) > 0 else 1),
                     dect.leak)
 

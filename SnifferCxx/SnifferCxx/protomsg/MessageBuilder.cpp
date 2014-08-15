@@ -161,8 +161,8 @@ namespace ProtoMsg {
         auto msg_potential = msg_wind->mutable_potential();
 		auto const & pt = cell.getWind().getPotential();
 		msg_potential->set_wv_x(pt[0]);
-		msg_potential->set_wv_x(pt[1]);
-		msg_potential->set_wv_x(pt[2]);
+		msg_potential->set_wv_y(pt[1]);
+		msg_potential->set_wv_z(pt[2]);
 //        msg_wind->set_allocated_potential(msg_potential);
         
 //        msg_cell->set_allocated_wind(msg_wind);

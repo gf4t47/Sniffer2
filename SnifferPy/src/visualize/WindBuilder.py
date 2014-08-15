@@ -18,15 +18,19 @@ def build(mp):
     ws = numpy.zeros(size)
 
     for index, cell in enumerate(air_cells):
-
         coord = cell.coord
         xs[index] = coord.coord_x
         ys[index] = coord.coord_y
-        zs[index] = coord.coord_z
+        zs[index] = coord.coord_z + 0.5
 
         wind = cell.wind.wind
         potential = cell.wind.potential
+
         us[index] = wind.wv_x + potential.wv_x
         vs[index] = wind.wv_y + potential.wv_y
         ws[index] = wind.wv_z + potential.wv_z
-    return mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=0.5, scale_mode="vector", mode="2darrow", colormap="Set1")
+        # us[index] = potential.wv_x
+        # vs[index] = potential.wv_y
+        # ws[index] = potential.wv_z
+
+    return mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=0.5, scale_mode="vector", mode="2darrow")

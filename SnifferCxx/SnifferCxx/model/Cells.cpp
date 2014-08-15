@@ -23,8 +23,7 @@ namespace Model {
 	}
 
 	shared_ptr<Cell> Cells::getCell(coord_item_t x, coord_item_t y, coord_item_t z) const {
-		Coordinate coord(x, y, z);
-		return getCell(coord);
+		return getCell(Coordinate(x, y, z));
 	}
 
 	bool Cells::updateCell(const Cell & cell) {

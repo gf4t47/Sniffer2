@@ -40,6 +40,8 @@ fig_map = MapBuilder.build_from_json(m_dict)
 # fig_map = MapBuilder.build_from_bin(mp)
 # fig_wind = WindBuilder.build(mp)
 
+# mb.show()
+
 dects = MessageParser.parse_dect(dect_output).dect
 candidates = MessageParser.parse_dect(can_output).dect
 hyps_his = MessageParser.parse_mtn(mtn_output).hyps

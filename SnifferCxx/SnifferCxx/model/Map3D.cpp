@@ -38,7 +38,6 @@ namespace Model {
 				}
 			}
 		}
-
 		return ret_vec;
 	}
     
@@ -47,14 +46,11 @@ namespace Model {
             for (auto w = local_coord[1] - step; w <= local_coord[1] + step; w++) {
                 for (auto h = local_coord[2] - step; h <= local_coord[2] + step; h++) {
                     Coordinate remote_coord(l, w, h);
-                    if (remote_coord != local_coord && insideMap(remote_coord)) {
-                        auto remote_cell = getCell(remote_coord);
-                        if (remote_cell.isAirCell()) {
-                            auto vector = remote_coord - local_coord;
-                            auto potential = vector / (vector.calcNorm() / expected_norm);
-                            cout << "potential=" << (potential + remote_cell.getWind().getPotential()) << endl;
-                            (*this)(remote_coord).setPotential(potential + remote_cell.getWind().getPotential());
-                        }
+                    if (remote_coord != local_coord && isAirCell(remote_coord)) {
+                        auto vector = remote_coord - local_coord;
+                        auto potential = vector / (vector.calcNorm() / expected_norm);
+                        (*this)(remote_coord).setPotential(potential + (*this)(remote_coord).getWind().getPotential());
+//                        cout<< remote_coord << " : " << (*this)(remote_coord).getWind().getPotential() << endl;
                     }
                 }
             }
@@ -107,7 +103,7 @@ namespace Model {
 
 	bool Map3D::isAirCell(const Coordinate & pos) const {
         if (insideMap(pos)) {
-            return insideMap(pos);
+            return (*this)(pos).isAirCell();
         }
         
         return false;
