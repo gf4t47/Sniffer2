@@ -6,7 +6,7 @@ from src.protomsg import cell_pb2
 
 
 def build(mp):
-    air_cells = filter(lambda cell: cell.tag == cell_pb2.CellTag.Value('Air'), mp.cell)
+    air_cells = filter(lambda cell: cell.tag == cell_pb2.Air, mp.cell)
 
     size = len(air_cells)
 
@@ -19,15 +19,14 @@ def build(mp):
 
     for index, cell in enumerate(air_cells):
 
-        coord = cell.coord.coord_item
-        xs[index] = coord[0]
-        ys[index] = coord[1]
-        zs[index] = coord[2]
+        coord = cell.coord
+        xs[index] = coord.coord_x
+        ys[index] = coord.coord_y
+        zs[index] = coord.coord_z
 
-        wind = cell.wind.wind.wv_item
-        potential = cell.wind.potential.wv_item
-        us[index] = wind[0] + potential[0]
-        vs[index] = wind[1] + potential[1]
-        ws[index] = wind[2] + potential[2]
-
-    return mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=0.5, scale_factor=0.5, mode="2darrow", colormap="Set3")
+        wind = cell.wind.wind
+        potential = cell.wind.potential
+        us[index] = wind.wv_x + potential.wv_x
+        vs[index] = wind.wv_y + potential.wv_y
+        ws[index] = wind.wv_z + potential.wv_z
+    return mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=0.5, scale_mode="vector", mode="2darrow", colormap="Set1")

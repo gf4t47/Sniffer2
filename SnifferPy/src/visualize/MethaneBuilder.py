@@ -40,6 +40,7 @@ def _build(vecs, fig, color):
     xs, ys, zs, us, vs, ws = vecs
 
     # print "vec length = ", len(xs), len(ys), len(zs), len(us), len(vs), len(ws)
+    # print us
     # time.sleep(0.1)
 
     if not fig is None:

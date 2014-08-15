@@ -33,7 +33,7 @@ def _build_building(location, boundary):
 def _build_buildings(bld_cells):
     vecs = [[], [], [], []]
     for cell in bld_cells:
-        map(lambda item, item_list: item_list.append(item), cell.coord.coord_item, vecs)
+        map(lambda item, item_list: item_list.append(item), [cell.coord.coord_x, cell.coord.coord_y, cell.coord.coord_z], vecs)
 
     vecs[3] = numpy.ones(len(vecs[1]))
 
@@ -56,11 +56,11 @@ def build_from_json(m_dict):
 
 
 def build_from_bin(mp):
-    boundary = mp.boundary.coord_item
-    start_index = mp.startIndex.coord_item
+    boundary = [mp.boundary.coord_x, mp.boundary.coord_y, mp.boundary.coord_z]
+    start_index = [mp.startIndex.coord_x, mp.startIndex.coord_y, mp.startIndex.coord_z]
     _build_surface(start_index, boundary)
 
-    bld_cells = filter(lambda cell: cell.tag == cell_pb2.CellTag.Value('Building'), mp.cell)
+    bld_cells = filter(lambda cell: cell.tag == cell_pb2.Building, mp.cell)
     bld_vecs = _build_buildings(bld_cells)
     return mb.barchart(*bld_vecs)
 

@@ -47,10 +47,15 @@
     		"time" : 30,
     		"dect" :
     		[
-    			{"location" : [55, 37, 0]},
-    			{"location" : [55, 27, 0]},
+                {"location" : [45, 37, 0]},
+                {"location" : [45, 27, 0]},
+                {"location" : [45, 17, 0]},
+    			{"location" : [60, 37, 0]},
+    			{"location" : [60, 27, 0]},
+                {"location" : [60, 17, 0]},
+    			{"location" : [75, 37, 0]},
     			{"location" : [75, 27, 0]},
-    			{"location" : [75, 37, 0]}
+                {"location" : [75, 27, 0]}
     		],
     		"repeat" : 1
     	}

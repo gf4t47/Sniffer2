@@ -21,7 +21,7 @@ def build(candidate, fig):
         zs[index] = loc.coord_z
         us[index] = infor_gain
         vs[index] = infor_gain
-        ws[index] = infor_gain
+        ws[index] = 0
 
     if fig is None:
         fig = mb.quiver3d(xs, ys, zs, us, vs, ws, scale_mode="vector", mode="2dthick_cross", colormap="cool")
