@@ -2,6 +2,8 @@ import "hypothesis.proto";
 
 package ProtoMsg;
 
+option optimize_for = SPEED;
+
 message Detection {
 	required int32 time = 1;
 	repeated Leak leak = 2;

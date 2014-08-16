@@ -1,7 +1,6 @@
 __author__ = 'Kern'
 
 import sys
-# from protomsg import MessageParserPalm as MessageParser
 from protomsg import MessageParserPb as MessageParser
 from initializer import MapParser
 from visualize import MapBuilder
@@ -11,6 +10,7 @@ from visualize import CandidateBuilder
 from visualize import WindBuilder
 
 import mayavi.mlab as mb
+import time
 
 if len(sys.argv) < 6:
     print "Usage:", sys.argv[0], " Missing some argument to indicate input files"
@@ -44,7 +44,11 @@ fig_map = MapBuilder.build_from_json(m_dict)
 
 dects = MessageParser.parse_dect(dect_output).dect
 candidates = MessageParser.parse_dect(can_output).dect
+
+start = time.clock()
 hyps_his = MessageParser.parse_mtn(mtn_output).hyps
+print "time for parsing all hyps", time.clock() - start, "s"
+
 # fig_wind.remove()
 
 fig_hyp = MethaneBuilder.build(hyps_his[0], [None, None])

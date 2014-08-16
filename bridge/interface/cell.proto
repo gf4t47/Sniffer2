@@ -1,5 +1,7 @@
 package ProtoMsg;
 
+option optimize_for = SPEED;
+
 message Coordinate {
 		required int32 coord_x = 1;
 		required int32 coord_y = 2;

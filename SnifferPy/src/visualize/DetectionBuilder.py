@@ -38,7 +38,7 @@ def build(dect, hyps, fig):
     if not fig is None:
         fig.glyph.color_mode = 'color_by_scalar'
 
-    fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_factor=1.0, mode="2dthick_arrow", colormap="Spectral")
+    fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_factor=4.0, mode="2dthick_arrow", colormap="Spectral")
 
     # print fig
 

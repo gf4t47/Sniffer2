@@ -2,6 +2,8 @@ import "cell.proto";
 
 package ProtoMsg;
 
+option optimize_for = SPEED;
+
 message Leak {
 		required Coordinate location = 1;
 		required double concentration = 2;
