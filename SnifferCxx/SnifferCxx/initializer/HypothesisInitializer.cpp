@@ -22,17 +22,6 @@ namespace Initializer {
 	using namespace Backward;
 	using namespace Forward;
     
-    const Forward::range_t default_blurRange = 1;
-    const Backward::range_t default_kernelRange = 1;
-    
-    const string strBlurRange = "blurRange";
-    const string strKernelRange = "kernelRange";
-    const string strForwardChecking = "forwardChecking";
-    const string strHypothesis = "hypothesis";
-    const string strLocation = "location";
-    const string strConcentration = "concentration";
-    const string strIdealCells = "outputCells";
-    
     unordered_map<string, function<shared_ptr<ForwardChecking>(Forward::range_t)>> HypothesisInitializer::String2Forward =
     {
 		{ "byCell", [](Forward::range_t range){return make_shared<UpdateByCell>(range); } },
@@ -62,6 +51,17 @@ namespace Initializer {
     }
     
     bool HypothesisInitializer::load(string cfg_file) {
+        const Forward::range_t default_blurRange = 1;
+        const Backward::range_t default_kernelRange = 1;
+        
+        const string strBlurRange = "blurRange";
+        const string strKernelRange = "kernelRange";
+        const string strForwardChecking = "forwardChecking";
+        const string strHypothesis = "hypothesis";
+        const string strLocation = "location";
+        const string strConcentration = "concentration";
+        const string strIdealCells = "outputCells";
+        
         using boost::property_tree::ptree;
         using boost::lexical_cast;
         

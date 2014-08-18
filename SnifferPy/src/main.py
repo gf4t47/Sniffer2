@@ -53,16 +53,21 @@ print "time for parsing all hyps", time.clock() - start, "s"
 
 fig_hyp = MethaneBuilder.build(hyps_his[0], [None, None])
 fig_dect = None
+fig_can = None
 
-for hyps, dect in zip(hyps_his[1:], dects):
+manual_move_len = len(dects) - len(candidates)
+if manual_move_len < 0:
+    manual_move_len = 0
+
+for hyps, dect in zip(hyps_his[1: 1 + manual_move_len], dects[: manual_move_len]):
     fig_dect = DetectionBuilder.build(dect, hyps, fig_dect)
-
     # map(lambda fig: fig.remove(), filter(lambda fig: not fig is None, fig_hyp))
     # fig_hyp = [None, None]
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
 
-fig_can = None
-for can in candidates:
+for hyps, dect, can in zip(hyps_his[manual_move_len + 1:], dects[manual_move_len:], candidates[:]):
+    fig_dect = DetectionBuilder.build(dect, hyps, fig_dect)
+    fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
     fig_can = CandidateBuilder.build(can, fig_can)
 
 mb.show()

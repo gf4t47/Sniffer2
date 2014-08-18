@@ -29,34 +29,13 @@ namespace Backward {
     InformationGain::InformationGain(const ForwardChecking & forward, const BackwardChecking & backward, const Map3D & map)
     :forward_(forward),
     backward_(backward),
-    map_(map),
-    time_count_(0) {
-        
-    }
-    
-    /**
-     *  construct a information gain calculator
-     *
-     *  @param forward  reference of the forward checking algorithm
-     *  @param backward reference of the backwrad checking algorithm
-     *  @param map      reference of the map
-     *  @param count    how long you assume for the future || how much iterations you will push the forward checking algorith
-     */
-    InformationGain::InformationGain(const ForwardChecking & forward, const BackwardChecking & backward, const Map3D & map, size_t count)
-    :forward_(forward),
-    backward_(backward),
-    map_(map),
-    time_count_(count) {
+    map_(map) {
         
     }
     
     
     InformationGain::~InformationGain() {
         
-    }
-    
-    void InformationGain::setTime(size_t time_count) {
-        time_count_ = time_count;
     }
 
 
@@ -121,9 +100,9 @@ namespace Backward {
      *
      *  @return a set of score maped to all candidates
      */
-    vector<entropy_t> InformationGain::calcInforGains(const vector<Coordinate> & candidates, const vector<Hypothesis> & hyps) const{
+    vector<entropy_t> InformationGain::calcInforGains(const vector<Coordinate> & candidates, const vector<Hypothesis> & hyps, int time_count) const{
         auto copy_hyps = make_shared<vector<Hypothesis>>(hyps);
-        auto future_hyps = forward_.UpdateMethane(*copy_hyps, map_, time_count_);
+        auto future_hyps = forward_.UpdateMethane(*copy_hyps, map_, time_count);
         
         vector<entropy_t> ret_vec;
         

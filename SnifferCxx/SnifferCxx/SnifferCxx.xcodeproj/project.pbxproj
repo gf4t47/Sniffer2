@@ -84,6 +84,7 @@
 		AC591FC6199E64D5006BDEB7 /* MessageBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageBuilder.h; path = protomsg/MessageBuilder.h; sourceTree = "<group>"; };
 		AC5F12E31991906200ED30C5 /* InformationGain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InformationGain.cpp; sourceTree = "<group>"; };
 		AC5F12E41991906200ED30C5 /* InformationGain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationGain.h; sourceTree = "<group>"; };
+		AC687E7419A27B9200F67376 /* TypeDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeDef.h; sourceTree = "<group>"; };
 		AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UpdateByConvolution.cpp; sourceTree = "<group>"; };
 		AC7D6F58198178BD0041B1E9 /* UpdateByConvolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateByConvolution.h; sourceTree = "<group>"; };
 		ACB63F101999668E000FF6A9 /* DetectionInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DetectionInitializer.cpp; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 				AC4AE2A0197D6C410089A6F9 /* Wind.h */,
 				AC4AE2A1197D6C410089A6F9 /* WindVector.cpp */,
 				AC4AE2A2197D6C410089A6F9 /* WindVector.h */,
+				AC687E7419A27B9200F67376 /* TypeDef.h */,
 			);
 			path = model;
 			sourceTree = "<group>";

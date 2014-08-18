@@ -119,7 +119,9 @@ namespace Backward {
         for (auto const & hyp : *ret_hyps) {
             double likeHood = 1.0;
             for (auto detection : detections) {
-                likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
+                if (map.insideMap(detection.location_)) {
+                    likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
+                }
             }
             hyps_probability.push_back(hyp.getProbability() * likeHood);
         }

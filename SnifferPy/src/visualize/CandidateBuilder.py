@@ -26,6 +26,6 @@ def build(candidate, fig):
     if fig is None:
         fig = mb.quiver3d(xs, ys, zs, us, vs, ws, scale_mode="vector", mode="2dthick_cross", colormap="cool")
     else:
-        fig.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
+        fig.mlab_source.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
 
     return fig

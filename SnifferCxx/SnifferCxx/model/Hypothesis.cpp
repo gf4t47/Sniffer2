@@ -67,4 +67,17 @@ namespace Model {
     void Hypothesis::setProbability(double val) {
         probability_ = val;
     }
+    
+    const Hypothesis & Hypothesis::getMaxProbHyp(const std::vector<Hypothesis> & hyps) {
+        auto max = std::max_element(hyps.begin(), hyps.end(),
+                                    [](const Hypothesis & left, const Hypothesis & right) {
+                                        if (left.getProbability() < right.getProbability()) {
+                                            return true;
+                                        }
+                                        else {
+                                            return false;
+                                        }
+                                    });
+        return *max;
+    }
 }

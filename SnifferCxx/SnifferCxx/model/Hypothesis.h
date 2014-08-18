@@ -11,6 +11,18 @@ namespace Model {
 	struct Leak {
 		Coordinate location_;
 		mtn_t concentration_;
+        
+        Leak(const Coordinate & loc, const mtn_t & conc)
+        :location_(loc),
+        concentration_(conc) {
+            
+        }
+        
+        Leak()
+        :location_(Coordinate()),
+        concentration_(mtn_t()) {
+            
+        }
 	};
 
 	class Hypothesis
@@ -29,6 +41,8 @@ namespace Model {
         void addCellsHistory(const std::shared_ptr<Cells> cells);
         const std::shared_ptr<Cells> getMethaneCells() const;
 		const std::vector<const std::shared_ptr<Cells>> & getCelllsHistory() const;
+        
+        static const Hypothesis & getMaxProbHyp(const std::vector<Hypothesis> & hyps);
         
     private:
         int getCurrentCellsHisIndex() const;

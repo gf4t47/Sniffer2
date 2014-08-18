@@ -13,11 +13,11 @@
 #include <array>
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
+#include "TypeDef.h"
 
 namespace Model {
 	class Coordinate;
 
-	typedef size_t unit_t;
 	typedef double wv_item_t;
 	typedef std::array<wv_item_t, 3> wv_t;
 

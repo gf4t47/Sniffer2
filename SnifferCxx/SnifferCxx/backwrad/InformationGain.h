@@ -30,11 +30,9 @@ namespace Backward {
     class InformationGain {
     public:
         InformationGain(const Forward::ForwardChecking & forward, const BackwardChecking & backward, const Model::Map3D & map);
-        InformationGain(const Forward::ForwardChecking & forward, const BackwardChecking & backward, const Model::Map3D & map, size_t count);
         virtual ~InformationGain();
         
-        std::vector<entropy_t> calcInforGains(const std::vector<Model::Coordinate> & candidates, const std::vector<Model::Hypothesis> & hyps) const;
-        void setTime(size_t time_count);
+        std::vector<entropy_t> calcInforGains(const std::vector<Model::Coordinate> & candidates, const std::vector<Model::Hypothesis> & hyps, int time_count) const;
         
     private:
         entropy_t calcInforGain(const Model::Coordinate & candidate, const std::vector<Model::Hypothesis> & hyps, std::vector<Model::Hypothesis> & future_hyps) const;
@@ -45,7 +43,6 @@ namespace Backward {
         const Forward::ForwardChecking & forward_;
         const BackwardChecking & backward_;
         const Model::Map3D & map_;
-        size_t time_count_;
     };
 }
 

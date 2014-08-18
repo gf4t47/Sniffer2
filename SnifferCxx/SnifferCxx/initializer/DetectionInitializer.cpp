@@ -20,7 +20,7 @@ namespace Initializer {
         load(cfg_file);
     }
     
-    shared_ptr<vector<Detection>> DetectionInitializer::parseJsonNode(const string & nodeName, const boost::property_tree::ptree & pt) {
+    shared_ptr<vector<Detection>> DetectionInitializer::parseJsonNode(const string & nodeName, const boost::property_tree::ptree & pt) const{
         const string strTime = "time";
         const string strDect = "dect";
         const string strLocation = "location";
@@ -30,8 +30,12 @@ namespace Initializer {
         using boost::lexical_cast;
         
         auto ret_vec = make_shared<vector<Detection>>();
+        auto node = pt.get_child_optional(nodeName);
+        if (!node) {
+            return ret_vec;
+        }
         
-        for (auto dect_node : pt.get_child(nodeName)) {
+        for (auto dect_node : *node) {
             auto dect = dect_node.second;
             
             Detection detection;
@@ -66,6 +70,10 @@ namespace Initializer {
         const string strDetection = "detection";
         const string strCandidate = "candidate";
         const string strMultithread = "multithread";
+        const string strAuto = "automovement";
+        const string strDistance = "distance";
+        const string strThreshold = "threshold";
+        const string strTime = "time";
         
         ptree pt;
         read_json(filename, pt);
@@ -76,18 +84,30 @@ namespace Initializer {
 
         can_ = parseJsonNode(strCandidate, pt);
         
+        auto auto_node = pt.get_child_optional(strAuto);
+        if (auto_node) {
+            auto_movement_ = make_shared<AutoMovement>();
+            auto_movement_->time_ = auto_node->get<int>(strTime);
+            auto_movement_->threshold_ = auto_node->get<double>(strThreshold);
+            auto_movement_->distance_ = auto_node->get<unit_t>(strDistance);
+        }
+        
         return true;
     }
     
-    shared_ptr<vector<Detection>> DetectionInitializer::getDetections() {
+    shared_ptr<vector<Detection>> DetectionInitializer::getDetections() const{
         return dects_;
     }
     
-    shared_ptr<vector<Detection>> DetectionInitializer::getCandidates() {
+    shared_ptr<vector<Detection>> DetectionInitializer::getCandidates() const{
         return can_;
     }
     
-    bool DetectionInitializer::beMultiplethread() {
+    shared_ptr<AutoMovement> DetectionInitializer::getAutoMovementInfo() const{
+        return auto_movement_;
+    }
+    
+    bool DetectionInitializer::beMultiplethread() const{
         return multiplethread_flag_;
     }
 

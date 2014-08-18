@@ -17,14 +17,6 @@ namespace Initializer {
     using namespace Model;
     
     const size_t default_potential_step = 3;
-    const wv_item_t default_wind_norm = 1.618;
-    
-    const string strLocation = "location";
-    const string strBoundary = "boundary";
-    const string strWind = "wind";
-    const string strBuilding = "building";
-    const string strUnit = "unit";
-    const string strPotential = "potential";
     
 	MapBuilder::MapBuilder(coord_item_t length, coord_item_t width, coord_item_t height, unit_t unit)
     :boundary_(length, width, height),
@@ -50,6 +42,13 @@ namespace Initializer {
     }
     
     bool MapBuilder::load(const string & filename) {
+        const string strLocation = "location";
+        const string strBoundary = "boundary";
+        const string strWind = "wind";
+        const string strBuilding = "building";
+        const string strUnit = "unit";
+        const string strPotential = "potential";
+        
         using boost::property_tree::ptree;
         using boost::lexical_cast;
         
@@ -118,6 +117,8 @@ namespace Initializer {
 	}
     
 	shared_ptr<Map3D> MapBuilder::build() {
+        const wv_item_t default_wind_norm = 1.618;
+        
 		shared_ptr<Map3D> map;
 
         if (startIndex_) {
