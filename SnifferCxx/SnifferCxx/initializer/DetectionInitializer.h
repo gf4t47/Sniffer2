@@ -11,6 +11,7 @@
 
 #include "../model/Hypothesis.h"
 #include <memory>
+#include <boost/property_tree/ptree.hpp>
 
 namespace Initializer {
     struct Detection {
@@ -20,7 +21,20 @@ namespace Initializer {
     
     class DetectionInitializer {
     public:
-        static std::tuple<std::shared_ptr<std::vector<Detection>>, std::shared_ptr<std::vector<Detection>>, bool> load(std::string filename);
+        DetectionInitializer(std::string cfg_file);
+        bool load(std::string filename);
+        
+        std::shared_ptr<std::vector<Detection>> getDetections();
+        std::shared_ptr<std::vector<Detection>> getCandidates();
+        bool beMultiplethread();
+        
+    private:
+        std::shared_ptr<std::vector<Detection>> parseJsonNode(const std::string & nodeName, const boost::property_tree::ptree & pt);
+        
+    private:
+        std::shared_ptr<std::vector<Detection>> dects_;
+        std::shared_ptr<std::vector<Detection>> can_;
+        bool multiplethread_flag_;
     };
 }
 

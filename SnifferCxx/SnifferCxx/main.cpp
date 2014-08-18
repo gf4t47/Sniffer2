@@ -54,14 +54,13 @@ int main(int argc, const char * argv[])
 	auto hyps = hypI.getHyptheses();
     
     //load detection
-	shared_ptr<vector<Detection>> dect_vect;
-	shared_ptr<vector<Detection>> can_vect;
-	bool multiple_thread;
-    tie(dect_vect, can_vect, multiple_thread) = DetectionInitializer::load(dect_cfg);
+    DetectionInitializer dectI(dect_cfg);
+    auto dect_vect = dectI.getDetections();
+    auto can_vect = dectI.getCandidates();
+	auto multiple_thread = dectI.beMultiplethread();
 
     //calculation
     vector<shared_ptr<vector<Hypothesis>>> hyps_hist;
-//    vector<shared_ptr<vector<Hypothesis>>> hyps_future;
     hyps_hist.push_back(hyps);
     if (!multiple_thread) {
         for (auto const & dect : *dect_vect)

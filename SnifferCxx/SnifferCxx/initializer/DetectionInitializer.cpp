@@ -7,7 +7,6 @@
 //
 
 #include "DetectionInitializer.h"
-#include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/lexical_cast.hpp>
 
@@ -17,7 +16,11 @@ namespace Initializer {
     
     using boost::property_tree::ptree;
     
-    shared_ptr<vector<Detection>> parseJsonNode(const string & nodeName, const boost::property_tree::ptree & pt) {
+    DetectionInitializer::DetectionInitializer(string cfg_file) {
+        load(cfg_file);
+    }
+    
+    shared_ptr<vector<Detection>> DetectionInitializer::parseJsonNode(const string & nodeName, const boost::property_tree::ptree & pt) {
         const string strTime = "time";
         const string strDect = "dect";
         const string strLocation = "location";
@@ -59,7 +62,7 @@ namespace Initializer {
         return ret_vec;
     }
     
-    tuple<shared_ptr<vector<Detection>>, shared_ptr<vector<Detection>>, bool> DetectionInitializer::load(string filename) {
+    bool DetectionInitializer::load(string filename) {
         const string strDetection = "detection";
         const string strCandidate = "candidate";
         const string strMultithread = "multithread";
@@ -67,13 +70,25 @@ namespace Initializer {
         ptree pt;
         read_json(filename, pt);
         
-        auto multithread = pt.get<bool>(strMultithread);
+        multiplethread_flag_ = pt.get<bool>(strMultithread);
         
-        auto dect_vec = parseJsonNode(strDetection, pt);
+        dects_ = parseJsonNode(strDetection, pt);
 
-        auto can_vec = parseJsonNode(strCandidate, pt);
+        can_ = parseJsonNode(strCandidate, pt);
         
-        return make_tuple(dect_vec, can_vec, multithread);
+        return true;
+    }
+    
+    shared_ptr<vector<Detection>> DetectionInitializer::getDetections() {
+        return dects_;
+    }
+    
+    shared_ptr<vector<Detection>> DetectionInitializer::getCandidates() {
+        return can_;
+    }
+    
+    bool DetectionInitializer::beMultiplethread() {
+        return multiplethread_flag_;
     }
 
 }

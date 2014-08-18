@@ -1,5 +1,8 @@
 {
     "multithread" : false,
+    "time" : 10,
+    "distance" : 10,
+    "threshold" : 0.9,
     
     "detection" :
     [
