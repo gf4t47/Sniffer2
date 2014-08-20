@@ -166,5 +166,8 @@
     <ClInclude Include="protomsg\MessageBuilder.h">
       <Filter>protomsg</Filter>
     </ClInclude>
+    <ClInclude Include="model\TypeDef.h">
+      <Filter>model</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

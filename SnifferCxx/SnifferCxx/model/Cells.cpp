@@ -48,9 +48,9 @@ namespace Model {
 			else {
 				if (find_ret->second == oth_entry.second)
 				{
-					auto original_methane = find_ret->second.getMethane().getParticleNum();
-					auto new_methane = oth_entry.second.getMethane().getParticleNum();
-					find_ret->second.setMethaneConcentration(original_methane + new_methane);
+					auto original_methane = find_ret->second.getMethane();
+					auto new_methane = oth_entry.second.getMethane();
+					find_ret->second.setMethane(original_methane + new_methane);
 				}
 				else {
 					ostringstream ostr;

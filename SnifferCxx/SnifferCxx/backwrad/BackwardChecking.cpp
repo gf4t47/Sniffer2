@@ -11,6 +11,7 @@
 #include "../model/Map3D.h"
 #include "../math/Gamma.h"
 #include "../math/GaussianBlur.h"
+#include "../model/Cells.h"
 #include <boost/log/sources/record_ostream.hpp>
 
 namespace Backward {
@@ -105,7 +106,7 @@ namespace Backward {
     // Parameter: size_t time_count : how many iterations for forward model algorithm to carry.
     // Parameter: const vector<Leak> & detections
     //************************************
-    shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, Map3D & map, const vector<Leak> & detections, size_t time_count, const shared_ptr<ForwardChecking> forward) const {
+    shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, const Map3D & map, const vector<Leak> & detections, size_t time_count, const shared_ptr<ForwardChecking> forward) const {
         namespace logging = boost::log;
         namespace keywords = boost::log::keywords;
         namespace sinks = boost::log::sinks;

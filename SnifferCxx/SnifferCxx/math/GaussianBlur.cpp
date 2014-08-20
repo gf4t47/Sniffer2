@@ -81,12 +81,13 @@ namespace Math {
 		}
 	}
     
-    shared_ptr<Cells> GaussianBlur::blurCell(const Coordinate &location, const double concentration, const Map3D &map, int kernel_range) {
+    shared_ptr<Cells> GaussianBlur::blurCell(const Cell & ori_cell, const Map3D &map, int kernel_range) {
 		resetStaticKernel(kernel_range);
 
 		auto kernel = *static_kernel;
 		auto step = static_kernel_range;
 
+		auto location = ori_cell.getCoordinate();
 		for (auto l = location[0] - step; l <= location[0] + step; l++) {
 			for (auto w = location[1] - step; w <= location[1] + step; w++) {
 				for (auto h = location[2] - step; h <= location[2] + step; h++) {
@@ -103,10 +104,8 @@ namespace Math {
 		boost::multi_array_ref<double, 1> kernel_ref(kernel.data(), boost::extents[kernel.num_elements()]);
 		auto sum = accumulate(kernel_ref.begin(), kernel_ref.end(), 0.0);
 		if (sum <= 0) {
-            auto cell = map.getCell(location);
-            cell.setMethaneConcentration(concentration);
             ret_cells->clear();
-            ret_cells->updateCell(cell);
+            ret_cells->updateCell(ori_cell);
             return ret_cells;
 		}
         
@@ -122,7 +121,7 @@ namespace Math {
                     auto factor = kernel(kernel_coord);
                     if (factor > 0) {
                         auto cell = map.getCell(cell_coord);
-                        cell.setMethaneConcentration(concentration * factor);
+                        cell.setMethane(Methane(ori_cell.getMethane().getConcentration() * factor, ori_cell.getMethane().getPotential()));
                         ret_cells->updateCell(cell);
                     }
 				}
@@ -139,7 +138,7 @@ namespace Math {
 					Coordinate coord(l, w, h);
                     auto methane_cell = methane_cells.getCell(coord);
                     if (methane_cell && methane_cell->hasMethane()) {
-                        auto new_cells = blurCell(coord, methane_cell->getMethane().getParticleNum(), map, kernel_range);
+                        auto new_cells = blurCell(*methane_cell, map, kernel_range);
                         ret_cells->mergeCellsByAddMethane(*new_cells);
                     }
 				}

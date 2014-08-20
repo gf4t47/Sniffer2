@@ -34,7 +34,7 @@ namespace Model{
 		const map_t::index * getStartIndex() const;
 
 
-		Coordinate calcPosition(const Coordinate & pos, const WindVector & wv) const;
+		std::tuple<Coordinate, WindVector> calcPosition(const Coordinate & pos, const WindVector & wv) const;
 		std::shared_ptr<Cell> calcCollisionByFullPath(const Coordinate & startPos, const Coordinate & endPos) const;
 		std::shared_ptr<Cell> calcCollisionByEndCell(const Coordinate & startPos, const Coordinate & endPos) const;
 

@@ -38,19 +38,19 @@ namespace Forward {
 	// Parameter: const Map3D & map
 	// Parameter: size_t count
 	//************************************
-	shared_ptr<Cells> ForwardChecking::Deduce(Hypothesis & hypothesis, Map3D & map, size_t count) const {
+	shared_ptr<Cells> ForwardChecking::Deduce(Hypothesis & hypothesis, const Map3D & map, size_t count) const {
         
 		Cells leakCells; // more leaked methane cells added in each iteration.
 		for (auto leak : hypothesis.getLeaks()) {
 			auto leakCell = map.getCell(leak.location_);
-			leakCell.setMethaneConcentration(leak.concentration_);
+			leakCell.setMethane(Methane(leak.concentration_));
 			leakCells.updateCell(leakCell);
 		}
         
         auto methane_cells = hypothesis.getMethaneCells();
         auto ret_cells = make_shared<Cells>();
         if (methane_cells) {
-            ret_cells = make_shared<Cells>(*hypothesis.getMethaneCells()); //copy construtor here to storage the history of methane cells.
+            ret_cells = make_shared<Cells>(*methane_cells); //copy construtor here to storage the history of methane cells.
         }
         
 		for (size_t i = 0; i < count; i++) {
@@ -61,13 +61,13 @@ namespace Forward {
                 hypothesis.addCellsHistory(ret_cells);
             }
 
-			map.updateWind(WindVector(1.5, 0.2, 0));
+			//map.updateWind(WindVector(1.5, 0.2, 0));
 		}
         
         return ret_cells;
 	}
     
-    shared_ptr<vector<Hypothesis>> ForwardChecking::UpdateMethane(vector<Model::Hypothesis> & hyps, Map3D & map, size_t count) const {
+    shared_ptr<vector<Hypothesis>> ForwardChecking::UpdateMethane(vector<Model::Hypothesis> & hyps, const Map3D & map, size_t count) const {
         auto ret_hyps = make_shared<vector<Hypothesis>>();
         
         for (auto & hyp : hyps) {
@@ -79,7 +79,7 @@ namespace Forward {
         return ret_hyps;
     }
 
-	void ForwardChecking::work(shared_ptr<vector<Model::Hypothesis>> hyps, Map3D & map, boost::tribool & alive, vector<shared_ptr<vector<Hypothesis>>> & hyps_his) {
+	void ForwardChecking::work(shared_ptr<vector<Model::Hypothesis>> hyps, const Map3D & map, boost::tribool & alive, vector<shared_ptr<vector<Hypothesis>>> & hyps_his) {
 		auto exec_hyps = hyps;
 		while (!alive) {
 			if (boost::indeterminate(alive)) {

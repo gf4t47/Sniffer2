@@ -228,6 +228,7 @@
     <ClInclude Include="model\Hypothesis.h" />
     <ClInclude Include="model\Map3D.h" />
     <ClInclude Include="model\Methane.h" />
+    <ClInclude Include="model\TypeDef.h" />
     <ClInclude Include="model\Wind.h" />
     <ClInclude Include="model\WindVector.h" />
     <ClInclude Include="protomsg\cell.pb.h" />

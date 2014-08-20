@@ -11,12 +11,20 @@
 
 #include "ForwardChecking.h"
 #include <unordered_map>
-#include "../model/Cells.h"
-#include "../model/Map3D.h"
+#include "../model/Methane.h"
+
+namespace Model {
+	class Cells;
+	class Map3D;
+	class Methane;
+	class Coordiante;
+	class CoordHasher;
+	class WindVector;
+}
 
 namespace Forward {
 
-	typedef std::unordered_map<Model::Coordinate, size_t, Model::CoordHasher> pos_conc_t;
+	typedef std::unordered_map<Model::Coordinate, Model::Methane, Model::CoordHasher> pos_conc_t;
 
 	class UpdateByCell : public ForwardChecking {
 	public:
@@ -29,7 +37,7 @@ namespace Forward {
         std::shared_ptr<Model::Cell> calcEndcell(const Model::Coordinate & statPos, const Model::Coordinate & endPos, const Model::Map3D & map, bool checkFullPath = true) const;
 
 	private:
-		std::shared_ptr<pos_conc_t> calcGaussianEnds(const Model::Coordinate & startPos, const Model::WindVector & wv, const Model::mtn_t particle_num, const Model::Map3D & map) const;
+		std::shared_ptr<pos_conc_t> calcGaussianEnds(const Model::Cell & start_cell, const Model::Map3D & map) const;
 
 	};
 }

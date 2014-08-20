@@ -54,11 +54,12 @@ namespace Model {
 	}
 
 	bool Cell::hasMethane() const {
-		return mtn_.getParticleNum() > 0;
+		return mtn_.getConcentration() > 0;
 	}
 
-	bool Cell::setMethaneConcentration(mtn_t concentration) {
-		return mtn_.updateMethane(concentration);
+	bool Cell::setMethane(const Methane & mtn) {
+		mtn_ = mtn;
+		return true;
 	}
 
 	bool Cell::setCellTag(const CellTag & tag) {

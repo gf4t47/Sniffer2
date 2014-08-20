@@ -13,6 +13,7 @@
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
 #include "WindVector.h"
+#include "TypeDef.h"
 
 namespace Model {
 	typedef double mtn_t;
@@ -20,15 +21,16 @@ namespace Model {
 	class Methane {
 	public:
 		Methane();
+		Methane(mtn_t c);
 		Methane(mtn_t c, const WindVector & wv);
 
 		static double getBackground();
 		double getMethane() const;
-		mtn_t getParticleNum() const;
+		mtn_t getConcentration() const;
+		const WindVector & getPotential() const;
 
-		bool updateMethane(mtn_t concentration);
-
-		bool operator== (const Methane & oth) const;
+		//bool operator== (const Methane & oth) const;
+		Methane operator+ (const Methane & oth) const;
 
 		friend std::ostream& operator<<(std::ostream& os, const Methane& mtn);
         
@@ -37,7 +39,11 @@ namespace Model {
         void serialize(Archive & ar, const unsigned int version)
         {
             ar & concentration_;
+			ar & potential_;
         }
+
+	protected:
+		bool updateConcentration(mtn_t concentration);
 
 	private:
 		mtn_t concentration_;

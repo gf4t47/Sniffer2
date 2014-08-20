@@ -32,9 +32,23 @@ namespace Model {
 		return ret;
 	}
 
+
+
 	Coordinate WindVector::operator / (const unit_t & unit) const {
 		Coordinate ret;
 		transform(begin(), end(), ret.begin(), [unit](const wv_item_t & it) {return it / unit; });
+		return ret;
+	}
+
+	WindVector WindVector::operator % (const unit_t & unit) const {
+		WindVector ret;
+		transform(begin(), end(), ret.begin(), [unit](const wv_item_t & it) {return fmod(it, unit); });
+		return ret;
+	}
+
+	WindVector WindVector::operator * (const wv_item_t & factor) const {
+		WindVector ret;
+		transform(begin(), end(), ret.begin(), [factor](const wv_item_t & it) {return it * factor; });
 		return ret;
 	}
 

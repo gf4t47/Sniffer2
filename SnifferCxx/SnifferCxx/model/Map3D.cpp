@@ -168,8 +168,8 @@ namespace Model {
 	// Parameter: const Coordinate & pos : start position, unit = cell index
 	// Parameter: const WindVector & wv : wind vector, unit = meter / iteration
 	//************************************
-	Coordinate Map3D::calcPosition(const Coordinate & pos, const WindVector & wv) const {
-		return pos + (wv / unit_);
+	tuple<Coordinate, WindVector> Map3D::calcPosition(const Coordinate & pos, const WindVector & wv) const {
+		return make_tuple(pos + (wv / unit_), wv % unit_);
 	}
 
 	//************************************
@@ -189,13 +189,12 @@ namespace Model {
 		if (pos_ret) { // end pos is still in the map .
 			auto endCell = getCell(endPos);
 			if (endCell.isAirCell()) {//and it is a air cell
-				return make_shared<Cell>(endCell);
+				return make_shared<Cell>(getCell(endPos));
 			}
 		}
 		else if (!pos_ret) {// end pos is out of the boundary
 			return nullptr;
 		}
-
 
 		return make_shared<Cell>(getCell(startPos)); //end pos hit on building or ground
 	}
@@ -253,7 +252,7 @@ namespace Model {
             else {//next pos is still inside the map
                 auto nextCell = getCell(nextPos);
                 if (!nextCell.isAirCell()) { //next pos is hit on building
-                    return make_shared<Cell>(getCell(curPos));
+					return make_shared<Cell>(getCell(curPos));
                 }
             }
             

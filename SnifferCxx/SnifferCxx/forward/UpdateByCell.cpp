@@ -9,6 +9,8 @@
 #include "UpdateByCell.h"
 #include "../model/Hypothesis.h"
 #include "../math/Gaussian.h"
+#include "../model/Cells.h"
+#include "../model/Map3D.h"
 #include <math.h>
 
 namespace Forward {
@@ -35,20 +37,22 @@ namespace Forward {
 	// Parameter: const mtn_t particle_num : methane concentration in the start cell
 	// Parameter: const Map3D & map
 	//************************************
-	shared_ptr<pos_conc_t> UpdateByCell::calcGaussianEnds(const Coordinate & startPos, const WindVector & wv, const mtn_t particle_num, const Map3D & map) const {
-		auto winds = Math::Gaussian::RandomWindVectors(wv, getKernelRange() * map.getUnit(), ceil(particle_num));
-		auto particle_num_per_wind = 1;
+	shared_ptr<pos_conc_t> UpdateByCell::calcGaussianEnds(const Cell & start_cell, const Map3D & map) const {
+		auto winds = Math::Gaussian::RandomWindVectors(start_cell.getWind().getCalcWind(), getKernelRange() * map.getUnit(), ceil(start_cell.getMethane().getConcentration()));
+		auto concentration_per_wind = 1;
 
 		auto map_ret = make_shared<pos_conc_t>(); //a hash table used to merge the methane particles move into same cell.
 		for_each(winds->begin(), winds->end(),
-			[&map_ret, particle_num_per_wind, &startPos, &map](const WindVector & wv) {
-			auto endPos = map.calcPosition(startPos, wv);
-			auto find_ret = map_ret->find(endPos);
+			[&map_ret, concentration_per_wind, &start_cell, &map](const WindVector & wv) {
+			Coordinate position;
+			WindVector potential;
+			tie(position, potential)= map.calcPosition(start_cell.getCoordinate(), wv + start_cell.getMethane().getPotential());
+			auto find_ret = map_ret->find(position);
 			if (find_ret == map_ret->end()) {
-				(*map_ret)[endPos] = particle_num_per_wind;
+				(*map_ret)[position] = Methane(concentration_per_wind, potential);
 			}
 			else {
-				(*map_ret)[endPos] += particle_num_per_wind;
+				(*map_ret)[position] = Methane(concentration_per_wind, potential) + (*map_ret)[position];
 			}
 		});
 
@@ -66,10 +70,12 @@ namespace Forward {
 	// Parameter: const Map3D & map
 	//************************************
 	shared_ptr<Cell> UpdateByCell::calcEndcell(const Coordinate & statPos, const Coordinate & endPos, const Map3D & map, bool checkFullPath /* = true*/) const {
-		if (checkFullPath)
-		{
+		shared_ptr<Cell> ret;
+
+		if (checkFullPath) {
 			return map.calcCollisionByFullPath(statPos, endPos);
 		}
+
 
 		return map.calcCollisionByEndCell(statPos, endPos);
 	}
@@ -88,21 +94,20 @@ namespace Forward {
 			return make_shared<Cells>();
 		}
 
-		auto curPos = cell.getCoordinate();
-		auto end_vals = calcGaussianEnds(curPos, cell.getWind().getCalcWind(), cell.getMethane().getParticleNum(), map);
+		auto end_vals = calcGaussianEnds(cell, map);
 
 		auto new_cells = make_shared<Cells>();
 		for (auto entry : *end_vals) {
-			auto endCell = calcEndcell(curPos, entry.first, map);
+			auto endCell = calcEndcell(cell.getCoordinate(), entry.first, map);
 			if (endCell) {
-				auto endCoord = endCell->getCoordinate();
-				auto same_position_cell = new_cells->getCell(endCoord);
-				mtn_t original_methane = 0;
+				auto same_position_cell = new_cells->getCell(endCell->getCoordinate());
 				if (same_position_cell) {
-					original_methane = same_position_cell->getMethane().getParticleNum();
+					endCell->setMethane(same_position_cell->getMethane() + entry.second);
+				}
+				else {
+					endCell->setMethane(entry.second);
 				}
 
-				endCell->setMethaneConcentration(original_methane + entry.second);
 				new_cells->updateCell(*endCell);
 			}
 		}

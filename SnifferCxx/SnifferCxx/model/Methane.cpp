@@ -16,6 +16,11 @@ namespace Model {
 	Methane::Methane()
 		:concentration_(0.0f),
 		potential_(WindVector(0, 0, 0)) {
+	}
+
+	Methane::Methane(mtn_t c)
+		: concentration_(c),
+		potential_(WindVector(0, 0, 0)) {
 
 	}
 
@@ -29,22 +34,30 @@ namespace Model {
 		return background;
 	}
 
-	mtn_t Methane::getParticleNum() const {
+	mtn_t Methane::getConcentration() const {
 		return concentration_;
 	}
 
-	double Methane::getMethane() const {
-		return getParticleNum() + getBackground();
+	const WindVector & Methane::getPotential() const {
+		return potential_;
 	}
 
-	bool Methane::updateMethane(mtn_t concentration) {
+	double Methane::getMethane() const {
+		return getConcentration() + getBackground();
+	}
+
+	bool Methane::updateConcentration(mtn_t concentration) {
 		concentration_ = concentration;
 
 		return true;
 	}
 
-	bool Methane::operator== (const Methane & oth) const {
-		return concentration_ == oth.concentration_;
+	//bool Methane::operator== (const Methane & oth) const {
+	//	return concentration_ == oth.concentration_ && potential_ == oth.potential_;
+	//}
+
+	Methane Methane::operator+ (const Methane & oth) const {
+		return Methane(concentration_ + oth.concentration_, (potential_ + oth.potential_) * 0.5);
 	}
 
 	ostream& operator<<(ostream& os, const Methane& mtn)

@@ -2,6 +2,7 @@
 #include "../model/Map3D.h"
 #include "../math/GaussianBlur.h"
 #include "../model/Cells.h"
+#include "../model/Map3D.h"
 
 namespace Forward {
     using namespace std;
@@ -35,14 +36,13 @@ namespace Forward {
 
 		auto ret_cells = make_shared<Cells>();
         
-		auto conecentration = cell.getMethane().getParticleNum();
-		if (conecentration > blur_concentration_threshold)
+		if (cell.getMethane().getConcentration() > blur_concentration_threshold)
 		{
-			auto startPos = cell.getCoordinate();
-			auto ideal_endPos = map.calcPosition(startPos, cell.getWind().getCalcWind());
-			auto endCell = calcEndcell(startPos, ideal_endPos, map, true);
+			auto ideal_end_pair = map.calcPosition(cell.getCoordinate(), cell.getWind().getCalcWind() + cell.getMethane().getPotential());
+			auto endCell = calcEndcell(cell.getCoordinate(), get<0>(ideal_end_pair), map, true);
 			if (endCell) {
-				ret_cells = Math::GaussianBlur::blurCell(endCell->getCoordinate(), cell.getMethane().getParticleNum(), map, getKernelRange());
+				endCell->setMethane(Methane(cell.getMethane().getConcentration(), get<1>(ideal_end_pair)));
+				ret_cells = Math::GaussianBlur::blurCell(*endCell, map, getKernelRange());
 			}
 		}
 		else {
