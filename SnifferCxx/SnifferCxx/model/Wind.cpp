@@ -13,24 +13,28 @@ namespace Model {
 
 	Wind::Wind()
 		:potential_(WindVector()),
-		wind_(WindVector()) {
+		wind_(nullptr) {
 
 	}
 
-	Wind::Wind(const WindVector & wind)
-		: wind_(wind),
-		potential_(WindVector()) {
+	//Wind::Wind(const WindVector & wind)
+	//	: wind_(wind),
+	//	potential_(WindVector()) {
 
-	}
+	//}
 
-	Wind::Wind(const WindVector & wind, const WindVector & potential)
-		: potential_(potential),
-		wind_(wind) {
+	//Wind::Wind(const WindVector & wind, const WindVector & potential)
+	//	: potential_(potential),
+	//	wind_(wind) {
 
-	}
+	//}
 
 	WindVector Wind::getCalcWind() const {
-		return wind_ + potential_;
+		if (!wind_) {
+			throw runtime_error("wind_ pointer has not been initialized");
+		}
+
+		return *wind_ + potential_;
 	}
     
     WindVector Wind::getPotential() const {
@@ -38,12 +42,16 @@ namespace Model {
     }
 
 	WindVector Wind::getWV() const {
-		return wind_;
+		if (!wind_) {
+			throw runtime_error("wind_ pointer has not been initialized");
+		}
+
+		return *wind_;
 	}
     
-    bool Wind::setWindVector(const WindVector &vec) {
+    bool Wind::setWindVector(const shared_ptr<WindVector> vec) {
         wind_ = vec;
-        return true;
+        return wind_ != nullptr;
     }
     
     bool Wind::setPotential(const WindVector &potential) {

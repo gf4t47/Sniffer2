@@ -11,7 +11,6 @@
 
 #include <boost/multi_array.hpp>
 #include <boost/logic/tribool.hpp>
-#include <boost/optional.hpp>
 #include "Cell.h"
 
 namespace Initializer {
@@ -39,15 +38,18 @@ namespace Model{
 		std::shared_ptr<Cell> calcCollisionByFullPath(const Coordinate & startPos, const Coordinate & endPos) const;
 		std::shared_ptr<Cell> calcCollisionByEndCell(const Coordinate & startPos, const Coordinate & endPos) const;
 
+		void updateWind(const WindVector & wind);
+
 		friend class Initializer::MapBuilder;
 
 	protected:
-        void updateWind(const WindVector & wind);
-        void initCoordinate(boost::optional<WindVector> wv);
+        void initCell();
 
 	private:
-		Map3D(size_t length, size_t width, size_t height, unit_t unit, boost::optional<WindVector> wv);
-		Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit, boost::optional<WindVector> wv);
+		Map3D(size_t length, size_t width, size_t height, unit_t unit);
+		Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit);
+		Map3D(size_t length, size_t width, size_t height, unit_t unit, const WindVector & wv);
+		Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit, const WindVector & wv);
 		Coordinate calcStep(const Coordinate & curPos, const Coordinate & dstPos) const;
 
 		void calcLocalPotential(const Coordinate & local_coord, coord_item_t step, wv_item_t expected_norm);
@@ -55,6 +57,7 @@ namespace Model{
 
 	private:
 		unit_t unit_;
+		std::shared_ptr<WindVector> wv_;
 	};
 }
 

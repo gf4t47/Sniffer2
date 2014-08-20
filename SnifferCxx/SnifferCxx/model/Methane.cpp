@@ -14,12 +14,14 @@ namespace Model {
 	const double background = 0.05;
 
 	Methane::Methane()
-		:concentration_(0.0f) {
+		:concentration_(0.0f),
+		potential_(WindVector(0, 0, 0)) {
 
 	}
 
-	Methane::Methane(mtn_t c)
-		: concentration_(c) {
+	Methane::Methane(mtn_t c, const WindVector & wv)
+		:concentration_(c),
+		potential_(wv){
 
 	}
 

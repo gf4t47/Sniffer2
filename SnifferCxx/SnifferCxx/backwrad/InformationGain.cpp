@@ -26,7 +26,7 @@ namespace Backward {
      *  @param backward reference of the backwrad checking algorithm
      *  @param map      reference of the map
      */
-    InformationGain::InformationGain(const ForwardChecking & forward, const BackwardChecking & backward, const Map3D & map)
+    InformationGain::InformationGain(const ForwardChecking & forward, const BackwardChecking & backward, Map3D & map)
     :forward_(forward),
     backward_(backward),
     map_(map) {

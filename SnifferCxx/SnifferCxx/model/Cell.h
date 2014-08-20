@@ -47,7 +47,7 @@ namespace Model {
 
 		bool setMethaneConcentration(mtn_t concentration);
 		bool setCellTag(const CellTag & tag);
-        bool setWindVector(const WindVector & wind);
+        bool setWindVector(const std::shared_ptr<WindVector> wind);
         bool setPotential(const WindVector & potential);
         bool setCoordinate(const Coordinate & coord);
 

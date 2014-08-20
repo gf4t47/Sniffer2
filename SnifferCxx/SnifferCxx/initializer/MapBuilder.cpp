@@ -122,20 +122,29 @@ namespace Initializer {
 		shared_ptr<Map3D> map;
 
         if (startIndex_) {
-			map.reset(new Map3D(*startIndex_, boundary_, unit_, wind_));
+			if (wind_) {
+				map.reset(new Map3D(*startIndex_, boundary_, unit_, *wind_));
+			}
+			else {
+				map.reset(new Map3D(*startIndex_, boundary_, unit_));
+			}
 		}
 		else {
-			map.reset(new Map3D(boundary_[0], boundary_[1], boundary_[2], unit_, wind_));
+			if (wind_) {
+				map.reset(new Map3D(boundary_[0], boundary_[1], boundary_[2], unit_, *wind_));
+			}
+			else {
+				map.reset(new Map3D(boundary_[0], boundary_[1], boundary_[2], unit_));
+			}
+			
 		}
         
         auto wind_norm = default_wind_norm;
-        if (wind_)
-		{
+        if (wind_) {
             wind_norm = wind_->calcNorm();
 		}
         
-        for (auto bld : buildings_)
-        {
+        for (auto bld : buildings_) {
             map->AddBuilding(bld.location_, bld.boundary_, potentialStep_, wind_norm);
         }
         

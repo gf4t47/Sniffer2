@@ -10,7 +10,7 @@ namespace Model {
 
 	struct Leak {
 		Coordinate location_;
-		mtn_t concentration_;
+		mtn_t concentration_; //concentration in a detection object, information gain score for a candidate object... yeah! they share the same struct.
         
         Leak(const Coordinate & loc, const mtn_t & conc)
         :location_(loc),

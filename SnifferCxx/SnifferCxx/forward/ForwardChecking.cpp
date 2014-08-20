@@ -38,7 +38,7 @@ namespace Forward {
 	// Parameter: const Map3D & map
 	// Parameter: size_t count
 	//************************************
-	shared_ptr<Cells> ForwardChecking::Deduce(Hypothesis & hypothesis, const Map3D & map, size_t count) const {
+	shared_ptr<Cells> ForwardChecking::Deduce(Hypothesis & hypothesis, Map3D & map, size_t count) const {
         
 		Cells leakCells; // more leaked methane cells added in each iteration.
 		for (auto leak : hypothesis.getLeaks()) {
@@ -60,12 +60,14 @@ namespace Forward {
             if (i < count - 1) {
                 hypothesis.addCellsHistory(ret_cells);
             }
+
+			map.updateWind(WindVector(1.5, 0.2, 0));
 		}
         
         return ret_cells;
 	}
     
-    shared_ptr<vector<Hypothesis>> ForwardChecking::UpdateMethane(vector<Model::Hypothesis> & hyps, const Map3D & map, size_t count) const {
+    shared_ptr<vector<Hypothesis>> ForwardChecking::UpdateMethane(vector<Model::Hypothesis> & hyps, Map3D & map, size_t count) const {
         auto ret_hyps = make_shared<vector<Hypothesis>>();
         
         for (auto & hyp : hyps) {
@@ -77,7 +79,7 @@ namespace Forward {
         return ret_hyps;
     }
 
-	void ForwardChecking::work(shared_ptr<vector<Model::Hypothesis>> hyps, const Map3D & map, boost::tribool & alive, vector<shared_ptr<vector<Hypothesis>>> & hyps_his) {
+	void ForwardChecking::work(shared_ptr<vector<Model::Hypothesis>> hyps, Map3D & map, boost::tribool & alive, vector<shared_ptr<vector<Hypothesis>>> & hyps_his) {
 		auto exec_hyps = hyps;
 		while (!alive) {
 			if (boost::indeterminate(alive)) {

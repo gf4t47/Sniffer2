@@ -125,7 +125,7 @@ int main(int argc, const char * argv[])
                                      }
                                  });
                 cout << "max candidate : " << max_can->location_ << " = " << max_can->concentration_ << endl;
-                next_dect.detected_.push_back(Leak(max_can->location_, 0.5));
+                next_dect.detected_.push_back(Leak(max_can->location_, 1.0));
                 dect_vect->push_back(next_dect);
                 
                 hyps = backward->updateHypotheses(*hyps, *map, next_dect.detected_, next_dect.time_, forward);

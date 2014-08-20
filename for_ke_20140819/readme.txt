@@ -1,0 +1,7 @@
+time (milliseconds)
+methane_concentration (vmr)
+water_concentration (vmr)
+wind_direction (deg from North)
+wind_speed (meters/second)
+lon (deg)
+lat (deg)

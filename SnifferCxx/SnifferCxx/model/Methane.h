@@ -12,6 +12,7 @@
 #include <iostream>
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
+#include "WindVector.h"
 
 namespace Model {
 	typedef double mtn_t;
@@ -19,7 +20,7 @@ namespace Model {
 	class Methane {
 	public:
 		Methane();
-		Methane(mtn_t c);
+		Methane(mtn_t c, const WindVector & wv);
 
 		static double getBackground();
 		double getMethane() const;
@@ -40,6 +41,7 @@ namespace Model {
 
 	private:
 		mtn_t concentration_;
+		WindVector potential_;
 	};
 }
 

@@ -66,7 +66,7 @@ namespace Model {
 		return true;
 	}
     
-    bool Cell::setWindVector(const WindVector &wind) {
+    bool Cell::setWindVector(const shared_ptr<WindVector> wind) {
         return wind_.setWindVector(wind);
     }
     

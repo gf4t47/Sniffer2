@@ -18,14 +18,14 @@ namespace Model {
 	class Wind {
 	public:
 		Wind();
-		Wind(const WindVector & wind);
-		Wind(const WindVector & wind, const WindVector & potential);
+		//Wind(const WindVector & wind);
+		//Wind(const WindVector & wind, const WindVector & potential);
 
 		WindVector getCalcWind() const;
         WindVector getPotential() const;
 		WindVector getWV() const;
         
-        bool setWindVector(const WindVector & vec);
+        bool setWindVector(const std::shared_ptr<WindVector> vec);
         bool setPotential(const WindVector & potential);
         
 		bool operator== (const Wind & oth) const;
@@ -40,7 +40,7 @@ namespace Model {
         }
         
 	private:
-		WindVector wind_;
+		std::shared_ptr<WindVector> wind_;
 		WindVector potential_;
 	};
 }
