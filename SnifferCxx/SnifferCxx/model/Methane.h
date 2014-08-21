@@ -16,8 +16,6 @@
 #include "TypeDef.h"
 
 namespace Model {
-	typedef double mtn_t;
-
 	class Methane {
 	public:
 		Methane();

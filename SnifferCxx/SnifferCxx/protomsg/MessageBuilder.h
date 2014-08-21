@@ -12,12 +12,11 @@
 #include <memory>
 #include <vector>
 #include "../model/Cell.h"
-#include "cell.pb.h"
+#include "../protomsg/cell.pb.h"
 
 namespace Model {
     class Hypothesis;
     class Map3D;
-    class Cell;
 }
 
 namespace Initializer {

@@ -11,12 +11,18 @@
 
 #include <memory>
 #include <vector>
-#include "../model/WindVector.h"
+#include "../model/TypeDef.h"
+
+namespace Model {
+	class WindVector;
+	class Coordinate;
+}
 
 namespace Math {
     class Gaussian {
     public:
 		static std::shared_ptr<std::vector<Model::WindVector>> RandomWindVectors(const Model::WindVector & mean, const Model::unit_t range, const size_t num);
+		static std::shared_ptr<std::vector<Model::Coordinate>> RandomCoordinate(const Model::Coordinate & mean, const Model::unit_t range, const size_t num);
     };
 }
 

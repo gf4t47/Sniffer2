@@ -9,6 +9,8 @@
 #include "Gaussian.h"
 #include <random>
 #include <chrono>
+#include "../model/WindVector.h"
+#include "../model/Coordinate.h"
 
 namespace Math {
     using namespace std;
@@ -48,6 +50,25 @@ namespace Math {
 			ret->push_back(wv);
 		}
         
+		return ret;
+	}
+
+	shared_ptr<vector<Coordinate>> Gaussian::RandomCoordinate(const Coordinate & mean, const unit_t range, const size_t num) {
+		vector<normal_distribution<wv_item_t>> distributions;
+
+		for (auto m : mean) {
+			distributions.push_back(normal_distribution<wv_item_t>(m, range));
+		}
+
+		auto ret = make_shared<vector<Coordinate>>();
+		for (int i = 0; i < num; i++) {
+			Coordinate coord;
+			for (int j = 0; j < distributions.size(); j++) {
+				coord[j] = distributions[j](generator);
+			}
+			ret->push_back(coord);
+		}
+
 		return ret;
 	}
 }

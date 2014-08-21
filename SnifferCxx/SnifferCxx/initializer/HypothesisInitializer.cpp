@@ -10,10 +10,12 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/lexical_cast.hpp>
-#include "../backwrad/BackwardChecking.h"
+#include "../backward/BackwardChecking.h"
 #include "../forward/UpdateByCell.h"
 #include "../forward/UpdateByConvolution.h"
 #include "../model/Coordinate.h"
+#include "../model/Candidate.h"
+#include "../model/Hypothesis.h"
 
 
 namespace Initializer {
@@ -101,13 +103,13 @@ namespace Initializer {
         
         auto hyp_node = pt.get_child_optional(strHypothesis);
         if (hyp_node) {
-            vector<vector<Leak>> all_hypothesis_leaks;
+            vector<vector<Candidate>> all_hypothesis_leaks;
             for (auto hyp : *hyp_node) {
                 auto hyp_val = hyp.second;
 
-				vector<Leak> leak_vec;
+				vector<Candidate> leak_vec;
 				for (auto leak_node : hyp.second) {
-					Leak leak;
+					Candidate leak;
 					leak.concentration_ = leak_node.second.get<mtn_t>(strConcentration);
 
 					auto node_location = leak_node.second.get_child(strLocation);

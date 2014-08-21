@@ -10,6 +10,7 @@
 #include "../model/Hypothesis.h"
 #include "../model/Cells.h"
 #include "../model/Map3D.h"
+#include "../model/Candidate.h"
 
 namespace Forward {
     using namespace std;

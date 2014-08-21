@@ -9,6 +9,7 @@
 #include "DetectionInitializer.h"
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/lexical_cast.hpp>
+#include "../model/Candidate.h"
 
 namespace Initializer {
     using namespace std;
@@ -16,8 +17,10 @@ namespace Initializer {
     
     using boost::property_tree::ptree;
     
-    DetectionInitializer::DetectionInitializer(string cfg_file) {
-        load(cfg_file);
+    DetectionInitializer::DetectionInitializer(string cfg_file, bool json_cfg /*=  true*/) {
+		if (json_cfg) {
+			loadJson(cfg_file);
+		}
     }
     
     shared_ptr<vector<Detection>> DetectionInitializer::parseJsonNode(const string & nodeName, const boost::property_tree::ptree & pt) const{
@@ -44,7 +47,7 @@ namespace Initializer {
             for (auto leak_node : dect.get_child(strDect)) {
                 auto leak = leak_node.second;
                 
-                Leak detected;
+                Candidate detected;
                 auto location = leak.get_child(strLocation);
                 transform(location.begin(), location.end(), detected.location_.begin(), [](ptree::value_type & v){return lexical_cast<coord_item_t>(v.second.data());});
                 auto concentration_node = leak.get_optional<mtn_t>(strConcentration);
@@ -66,7 +69,7 @@ namespace Initializer {
         return ret_vec;
     }
     
-    bool DetectionInitializer::load(string filename) {
+    bool DetectionInitializer::loadJson(string json_file) {
         const string strDetection = "detection";
         const string strCandidate = "candidate";
         const string strMultithread = "multithread";
@@ -76,7 +79,7 @@ namespace Initializer {
         const string strTime = "time";
         
         ptree pt;
-        read_json(filename, pt);
+        read_json(json_file, pt);
         
         multiplethread_flag_ = pt.get<bool>(strMultithread);
         

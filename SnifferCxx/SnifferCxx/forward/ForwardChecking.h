@@ -12,6 +12,7 @@
 #include <memory>
 #include <vector>
 #include <boost/logic/tribool.hpp>
+#include "../model/TypeDef.h"
 
 namespace Model {
     class Cell;
@@ -21,10 +22,11 @@ namespace Model {
 	class Coordinate;
 }
 
-namespace Forward {
-    typedef int range_t;
-    
+namespace Forward {   
+	using Model::range_t;
+
 	class ForwardChecking {
+
 	public:
         ForwardChecking(range_t kernel_range);
 		virtual ~ForwardChecking();

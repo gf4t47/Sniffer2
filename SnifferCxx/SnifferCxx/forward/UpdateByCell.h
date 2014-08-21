@@ -11,15 +11,15 @@
 
 #include "ForwardChecking.h"
 #include <unordered_map>
-#include "../model/Methane.h"
 
 namespace Model {
 	class Cells;
 	class Map3D;
-	class Methane;
 	class Coordiante;
-	class CoordHasher;
 	class WindVector;
+	class Methane;
+
+	struct CoordHasher;
 }
 
 namespace Forward {

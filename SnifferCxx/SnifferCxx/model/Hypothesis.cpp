@@ -1,5 +1,6 @@
 #include "Hypothesis.h"
 #include "Cells.h"
+#include "Candidate.h"
 #include <thread>
 
 namespace Model {
@@ -12,13 +13,13 @@ namespace Model {
         
     }
 
-	Hypothesis::Hypothesis(const vector<Leak> & leaks, double probability)
+	Hypothesis::Hypothesis(const vector<Candidate> & leaks, double probability)
 		:leaks_(leaks),
     probability_(probability) {
         
 	}
 
-    Hypothesis::Hypothesis(const vector<Leak> & leaks, double probability, const shared_ptr<Cells> initial_cells)
+    Hypothesis::Hypothesis(const vector<Candidate> & leaks, double probability, const shared_ptr<Cells> initial_cells)
     :leaks_(leaks),
     probability_(probability) {
         if (initial_cells) {
@@ -29,7 +30,7 @@ namespace Model {
 	Hypothesis::~Hypothesis() {
 	}
 
-	const vector<Leak> & Hypothesis::getLeaks() const {
+	const vector<Candidate> & Hypothesis::getLeaks() const {
 		return leaks_;
 	}
 

@@ -9,15 +9,19 @@
 #ifndef __SnifferCxx__DetectionInitializer__
 #define __SnifferCxx__DetectionInitializer__
 
-#include "../model/Hypothesis.h"
-#include "../model/TypeDef.h"
 #include <memory>
+#include <vector>
 #include <boost/property_tree/ptree.hpp>
+#include "../model/TypeDef.h"
+
+namespace Model {
+	struct Candidate;
+}
 
 namespace Initializer {
     struct Detection {
         int time_;
-        std::vector<Model::Leak> detected_;
+        std::vector<Model::Candidate> detected_;
     };
     
     struct AutoMovement {
@@ -28,8 +32,8 @@ namespace Initializer {
     
     class DetectionInitializer {
     public:
-        DetectionInitializer(std::string cfg_file);
-        bool load(std::string filename);
+        DetectionInitializer(std::string cfg_file, bool json_cfg = true);
+        bool loadJson(std::string json_file);
         
         std::shared_ptr<std::vector<Detection>> getDetections() const;
         std::shared_ptr<std::vector<Detection>> getCandidates() const;

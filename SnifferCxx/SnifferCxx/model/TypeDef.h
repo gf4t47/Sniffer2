@@ -11,6 +11,8 @@
 
 namespace Model {
     typedef int unit_t;
+	typedef double mtn_t;
+	typedef int range_t;
 }
 
 #endif

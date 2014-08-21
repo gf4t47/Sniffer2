@@ -1,0 +1,72 @@
+#include "CandidateGenerator.h"
+#include "InformationGain.h"
+#include "../model/Map3D.h"
+#include "../math/Gaussian.h"
+
+namespace Backward {
+	using namespace std;
+	using namespace Model;
+	using namespace Forward;
+
+	CandidateGenerator::CandidateGenerator(const ForwardChecking & forward, const BackwardChecking & backward, const Map3D & map)
+		:map_(map),
+		infoGain_(forward, backward, map) {
+	}
+
+
+	CandidateGenerator::~CandidateGenerator()
+	{
+	}
+
+	shared_ptr<vector<Coordinate>> CandidateGenerator::crossLocation(const Coordinate & curPos, const Map3D & map, unit_t distance) const {
+		auto ret = make_shared<vector<Coordinate>>();
+
+		Coordinate newCoord1(curPos[0] + distance, curPos[1], curPos[2]);
+		ret->push_back(newCoord1);
+
+		Coordinate newCoord2(curPos[0] - distance, curPos[1], curPos[2]);
+		ret->push_back(newCoord2);
+
+		Coordinate newCoord3(curPos[0], curPos[1] + distance, curPos[2]);
+		ret->push_back(newCoord3);
+
+		Coordinate newCoord4(curPos[0], curPos[1] - distance, curPos[2]);
+		ret->push_back(newCoord4);
+
+		return ret;
+	}
+
+	shared_ptr<vector<Coordinate>> CandidateGenerator::randomLocation(const Coordinate & curPos, const Map3D & map, unit_t distance) const {
+		auto ret = make_shared<vector<Coordinate>>();
+
+		auto randoms = Math::Gaussian::RandomCoordinate(curPos, distance, 4);
+		for_each(randoms->begin(), randoms->end(), [&curPos](Coordinate & coord){coord[2] = curPos[2]; });
+		return ret;
+	}
+
+	shared_ptr<vector<Coordinate>> CandidateGenerator::collisionFilter(const Coordinate & curPos, const vector<Coordinate> & coords, const Map3D & map) const{
+		auto ret = make_shared<vector<Coordinate>>();
+		for (auto const & coord : coords) {
+			if (map.insideMap(coord)) {
+				ret->push_back(map.calcCollisionByFullPath(curPos, coord)->getCoordinate());
+			}
+		}
+
+		return ret;
+	}
+
+	Candidate CandidateGenerator::generateCandidate(const Coordinate & curPos, int time_count, unit_t distance, const vector<Hypothesis> & hyps) const{
+		auto locations = collisionFilter(curPos, *crossLocation(curPos, map_, distance), map_);
+		auto gain_vec = infoGain_.calcInforGains(*locations, hyps, time_count);
+		auto max_socre = max_element(gain_vec.begin(), gain_vec.end());
+
+		while (*max_socre < 0) {
+			locations = collisionFilter(curPos, *randomLocation(curPos, map_, distance), map_);
+			gain_vec = infoGain_.calcInforGains(*locations, hyps, time_count);
+			max_socre = max_element(gain_vec.begin(), gain_vec.end());
+		}
+
+		return Candidate((*locations)[std::distance(gain_vec.begin(), max_socre)], *max_socre);
+	}
+}
+

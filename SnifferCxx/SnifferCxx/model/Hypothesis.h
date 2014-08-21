@@ -2,38 +2,21 @@
 
 #include <vector>
 #include <mutex>
-#include "Coordinate.h"
-#include "Methane.h"
+#include <memory>
 
 namespace Model {
 	class Cells;
-
-	struct Leak {
-		Coordinate location_;
-		mtn_t concentration_; //concentration in a detection object, information gain score for a candidate object... yeah! they share the same struct.
-        
-        Leak(const Coordinate & loc, const mtn_t & conc)
-        :location_(loc),
-        concentration_(conc) {
-            
-        }
-        
-        Leak()
-        :location_(Coordinate()),
-        concentration_(mtn_t()) {
-            
-        }
-	};
+	struct Candidate;
 
 	class Hypothesis
 	{
 	public:
         Hypothesis(const Hypothesis & oth);
-		Hypothesis(const std::vector<Leak> & leaks, double probability);
-        Hypothesis(const std::vector<Leak> & leaks, double probability, const std::shared_ptr<Cells> initial_cells);
+		Hypothesis(const std::vector<Candidate> & leaks, double probability);
+        Hypothesis(const std::vector<Candidate> & leaks, double probability, const std::shared_ptr<Cells> initial_cells);
 		virtual ~Hypothesis();
 
-		const std::vector<Leak> & getLeaks() const;
+		const std::vector<Candidate> & getLeaks() const;
         
         double getProbability() const;
         void setProbability(double val);
@@ -48,7 +31,7 @@ namespace Model {
         int getCurrentCellsHisIndex() const;
 
 	private:
-        std::vector<Leak> leaks_;
+        std::vector<Candidate> leaks_;
         double probability_;
         std::vector<const std::shared_ptr<Cells>> cells_update_his_;
         

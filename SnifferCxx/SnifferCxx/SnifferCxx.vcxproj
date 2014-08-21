@@ -185,8 +185,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="backwrad\BackwardChecking.cpp" />
-    <ClCompile Include="backwrad\InformationGain.cpp" />
+    <ClCompile Include="backward\BackwardChecking.cpp" />
+    <ClCompile Include="backward\CandidateGenerator.cpp" />
+    <ClCompile Include="backward\InformationGain.cpp" />
     <ClCompile Include="forward\ForwardChecking.cpp" />
     <ClCompile Include="forward\UpdateByCell.cpp" />
     <ClCompile Include="forward\UpdateByConvolution.cpp" />
@@ -211,8 +212,9 @@
     <ClCompile Include="protomsg\MessageBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="backwrad\BackwardChecking.h" />
-    <ClInclude Include="backwrad\InformationGain.h" />
+    <ClInclude Include="backward\BackwardChecking.h" />
+    <ClInclude Include="backward\CandidateGenerator.h" />
+    <ClInclude Include="backward\InformationGain.h" />
     <ClInclude Include="forward\ForwardChecking.h" />
     <ClInclude Include="forward\UpdateByCell.h" />
     <ClInclude Include="forward\UpdateByConvolution.h" />
@@ -222,6 +224,7 @@
     <ClInclude Include="math\Gamma.h" />
     <ClInclude Include="math\Gaussian.h" />
     <ClInclude Include="math\GaussianBlur.h" />
+    <ClInclude Include="model\Candidate.h" />
     <ClInclude Include="model\Cell.h" />
     <ClInclude Include="model\Cells.h" />
     <ClInclude Include="model\Coordinate.h" />
