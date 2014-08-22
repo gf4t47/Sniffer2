@@ -48,6 +48,9 @@ namespace Initializer {
         const string strBuilding = "building";
         const string strUnit = "unit";
         const string strPotential = "potential";
+		const string strOrigin = "origin";
+		const string strIndex = "index";
+		const string strCoord = "coordinate";
         
         using boost::property_tree::ptree;
         using boost::lexical_cast;
@@ -76,6 +79,19 @@ namespace Initializer {
             setWind(WindVector());
             transform(node_wind->begin(), node_wind->end(), wind_->begin(), [](ptree::value_type & v){return lexical_cast<wv_item_t>(v.second.data());});
         }
+
+		auto node_origin = pt.get_child_optional(strOrigin);
+		if (node_origin) {
+			auto node_index = node_origin->get_child(strIndex);
+			Coordinate index;
+			transform(node_index.begin(), node_index.end(), index.begin(), [](ptree::value_type & v){return lexical_cast<coord_item_t>(v.second.data()); });
+
+			auto node_coord = node_origin->get_child(strCoord);
+			WindVector coord;
+			transform(node_coord.begin(), node_coord.end(), coord.begin(), [](ptree::value_type & v){return lexical_cast<wv_item_t>(v.second.data()); });
+
+			setOrigin(make_pair(index, coord));
+		}
         
         auto node_buildings = pt.get_child_optional(strBuilding);
         if (node_buildings) {
@@ -115,6 +131,11 @@ namespace Initializer {
 		buildings_ = buildings;
 		return this;
 	}
+
+	MapBuilder * MapBuilder::setOrigin(const boost::optional<pair<Coordinate, WindVector>> & origin) {
+		origin_ = origin;
+		return this;
+	}
     
 	shared_ptr<Map3D> MapBuilder::build() {
         const wv_item_t default_wind_norm = 1.618;
@@ -136,7 +157,10 @@ namespace Initializer {
 			else {
 				map.reset(new Map3D(boundary_[0], boundary_[1], boundary_[2], unit_));
 			}
-			
+		}
+
+		if (origin_) {
+			map->setOrigin(*origin_);
 		}
         
         auto wind_norm = default_wind_norm;

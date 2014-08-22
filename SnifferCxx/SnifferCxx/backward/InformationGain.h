@@ -34,10 +34,11 @@ namespace Backward {
         
         std::vector<entropy_t> calcInforGains(const std::vector<Model::Coordinate> & candidates, const std::vector<Model::Hypothesis> & hyps, int time_count) const;
         
-    private:
-        entropy_t calcInforGain(const Model::Coordinate & candidate, const std::vector<Model::Hypothesis> & hyps, std::vector<Model::Hypothesis> & future_hyps) const;
-        double calcLikehood(const Model::Hypothesis & hyp, const Model::Coordinate & detected_location, const Model::Map3D & map) const;
-        entropy_t entropy(const Model::Hypothesis & hyp) const;
+	protected:
+        entropy_t calcInforGain(const Model::Coordinate & candidate, const std::vector<Model::Hypothesis> & hyps, const std::vector<Model::Hypothesis> & future_hyps) const;
+
+	private:
+        entropy_t entropy(const std::vector<Model::Hypothesis> & hyps) const;
         
     private:
         const Forward::ForwardChecking & forward_;

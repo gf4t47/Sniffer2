@@ -36,6 +36,7 @@ namespace Initializer {
         MapBuilder * setWind(const Model::WindVector & wind);
         MapBuilder * setBuildings(const std::vector<stBuilding> & buildings);
         MapBuilder * setLocalPotential(Model::coord_item_t step);
+		MapBuilder * setOrigin(const boost::optional<std::pair<Model::Coordinate, Model::WindVector>> & origin);
         
         std::shared_ptr<Model::Map3D> build();
         
@@ -49,6 +50,7 @@ namespace Initializer {
         Model::coord_item_t potentialStep_;
         boost::optional<Model::Coordinate> startIndex_;
         boost::optional<Model::WindVector> wind_;
+		boost::optional<std::pair<Model::Coordinate, Model::WindVector>> origin_;
         std::vector<stBuilding> buildings_;
     };
 }

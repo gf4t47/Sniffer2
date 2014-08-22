@@ -37,11 +37,9 @@ namespace Backward {
 	}
 
 	shared_ptr<vector<Coordinate>> CandidateGenerator::randomLocation(const Coordinate & curPos, const Map3D & map, unit_t distance) const {
-		auto ret = make_shared<vector<Coordinate>>();
-
 		auto randoms = Math::Gaussian::RandomCoordinate(curPos, distance, 4);
 		for_each(randoms->begin(), randoms->end(), [&curPos](Coordinate & coord){coord[2] = curPos[2]; });
-		return ret;
+		return randoms;
 	}
 
 	shared_ptr<vector<Coordinate>> CandidateGenerator::collisionFilter(const Coordinate & curPos, const vector<Coordinate> & coords, const Map3D & map) const{
@@ -60,10 +58,17 @@ namespace Backward {
 		auto gain_vec = infoGain_.calcInforGains(*locations, hyps, time_count);
 		auto max_socre = max_element(gain_vec.begin(), gain_vec.end());
 
-		while (*max_socre < 0) {
+		while (max_socre == gain_vec.end()) {
 			locations = collisionFilter(curPos, *randomLocation(curPos, map_, distance), map_);
+			//cout << "new locations num = " << locations->size() << endl;
 			gain_vec = infoGain_.calcInforGains(*locations, hyps, time_count);
 			max_socre = max_element(gain_vec.begin(), gain_vec.end());
+		}
+
+		if (*max_socre <= 0) {
+			ostringstream ostr;
+			ostr << "negative expected information gain = " << *max_socre;
+			throw runtime_error(ostr.str());
 		}
 
 		return Candidate((*locations)[std::distance(gain_vec.begin(), max_socre)], *max_socre);

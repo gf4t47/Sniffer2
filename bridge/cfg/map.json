@@ -1,8 +1,10 @@
 {
 	"boundary": [100, 50, 10],
+    "Location": [-50, -25, 0],
     "wind": [1.96, 0.98, 0.00],
     "unit": 1,
     "potential": 3,
+    "origin": {"index": [0, 0, 0], "coordinate": [613699, 4173162, 0]},
     
     "building":
     [

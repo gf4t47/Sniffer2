@@ -5,9 +5,10 @@
     [
         {
             "time" : 50,
+            "wind" : [1.96, 0.28, 0],
             "dect" :
             [
-            	{"location" : [55, 40, 0], "concentration" : 1.0}
+            	{"location" : [90, 40, 0], "concentration" : 1.0}
             ],
             "repeat" : 1
         }
@@ -44,7 +45,7 @@
     "automovement":
     {
         "time" : 10,
-        "distance" : 10,
+        "distance" : 8,
         "threshold" : 0.90
     }
 }

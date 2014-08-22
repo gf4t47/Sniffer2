@@ -40,6 +40,10 @@ namespace Model{
 
 		void updateWind(const WindVector & wind);
 
+		Coordinate locateIndex(const WindVector & real_coord) const;
+
+		void setOrigin(const std::pair<Coordinate, WindVector> & origin);
+
 		friend class Initializer::MapBuilder;
 
 	protected:
@@ -57,7 +61,8 @@ namespace Model{
 
 	private:
 		unit_t unit_;
-		std::shared_ptr<WindVector> wv_;
+		std::pair<Coordinate, WindVector> origin_;
+		std::shared_ptr<WindVector> wind_;
 	};
 }
 

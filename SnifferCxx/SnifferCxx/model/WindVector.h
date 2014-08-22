@@ -28,7 +28,8 @@ namespace Model {
         
         wv_item_t calcNorm() const;
         
-		WindVector operator+ (const WindVector & oth) const;
+		WindVector operator+ (const WindVector & rhs) const;
+		WindVector operator- (const WindVector & rhs) const;
 		Coordinate operator/ (const unit_t & unit) const;
 		WindVector operator% (const unit_t & unit) const;
 		WindVector operator* (const wv_item_t & factor) const;

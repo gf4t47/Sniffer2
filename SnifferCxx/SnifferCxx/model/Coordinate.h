@@ -28,8 +28,8 @@ namespace Model {
         
         double calcNorm() const;
 
-		Coordinate operator+ (const Coordinate & oth) const;
-        Coordinate operator- (const Coordinate & oth) const;
+		Coordinate operator+ (const Coordinate & rhs) const;
+        Coordinate operator- (const Coordinate & rhs) const;
         WindVector operator/ (const double & norm) const;
 		Coordinate & operator= (const coord_t & rhs);
 

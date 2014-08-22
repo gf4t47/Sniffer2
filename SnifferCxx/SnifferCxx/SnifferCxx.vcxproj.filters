@@ -5,26 +5,38 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="backward">
+      <UniqueIdentifier>{b4809837-8b94-4b9e-81da-edf8f91b3a97}</UniqueIdentifier>
+    </Filter>
     <Filter Include="forward">
-      <UniqueIdentifier>{7b134845-092c-4cae-a062-b44aee3e45fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="math">
-      <UniqueIdentifier>{92e4e4b7-5739-4a11-a8ca-317b8e92b348}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="model">
-      <UniqueIdentifier>{be61ab7d-b860-4985-b348-dd9413e24095}</UniqueIdentifier>
+      <UniqueIdentifier>{3e60c79f-f6ce-467f-9944-1a8001af40ea}</UniqueIdentifier>
     </Filter>
     <Filter Include="initializer">
-      <UniqueIdentifier>{f971397b-66c7-4b2d-a305-97fc4f6ac1ec}</UniqueIdentifier>
+      <UniqueIdentifier>{6964ad10-4738-4eae-9766-7fe550de54f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{c93fee7f-77b9-41fd-9e3a-c62e6816f3af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="model">
+      <UniqueIdentifier>{0d1ea08a-d733-43e9-88b8-1c11d02dca67}</UniqueIdentifier>
     </Filter>
     <Filter Include="protomsg">
-      <UniqueIdentifier>{2f097f1b-3a00-4ee0-9c0c-e16bf952a42d}</UniqueIdentifier>
+      <UniqueIdentifier>{4406dd7a-f587-4ea8-8d98-a6129b538513}</UniqueIdentifier>
     </Filter>
-    <Filter Include="backward">
-      <UniqueIdentifier>{2e7b03f3-fca5-49bd-af4e-4eedc5f49e01}</UniqueIdentifier>
+    <Filter Include="runmode">
+      <UniqueIdentifier>{67c97d66-2452-4990-90db-45d84c221520}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="backward\BackwardChecking.cpp">
+      <Filter>backward</Filter>
+    </ClCompile>
+    <ClCompile Include="backward\CandidateGenerator.cpp">
+      <Filter>backward</Filter>
+    </ClCompile>
+    <ClCompile Include="backward\InformationGain.cpp">
+      <Filter>backward</Filter>
+    </ClCompile>
     <ClCompile Include="forward\ForwardChecking.cpp">
       <Filter>forward</Filter>
     </ClCompile>
@@ -33,6 +45,15 @@
     </ClCompile>
     <ClCompile Include="forward\UpdateByConvolution.cpp">
       <Filter>forward</Filter>
+    </ClCompile>
+    <ClCompile Include="initializer\DetectionInitializer.cpp">
+      <Filter>initializer</Filter>
+    </ClCompile>
+    <ClCompile Include="initializer\HypothesisInitializer.cpp">
+      <Filter>initializer</Filter>
+    </ClCompile>
+    <ClCompile Include="initializer\MapBuilder.cpp">
+      <Filter>initializer</Filter>
     </ClCompile>
     <ClCompile Include="math\Gamma.cpp">
       <Filter>math</Filter>
@@ -67,16 +88,6 @@
     <ClCompile Include="model\WindVector.cpp">
       <Filter>model</Filter>
     </ClCompile>
-    <ClCompile Include="initializer\HypothesisInitializer.cpp">
-      <Filter>initializer</Filter>
-    </ClCompile>
-    <ClCompile Include="initializer\MapBuilder.cpp">
-      <Filter>initializer</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="initializer\DetectionInitializer.cpp">
-      <Filter>initializer</Filter>
-    </ClCompile>
     <ClCompile Include="protomsg\cell.pb.cc">
       <Filter>protomsg</Filter>
     </ClCompile>
@@ -89,37 +100,19 @@
     <ClCompile Include="protomsg\MessageBuilder.cpp">
       <Filter>protomsg</Filter>
     </ClCompile>
-    <ClCompile Include="backward\BackwardChecking.cpp">
-      <Filter>backward</Filter>
-    </ClCompile>
-    <ClCompile Include="backward\CandidateGenerator.cpp">
-      <Filter>backward</Filter>
-    </ClCompile>
-    <ClCompile Include="backward\InformationGain.cpp">
-      <Filter>backward</Filter>
+    <ClCompile Include="main.cpp">
+      <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="model\Cell.h">
-      <Filter>model</Filter>
+    <ClInclude Include="backward\BackwardChecking.h">
+      <Filter>backward</Filter>
     </ClInclude>
-    <ClInclude Include="model\Cells.h">
-      <Filter>model</Filter>
+    <ClInclude Include="backward\CandidateGenerator.h">
+      <Filter>backward</Filter>
     </ClInclude>
-    <ClInclude Include="model\Coordinate.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\Map3D.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\Methane.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\Wind.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\WindVector.h">
-      <Filter>model</Filter>
+    <ClInclude Include="backward\InformationGain.h">
+      <Filter>backward</Filter>
     </ClInclude>
     <ClInclude Include="forward\ForwardChecking.h">
       <Filter>forward</Filter>
@@ -127,8 +120,17 @@
     <ClInclude Include="forward\UpdateByCell.h">
       <Filter>forward</Filter>
     </ClInclude>
-    <ClInclude Include="model\Hypothesis.h">
-      <Filter>model</Filter>
+    <ClInclude Include="forward\UpdateByConvolution.h">
+      <Filter>forward</Filter>
+    </ClInclude>
+    <ClInclude Include="initializer\DetectionInitializer.h">
+      <Filter>initializer</Filter>
+    </ClInclude>
+    <ClInclude Include="initializer\HypothesisInitializer.h">
+      <Filter>initializer</Filter>
+    </ClInclude>
+    <ClInclude Include="initializer\MapBuilder.h">
+      <Filter>initializer</Filter>
     </ClInclude>
     <ClInclude Include="math\Gamma.h">
       <Filter>math</Filter>
@@ -139,17 +141,35 @@
     <ClInclude Include="math\GaussianBlur.h">
       <Filter>math</Filter>
     </ClInclude>
-    <ClInclude Include="forward\UpdateByConvolution.h">
-      <Filter>forward</Filter>
+    <ClInclude Include="model\Candidate.h">
+      <Filter>model</Filter>
     </ClInclude>
-    <ClInclude Include="initializer\HypothesisInitializer.h">
-      <Filter>initializer</Filter>
+    <ClInclude Include="model\Cell.h">
+      <Filter>model</Filter>
     </ClInclude>
-    <ClInclude Include="initializer\MapBuilder.h">
-      <Filter>initializer</Filter>
+    <ClInclude Include="model\Cells.h">
+      <Filter>model</Filter>
     </ClInclude>
-    <ClInclude Include="initializer\DetectionInitializer.h">
-      <Filter>initializer</Filter>
+    <ClInclude Include="model\Coordinate.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Hypothesis.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Map3D.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Methane.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\TypeDef.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Wind.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\WindVector.h">
+      <Filter>model</Filter>
     </ClInclude>
     <ClInclude Include="protomsg\cell.pb.h">
       <Filter>protomsg</Filter>
@@ -162,21 +182,6 @@
     </ClInclude>
     <ClInclude Include="protomsg\MessageBuilder.h">
       <Filter>protomsg</Filter>
-    </ClInclude>
-    <ClInclude Include="model\TypeDef.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\Candidate.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="backward\BackwardChecking.h">
-      <Filter>backward</Filter>
-    </ClInclude>
-    <ClInclude Include="backward\CandidateGenerator.h">
-      <Filter>backward</Filter>
-    </ClInclude>
-    <ClInclude Include="backward\InformationGain.h">
-      <Filter>backward</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

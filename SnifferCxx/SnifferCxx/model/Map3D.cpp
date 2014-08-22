@@ -15,28 +15,32 @@ namespace Model {
 	Map3D::Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit)
 		:map_t(boost::extents[erange(startIndex[0], startIndex[0] + boundary[0])][erange(startIndex[1], startIndex[1] + boundary[1])][erange(startIndex[2], startIndex[2] + boundary[2])]),
 		unit_(unit),
-		wv_(make_shared<WindVector>()) {
+		wind_(make_shared<WindVector>()),
+		origin_(make_pair(Coordinate(), WindVector())) {
 		initCell();
 	}
 
 	Map3D::Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit, const WindVector & wv)
 		:map_t(boost::extents[erange(startIndex[0], startIndex[0] + boundary[0])][erange(startIndex[1], startIndex[1] + boundary[1])][erange(startIndex[2], startIndex[2] + boundary[2])]),
 		unit_(unit),
-		wv_(make_shared<WindVector>(wv)) {
+		wind_(make_shared<WindVector>(wv)),
+		origin_(make_pair(Coordinate(), WindVector())) {
 		initCell();
 	}
 
 	Map3D::Map3D(size_t length, size_t width, size_t height, unit_t unit)
 		: map_t(boost::extents[length][width][height]),
 		unit_(unit),
-		wv_(make_shared<WindVector>()) {
+		wind_(make_shared<WindVector>()),
+		origin_(make_pair(Coordinate(), WindVector())) {
 		initCell();
 	}
 
 	Map3D::Map3D(size_t length, size_t width, size_t height, unit_t unit, const WindVector & wv)
 		: map_t(boost::extents[length][width][height]),
 		unit_(unit),
-		wv_(make_shared<WindVector>(wv)) {
+		wind_(make_shared<WindVector>(wv)),
+		origin_(make_pair(Coordinate(), WindVector())) {
         initCell();
 	}
 
@@ -82,7 +86,7 @@ namespace Model {
                 for (auto h = start_pos[2]; h < start_pos[2] + (coord_item_t)boundary[2]; h++) {
                     Coordinate coord(l, w, h);
                     (*this)(coord).setCoordinate(coord);
-					(*this)(coord).setWindVector(wv_);
+					(*this)(coord).setWindVector(wind_);
                 }
             }
         }
@@ -91,7 +95,7 @@ namespace Model {
 	void Map3D::updateWind(const WindVector & wind) {
         //boost::multi_array_ref<Cell, 1> map_ref(this->data(), boost::extents[this->num_elements()]);
         //for_each(map_ref.begin(), map_ref.end(), [&wind](Cell & cell){cell.setWindVector(wind);});
-		*wv_ = wind;
+		*wind_ = wind;
 	}
     
     bool Map3D::updateCell(const Cell &cell) {
@@ -260,5 +264,16 @@ namespace Model {
 		}
 
 		return make_shared<Cell>(getCell(curPos));
+	}
+
+	Coordinate Map3D::locateIndex(const WindVector & real_coord) const {
+		auto index_origin = origin_.first;
+		auto real_origin = origin_.second;
+
+		return index_origin + (real_coord - real_origin) / unit_;
+	}
+
+	void Map3D::setOrigin(const std::pair<Coordinate, WindVector> & origin) {
+		origin_ = origin;
 	}
 }

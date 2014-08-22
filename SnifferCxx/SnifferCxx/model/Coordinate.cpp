@@ -25,15 +25,15 @@ namespace Model {
         return sqrt(accumulate(begin(), end(), 0, [](coord_item_t ret_val, const coord_item_t & item_val){return ret_val += item_val * item_val;}));
     }
 
-	Coordinate Coordinate::operator + (const Coordinate & oth) const {
+	Coordinate Coordinate::operator + (const Coordinate & rhs) const {
 		Coordinate ret;
-		transform(oth.begin(), oth.end(), begin(), ret.begin(), [](const coord_item_t & it1, const coord_item_t & it2){return it1 + it2; });
+		transform(rhs.begin(), rhs.end(), begin(), ret.begin(), [](const coord_item_t & it1, const coord_item_t & it2){return it1 + it2; });
 		return ret;
 	}
     
-    Coordinate Coordinate::operator - (const Coordinate & oth) const {
+    Coordinate Coordinate::operator - (const Coordinate & rhs) const {
 		Coordinate ret;
-		transform(oth.begin(), oth.end(), begin(), ret.begin(), [](const coord_item_t & it1, const coord_item_t & it2){return it2 - it1; });
+		transform(rhs.begin(), rhs.end(), begin(), ret.begin(), [](const coord_item_t & it1, const coord_item_t & it2){return it2 - it1; });
 		return ret;
 	}
     

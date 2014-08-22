@@ -13,6 +13,7 @@
 #include "../forward/ForwardChecking.h"
 #include "../math/Gamma.h"
 #include "BackwardChecking.h"
+#include <numeric>
 
 namespace Backward {
     using namespace std;
@@ -46,23 +47,11 @@ namespace Backward {
      *
      *  @return entropy value
      */
-    entropy_t InformationGain::entropy(const Hypothesis & hyp) const{
-        return -(hyp.getProbability() * log2(hyp.getProbability()));
-    }
-    
-    
-    /**
-     *  calculate gamma likehood
-     *
-     *  @param hyp               the virtual world under this hypothesis
-     *  @param detected_location one coordiante candidate for detection
-     *  @param map               our map model
-     *
-     *  @return probability for this detection
-     */
-    double InformationGain::calcLikehood(const Hypothesis & hyp, const Coordinate & detected_location, const Map3D & map) const {
-        auto mean = backward_.calcGaussianBlurMean(detected_location, *hyp.getMethaneCells(), map);
-        return Math::Gamma::calcGammaPdf(mean, mean);
+    entropy_t InformationGain::entropy(const vector<Hypothesis> & hyps) const{
+		return accumulate(hyps.begin(), hyps.end(), 0.0, 
+			[](double sum, const Hypothesis & it) { 
+				return sum += -(it.getProbability() * log2(it.getProbability())); 
+		});
     }
     
     
@@ -74,18 +63,21 @@ namespace Backward {
      *
      *  @return expected information gain
      */
-    entropy_t InformationGain::calcInforGain(const Coordinate & candidate, const vector<Hypothesis> & hyps, vector<Hypothesis> & future_hyps) const{
-        vector<double> probs;
-        for (auto const & hyp : future_hyps) {
-            auto prob = calcLikehood(hyp, candidate, map_) * hyp.getProbability();
-            probs.push_back(prob);
-        }
-        backward_.normalize(future_hyps, probs);
-        
+    entropy_t InformationGain::calcInforGain(const Coordinate & candidate, const vector<Hypothesis> & current_hyps, const vector<Hypothesis> & future_hyps) const{
         entropy_t ret_sum = 0.0;
         
-        for (auto i=0; i < hyps.size(); i++) {
-            ret_sum += (entropy(hyps[i]) - entropy(future_hyps[i])) * hyps[i].getProbability();
+        for (auto i=0; i < current_hyps.size(); i++) {
+			auto assumed_futures = future_hyps;
+			auto detection = backward_.calcGaussianBlurMean(candidate, *(assumed_futures[i].getMethaneCells()), map_);
+
+			vector<double> probs;
+			for (auto const & hyp : assumed_futures) {
+				auto likehood = backward_.calcLikehood(hyp, candidate, detection, map_);
+				probs.push_back(likehood * hyp.getProbability());
+			}
+			backward_.normalize(assumed_futures, probs);
+
+            ret_sum += (entropy(current_hyps) - entropy(assumed_futures)) * current_hyps[i].getProbability();
         }
         
         return ret_sum;
