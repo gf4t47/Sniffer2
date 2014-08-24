@@ -24,7 +24,7 @@
       <UniqueIdentifier>{4406dd7a-f587-4ea8-8d98-a6129b538513}</UniqueIdentifier>
     </Filter>
     <Filter Include="runmode">
-      <UniqueIdentifier>{67c97d66-2452-4990-90db-45d84c221520}</UniqueIdentifier>
+      <UniqueIdentifier>{aeee9548-6aa6-4edb-822c-5430507349a3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -100,8 +100,21 @@
     <ClCompile Include="protomsg\MessageBuilder.cpp">
       <Filter>protomsg</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Resource Files</Filter>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="runmode\AsynEvent.cpp">
+      <Filter>runmode</Filter>
+    </ClCompile>
+    <ClCompile Include="runmode\Executor.cpp">
+      <Filter>runmode</Filter>
+    </ClCompile>
+    <ClCompile Include="runmode\ExecutorFactory.cpp">
+      <Filter>runmode</Filter>
+    </ClCompile>
+    <ClCompile Include="runmode\MultiThread.cpp">
+      <Filter>runmode</Filter>
+    </ClCompile>
+    <ClCompile Include="runmode\SingleForward.cpp">
+      <Filter>runmode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +195,21 @@
     </ClInclude>
     <ClInclude Include="protomsg\MessageBuilder.h">
       <Filter>protomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="runmode\AsynEvent.h">
+      <Filter>runmode</Filter>
+    </ClInclude>
+    <ClInclude Include="runmode\Executor.h">
+      <Filter>runmode</Filter>
+    </ClInclude>
+    <ClInclude Include="runmode\ExecutorFactory.h">
+      <Filter>runmode</Filter>
+    </ClInclude>
+    <ClInclude Include="runmode\MultiThread.h">
+      <Filter>runmode</Filter>
+    </ClInclude>
+    <ClInclude Include="runmode\SingleForward.h">
+      <Filter>runmode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

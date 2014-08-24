@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Coordinate.h"
-#include "TypeDef.h"
+#include "WindVector.h"
+#include <boost/optional.hpp>
 
 namespace Model {
 	struct Candidate {
@@ -18,6 +19,18 @@ namespace Model {
 			concentration_(mtn_t()) {
 
 		}
+	};
+
+	struct Detection {
+		int time_;
+		boost::optional<Model::WindVector> wv_;
+		std::vector<Candidate> detected_;
+	};
+
+	struct AutoMovement {
+		int time_;
+		double threshold_;
+		Model::unit_t distance_;
 	};
 }
 

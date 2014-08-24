@@ -5,7 +5,7 @@
     [
         {
             "time" : 50,
-            "wind" : [1.96, 0.28, 0],
+            // "wind" : [1.96, 0.28, 0],
             "dect" :
             [
             	{"location" : [90, 40, 0], "concentration" : 1.0}

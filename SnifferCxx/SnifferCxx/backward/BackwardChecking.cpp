@@ -108,15 +108,12 @@ namespace Backward {
     // Parameter: size_t time_count : how many iterations for forward model algorithm to carry.
     // Parameter: const vector<Leak> & detections
     //************************************
-    shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, const Map3D & map, const vector<Candidate> & detections, size_t time_count, const shared_ptr<ForwardChecking> forward) const {
+    shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, const Map3D & map, const vector<Candidate> & detections) const {
         namespace logging = boost::log;
         namespace keywords = boost::log::keywords;
         namespace sinks = boost::log::sinks;
         
         auto ret_hyps = make_shared<vector<Hypothesis>>(hyps);
-        if(forward) {
-            ret_hyps = forward->UpdateMethane(hyps, map, time_count);
-        }
         
         vector<double> hyps_probability;
         for (auto const & hyp : *ret_hyps) {

@@ -17,10 +17,7 @@
 namespace Model {
     class Hypothesis;
     class Map3D;
-}
-
-namespace Initializer {
-    struct Detection;
+	struct Detection;
 }
 
 namespace ProtoMsg {
@@ -32,7 +29,7 @@ namespace ProtoMsg {
     class MessageBuilder {
     public:
         static std::shared_ptr<ProtoMsg::Hypotheses_history> buildMessage(const std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his, size_t ideal_cells);
-        static std::shared_ptr<ProtoMsg::Detections> buildMessage(const std::vector<Initializer::Detection> & detections);
+        static std::shared_ptr<ProtoMsg::Detections> buildMessage(const std::vector<Model::Detection> & detections);
         static std::shared_ptr<ProtoMsg::Map> buildMessage(const Model::Map3D & map);
         
     private:
