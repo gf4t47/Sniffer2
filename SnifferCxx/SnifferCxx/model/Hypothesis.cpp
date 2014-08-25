@@ -1,7 +1,7 @@
 #include "Hypothesis.h"
 #include "Cells.h"
 #include "Candidate.h"
-#include <thread>
+//#include <thread>
 
 namespace Model {
 	using namespace std;
@@ -35,7 +35,7 @@ namespace Model {
 	}
 
     void Hypothesis::addCellsHistory(const shared_ptr<Cells> cells) {
-        lock_guard<mutex> lock(cells_his_mutex_);
+        //lock_guard<mutex> lock(cells_his_mutex_);
         
         cells_update_his_.push_back(cells);
     }
@@ -65,20 +65,7 @@ namespace Model {
         return probability_;
     }
     
-    void Hypothesis::setProbability(double val) {
-        probability_ = val;
-    }
-    
-    const Hypothesis & Hypothesis::getMaxProbHyp(const std::vector<Hypothesis> & hyps) {
-        auto max = std::max_element(hyps.begin(), hyps.end(),
-                                    [](const Hypothesis & left, const Hypothesis & right) {
-                                        if (left.getProbability() < right.getProbability()) {
-                                            return true;
-                                        }
-                                        else {
-                                            return false;
-                                        }
-                                    });
-        return *max;
-    }
+	void Hypothesis::setProbability(double val) {
+		probability_ = val;
+	}
 }

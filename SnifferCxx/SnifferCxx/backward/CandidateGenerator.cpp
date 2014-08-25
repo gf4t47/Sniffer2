@@ -1,5 +1,4 @@
 #include "CandidateGenerator.h"
-#include "InformationGain.h"
 #include "../model/Map3D.h"
 #include "../math/Gaussian.h"
 
@@ -53,7 +52,7 @@ namespace Backward {
 		return ret;
 	}
 
-	Candidate CandidateGenerator::generateCandidate(const Coordinate & curPos, int time_count, unit_t distance, const vector<Hypothesis> & hyps) const{
+	Candidate CandidateGenerator::generateCandidate(const Coordinate & curPos, int time_count, unit_t distance, const Hypotheses & hyps) const{
 		auto locations = collisionFilter(curPos, *crossLocation(curPos, map_, distance), map_);
 		auto gain_vec = infoGain_.calcInforGains(*locations, hyps, time_count);
 		auto max_socre = max_element(gain_vec.begin(), gain_vec.end());

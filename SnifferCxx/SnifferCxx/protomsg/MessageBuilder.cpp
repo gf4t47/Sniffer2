@@ -9,7 +9,7 @@
 #include "MessageBuilder.h"
 #include "hypothesis.pb.h"
 #include "dect.pb.h"
-#include "../model/Hypothesis.h"
+#include "../model/Hypotheses.h"
 #include "../model/Cells.h"
 #include "../model/Map3D.h"
 #include "../model/Candidate.h"
@@ -72,7 +72,7 @@ namespace ProtoMsg {
         return msg_map;
     }
     
-    shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const vector<shared_ptr<vector<Model::Hypothesis>>> & hyps_his, size_t ideal_cells) {
+    shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const vector<shared_ptr<Model::Hypotheses>> & hyps_his, size_t ideal_cells) {
         double total_cells = 0.0;
         for (auto hyps : hyps_his) {
             for (auto const & hyp : *hyps) {

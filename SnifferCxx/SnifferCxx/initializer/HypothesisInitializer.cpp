@@ -15,7 +15,7 @@
 #include "../forward/UpdateByConvolution.h"
 #include "../model/Coordinate.h"
 #include "../model/Candidate.h"
-#include "../model/Hypothesis.h"
+#include "../model/Hypotheses.h"
 
 
 namespace Initializer {
@@ -32,7 +32,7 @@ namespace Initializer {
     };
     
     HypothesisInitializer::HypothesisInitializer(string cfg_file)
-        :hyps_(make_shared<vector<Hypothesis>>()) {
+        :hyps_(make_shared<Hypotheses>()) {
         load(cfg_file);
     }
     
@@ -44,7 +44,7 @@ namespace Initializer {
 		return forward_;
 	}
     
-    shared_ptr<vector<Hypothesis>> HypothesisInitializer::getHyptheses() const {
+    shared_ptr<Hypotheses> HypothesisInitializer::getHyptheses() const {
         return hyps_;
     }
     

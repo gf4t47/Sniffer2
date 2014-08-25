@@ -15,6 +15,7 @@
 namespace Model {
     class Coordinate;
     class Hypothesis;
+	class Hypotheses;
     class Map3D;
 }
 
@@ -32,13 +33,13 @@ namespace Backward {
         InformationGain(const Forward::ForwardChecking & forward, const BackwardChecking & backward, const Model::Map3D & map);
         virtual ~InformationGain();
         
-        std::vector<entropy_t> calcInforGains(const std::vector<Model::Coordinate> & candidates, const std::vector<Model::Hypothesis> & hyps, int time_count) const;
+        std::vector<entropy_t> calcInforGains(const std::vector<Model::Coordinate> & candidates, const Model::Hypotheses & hyps, int time_count) const;
         
 	protected:
-        entropy_t calcInforGain(const Model::Coordinate & candidate, const std::vector<Model::Hypothesis> & hyps, const std::vector<Model::Hypothesis> & future_hyps) const;
+        entropy_t calcInforGain(const Model::Coordinate & candidate, const Model::Hypotheses & hyps, const Model::Hypotheses & future_hyps) const;
 
 	private:
-        entropy_t entropy(const std::vector<Model::Hypothesis> & hyps) const;
+        entropy_t entropy(const Model::Hypotheses & hyps) const;
         
     private:
         const Forward::ForwardChecking & forward_;

@@ -60,14 +60,13 @@ int main(int argc, const char * argv[])
 	//load detection
 	DetectionInitializer dectI(dect_cfg, *map);
 	auto dect_vec = dectI.getDetections();
-	auto multiple_thread = dectI.beMultiplethread();
 	auto auto_movement = dectI.getAutoMovementInfo();
 	//auto can_vect = make_shared<vector<Model::Detection>>();
 
 	//calculation
-	vector<shared_ptr<vector<Hypothesis>>> hyps_hist;
+	vector<shared_ptr<Hypotheses>> hyps_hist;
 	hyps_hist.push_back(hyps);
-	auto executor = ExecutorFactory::createExecutor(execute_mode::single, *map, *forward, *backward);
+	auto executor = ExecutorFactory::createExecutor(dectI.getExecutorMode(), *map, *forward, *backward);
 	executor->run(hyps_hist, *dect_vec);
 	if (auto_movement) {
 		executor->autoDrive(hyps_hist, *dect_vec, *auto_movement);

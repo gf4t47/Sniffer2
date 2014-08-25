@@ -23,6 +23,7 @@ namespace Model {
     class Coordinate;
 	class Cells;
 	class Hypothesis;
+	class Hypotheses;
 
 	struct Candidate;
 }
@@ -45,8 +46,8 @@ namespace Backward {
         virtual ~BackwardChecking();
         
         double calcGaussianBlurMean(const Model::Coordinate & location, const Model::Cells & methane_cells, const Model::Map3D & map) const;
-        void normalize(std::vector<Model::Hypothesis> & hyps, const std::vector<double> & hyps_probability) const;
-        std::shared_ptr<std::vector<Model::Hypothesis>> updateHypotheses(std::vector<Model::Hypothesis> & hyps, const Model::Map3D & map, const std::vector<Model::Candidate> & detections) const;
+        void normalize(Model::Hypotheses & hyps, const std::vector<double> & hyps_probability) const;
+        std::shared_ptr<Model::Hypotheses> updateHypotheses(Model::Hypotheses & hyps, const Model::Map3D & map, const std::vector<Model::Candidate> & detections) const;
 		double calcLikehood(const Model::Hypothesis & hyp, const Model::Coordinate & detected_location, double detected_concentration, const Model::Map3D & map) const;
 
 	private:

@@ -8,7 +8,7 @@
 
 #include "BackwardChecking.h"
 #include "../forward/UpdateByCell.h"
-#include "../model/Hypothesis.h"
+#include "../model/Hypotheses.h"
 #include "../model/Map3D.h"
 #include "../math/Gamma.h"
 #include "../math/GaussianBlur.h"
@@ -90,7 +90,7 @@ namespace Backward {
     // Qualifier: const
     // Parameter: vector<Hypothesis> & hyps
     //************************************
-    void BackwardChecking::normalize(vector<Hypothesis> & hyps, const vector<double> & hyps_probability) const{
+    void BackwardChecking::normalize(Hypotheses & hyps, const vector<double> & hyps_probability) const{
         auto sum = accumulate(hyps_probability.begin(), hyps_probability.end(), 0.0, [](double sum, const double pro){ return sum += pro;});
         for(auto i = 0; i < hyps.size(); i++) {
             auto prob = hyps_probability[i] / sum;
@@ -108,12 +108,12 @@ namespace Backward {
     // Parameter: size_t time_count : how many iterations for forward model algorithm to carry.
     // Parameter: const vector<Leak> & detections
     //************************************
-    shared_ptr<vector<Hypothesis>> BackwardChecking::updateHypotheses(vector<Hypothesis> & hyps, const Map3D & map, const vector<Candidate> & detections) const {
+    shared_ptr<Hypotheses> BackwardChecking::updateHypotheses(Hypotheses & hyps, const Map3D & map, const vector<Candidate> & detections) const {
         namespace logging = boost::log;
         namespace keywords = boost::log::keywords;
         namespace sinks = boost::log::sinks;
         
-        auto ret_hyps = make_shared<vector<Hypothesis>>(hyps);
+        auto ret_hyps = make_shared<Hypotheses>(hyps);
         
         vector<double> hyps_probability;
         for (auto const & hyp : *ret_hyps) {

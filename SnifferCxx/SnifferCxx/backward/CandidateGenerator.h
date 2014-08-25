@@ -10,7 +10,7 @@ namespace Backward {
 		CandidateGenerator(const Forward::ForwardChecking & forward, const BackwardChecking & backward, const Model::Map3D & map);
 		virtual ~CandidateGenerator();
 
-		Model::Candidate generateCandidate(const Model::Coordinate & curPos, int time_count, Model::unit_t distance, const std::vector<Model::Hypothesis> & hyps) const;
+		Model::Candidate generateCandidate(const Model::Coordinate & curPos, int time_count, Model::unit_t distance, const Model::Hypotheses & hyps) const;
 
 	private:
 		std::shared_ptr<std::vector<Model::Coordinate>> crossLocation(const Model::Coordinate & curPos, const Model::Map3D & map, Model::unit_t distance) const;

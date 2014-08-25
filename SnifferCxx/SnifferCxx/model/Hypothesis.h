@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include <mutex>
+//#include <mutex>
 #include <memory>
 
 namespace Model {
@@ -25,8 +25,6 @@ namespace Model {
         const std::shared_ptr<Cells> getMethaneCells() const;
 		const std::vector<const std::shared_ptr<Cells>> & getCelllsHistory() const;
         
-        static const Hypothesis & getMaxProbHyp(const std::vector<Hypothesis> & hyps);
-        
     private:
         int getCurrentCellsHisIndex() const;
 
@@ -35,7 +33,7 @@ namespace Model {
         double probability_;
         std::vector<const std::shared_ptr<Cells>> cells_update_his_;
         
-        mutable std::mutex cells_his_mutex_;
+        //mutable std::mutex cells_his_mutex_;
 	};
 }
 

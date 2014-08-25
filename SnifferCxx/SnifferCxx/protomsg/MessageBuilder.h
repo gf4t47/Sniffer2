@@ -15,7 +15,7 @@
 #include "../protomsg/cell.pb.h"
 
 namespace Model {
-    class Hypothesis;
+	class Hypotheses;
     class Map3D;
 	struct Detection;
 }
@@ -28,7 +28,7 @@ namespace ProtoMsg {
     
     class MessageBuilder {
     public:
-        static std::shared_ptr<ProtoMsg::Hypotheses_history> buildMessage(const std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his, size_t ideal_cells);
+        static std::shared_ptr<ProtoMsg::Hypotheses_history> buildMessage(const std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, size_t ideal_cells);
         static std::shared_ptr<ProtoMsg::Detections> buildMessage(const std::vector<Model::Detection> & detections);
         static std::shared_ptr<ProtoMsg::Map> buildMessage(const Model::Map3D & map);
         

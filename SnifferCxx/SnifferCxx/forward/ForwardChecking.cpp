@@ -7,7 +7,7 @@
 //
 
 #include "ForwardChecking.h"
-#include "../model/Hypothesis.h"
+#include "../model/Hypotheses.h"
 #include "../model/Cells.h"
 #include "../model/Map3D.h"
 #include "../model/Candidate.h"
@@ -68,8 +68,8 @@ namespace Forward {
         return ret_cells;
 	}
     
-    shared_ptr<vector<Hypothesis>> ForwardChecking::UpdateMethane(vector<Model::Hypothesis> & hyps, const Map3D & map, size_t count) const {
-        auto ret_hyps = make_shared<vector<Hypothesis>>();
+    shared_ptr<Hypotheses> ForwardChecking::UpdateMethane(Hypotheses & hyps, const Map3D & map, size_t count) const {
+        auto ret_hyps = make_shared<Hypotheses>();
         
         for (auto & hyp : hyps) {
             auto newCells = Deduce(hyp, map, count);
@@ -80,12 +80,12 @@ namespace Forward {
         return ret_hyps;
     }
 
-	void ForwardChecking::work(shared_ptr<vector<Model::Hypothesis>> hyps, const Map3D & map, boost::tribool & alive, vector<shared_ptr<vector<Hypothesis>>> & hyps_his) {
+	void ForwardChecking::work(shared_ptr<Hypotheses> hyps, const Map3D & map, boost::tribool & alive, vector<shared_ptr<Hypotheses>> & hyps_his) {
 		auto exec_hyps = hyps;
 		while (!alive) {
 			if (boost::indeterminate(alive)) {
 				hyps_his.push_back(exec_hyps);
-				exec_hyps = make_shared<vector<Model::Hypothesis>>(*exec_hyps);
+				exec_hyps = make_shared<Hypotheses>(*exec_hyps);
 				alive = true;
 
 			}

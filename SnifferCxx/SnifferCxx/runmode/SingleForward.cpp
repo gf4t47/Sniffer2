@@ -1,7 +1,7 @@
 #include "SingleForward.h"
 #include "../model/Candidate.h"
 #include "../model/Map3D.h"
-#include "../model/Hypothesis.h"
+#include "../model/Hypotheses.h"
 #include "../forward/ForwardChecking.h"
 #include "../backward/BackwardChecking.h"
 #include "../backward/CandidateGenerator.h"
@@ -18,7 +18,7 @@ namespace RunMode {
 	SingleForward::~SingleForward() {
 	}
 
-	std::shared_ptr<std::vector<Model::Hypothesis>> SingleForward::run_once(std::vector<Model::Hypothesis> & hyps, const Model::Detection & dect) {
+	std::shared_ptr<Model::Hypotheses> SingleForward::run_once(Model::Hypotheses & hyps, const Model::Detection & dect) {
 		if (dect.wv_) {
 			map_.updateWind(*dect.wv_);
 		}
@@ -26,18 +26,18 @@ namespace RunMode {
 		return backward_.updateHypotheses(*forward_.UpdateMethane(hyps, map_, dect.time_), map_, dect.detected_);
 	}
 
-	void SingleForward::run(std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his, const std::vector<Model::Detection> & dect_vec) {
+	void SingleForward::run(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, const std::vector<Model::Detection> & dect_vec) {
 		for (auto const & dect : dect_vec) {
 			hyps_his.push_back(run_once(*hyps_his.back(), dect));
 		}
 	}
 
-	void SingleForward::autoDrive(std::vector<std::shared_ptr<std::vector<Model::Hypothesis>>> & hyps_his, std::vector<Model::Detection> & dect_vec, const Model::AutoMovement & auto_info) {
+	void SingleForward::autoDrive(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, std::vector<Model::Detection> & dect_vec, const Model::AutoMovement & auto_info) {
 		using namespace Backward;
 		using namespace Model;
 
 		CandidateGenerator cg(forward_, backward_, map_);
-		while (Hypothesis::getMaxProbHyp(*hyps_his.back()).getProbability() < auto_info.threshold_) {
+		while (hyps_his.back()->getMaxProbHyp().getProbability() < auto_info.threshold_) {
 			auto max_can = cg.generateCandidate(dect_vec.back().detected_.back().location_, auto_info.time_, auto_info.distance_, *hyps_his.back());
 			cout << "max candidate : " << max_can.location_ << " = " << max_can.concentration_ << endl;
 

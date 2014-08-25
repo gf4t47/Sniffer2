@@ -18,6 +18,7 @@
 
 namespace Model {
     class Hypothesis;
+	class Hypotheses;
 }
 
 namespace Backward {
@@ -36,7 +37,7 @@ namespace Initializer {
         HypothesisInitializer(std::string cfg_file);
         std::shared_ptr<Backward::BackwardChecking> getBackwardAlg() const;
 		std::shared_ptr<Forward::ForwardChecking> getForwardAlg() const;
-        std::shared_ptr<std::vector<Model::Hypothesis>> getHyptheses() const;
+        std::shared_ptr<Model::Hypotheses> getHyptheses() const;
         ideal_t getIdealCells() const;
         bool load(std::string cfg_file);
         
@@ -46,7 +47,7 @@ namespace Initializer {
     private:
         std::shared_ptr<Backward::BackwardChecking> backward_;
 		std::shared_ptr<Forward::ForwardChecking> forward_;
-        std::shared_ptr<std::vector<Model::Hypothesis>> hyps_;
+        std::shared_ptr<Model::Hypotheses> hyps_;
         ideal_t ideal_cells_;
     };
 }

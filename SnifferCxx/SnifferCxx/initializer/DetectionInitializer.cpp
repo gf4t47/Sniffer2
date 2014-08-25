@@ -16,9 +16,17 @@
 namespace Initializer {
 	using namespace std;
 	using namespace Model;
+	using namespace RunMode;
 	using boost::property_tree::ptree;
 
 	const auto PI = boost::math::constants::pi<double>();
+
+	unordered_map<string, execute_mode> DetectionInitializer::String2Mode =
+	{
+		{"single", execute_mode::single},
+		{"asyn", execute_mode::asyn_event},
+		{"multithread", execute_mode::multi_thread}
+	};
 
 	DetectionInitializer::DetectionInitializer(string cfg_file, const Map3D & map)
 		:map_(map) {
@@ -88,7 +96,7 @@ namespace Initializer {
 	bool DetectionInitializer::parseJson(string json_file) {
 		const string strDetection = "detection";
 		const string strCandidate = "candidate";
-		const string strMultithread = "multithread";
+		const string strRunMode = "runmode";
 		const string strAuto = "automovement";
 		const string strDistance = "distance";
 		const string strThreshold = "threshold";
@@ -97,7 +105,7 @@ namespace Initializer {
 		ptree pt;
 		read_json(json_file, pt);
 
-		multiplethread_flag_ = pt.get<bool>(strMultithread);
+		mode_ = String2Mode[pt.get<string>(strRunMode)];
 
 		dects_ = parseJsonNode(strDetection, pt);
 
@@ -262,8 +270,8 @@ namespace Initializer {
 		return auto_movement_;
 	}
 
-	bool DetectionInitializer::beMultiplethread() const{
-		return multiplethread_flag_;
+	RunMode::execute_mode DetectionInitializer::getExecutorMode() const {
+		return mode_;
 	}
 
 }

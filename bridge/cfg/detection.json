@@ -1,5 +1,5 @@
 {
-    "multithread" : false,
+    "runmode" : "single",
     
     "detection" :
     [

@@ -8,7 +8,7 @@
 
 
 #include "InformationGain.h"
-#include "../model/Hypothesis.h"
+#include "../model/Hypotheses.h"
 #include "../model/Coordinate.h"
 #include "../forward/ForwardChecking.h"
 #include "../math/Gamma.h"
@@ -47,7 +47,7 @@ namespace Backward {
      *
      *  @return entropy value
      */
-    entropy_t InformationGain::entropy(const vector<Hypothesis> & hyps) const{
+    entropy_t InformationGain::entropy(const Hypotheses & hyps) const{
 		return accumulate(hyps.begin(), hyps.end(), 0.0, 
 			[](double sum, const Hypothesis & it) { 
 				return sum += -(it.getProbability() * log2(it.getProbability())); 
@@ -63,7 +63,7 @@ namespace Backward {
      *
      *  @return expected information gain
      */
-    entropy_t InformationGain::calcInforGain(const Coordinate & candidate, const vector<Hypothesis> & current_hyps, const vector<Hypothesis> & future_hyps) const{
+    entropy_t InformationGain::calcInforGain(const Coordinate & candidate, const Hypotheses & current_hyps, const Hypotheses & future_hyps) const{
         entropy_t ret_sum = 0.0;
         
         for (auto i=0; i < current_hyps.size(); i++) {
@@ -92,8 +92,8 @@ namespace Backward {
      *
      *  @return a set of score maped to all candidates
      */
-    vector<entropy_t> InformationGain::calcInforGains(const vector<Coordinate> & candidates, const vector<Hypothesis> & hyps, int time_count) const{
-        auto copy_hyps = make_shared<vector<Hypothesis>>(hyps);
+    vector<entropy_t> InformationGain::calcInforGains(const vector<Coordinate> & candidates, const Hypotheses & hyps, int time_count) const{
+        auto copy_hyps = make_shared<Hypotheses>(hyps);
         auto future_hyps = forward_.UpdateMethane(*copy_hyps, map_, time_count);
         
         vector<entropy_t> ret_vec;

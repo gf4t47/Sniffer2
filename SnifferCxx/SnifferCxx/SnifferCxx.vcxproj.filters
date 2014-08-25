@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="backward">
       <UniqueIdentifier>{b4809837-8b94-4b9e-81da-edf8f91b3a97}</UniqueIdentifier>
     </Filter>
@@ -17,14 +13,18 @@
     <Filter Include="math">
       <UniqueIdentifier>{c93fee7f-77b9-41fd-9e3a-c62e6816f3af}</UniqueIdentifier>
     </Filter>
-    <Filter Include="model">
-      <UniqueIdentifier>{0d1ea08a-d733-43e9-88b8-1c11d02dca67}</UniqueIdentifier>
-    </Filter>
     <Filter Include="protomsg">
       <UniqueIdentifier>{4406dd7a-f587-4ea8-8d98-a6129b538513}</UniqueIdentifier>
     </Filter>
     <Filter Include="runmode">
       <UniqueIdentifier>{aeee9548-6aa6-4edb-822c-5430507349a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="model">
+      <UniqueIdentifier>{9bb65ffe-ad42-4ef0-ad13-101694f69a68}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -64,30 +64,6 @@
     <ClCompile Include="math\GaussianBlur.cpp">
       <Filter>math</Filter>
     </ClCompile>
-    <ClCompile Include="model\Cell.cpp">
-      <Filter>model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\Cells.cpp">
-      <Filter>model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\Coordinate.cpp">
-      <Filter>model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\Hypothesis.cpp">
-      <Filter>model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\Map3D.cpp">
-      <Filter>model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\Methane.cpp">
-      <Filter>model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\Wind.cpp">
-      <Filter>model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\WindVector.cpp">
-      <Filter>model</Filter>
-    </ClCompile>
     <ClCompile Include="protomsg\cell.pb.cc">
       <Filter>protomsg</Filter>
     </ClCompile>
@@ -115,6 +91,33 @@
     </ClCompile>
     <ClCompile Include="runmode\SingleForward.cpp">
       <Filter>runmode</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Cell.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Cells.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Coordinate.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Hypotheses.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Hypothesis.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Map3D.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Methane.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Wind.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\WindVector.cpp">
+      <Filter>model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,36 +157,6 @@
     <ClInclude Include="math\GaussianBlur.h">
       <Filter>math</Filter>
     </ClInclude>
-    <ClInclude Include="model\Candidate.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\Cell.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\Cells.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\Coordinate.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\Hypothesis.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\Map3D.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\Methane.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\TypeDef.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\Wind.h">
-      <Filter>model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\WindVector.h">
-      <Filter>model</Filter>
-    </ClInclude>
     <ClInclude Include="protomsg\cell.pb.h">
       <Filter>protomsg</Filter>
     </ClInclude>
@@ -210,6 +183,39 @@
     </ClInclude>
     <ClInclude Include="runmode\SingleForward.h">
       <Filter>runmode</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Candidate.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Cell.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Cells.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Coordinate.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Hypotheses.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Hypothesis.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Map3D.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Methane.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\TypeDef.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Wind.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\WindVector.h">
+      <Filter>model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
