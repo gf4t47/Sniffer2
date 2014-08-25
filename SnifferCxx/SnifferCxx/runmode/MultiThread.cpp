@@ -3,7 +3,7 @@
 
 namespace RunMode {
 
-	MultiThread::MultiThread(Model::Map3D & map, const Forward::ForwardChecking & forward, const Backward::BackwardChecking & backward)
+	MultiThread::MultiThread(const Model::Map3D & map, const Forward::ForwardChecking & forward, const Backward::BackwardChecking & backward)
 	:Executor(map, forward, backward) {
 	}
 
@@ -23,10 +23,6 @@ namespace RunMode {
 		//	backward->updateHypotheses(*hyps, *map, dect.detected_, dect.time_, nullptr);
 		//}
 		//forward_alive = false;
-	}
-
-	void MultiThread::autoDrive(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, std::vector<Model::Detection> & dect_vec, const Model::AutoMovement & auto_info) {
-
 	}
 
 }

@@ -4,12 +4,11 @@
 namespace Model {
 
 	Hypotheses::Hypotheses()
-	{
+	:Asyn_Deduce_(true) {
 	}
 
 
-	Hypotheses::~Hypotheses()
-	{
+	Hypotheses::~Hypotheses() {
 	}
 
 	const Hypothesis & Hypotheses::getMaxProbHyp() {
@@ -23,6 +22,14 @@ namespace Model {
 			}
 		});
 		return *max;
+	}
+
+	bool Hypotheses::getAsynFlag() {
+		return Asyn_Deduce_;
+	}
+
+	void Hypotheses::setAsynFlag(bool val) {
+		Asyn_Deduce_ = val;
 	}
 
 }

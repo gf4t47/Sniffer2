@@ -21,8 +21,9 @@ namespace Model {
         double getProbability() const;
         void setProbability(double val);
         
-        void addCellsHistory(const std::shared_ptr<Cells> cells);
+        void addCellsToHistory(const std::shared_ptr<Cells> cells);
         const std::shared_ptr<Cells> getMethaneCells() const;
+		const std::shared_ptr<Cells> popMethaneCells();
 		const std::vector<const std::shared_ptr<Cells>> & getCelllsHistory() const;
         
     private:

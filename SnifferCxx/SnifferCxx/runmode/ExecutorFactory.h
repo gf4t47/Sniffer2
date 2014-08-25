@@ -1,8 +1,20 @@
 #pragma once
 #include <memory>
-#include "Executor.h"
+
+namespace Model {
+	class Map3D;
+}
+
+namespace Forward {
+	class ForwardChecking;
+}
+
+namespace Backward {
+	class BackwardChecking;
+}
 
 namespace RunMode {
+	class Executor;
 
 	enum execute_mode {
 		single,
@@ -16,7 +28,7 @@ namespace RunMode {
 		ExecutorFactory();
 		~ExecutorFactory();
 
-		static std::shared_ptr<Executor> createExecutor(execute_mode run_type, Model::Map3D & map, const Forward::ForwardChecking & forward, const Backward::BackwardChecking & backward);
+		static std::shared_ptr<Executor> createExecutor(execute_mode run_type, const Model::Map3D & map, const Forward::ForwardChecking & forward, const Backward::BackwardChecking & backward);
 	};
 
 }

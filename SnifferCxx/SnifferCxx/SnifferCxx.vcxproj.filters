@@ -89,9 +89,6 @@
     <ClCompile Include="runmode\MultiThread.cpp">
       <Filter>runmode</Filter>
     </ClCompile>
-    <ClCompile Include="runmode\SingleForward.cpp">
-      <Filter>runmode</Filter>
-    </ClCompile>
     <ClCompile Include="model\Cell.cpp">
       <Filter>model</Filter>
     </ClCompile>
@@ -179,9 +176,6 @@
       <Filter>runmode</Filter>
     </ClInclude>
     <ClInclude Include="runmode\MultiThread.h">
-      <Filter>runmode</Filter>
-    </ClInclude>
-    <ClInclude Include="runmode\SingleForward.h">
       <Filter>runmode</Filter>
     </ClInclude>
     <ClInclude Include="model\Candidate.h">

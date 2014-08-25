@@ -34,7 +34,7 @@ namespace Model {
 		return leaks_;
 	}
 
-    void Hypothesis::addCellsHistory(const shared_ptr<Cells> cells) {
+    void Hypothesis::addCellsToHistory(const shared_ptr<Cells> cells) {
         //lock_guard<mutex> lock(cells_his_mutex_);
         
         cells_update_his_.push_back(cells);
@@ -49,6 +49,18 @@ namespace Model {
         
         return nullptr;
     }
+
+	const shared_ptr<Cells> Hypothesis::popMethaneCells() {
+		//        lock_guard<mutex> lock(cells_his_mutex_);
+
+		if (cells_update_his_.size() > 0) {
+			auto ret = cells_update_his_.back();
+			cells_update_his_.pop_back();
+			return ret;
+		}
+
+		return nullptr;
+	}
 
 	const std::vector<const std::shared_ptr<Cells>> & Hypothesis::getCelllsHistory() const{
         

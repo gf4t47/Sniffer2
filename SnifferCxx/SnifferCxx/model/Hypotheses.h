@@ -11,6 +11,12 @@ namespace Model {
 		~Hypotheses();
 
 		const Hypothesis & getMaxProbHyp();
+
+		bool getAsynFlag();
+		void setAsynFlag(bool val);
+
+	private:
+		bool Asyn_Deduce_;
 	};
 
 }

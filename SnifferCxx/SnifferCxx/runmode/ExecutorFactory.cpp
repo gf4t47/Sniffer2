@@ -1,7 +1,7 @@
 #include "ExecutorFactory.h"
 #include "../runmode/AsynEvent.h"
 #include "../runmode/MultiThread.h"
-#include "../runmode/SingleForward.h"
+#include "../runmode/Executor.h"
 
 namespace RunMode {
 	using namespace std;
@@ -16,10 +16,10 @@ namespace RunMode {
 	{
 	}
 
-	shared_ptr<Executor> ExecutorFactory::createExecutor(execute_mode run_type, Model::Map3D & map, const Forward::ForwardChecking & forward, const Backward::BackwardChecking & backward) {
+	shared_ptr<Executor> ExecutorFactory::createExecutor(execute_mode run_type, const Model::Map3D & map, const Forward::ForwardChecking & forward, const Backward::BackwardChecking & backward) {
 		switch (run_type) {
 		case single:
-			return make_shared<SingleForward>(map, forward, backward);
+			return make_shared<Executor>(map, forward, backward);
 			break;
 
 		case asyn_event:

@@ -38,7 +38,7 @@ namespace Model{
 		std::shared_ptr<Cell> calcCollisionByFullPath(const Coordinate & startPos, const Coordinate & endPos) const;
 		std::shared_ptr<Cell> calcCollisionByEndCell(const Coordinate & startPos, const Coordinate & endPos) const;
 
-		void updateWind(const WindVector & wind);
+		void updateWind(const WindVector & wind) const;
 
 		Coordinate locateIndex(const WindVector & real_coord) const;
 

@@ -335,7 +335,6 @@
     <ClCompile Include="runmode\Executor.cpp" />
     <ClCompile Include="runmode\ExecutorFactory.cpp" />
     <ClCompile Include="runmode\MultiThread.cpp" />
-    <ClCompile Include="runmode\SingleForward.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="backward\BackwardChecking.h" />
@@ -369,7 +368,6 @@
     <ClInclude Include="runmode\Executor.h" />
     <ClInclude Include="runmode\ExecutorFactory.h" />
     <ClInclude Include="runmode\MultiThread.h" />
-    <ClInclude Include="runmode\SingleForward.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

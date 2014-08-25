@@ -35,7 +35,7 @@ namespace Forward {
 		std::shared_ptr<Model::Cells> Deduce(Model::Hypothesis & hypothesis, const Model::Map3D & map, size_t count) const;
         std::shared_ptr<Model::Hypotheses> UpdateMethane(Model::Hypotheses & hyps, const Model::Map3D & map, size_t count) const;
 
-		void work(std::shared_ptr<Model::Hypotheses> hyps, const Model::Map3D & map, boost::tribool & alive, std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his);
+		void update_once(Model::Hypotheses & hyps, const Model::Map3D & map) const;
 				        
     protected:
 		virtual std::shared_ptr<Model::Cells> calcEnds(const Model::Cells & cells, const Model::Map3D & map) const = 0;

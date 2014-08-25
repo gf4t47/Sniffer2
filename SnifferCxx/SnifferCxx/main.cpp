@@ -18,6 +18,7 @@
 
 //calc
 #include "runmode/ExecutorFactory.h"
+#include "runmode/Executor.h"
 
 //message
 #include "protomsg/MessageBuilder.h"

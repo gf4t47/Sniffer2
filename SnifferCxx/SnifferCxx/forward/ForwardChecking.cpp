@@ -59,7 +59,7 @@ namespace Forward {
 			ret_cells->mergeCellsByAddMethane(leakCells);
 			ret_cells = calcEnds(*ret_cells, map);
             if (i < count - 1) {
-                hypothesis.addCellsHistory(ret_cells);
+                hypothesis.addCellsToHistory(ret_cells);
             }
 
 			//map.updateWind(WindVector(1.5, 0.2, 0));
@@ -80,19 +80,11 @@ namespace Forward {
         return ret_hyps;
     }
 
-	void ForwardChecking::work(shared_ptr<Hypotheses> hyps, const Map3D & map, boost::tribool & alive, vector<shared_ptr<Hypotheses>> & hyps_his) {
-		auto exec_hyps = hyps;
-		while (!alive) {
-			if (boost::indeterminate(alive)) {
-				hyps_his.push_back(exec_hyps);
-				exec_hyps = make_shared<Hypotheses>(*exec_hyps);
-				alive = true;
-
-			}
-
-			UpdateMethane(*exec_hyps, map, 1);
+	void ForwardChecking::update_once(Hypotheses & hyps, const Map3D & map) const{
+	
+		for (auto & hyp : hyps) {
+			auto newCells = Deduce(hyp, map, 1);
+			hyp.addCellsToHistory(newCells);
 		}
-
-		cout << "forward working thread is over" << endl;
 	}
 }

@@ -92,9 +92,7 @@ namespace Model {
         }
     }
 
-	void Map3D::updateWind(const WindVector & wind) {
-        //boost::multi_array_ref<Cell, 1> map_ref(this->data(), boost::extents[this->num_elements()]);
-        //for_each(map_ref.begin(), map_ref.end(), [&wind](Cell & cell){cell.setWindVector(wind);});
+	void Map3D::updateWind(const WindVector & wind) const {
 		*wind_ = wind;
 	}
     
