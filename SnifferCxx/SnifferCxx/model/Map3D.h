@@ -13,6 +13,10 @@
 #include <boost/logic/tribool.hpp>
 #include "Cell.h"
 
+namespace Support {
+	class MyLog;
+}
+
 namespace Initializer {
     class MapBuilder;
 }
@@ -63,6 +67,7 @@ namespace Model{
 		unit_t unit_;
 		std::pair<Coordinate, WindVector> origin_;
 		std::shared_ptr<WindVector> wind_;
+		static std::unique_ptr<Support::MyLog> lg_;
 	};
 }
 

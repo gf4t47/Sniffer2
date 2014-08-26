@@ -7,9 +7,14 @@
 //
 
 #include "Wind.h"
+#include "../support/MyLog.h"
+#include <sstream>
 
 namespace Model {
 	using namespace std;
+	using namespace Support;
+
+	unique_ptr<MyLog> Wind::lg_(make_unique<MyLog>());
 
 	Wind::Wind()
 		:potential_(WindVector()),
@@ -31,7 +36,11 @@ namespace Model {
 
 	WindVector Wind::getCalcWind() const {
 		if (!wind_) {
-			throw runtime_error("wind_ pointer has not been initialized");
+			ostringstream ostr;
+			ostr << "wind_ pointer has not been initialized";
+
+			BOOST_LOG_SEV(*lg_, severity_level::critical) << ostr.str();
+			throw runtime_error(ostr.str());
 		}
 
 		return *wind_ + potential_;
@@ -43,7 +52,11 @@ namespace Model {
 
 	WindVector Wind::getWV() const {
 		if (!wind_) {
-			throw runtime_error("wind_ pointer has not been initialized");
+			ostringstream ostr;
+			ostr << "wind_ pointer has not been initialized";
+
+			BOOST_LOG_SEV(*lg_, severity_level::critical) << ostr.str();
+			throw runtime_error(ostr.str());
 		}
 
 		return *wind_;

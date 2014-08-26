@@ -1,12 +1,13 @@
 #include "CandidateGenerator.h"
 #include "../model/Map3D.h"
 #include "../math/Gaussian.h"
-#include "../MyLog.h"
+#include "../support/MyLog.h"
 
 namespace Backward {
 	using namespace std;
 	using namespace Model;
 	using namespace Forward;
+	using namespace Support;
 
 	unique_ptr<MyLog> CandidateGenerator::lg_(make_unique<MyLog>());
 

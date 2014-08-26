@@ -8,10 +8,11 @@
 
 #include "Cells.h"
 #include <sstream>
-#include "../MyLog.h"
+#include "../support/MyLog.h"
 
 namespace Model {
 	using namespace std;
+	using namespace Support;
 
 	unique_ptr<MyLog> Cells::lg_(make_unique<MyLog>());
 
@@ -62,7 +63,6 @@ namespace Model {
 					ostr << "cell2 = " << oth_entry.second << endl;
 
 					BOOST_LOG_SEV(*lg_, severity_level::error) << ostr.str();
-
 					throw invalid_argument(ostr.str());
 				}
 			}

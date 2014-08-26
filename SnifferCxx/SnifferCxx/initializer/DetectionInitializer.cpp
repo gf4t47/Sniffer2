@@ -12,12 +12,13 @@
 #include <boost/math/constants/constants.hpp>
 #include "../model/Candidate.h"
 #include "../model/Map3D.h"
-#include "../MyLog.h"
+#include "../support/MyLog.h"
 
 namespace Initializer {
 	using namespace std;
 	using namespace Model;
 	using namespace RunMode;
+	using namespace Support;
 	using boost::property_tree::ptree;
 
 	const auto PI = boost::math::constants::pi<double>();
@@ -246,6 +247,7 @@ namespace Initializer {
 		if (!ifs.is_open()) {
 			ostringstream ostr;
 			ostr << "can not open cfg file " << text_file;
+			BOOST_LOG_SEV(*lg_, severity_level::error) << ostr.str();
 			throw invalid_argument(ostr.str());
 		}
 

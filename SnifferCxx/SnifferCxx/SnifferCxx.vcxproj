@@ -328,7 +328,6 @@
     <ClCompile Include="model\Methane.cpp" />
     <ClCompile Include="model\Wind.cpp" />
     <ClCompile Include="model\WindVector.cpp" />
-    <ClCompile Include="MyLog.cpp" />
     <ClCompile Include="protomsg\cell.pb.cc" />
     <ClCompile Include="protomsg\dect.pb.cc" />
     <ClCompile Include="protomsg\hypothesis.pb.cc" />
@@ -337,6 +336,7 @@
     <ClCompile Include="runmode\Executor.cpp" />
     <ClCompile Include="runmode\ExecutorFactory.cpp" />
     <ClCompile Include="runmode\MultiThread.cpp" />
+    <ClCompile Include="support\MyLog.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="backward\BackwardChecking.h" />
@@ -362,7 +362,6 @@
     <ClInclude Include="model\TypeDef.h" />
     <ClInclude Include="model\Wind.h" />
     <ClInclude Include="model\WindVector.h" />
-    <ClInclude Include="MyLog.h" />
     <ClInclude Include="protomsg\cell.pb.h" />
     <ClInclude Include="protomsg\dect.pb.h" />
     <ClInclude Include="protomsg\hypothesis.pb.h" />
@@ -371,6 +370,7 @@
     <ClInclude Include="runmode\Executor.h" />
     <ClInclude Include="runmode\ExecutorFactory.h" />
     <ClInclude Include="runmode\MultiThread.h" />
+    <ClInclude Include="support\MyLog.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

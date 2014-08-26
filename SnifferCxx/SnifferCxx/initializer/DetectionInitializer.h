@@ -16,7 +16,9 @@
 #include "../model/TypeDef.h"
 #include "../runmode/ExecutorFactory.h"
 
-class MyLog;
+namespace Support {
+	class MyLog;
+}
 
 namespace Model {
 	struct Candidate;
@@ -61,7 +63,7 @@ namespace Initializer {
         std::shared_ptr<Model::AutoMovement> auto_movement_;
 		RunMode::execute_mode mode_;
 		const Model::Map3D & map_;
-		static std::unique_ptr<MyLog> lg_;
+		static std::unique_ptr<Support::MyLog> lg_;
     };
 }
 

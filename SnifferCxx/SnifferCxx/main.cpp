@@ -10,7 +10,8 @@
 #include <fstream>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
-#include "MyLog.h"
+
+#include "support/MyLog.h"
 
 //init
 #include "initializer/HypothesisInitializer.h"
@@ -50,7 +51,7 @@ int main(int argc, const char * argv[])
 	string can_output = argv[7];
 
 	//init log
-	MyLog::init_log("Sniffer");
+	Support::MyLog::init_log("Sniffer");
 
 	//load map
 	MapBuilder mb(map_cfg);

@@ -7,10 +7,14 @@
 //
 
 #include "Map3D.h"
+#include "../support/MyLog.h"
 
 namespace Model {
 	using namespace std;
+	using namespace Support;
 	typedef map_t::extent_range erange;
+
+	unique_ptr<MyLog> Map3D::lg_(make_unique<MyLog>());
 
 	Map3D::Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit)
 		:map_t(boost::extents[erange(startIndex[0], startIndex[0] + boundary[0])][erange(startIndex[1], startIndex[1] + boundary[1])][erange(startIndex[2], startIndex[2] + boundary[2])]),
@@ -97,12 +101,23 @@ namespace Model {
 	}
     
     bool Map3D::updateCell(const Cell &cell) {
-		(*this)(cell.getCoordinate()) = cell;
-        
+		auto const & coord = cell.getCoordinate();
+		if (!insideMap(coord)) {
+			return false;
+		}
+
+		(*this)(coord) = cell;
 		return true;
 	}
     
 	const Cell & Map3D::getCell(const Coordinate & pos) const {
+		if (!insideMap(pos)) {
+			ostringstream ostr;
+			ostr << "request a location out of the map: " << pos;
+			BOOST_LOG_SEV(*lg_, severity_level::error) << ostr.str();
+			throw out_of_range(ostr.str());
+		}
+
 		return (*this)(pos);
 	}
 

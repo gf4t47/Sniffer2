@@ -12,7 +12,9 @@
 #include <unordered_map>
 #include "Cell.h"
 
-class MyLog;
+namespace Support {
+	class MyLog;
+}
 
 namespace Model{
 	typedef std::unordered_map<Coordinate, Cell, CoordHasher> cells_t;
@@ -25,7 +27,7 @@ namespace Model{
 		bool mergeCellsByAddMethane(const Cells & cells);
 
 	private:
-		static std::unique_ptr<MyLog> lg_;
+		static std::unique_ptr<Support::MyLog> lg_;
 	};
 }
 

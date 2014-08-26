@@ -14,6 +14,10 @@
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
 
+namespace Support {
+	class MyLog;
+}
+
 namespace Model {
 	class Wind {
 	public:
@@ -42,6 +46,7 @@ namespace Model {
 	private:
 		std::shared_ptr<WindVector> wind_;
 		WindVector potential_;
+		static std::unique_ptr<Support::MyLog> lg_;
 	};
 }
 

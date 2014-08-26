@@ -26,6 +26,9 @@
     <Filter Include="model">
       <UniqueIdentifier>{9bb65ffe-ad42-4ef0-ad13-101694f69a68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="support">
+      <UniqueIdentifier>{9a9a555c-364b-44ce-b6b6-b907eac0eda9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="backward\BackwardChecking.cpp">
@@ -116,9 +119,11 @@
     <ClCompile Include="model\WindVector.cpp">
       <Filter>model</Filter>
     </ClCompile>
-    <ClCompile Include="MyLog.cpp" />
     <ClCompile Include="model\Candidate.cpp">
       <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="support\MyLog.cpp">
+      <Filter>support</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +220,8 @@
     <ClInclude Include="model\WindVector.h">
       <Filter>model</Filter>
     </ClInclude>
-    <ClInclude Include="MyLog.h" />
+    <ClInclude Include="support\MyLog.h">
+      <Filter>support</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

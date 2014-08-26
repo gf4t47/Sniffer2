@@ -14,9 +14,10 @@
 #include "../math/GaussianBlur.h"
 #include "../model/Cells.h"
 #include "../model/Candidate.h"
-#include "../MyLog.h"
+#include "../support/MyLog.h"
 
 namespace Backward {
+	using namespace Support;
     using namespace std;
     using namespace Model;
     using namespace Forward;

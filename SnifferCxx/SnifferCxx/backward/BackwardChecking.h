@@ -12,7 +12,9 @@
 #include <vector>
 #include "../model/TypeDef.h"
 
-class MyLog;
+namespace Support {
+	class MyLog;
+}
 
 namespace Forward {
     class ForwardChecking;
@@ -48,7 +50,7 @@ namespace Backward {
     private:
 		range_t blur_range_;
         range_t kernel_range_;
-		static std::unique_ptr<MyLog> lg_;
+		static std::unique_ptr<Support::MyLog> lg_;
     };
 }
 
