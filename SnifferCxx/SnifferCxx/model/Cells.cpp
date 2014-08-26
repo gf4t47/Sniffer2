@@ -8,9 +8,12 @@
 
 #include "Cells.h"
 #include <sstream>
+#include "../MyLog.h"
 
 namespace Model {
 	using namespace std;
+
+	unique_ptr<MyLog> Cells::lg_(make_unique<MyLog>());
 
 	shared_ptr<Cell> Cells::getCell(const Coordinate & pos) const {
 		auto find_ret = find(pos);
@@ -57,6 +60,8 @@ namespace Model {
 					ostr << "two cells to be merged are not same: " << endl; 
 					ostr << "cell1 = " << find_ret->second << endl;
 					ostr << "cell2 = " << oth_entry.second << endl;
+
+					BOOST_LOG_SEV(*lg_, severity_level::error) << ostr.str();
 
 					throw invalid_argument(ostr.str());
 				}

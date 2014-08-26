@@ -3,6 +3,8 @@
 #include "../model/Candidate.h"
 #include "InformationGain.h"
 
+class MyLog;
+
 namespace Backward {
 	class CandidateGenerator
 	{
@@ -20,6 +22,7 @@ namespace Backward {
 	private:
 		const Model::Map3D & map_;
 		InformationGain infoGain_;
+		static std::unique_ptr<MyLog> lg_;
 	};
 
 }

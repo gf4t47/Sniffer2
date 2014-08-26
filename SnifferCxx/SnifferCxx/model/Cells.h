@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include "Cell.h"
 
+class MyLog;
+
 namespace Model{
 	typedef std::unordered_map<Coordinate, Cell, CoordHasher> cells_t;
 	class Cells : public cells_t{
@@ -21,6 +23,9 @@ namespace Model{
 		bool updateCell(const Cell & cell);
 
 		bool mergeCellsByAddMethane(const Cells & cells);
+
+	private:
+		static std::unique_ptr<MyLog> lg_;
 	};
 }
 

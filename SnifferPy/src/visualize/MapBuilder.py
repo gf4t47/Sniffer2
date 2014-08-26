@@ -33,7 +33,8 @@ def _build_building(location, boundary):
 def _build_buildings(bld_cells):
     vecs = [[], [], [], []]
     for cell in bld_cells:
-        map(lambda item, item_list: item_list.append(item), [cell.coord.coord_x, cell.coord.coord_y, cell.coord.coord_z], vecs)
+        map(lambda item, item_list: item_list.append(item),
+            [cell.coord.coord_x, cell.coord.coord_y, cell.coord.coord_z], vecs)
 
     vecs[3] = numpy.ones(len(vecs[1]))
 
@@ -43,7 +44,9 @@ def _build_buildings(bld_cells):
 def build_from_json(m_dict):
     boundary = m_dict[strBoundary]
     start_index = m_dict.get(strLocation, [0, 0, 0])
-    _build_surface(start_index, boundary)
+    fig = _build_surface(start_index, boundary)
+    if m_dict.get(strBuilding) is None:
+        return fig
 
     all_list = [], [], [], []
     for bld_dict in m_dict[strBuilding]:

@@ -4,22 +4,22 @@
     "wind": [1.96, 0.98, 0.00],
     "unit": 1,
     "potential": 3,
-    "origin": {"index": [0, 0, 0], "coordinate": [613699, 4173162, 0]}
-    
-    // "building":
-    // [
-    // 	{"location": [12, 6, 0], "boundary":[4, 4, 10]},
-    // 	{"location": [32, 6, 0], "boundary":[2, 4, 6]},
-    // 	{"location": [31, 18, 0], "boundary":[4, 4, 4]},
-    // 	{"location": [40, 30, 0], "boundary":[4, 2, 5]},
-    // 	{"location": [36, 42, 0], "boundary":[2, 3, 4]},
-    // 	{"location": [55, 6, 0], "boundary":[2, 4, 3]},
-    // 	{"location": [51, 18, 2], "boundary":[5, 4, 2]},
-    // 	{"location": [51, 30, 0], "boundary":[2, 1, 4]},
-    // 	{"location": [60, 42, 0], "boundary":[1, 4, 10]},
-    // 	{"location": [82, 6, 0], "boundary":[2, 4, 4]},
-    // 	{"location": [84, 18, 0], "boundary":[3, 4, 7]},
-    // 	{"location": [88, 30, 1], "boundary":[2, 3, 2]},
-    // 	{"location": [84, 42, 0], "boundary":[2, 4, 4]}
-    // ]
+    "origin": {"index": [0, 0, 0], "coordinate": [613699, 4173162, 0]},
+
+    "building":
+    [
+     {"location": [-28, 6, 0], "boundary":[4, 4, 10]},
+     {"location": [-8, 6, 0], "boundary":[2, 4, 6]},
+     {"location": [-9, 18, 0], "boundary":[4, 4, 4]},
+     {"location": [0, 30, 0], "boundary":[4, 2, 5]},
+     {"location": [-4, 42, 0], "boundary":[2, 3, 4]},
+     {"location": [15, 6, 0], "boundary":[2, 4, 3]},
+     {"location": [11, 18, 2], "boundary":[5, 4, 2]},
+     {"location": [11, 30, 0], "boundary":[2, 1, 4]},
+     {"location": [20, 42, 0], "boundary":[1, 4, 10]},
+     {"location": [42, 6, 0], "boundary":[2, 4, 4]},
+     {"location": [44, 18, 0], "boundary":[3, 4, 7]},
+     {"location": [48, 30, 1], "boundary":[2, 3, 2]},
+     {"location": [44, 42, 0], "boundary":[2, 4, 4]}
+    ]
 }

@@ -6,14 +6,13 @@
 //  Copyright (c) 2014 JPL. All rights reserved.
 //
 
-
+#include <numeric>
 #include "InformationGain.h"
 #include "../model/Hypotheses.h"
 #include "../model/Coordinate.h"
 #include "../forward/ForwardChecking.h"
 #include "../math/Gamma.h"
 #include "BackwardChecking.h"
-#include <numeric>
 
 namespace Backward {
     using namespace std;

@@ -1,11 +1,14 @@
 #include "CandidateGenerator.h"
 #include "../model/Map3D.h"
 #include "../math/Gaussian.h"
+#include "../MyLog.h"
 
 namespace Backward {
 	using namespace std;
 	using namespace Model;
 	using namespace Forward;
+
+	unique_ptr<MyLog> CandidateGenerator::lg_(make_unique<MyLog>());
 
 	CandidateGenerator::CandidateGenerator(const ForwardChecking & forward, const BackwardChecking & backward, const Map3D & map)
 		:map_(map),
@@ -67,6 +70,7 @@ namespace Backward {
 		if (*max_socre <= 0) {
 			ostringstream ostr;
 			ostr << "negative expected information gain = " << *max_socre;
+			BOOST_LOG_SEV(*lg_, severity_level::error) << ostr.str();
 			throw runtime_error(ostr.str());
 		}
 

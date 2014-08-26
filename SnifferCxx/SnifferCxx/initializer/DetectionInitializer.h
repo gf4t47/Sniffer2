@@ -15,7 +15,8 @@
 #include <boost/property_tree/ptree.hpp>
 #include "../model/TypeDef.h"
 #include "../runmode/ExecutorFactory.h"
-#include "../MyLog.h"
+
+class MyLog;
 
 namespace Model {
 	struct Candidate;
@@ -60,7 +61,7 @@ namespace Initializer {
         std::shared_ptr<Model::AutoMovement> auto_movement_;
 		RunMode::execute_mode mode_;
 		const Model::Map3D & map_;
-		mutable MyLog lg_;
+		static std::unique_ptr<MyLog> lg_;
     };
 }
 

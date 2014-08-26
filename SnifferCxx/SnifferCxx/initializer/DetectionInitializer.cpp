@@ -12,6 +12,7 @@
 #include <boost/math/constants/constants.hpp>
 #include "../model/Candidate.h"
 #include "../model/Map3D.h"
+#include "../MyLog.h"
 
 namespace Initializer {
 	using namespace std;
@@ -20,6 +21,8 @@ namespace Initializer {
 	using boost::property_tree::ptree;
 
 	const auto PI = boost::math::constants::pi<double>();
+
+	unique_ptr<MyLog> DetectionInitializer::lg_(make_unique<MyLog>());
 
 	unordered_map<string, execute_mode> DetectionInitializer::String2Mode =
 	{
@@ -30,6 +33,7 @@ namespace Initializer {
 
 	DetectionInitializer::DetectionInitializer(string cfg_file, const Map3D & map)
 		:map_(map) {
+
 		try {
 			parseJson(cfg_file);
 		}
@@ -40,7 +44,7 @@ namespace Initializer {
 		}
 
 		for (int i = 0; i < dects_->size(); i++) {
-			BOOST_LOG_SEV(lg_, severity_level::info) << "load detection" << i << " = " << dects_->at(i);
+			BOOST_LOG_SEV(*lg_, severity_level::trace) << "load detection" << i << " = " << dects_->at(i);
 		}
 	}
 

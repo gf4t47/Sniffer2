@@ -14,11 +14,14 @@
 #include "../math/GaussianBlur.h"
 #include "../model/Cells.h"
 #include "../model/Candidate.h"
+#include "../MyLog.h"
 
 namespace Backward {
     using namespace std;
     using namespace Model;
     using namespace Forward;
+
+	unique_ptr<MyLog> BackwardChecking::lg_(make_unique<MyLog>());
     
     BackwardChecking::BackwardChecking(range_t blur_range, range_t kernel_range)
         :blur_range_(blur_range),
@@ -73,10 +76,10 @@ namespace Backward {
         auto mean = calcGaussianBlurMean(detected_location, *hyp.getMethaneCells(), map);
         auto ret = Math::Gamma::calcGammaPdf(detected_concentration, mean);
         
-        BOOST_LOG_SEV(lg_, severity_level::debug) << "calculated mean = " << mean;
-        BOOST_LOG_SEV(lg_, severity_level::debug) << "detected location = " << detected_location;
-        BOOST_LOG_SEV(lg_, severity_level::debug) << "detected concentration = " << detected_concentration;
-        BOOST_LOG_SEV(lg_, severity_level::debug) << "calculated likehood = " << ret;
+        BOOST_LOG_SEV(*lg_, severity_level::debug) << "calculated mean = " << mean;
+        BOOST_LOG_SEV(*lg_, severity_level::debug) << "detected location = " << detected_location;
+        BOOST_LOG_SEV(*lg_, severity_level::debug) << "detected concentration = " << detected_concentration;
+        BOOST_LOG_SEV(*lg_, severity_level::debug) << "calculated likehood = " << ret;
         
         return ret;
     }
@@ -119,13 +122,13 @@ namespace Backward {
         for (auto const & hyp : *ret_hyps) {
             double likeHood = 1.0;
 
-			BOOST_LOG_SEV(lg_, severity_level::debug) << "hypothesis" << count << " is updating: ";
+			BOOST_LOG_SEV(*lg_, severity_level::debug) << "hypothesis" << count << " is updating: ";
             for (auto detection : detections) {
                 if (map.insideMap(detection.location_)) {
                     likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
                 }
             }
-			BOOST_LOG_SEV(lg_, severity_level::debug) << "hypothesis" << count << " is finished.";
+			BOOST_LOG_SEV(*lg_, severity_level::debug) << "hypothesis" << count << " is finished.";
 
             hyps_probability.push_back(hyp.getProbability() * likeHood);
 
@@ -135,7 +138,7 @@ namespace Backward {
         normalize(*ret_hyps, hyps_probability);
         
         for (int i=0; i<ret_hyps->size(); i++) {
-            BOOST_LOG_SEV(lg_, severity_level::info) << "hypothesis"<<i<<"'s prob = " << (*ret_hyps)[i].getProbability();
+            BOOST_LOG_SEV(*lg_, severity_level::info) << "hypothesis"<<i<<"'s prob = " << (*ret_hyps)[i].getProbability();
         }
         
         return ret_hyps;
