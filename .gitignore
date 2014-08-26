@@ -50,6 +50,8 @@ build/
 [Bb]in/
 [Oo]bj/
 
+output/
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
@@ -215,3 +217,4 @@ pip-log.txt
 .mr.developer.cfg
 SnifferPy/.idea/workspace.xml
 SnifferPy/.idea/SnifferPy.iml
+bridge/output/methane.bin

@@ -14,7 +14,6 @@
 #include "../math/GaussianBlur.h"
 #include "../model/Cells.h"
 #include "../model/Candidate.h"
-#include <boost/log/sources/record_ostream.hpp>
 
 namespace Backward {
     using namespace std;
@@ -74,10 +73,10 @@ namespace Backward {
         auto mean = calcGaussianBlurMean(detected_location, *hyp.getMethaneCells(), map);
         auto ret = Math::Gamma::calcGammaPdf(detected_concentration, mean);
         
-        BOOST_LOG_SEV(lg_, severity_level::debug) << "mean = " << mean;
+        BOOST_LOG_SEV(lg_, severity_level::debug) << "calculated mean = " << mean;
         BOOST_LOG_SEV(lg_, severity_level::debug) << "detected location = " << detected_location;
         BOOST_LOG_SEV(lg_, severity_level::debug) << "detected concentration = " << detected_concentration;
-        BOOST_LOG_SEV(lg_, severity_level::debug) << "likehood = " << ret;
+        BOOST_LOG_SEV(lg_, severity_level::debug) << "calculated likehood = " << ret;
         
         return ret;
     }
@@ -116,20 +115,27 @@ namespace Backward {
         auto ret_hyps = make_shared<Hypotheses>(hyps);
         
         vector<double> hyps_probability;
+		size_t count = 0;
         for (auto const & hyp : *ret_hyps) {
             double likeHood = 1.0;
+
+			BOOST_LOG_SEV(lg_, severity_level::debug) << "hypothesis" << count << " is updating: ";
             for (auto detection : detections) {
                 if (map.insideMap(detection.location_)) {
                     likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
                 }
             }
+			BOOST_LOG_SEV(lg_, severity_level::debug) << "hypothesis" << count << " is finished.";
+
             hyps_probability.push_back(hyp.getProbability() * likeHood);
+
+			count++;
         }
         
         normalize(*ret_hyps, hyps_probability);
         
         for (int i=0; i<ret_hyps->size(); i++) {
-            BOOST_LOG_SEV(lg_, severity_level::info) << "hyp"<<i<<"'s prob = " << (*ret_hyps)[i].getProbability();
+            BOOST_LOG_SEV(lg_, severity_level::info) << "hypothesis"<<i<<"'s prob = " << (*ret_hyps)[i].getProbability();
         }
         
         return ret_hyps;

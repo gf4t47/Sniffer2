@@ -27,6 +27,7 @@ namespace RunMode {
 		auto dect = dect_vec.begin();
 		auto wind = dect->wv_;
 		if (wind) {
+			//auto wv = *wind;
 			map_.updateWind(*wind);
 		}
 
@@ -59,6 +60,7 @@ namespace RunMode {
 			if ((dect = std::next(dect, 1)) != dect_vec.end()) {
 				auto wind = dect->wv_;
 				if (wind) {
+					//auto wv = *wind;
 					map_.updateWind(*wind);
 				}
 

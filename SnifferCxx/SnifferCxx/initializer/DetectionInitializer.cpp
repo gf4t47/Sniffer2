@@ -38,6 +38,10 @@ namespace Initializer {
 				throw e;
 			}
 		}
+
+		for (int i = 0; i < dects_->size(); i++) {
+			BOOST_LOG_SEV(lg_, severity_level::info) << "load detection" << i << " = " << dects_->at(i);
+		}
 	}
 
 	shared_ptr<vector<Detection>> DetectionInitializer::parseJsonNode(const string & nodeName, const boost::property_tree::ptree & pt) const{
@@ -196,12 +200,13 @@ namespace Initializer {
 	}
 
 	shared_ptr<vector<Detection>> DetectionInitializer::transStringTable2Struct(const std::vector<std::vector<string>> & strTable) const{
-		const int initial_time = 30000; //milliseconds
+		const int initial_time = 3000; //milliseconds
 		using boost::lexical_cast;
 
 		auto ret_vec = make_shared<vector<Detection>>();
 
 		boost::optional<int> last_time;
+		//ofstream ofs("temp.txt");
 		for (auto const & strVec : strTable) {
 			Detection dect;
 
@@ -222,7 +227,8 @@ namespace Initializer {
 			auto lon = lexical_cast<double>(strVec[5]); //x
 			auto lat = lexical_cast<double>(strVec[6]); //y
 			auto location = map_.locateIndex(transLonLat2Coordinate(lat, lon));
-			auto mtn = lexical_cast<double>(strVec[1]);
+			//ofs << location << endl;
+			auto mtn = lexical_cast<double>(strVec[1]) * 1000000;
 			dect.detected_.push_back(Candidate(location, mtn));
 
 			ret_vec->push_back(dect);
@@ -254,6 +260,7 @@ namespace Initializer {
 		}
 
 		dects_ = transStringTable2Struct(strTable);
+		mode_ = RunMode::execute_mode::asyn_event;
 
 		return dects_ != nullptr;
 	}

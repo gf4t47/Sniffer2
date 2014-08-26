@@ -116,6 +116,10 @@
     <ClCompile Include="model\WindVector.cpp">
       <Filter>model</Filter>
     </ClCompile>
+    <ClCompile Include="MyLog.cpp" />
+    <ClCompile Include="model\Candidate.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="backward\BackwardChecking.h">
@@ -211,5 +215,6 @@
     <ClInclude Include="model\WindVector.h">
       <Filter>model</Filter>
     </ClInclude>
+    <ClInclude Include="MyLog.h" />
   </ItemGroup>
 </Project>

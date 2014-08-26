@@ -318,6 +318,7 @@
     <ClCompile Include="math\Gamma.cpp" />
     <ClCompile Include="math\Gaussian.cpp" />
     <ClCompile Include="math\GaussianBlur.cpp" />
+    <ClCompile Include="model\Candidate.cpp" />
     <ClCompile Include="model\Cell.cpp" />
     <ClCompile Include="model\Cells.cpp" />
     <ClCompile Include="model\Coordinate.cpp" />
@@ -327,6 +328,7 @@
     <ClCompile Include="model\Methane.cpp" />
     <ClCompile Include="model\Wind.cpp" />
     <ClCompile Include="model\WindVector.cpp" />
+    <ClCompile Include="MyLog.cpp" />
     <ClCompile Include="protomsg\cell.pb.cc" />
     <ClCompile Include="protomsg\dect.pb.cc" />
     <ClCompile Include="protomsg\hypothesis.pb.cc" />
@@ -360,6 +362,7 @@
     <ClInclude Include="model\TypeDef.h" />
     <ClInclude Include="model\Wind.h" />
     <ClInclude Include="model\WindVector.h" />
+    <ClInclude Include="MyLog.h" />
     <ClInclude Include="protomsg\cell.pb.h" />
     <ClInclude Include="protomsg\dect.pb.h" />
     <ClInclude Include="protomsg\hypothesis.pb.h" />

@@ -10,9 +10,8 @@
 #define __SnifferCxx__BackwardChecking__
 #include <memory>
 #include <vector>
-#include <boost/log/sources/severity_feature.hpp>
-#include <boost/log/sources/severity_logger.hpp>
 #include "../model/TypeDef.h"
+#include "../MyLog.h"
 
 namespace Forward {
     class ForwardChecking;
@@ -27,15 +26,6 @@ namespace Model {
 
 	struct Candidate;
 }
-
-enum severity_level
-{
-    trace,
-    debug,
-    info,
-    error,
-    critical
-};
 
 namespace Backward {
 	using Model::range_t;
@@ -57,7 +47,7 @@ namespace Backward {
     private:
 		range_t blur_range_;
         range_t kernel_range_;
-		mutable boost::log::sources::severity_logger<severity_level> lg_;
+		mutable MyLog lg_;
     };
 }
 

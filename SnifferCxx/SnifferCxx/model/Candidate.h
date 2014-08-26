@@ -17,14 +17,17 @@ namespace Model {
 		Candidate()
 			:location_(Coordinate()),
 			concentration_(mtn_t()) {
-
 		}
+
+		friend std::ostream& operator<<(std::ostream& os, const Candidate & can);
 	};
 
 	struct Detection {
 		int time_;
 		boost::optional<Model::WindVector> wv_;
 		std::vector<Candidate> detected_;
+
+		friend std::ostream& operator<<(std::ostream& os, const Detection & dect);
 	};
 
 	struct AutoMovement {
