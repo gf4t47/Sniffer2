@@ -4,6 +4,7 @@
 #include <boost/log/sinks/text_file_backend.hpp>
 #include <boost/log/utility/setup/console.hpp>
 #include <boost/log/utility/setup/file.hpp>
+#include <boost/log/utility/setup/formatter_parser.hpp>
 #include <boost/log/utility/setup/common_attributes.hpp>
 
 namespace Support {
@@ -12,6 +13,8 @@ namespace Support {
 	namespace src = boost::log::sources;
 	namespace sinks = boost::log::sinks;
 	namespace keywords = boost::log::keywords;
+
+	BOOST_LOG_ATTRIBUTE_KEYWORD(severity, "Severity", severity_level);
 
 	MyLog::MyLog()
 	{
@@ -26,8 +29,6 @@ namespace Support {
 		std::ostringstream ostr;
 		ostr << filename << "_%N.log";
 
-		boost::log::add_common_attributes();
-
 		logging::add_file_log
 			(
 			keywords::file_name = ostr.str(),
@@ -37,6 +38,14 @@ namespace Support {
 			);
 
 		logging::add_console_log(std::cout, boost::log::keywords::format = "[%TimeStamp%]: %Message%");
+
+		logging::core::get()->set_filter
+			(
+			severity >= severity_level::trace
+			);
+
+		boost::log::add_common_attributes();
+		//logging::register_simple_formatter_factory<severity_level>(severity);
 	}
 
 }

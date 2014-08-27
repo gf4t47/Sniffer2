@@ -211,32 +211,34 @@ namespace Initializer {
 		auto ret_vec = make_shared<vector<Detection>>();
 
 		boost::optional<int> last_time;
-		//ofstream ofs("temp.txt");
+
 		for (auto const & strVec : strTable) {
-			Detection dect;
+			auto mtn = lexical_cast<double>(strVec[1]) * 10000;
+			if (mtn > Methane::getBackground()) {
+				Detection dect;
 
-			auto cur_time = lexical_cast<int>(strVec[0]);
-			if (last_time) {
-				dect.time_ = cur_time - *last_time;
+				auto cur_time = lexical_cast<int>(strVec[0]);
+				if (last_time) {
+					dect.time_ = cur_time - *last_time;
+				}
+				else {
+					dect.time_ = initial_time;
+				}
+				last_time = cur_time;
+
+				auto wind_direct = lexical_cast<int>(strVec[3]);
+				auto wind_speed = lexical_cast<double>(strVec[4]);
+				auto wind = transDirectionSpeed2Vector(wind_direct, wind_speed);
+				dect.wv_ = wind;
+
+				auto lon = lexical_cast<double>(strVec[5]); //x
+				auto lat = lexical_cast<double>(strVec[6]); //y
+				auto location = map_.locateIndex(transLonLat2Coordinate(lat, lon));
+
+				dect.detected_.push_back(Candidate(location, mtn));
+
+				ret_vec->push_back(dect);
 			}
-			else {
-				dect.time_ = initial_time;
-			}
-			last_time = cur_time;
-
-			auto wind_direct = lexical_cast<int>(strVec[3]);
-			auto wind_speed = lexical_cast<double>(strVec[4]);
-			auto wind = transDirectionSpeed2Vector(wind_direct, wind_speed);
-			dect.wv_ = wind;
-
-			auto lon = lexical_cast<double>(strVec[5]); //x
-			auto lat = lexical_cast<double>(strVec[6]); //y
-			auto location = map_.locateIndex(transLonLat2Coordinate(lat, lon));
-			//ofs << location << endl;
-			auto mtn = lexical_cast<double>(strVec[1]) * 1000000;
-			dect.detected_.push_back(Candidate(location, mtn));
-
-			ret_vec->push_back(dect);
 		}
 
 		return ret_vec;

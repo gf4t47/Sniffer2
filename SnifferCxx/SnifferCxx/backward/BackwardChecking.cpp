@@ -139,7 +139,7 @@ namespace Backward {
         normalize(*ret_hyps, hyps_probability);
         
         for (int i=0; i<ret_hyps->size(); i++) {
-            BOOST_LOG_SEV(*lg_, severity_level::info) << "hypothesis"<<i<<"'s prob = " << (*ret_hyps)[i].getProbability();
+            BOOST_LOG_SEV(*lg_, severity_level::info) << "hypothesis"<<i<<"'s probability = " << (*ret_hyps)[i].getProbability();
         }
         
         return ret_hyps;
