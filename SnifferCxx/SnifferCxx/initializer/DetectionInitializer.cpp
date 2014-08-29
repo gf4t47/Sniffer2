@@ -32,8 +32,9 @@ namespace Initializer {
 		{"multithread", execute_mode::multi_thread}
 	};
 
-	DetectionInitializer::DetectionInitializer(string cfg_file, const Map3D & map)
-		:map_(map) {
+	DetectionInitializer::DetectionInitializer(string cfg_file, const Map3D & map, int iterations_per_sec)
+		:map_(map),
+		iterations_per_sec_(iterations_per_sec) {
 
 		try {
 			parseJson(cfg_file);
@@ -103,6 +104,7 @@ namespace Initializer {
 	}
 
 	bool DetectionInitializer::parseJson(string json_file) {
+		const string strInit = "init";
 		const string strDetection = "detection";
 		const string strCandidate = "candidate";
 		const string strRunMode = "runmode";
@@ -115,6 +117,8 @@ namespace Initializer {
 		read_json(json_file, pt);
 
 		mode_ = String2Mode[pt.get<string>(strRunMode)];
+
+		steady_stage_initializer_ = parseJsonNode(strInit, pt);
 
 		dects_ = parseJsonNode(strDetection, pt);
 
@@ -205,7 +209,6 @@ namespace Initializer {
 	}
 
 	shared_ptr<vector<Detection>> DetectionInitializer::transStringTable2Struct(const std::vector<std::vector<string>> & strTable) const{
-		const int initial_time = 3000; //milliseconds
 		using boost::lexical_cast;
 
 		auto ret_vec = make_shared<vector<Detection>>();
@@ -219,10 +222,10 @@ namespace Initializer {
 
 				auto cur_time = lexical_cast<int>(strVec[0]);
 				if (last_time) {
-					dect.time_ = cur_time - *last_time;
+					dect.time_ = (cur_time - *last_time) * iterations_per_sec_ / 1000;
 				}
 				else {
-					dect.time_ = initial_time;
+					dect.time_ = 50;
 				}
 				last_time = cur_time;
 
@@ -267,21 +270,25 @@ namespace Initializer {
 			strTable.push_back(strVec);
 		}
 
+		mode_ = RunMode::execute_mode::single;
 		dects_ = transStringTable2Struct(strTable);
-		mode_ = RunMode::execute_mode::asyn_event;
+
 
 		return dects_ != nullptr;
 	}
+	shared_ptr<vector<Detection>> DetectionInitializer::getInitSteadyStage() const {
+		return steady_stage_initializer_;
+	}
 
-	shared_ptr<vector<Detection>> DetectionInitializer::getDetections() const{
+	shared_ptr<vector<Detection>> DetectionInitializer::getDetections() const {
 		return dects_;
 	}
 
-	shared_ptr<vector<Detection>> DetectionInitializer::getCandidates() const{
+	shared_ptr<vector<Detection>> DetectionInitializer::getCandidates() const {
 		return can_;
 	}
 
-	shared_ptr<AutoMovement> DetectionInitializer::getAutoMovementInfo() const{
+	shared_ptr<AutoMovement> DetectionInitializer::getAutoMovementInfo() const {
 		return auto_movement_;
 	}
 

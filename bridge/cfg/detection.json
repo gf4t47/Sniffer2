@@ -1,10 +1,23 @@
 {
-    "runmode" : "asyn",
+    "runmode" : "single",
+
+    "init" :
+    [
+        {
+            "time" : 50,
+            "wind" : [1.96, 0.28, 0],
+            "dect" :
+            [
+                {"location" : [0, 0, 0], "concentration" : 0.25}
+            ],
+            "repeat" : 1
+        }
+    ],
     
     "detection" :
     [
         {
-            "time" : 5000,
+            "time" : 25,
             // "wind" : [1.96, 0.28, 0],
             "dect" :
             [
@@ -14,7 +27,7 @@
         },
 
         {
-            "time" : 1000,
+            "time" : 25,
             "dect" :
             [
             	{"location" : [-2, 25, 0], "concentration" : 0.25}
@@ -24,7 +37,7 @@
 
 
         {
-            "time" : 1000,
+            "time" : 25,
             "dect" :
             [
                 {"location" : [-4, 35, 0], "concentration" : 0.5}
@@ -33,7 +46,7 @@
         },
 
         {
-            "time" : 1000,
+            "time" : 25,
             "dect" :
             [
                 {"location" : [-6, 45, 0], "concentration" : 1.5}

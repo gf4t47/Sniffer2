@@ -29,20 +29,23 @@ namespace Forward {
 	class ForwardChecking {
 
 	public:
-        ForwardChecking(range_t kernel_range);
+        ForwardChecking(range_t kernel_range, int iteration_per_sec);
 		virtual ~ForwardChecking();
 
-		std::shared_ptr<Model::Cells> Deduce(Model::Hypothesis & hypothesis, const Model::Map3D & map, size_t count) const;
-        std::shared_ptr<Model::Hypotheses> UpdateMethane(Model::Hypotheses & hyps, const Model::Map3D & map, size_t count) const;
+		std::shared_ptr<Model::Cells> Deduce(Model::Hypothesis & hypothesis, const Model::Map3D & map, int time_count, bool keep_history) const;
+        std::shared_ptr<Model::Hypotheses> UpdateMethane(Model::Hypotheses & hyps, const Model::Map3D & map, int time_count) const;
+		std::shared_ptr<Model::Hypotheses> initHypotheses(Model::Hypotheses & hyps, const Model::Map3D & map, int time_count) const;
 
 		void update_once(Model::Hypotheses & hyps, const Model::Map3D & map) const;
+		int getIterationPerSecond() const;
 				        
     protected:
 		virtual std::shared_ptr<Model::Cells> calcEnds(const Model::Cells & cells, const Model::Map3D & map) const = 0;
         range_t getKernelRange() const;
-        
+
     private:
         range_t kernel_range_;
+		int iteration_per_sec_;
 	};
 
 }

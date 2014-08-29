@@ -10,8 +10,8 @@ namespace Forward {
     
     const int blur_concentration_threshold = 7;
     
-	UpdateByConvolution::UpdateByConvolution(range_t kernel_range)
-    :UpdateByCell(kernel_range){
+	UpdateByConvolution::UpdateByConvolution(range_t kernel_range, int iteration_per_sec)
+    :UpdateByCell(kernel_range, iteration_per_sec) {
 
 	}
 
@@ -38,7 +38,8 @@ namespace Forward {
         
 		if (cell.getMethane().getConcentration() > blur_concentration_threshold)
 		{
-			auto ideal_end_pair = map.calcPosition(cell.getCoordinate(), cell.getWind().getCalcWind() + cell.getMethane().getPotential());
+			auto wv_per_iteration = cell.getWind().getCalcWind() * (1.0 / (double)getIterationPerSecond());
+			auto ideal_end_pair = map.calcPosition(cell.getCoordinate(), wv_per_iteration + cell.getMethane().getPotential());
 			auto endCell = calcEndcell(cell.getCoordinate(), get<0>(ideal_end_pair), map, true);
 			if (endCell) {
 				endCell->setMethane(Methane(cell.getMethane().getConcentration(), get<1>(ideal_end_pair)));

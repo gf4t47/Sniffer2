@@ -14,9 +14,13 @@
 #include "../model/Map3D.h"
 #include "../model/Candidate.h"
 #include "../initializer/DetectionInitializer.h"
+#include "../support/MyLog.h"
 
 namespace ProtoMsg {
     using namespace std;
+	using namespace Support;
+
+	unique_ptr<MyLog> MessageBuilder::lg_(make_unique<MyLog>());
 
 	unordered_map<Model::CellTag, CellTag, Model::enum_hash> MessageBuilder::Tag2Msg = { 
 			{ Model::CellTag::Air, CellTag::Air },
@@ -72,21 +76,25 @@ namespace ProtoMsg {
         return msg_map;
     }
     
-    shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const vector<shared_ptr<Model::Hypotheses>> & hyps_his, size_t ideal_cells) {
+    shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const vector<shared_ptr<Model::Hypotheses>> & hyps_his, size_t ideal_cells, bool only_detection /* = false*/) {
         double total_cells = 0.0;
+		auto count_iteraton = 0;
         for (auto hyps : hyps_his) {
             for (auto const & hyp : *hyps) {
                 for (auto i=0; i<hyp.getCelllsHistory().size(); i++) {
                     auto const & cells = hyp.getCelllsHistory()[i];
                     total_cells += cells->size();
                 }
+				count_iteraton += hyp.getCelllsHistory().size();
             }
         }
+		BOOST_LOG_SEV(*lg_, severity_level::debug) << "total iterations in memory is " << count_iteraton;
         
         size_t cell_interval = round(total_cells / ideal_cells);
         
 		auto msg_hyps_his = make_shared<Hypotheses_history>();
 
+		auto count_output = 0;
 		for (auto hyps : hyps_his) {
 			auto msg_hyps = msg_hyps_his->add_hyps();
 			for (auto const & hyp : *hyps) {               
@@ -106,23 +114,40 @@ namespace ProtoMsg {
 //                    msg_leak->set_allocated_location(msg_coord);
                 }
                 
-                for (auto i = 0; i < hyp.getCelllsHistory().size(); i++) {
-                    auto const & cells = hyp.getCelllsHistory()[i];
-                    if (cell_interval > 1 && i % cell_interval != 0) {
-                        continue;
-                    }
-                    
-                    auto msg_cells = msg_hyp->add_methene_cells();
-                    
-                    for (auto const & cell_pair : *cells) {
-                        auto const & cell = cell_pair.second;
-                        
-                        auto msg_cell = msg_cells->add_cell();
-                        buildCellMessage(cell, msg_cell);
-                    }
-                }
+				if (only_detection) {
+					auto const cells = hyp.getMethaneCells();
+					if (cells) {
+						auto msg_cells = msg_hyp->add_methene_cells();
+						for (auto const & cell_pair : *cells) {
+							auto const & cell = cell_pair.second;
+
+							auto msg_cell = msg_cells->add_cell();
+							buildCellMessage(cell, msg_cell);
+						}
+						count_output++;
+					}
+				}
+				else {
+					for (auto i = 0; i < hyp.getCelllsHistory().size(); i++) {
+						if (cell_interval > 1 && i % cell_interval != 0) {
+							continue;
+						}
+
+						auto const & cells = hyp.getCelllsHistory()[i];
+						auto msg_cells = msg_hyp->add_methene_cells();
+						for (auto const & cell_pair : *cells) {
+							auto const & cell = cell_pair.second;
+
+							auto msg_cell = msg_cells->add_cell();
+							buildCellMessage(cell, msg_cell);
+						}
+						count_output++;
+					}
+				}
 			}
 		}
+
+		BOOST_LOG_SEV(*lg_, severity_level::debug) << "total iterations written into message is " << count_output;
 
 		return msg_hyps_his;
     }

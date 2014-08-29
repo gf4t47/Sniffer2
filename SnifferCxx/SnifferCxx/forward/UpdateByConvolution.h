@@ -5,7 +5,7 @@ namespace Forward {
 
 	class UpdateByConvolution :	public UpdateByCell {
 	public:
-		UpdateByConvolution(range_t kernel_range);
+		UpdateByConvolution(range_t kernel_range, int iteration_per_sec);
 		virtual ~UpdateByConvolution();
        
     protected:

@@ -11,7 +11,7 @@ namespace RunMode {
 		AsynEvent(const Model::Map3D & map, const Forward::ForwardChecking & forward, const Backward::BackwardChecking & backward);
 		virtual ~AsynEvent();
 
-		void run(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, const std::vector<Model::Detection> & dect_vec);
+		void run(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, const std::vector<Model::Detection> & dect_vec, const std::shared_ptr<std::vector<Model::Detection>> init);
 
 	private:
 		void handle_Deduce(Model::Hypotheses & hyps);

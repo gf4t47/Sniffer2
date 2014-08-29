@@ -17,8 +17,8 @@ namespace Forward {
 	using namespace std;
 	using namespace Model;
     
-    UpdateByCell::UpdateByCell(range_t kernel_range)
-    :ForwardChecking(kernel_range) {
+    UpdateByCell::UpdateByCell(range_t kernel_range, int iteration_per_sec)
+    :ForwardChecking(kernel_range, iteration_per_sec) {
         
     }
 
@@ -38,15 +38,16 @@ namespace Forward {
 	// Parameter: const Map3D & map
 	//************************************
 	shared_ptr<pos_conc_t> UpdateByCell::calcGaussianEnds(const Cell & start_cell, const Map3D & map) const {
-		auto winds = Math::Gaussian::RandomWindVectors(start_cell.getWind().getCalcWind(), getKernelRange() * map.getUnit(), ceil(start_cell.getMethane().getConcentration()));
+		auto wv_per_iteration = start_cell.getWind().getCalcWind() * (1.0 / (double)getIterationPerSecond());
+		auto winds = Math::Gaussian::RandomWindVectors(wv_per_iteration, getKernelRange() * map.getUnit(), ceil(start_cell.getMethane().getConcentration()));
 		auto concentration_per_wind = 1;
 
 		auto map_ret = make_shared<pos_conc_t>(); //a hash table used to merge the methane particles move into same cell.
-		for_each(winds->begin(), winds->end(),
-			[&map_ret, concentration_per_wind, &start_cell, &map](const WindVector & wv) {
+		for (auto const & wv : *winds) {
 			Coordinate position;
 			WindVector potential;
-			tie(position, potential)= map.calcPosition(start_cell.getCoordinate(), wv + start_cell.getMethane().getPotential());
+
+			tie(position, potential) = map.calcPosition(start_cell.getCoordinate(), wv + start_cell.getMethane().getPotential());
 			auto find_ret = map_ret->find(position);
 			if (find_ret == map_ret->end()) {
 				(*map_ret)[position] = Methane(concentration_per_wind, potential);
@@ -54,7 +55,7 @@ namespace Forward {
 			else {
 				(*map_ret)[position] = Methane(concentration_per_wind, potential) + (*map_ret)[position];
 			}
-		});
+		}
 
 		return map_ret;
 	}

@@ -19,15 +19,18 @@ namespace RunMode {
 	{
 	}
 
-	void AsynEvent::run(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, const std::vector<Model::Detection> & dect_vec) {
+	void AsynEvent::run(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, const std::vector<Model::Detection> & dect_vec, const std::shared_ptr<std::vector<Model::Detection>> init) {
 		if (dect_vec.size() <= 0) {
 			return;
+		}
+
+		if (init) {
+			hyps_his.push_back(init2steadystage(*hyps_his.back(), *init));
 		}
 
 		auto dect = dect_vec.begin();
 		auto wind = dect->wv_;
 		if (wind) {
-			//auto wv = *wind;
 			map_.updateWind(*wind);
 		}
 

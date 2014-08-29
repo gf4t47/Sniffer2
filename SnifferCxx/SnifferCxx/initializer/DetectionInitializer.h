@@ -28,15 +28,12 @@ namespace Model {
 	class WindVector;
 }
 
-namespace RunMode {
-	class Executor;
-}
-
 namespace Initializer {  
     class DetectionInitializer {
     public:
-        DetectionInitializer(std::string cfg_file, const Model::Map3D & map);
+        DetectionInitializer(std::string cfg_file, const Model::Map3D & map, int iterations_per_sec);
         
+		std::shared_ptr<std::vector<Model::Detection>> getInitSteadyStage() const;
         std::shared_ptr<std::vector<Model::Detection>> getDetections() const;
 		std::shared_ptr<std::vector<Model::Detection>> getCandidates() const;
         std::shared_ptr<Model::AutoMovement> getAutoMovementInfo() const;
@@ -58,11 +55,15 @@ namespace Initializer {
 		static std::unordered_map<std::string, RunMode::execute_mode> String2Mode;
         
     private:
+		std::shared_ptr<std::vector<Model::Detection>> steady_stage_initializer_;
         std::shared_ptr<std::vector<Model::Detection>> dects_;
         std::shared_ptr<std::vector<Model::Detection>> can_;
         std::shared_ptr<Model::AutoMovement> auto_movement_;
 		RunMode::execute_mode mode_;
+
 		const Model::Map3D & map_;
+		int iterations_per_sec_;
+
 		static std::unique_ptr<Support::MyLog> lg_;
     };
 }

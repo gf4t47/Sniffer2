@@ -24,11 +24,11 @@ namespace Initializer {
 	using namespace Backward;
 	using namespace Forward;
     
-    unordered_map<string, function<shared_ptr<ForwardChecking>(Forward::range_t)>> HypothesisInitializer::String2Forward =
+    unordered_map<string, function<shared_ptr<ForwardChecking>(Forward::range_t, int it_per_sec)>> HypothesisInitializer::String2Forward =
     {
-		{ "byCell", [](Forward::range_t range){return make_shared<UpdateByCell>(range); } },
-		{ "byBlur", [](Forward::range_t range){return make_shared<UpdateByConvolution>(range); } },
-		{ "byParticle", [](Forward::range_t range){return nullptr; } }
+		{ "byCell", [](Forward::range_t range, int iteration_per_sec){return make_shared<UpdateByCell>(range, iteration_per_sec); } },
+		{ "byBlur", [](Forward::range_t range, int iteration_per_sec){return make_shared<UpdateByConvolution>(range, iteration_per_sec); } },
+		{ "byParticle", [](Forward::range_t range, int iteration_per_sec){return nullptr; } }
     };
     
     HypothesisInitializer::HypothesisInitializer(string cfg_file)
@@ -59,6 +59,7 @@ namespace Initializer {
         const string strBlurRange = "blurRange";
         const string strKernelRange = "kernelRange";
         const string strForwardChecking = "forwardChecking";
+		const string strIterations = "iterations_per_second";
         const string strHypothesis = "hypothesis";
         const string strLocation = "location";
         const string strConcentration = "concentration";
@@ -89,13 +90,19 @@ namespace Initializer {
         else {
 			ideal_cells_ = std::numeric_limits<ideal_t>::max();
         }
+
+		auto iterations_per_second = 5;
+		auto iiterations_node = pt.get_optional<int>(strIterations);
+		if (iiterations_node) {
+			iterations_per_second = *iiterations_node;
+		}
         
-        forward_ = make_shared<UpdateByCell>(kernel_range);
+        forward_ = make_shared<UpdateByCell>(kernel_range, iterations_per_second);
         auto forward_node = pt.get_optional<string>(strForwardChecking);
         if (forward_node) {
             auto find_ret = String2Forward.find(*forward_node);
             if (find_ret != String2Forward.end()) {
-                forward_ = (find_ret->second)(kernel_range);
+                forward_ = (find_ret->second)(kernel_range, iterations_per_second);
             }
         }
         

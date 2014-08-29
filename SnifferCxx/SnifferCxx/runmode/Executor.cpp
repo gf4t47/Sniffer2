@@ -20,7 +20,7 @@ namespace RunMode {
 	Executor::~Executor() {
 	}
 
-	std::shared_ptr<Model::Hypotheses> Executor::run_once(Model::Hypotheses & hyps, const Model::Detection & dect) {
+	std::shared_ptr<Model::Hypotheses> Executor::run_one_dect(Model::Hypotheses & hyps, const Model::Detection & dect) {
 		if (dect.wv_) {
 			map_.updateWind(*dect.wv_);
 		}
@@ -28,9 +28,27 @@ namespace RunMode {
 		return backward_.updateHypotheses(*forward_.UpdateMethane(hyps, map_, dect.time_), map_, dect.detected_);
 	}
 
-	void Executor::run(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, const std::vector<Model::Detection> & dect_vec) {
+	std::shared_ptr<Model::Hypotheses> Executor::init2steadystage(const Model::Hypotheses & hyps, const std::vector<Model::Detection> & init) {
+		auto curHyps = make_shared<Model::Hypotheses>(hyps);
+
+		for (auto const & it : init) {
+			if (it.wv_) {
+				map_.updateWind(*it.wv_);
+			}
+
+			curHyps = forward_.initHypotheses(*curHyps, map_, it.time_);
+		}
+
+		return curHyps;
+	}
+
+	void Executor::run(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, const std::vector<Model::Detection> & dect_vec, const std::shared_ptr<std::vector<Model::Detection>> init) {
+		if (init) {
+			hyps_his.push_back(init2steadystage(*hyps_his.back(), *init));
+		}
+
 		for (auto const & dect : dect_vec) {
-			hyps_his.push_back(run_once(*hyps_his.back(), dect));
+			hyps_his.push_back(run_one_dect(*hyps_his.back(), dect));
 		}
 	}
 
@@ -48,7 +66,7 @@ namespace RunMode {
 			next_dect.detected_.push_back(Candidate(max_can.location_, 2.0));
 			dect_vec.push_back(next_dect);
 
-			hyps_his.push_back(run_once(*hyps_his.back(), next_dect));
+			hyps_his.push_back(run_one_dect(*hyps_his.back(), next_dect));
 		}
 	}
 }

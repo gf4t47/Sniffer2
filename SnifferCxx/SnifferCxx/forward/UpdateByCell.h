@@ -28,7 +28,7 @@ namespace Forward {
 
 	class UpdateByCell : public ForwardChecking {
 	public:
-        UpdateByCell(range_t kernel_range);
+        UpdateByCell(range_t kernel_range, int interation_per_sec);
 		~UpdateByCell();
 
 	protected:
