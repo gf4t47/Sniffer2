@@ -1,7 +1,9 @@
 #include "Hypotheses.h"
 #include <algorithm>
+#include <fstream>
 
 namespace Model {
+	using namespace std;
 
 	Hypotheses::Hypotheses()
 	:Asyn_Deduce_(true) {
@@ -30,6 +32,13 @@ namespace Model {
 
 	void Hypotheses::setAsynFlag(bool val) {
 		Asyn_Deduce_ = val;
+	}
+
+	ofstream& operator<<(ofstream& fs, const Hypotheses& hyps) {
+		fs << static_cast<int>(hyps.size());
+		for_each(hyps.begin(), hyps.end(), [&fs](const Hypothesis & hyp){fs << hyp; });
+
+		return fs;
 	}
 
 }

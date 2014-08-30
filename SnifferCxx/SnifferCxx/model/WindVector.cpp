@@ -9,6 +9,8 @@
 #include "WindVector.h"
 #include "Coordinate.h"
 #include <numeric>
+#include <fstream>
+#include <sstream>
 
 namespace Model {
 	using namespace std;
@@ -71,5 +73,12 @@ namespace Model {
 		os << "(" << wv[0] << ", " << wv[1] << ", " << wv[2] << ")";
 
 		return os;
+	}
+
+	ofstream& operator<<(ofstream& fs, const WindVector& wv) {
+	
+		fs << wv[0] << wv[1] << wv[2];
+
+		return fs;
 	}
 }

@@ -1,7 +1,7 @@
 #include "Hypothesis.h"
 #include "Cells.h"
 #include "Candidate.h"
-//#include <thread>
+#include <fstream>
 
 namespace Model {
 	using namespace std;
@@ -79,5 +79,19 @@ namespace Model {
     
 	void Hypothesis::setProbability(double val) {
 		probability_ = val;
+	}
+
+	ofstream& operator<<(ofstream& fs, const Hypothesis& hyp) {
+		fs << hyp.getProbability();
+
+		auto const & leaks = hyp.getLeaks();
+		fs << static_cast<int>(leaks.size());
+		for_each(leaks.begin(), leaks.end(), [&fs](const Candidate& can){fs << can; });
+
+		auto const & cells_his = hyp.getCelllsHistory();
+		fs << static_cast<int>(cells_his.size());
+		for_each(cells_his.begin(), cells_his.end(), [&fs](shared_ptr<Cells> cells){fs << *cells; });
+
+		return fs;
 	}
 }

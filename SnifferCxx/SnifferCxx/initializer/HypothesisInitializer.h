@@ -39,6 +39,7 @@ namespace Initializer {
 		std::shared_ptr<Forward::ForwardChecking> getForwardAlg() const;
         std::shared_ptr<Model::Hypotheses> getHyptheses() const;
         ideal_t getIdealCells() const;
+		bool getDetectionOnly() const;
         bool load(std::string cfg_file);
         
     public:
@@ -49,6 +50,7 @@ namespace Initializer {
 		std::shared_ptr<Forward::ForwardChecking> forward_;
         std::shared_ptr<Model::Hypotheses> hyps_;
         ideal_t ideal_cells_;
+		bool output_detection_only_;
     };
 }
 

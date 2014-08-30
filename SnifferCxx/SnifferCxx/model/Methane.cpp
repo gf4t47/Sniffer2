@@ -7,6 +7,8 @@
 //
 
 #include "Methane.h"
+#include <fstream>
+#include <sstream>
 
 namespace Model {
 	using namespace std;
@@ -66,4 +68,9 @@ namespace Model {
 
 		return os;
 	}
+
+	//ofstream& operator<<(ofstream& fs, const Methane& mtn) {
+	//	fs.write(reinterpret_cast<char*>(&(double)mtn.concentration_), sizeof mtn.concentration_);
+	//	return fs;
+	//}
 }

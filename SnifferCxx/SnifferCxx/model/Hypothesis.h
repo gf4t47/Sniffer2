@@ -25,6 +25,8 @@ namespace Model {
         const std::shared_ptr<Cells> getMethaneCells() const;
 		const std::shared_ptr<Cells> popMethaneCells();
 		const std::vector<const std::shared_ptr<Cells>> & getCelllsHistory() const;
+
+		friend std::ofstream& operator<<(std::ofstream& fs, const Hypothesis& hyp);
         
     private:
         int getCurrentCellsHisIndex() const;

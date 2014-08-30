@@ -51,6 +51,10 @@ namespace Initializer {
     ideal_t HypothesisInitializer::getIdealCells() const {
         return ideal_cells_;
     }
+
+	bool HypothesisInitializer::getDetectionOnly() const {
+		return output_detection_only_;
+	}
     
     bool HypothesisInitializer::load(string cfg_file) {
         const Forward::range_t default_blurRange = 1;
@@ -64,6 +68,7 @@ namespace Initializer {
         const string strLocation = "location";
         const string strConcentration = "concentration";
         const string strIdealCells = "outputCells";
+		const string strDetectionOnly = "output_detection_only";
         
         using boost::property_tree::ptree;
         using boost::lexical_cast;
@@ -90,6 +95,16 @@ namespace Initializer {
         else {
 			ideal_cells_ = std::numeric_limits<ideal_t>::max();
         }
+
+		auto detection_only_node = pt.get_optional<bool>(strDetectionOnly);
+		if (detection_only_node) {
+			output_detection_only_ = *detection_only_node;
+		}
+		else {
+			output_detection_only_ = false;
+		}
+
+		//cout << "detection only = " << output_detection_only_ << endl;
 
 		auto iterations_per_second = 5;
 		auto iiterations_node = pt.get_optional<int>(strIterations);

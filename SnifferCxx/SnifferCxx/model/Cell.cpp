@@ -7,6 +7,8 @@
 //
 
 #include "Cell.h"
+#include <fstream>
+#include <sstream>
 
 namespace Model {
 	using namespace std;
@@ -89,12 +91,26 @@ namespace Model {
 	ostream& operator<<(ostream& os, const Cell& cell)
 	{
 		os << "{" << endl;
-		os << " Coord: " << cell.coord_ << endl;
+		os << " Coord: ";
+		os << cell.coord_ << endl;
 		os << " Tag: " << Cell::TagString[cell.tag_] << endl;
-		os << " Wind: " << cell.wind_ << endl;
-		os << " Methane: " << cell.mtn_ << endl;
+		os << " Wind: ";
+		os << cell.wind_ << endl;
+		os << " Methane: ";
+		os << cell.mtn_ << endl;
 		os << "}" << endl;
 
 		return os;
+	}
+
+	ofstream& operator<<(ofstream& fs, const CellTag& tag) {
+		fs << static_cast<int>(tag);
+		return fs;
+	}
+
+	ofstream& operator<<(ofstream& fs, const Cell& cell) {
+		auto tag = cell.tag_;
+		fs << cell.coord_ << tag << cell.wind_ << cell.mtn_.getConcentration();
+		return fs;
 	}
 }

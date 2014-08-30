@@ -34,6 +34,7 @@ namespace Model {
         
 		bool operator== (const Wind & oth) const;
 		friend std::ostream& operator<<(std::ostream& os, const Wind& wind);
+		friend std::ofstream& operator<<(std::ofstream& fs, const Wind& wind);
         
         friend class boost::serialization::access;
         template<class Archive>

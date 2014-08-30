@@ -34,6 +34,7 @@ namespace Model {
 		Coordinate & operator= (const coord_t & rhs);
 
 		friend std::ostream& operator<<(std::ostream& os, const Coordinate& coord);
+		friend std::ofstream& operator<<(std::ofstream& fs, const Coordinate& coord);
         
         friend class boost::serialization::access;
         template<class Archive>

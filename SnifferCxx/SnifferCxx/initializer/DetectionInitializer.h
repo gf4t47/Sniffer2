@@ -49,7 +49,8 @@ namespace Initializer {
         
     private:
 		std::shared_ptr<std::vector<Model::Detection>> parseJsonNode(const std::string & nodeName, const boost::property_tree::ptree & pt) const;
-		std::shared_ptr<std::vector<Model::Detection>> transStringTable2Struct(const std::vector<std::vector<std::string>> & strTable) const;
+		void transStringTable2Struct(const std::vector<std::vector<std::string>> & strTable);
+		Model::Detection transStringVec2Struct(const std::vector<std::string> & strVec, int last_time) const;
 
 	public:
 		static std::unordered_map<std::string, RunMode::execute_mode> String2Mode;

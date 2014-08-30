@@ -26,6 +26,8 @@ namespace Model{
 
 		bool mergeCellsByAddMethane(const Cells & cells);
 
+		friend std::ofstream& operator<<(std::ofstream& fs, const Cells& cells);
+
 	private:
 		static std::unique_ptr<Support::MyLog> lg_;
 	};

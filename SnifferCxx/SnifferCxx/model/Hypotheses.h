@@ -15,6 +15,8 @@ namespace Model {
 		bool getAsynFlag();
 		void setAsynFlag(bool val);
 
+		friend std::ofstream& operator<<(std::ofstream& fs, const Hypotheses& hyps);
+
 	private:
 		bool Asyn_Deduce_;
 	};

@@ -31,6 +31,7 @@ namespace Model {
 		Methane operator+ (const Methane & oth) const;
 
 		friend std::ostream& operator<<(std::ostream& os, const Methane& mtn);
+		//friend std::ofstream& operator<<(std::ofstream& fs, const Methane& mtn);
         
         friend class boost::serialization::access;
         template<class Archive>

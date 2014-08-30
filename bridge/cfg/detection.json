@@ -4,7 +4,7 @@
     "init" :
     [
         {
-            "time" : 50,
+            "time" : 10,
             "wind" : [1.96, 0.28, 0],
             "dect" :
             [
@@ -17,7 +17,7 @@
     "detection" :
     [
         {
-            "time" : 25,
+            "time" : 5,
             // "wind" : [1.96, 0.28, 0],
             "dect" :
             [
@@ -27,7 +27,7 @@
         },
 
         {
-            "time" : 25,
+            "time" : 5,
             "dect" :
             [
             	{"location" : [-2, 25, 0], "concentration" : 0.25}
@@ -37,7 +37,7 @@
 
 
         {
-            "time" : 25,
+            "time" : 5,
             "dect" :
             [
                 {"location" : [-4, 35, 0], "concentration" : 0.5}
@@ -46,7 +46,7 @@
         },
 
         {
-            "time" : 25,
+            "time" : 5,
             "dect" :
             [
                 {"location" : [-6, 45, 0], "concentration" : 1.5}

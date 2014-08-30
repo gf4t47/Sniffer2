@@ -7,8 +7,9 @@
 //
 
 #include "Cells.h"
-#include <sstream>
 #include "../support/MyLog.h"
+#include <fstream>
+#include <sstream>
 
 namespace Model {
 	using namespace std;
@@ -59,8 +60,10 @@ namespace Model {
 				else {
 					ostringstream ostr;
 					ostr << "two cells to be merged are not same: " << endl; 
-					ostr << "cell1 = " << find_ret->second << endl;
-					ostr << "cell2 = " << oth_entry.second << endl;
+					ostr << "cell1 = ";
+					ostr << find_ret->second << endl;
+					ostr << "cell2 = ";
+					ostr << oth_entry.second << endl;
 
 					BOOST_LOG_SEV(*lg_, severity_level::error) << ostr.str();
 					throw invalid_argument(ostr.str());
@@ -69,5 +72,13 @@ namespace Model {
 		}
 
 		return true;
+	}
+
+	ofstream& operator<<(ofstream& fs, const Cells& cells) {
+		//fs.write(reinterpret_cast<char*>(static_cast<int>(cells.size())), sizeof cells.size());
+		fs << static_cast<int>(cells.size());
+		for_each(cells.begin(), cells.end(), [&fs](const cells_t::value_type & val_pair){fs << val_pair.second; });
+
+		return fs;
 	}
 }

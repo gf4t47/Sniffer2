@@ -19,9 +19,9 @@
 
 namespace Model {
 	enum class CellTag {
-		Air,
-		Ground,
-		Building
+		Air = 1,
+		Ground = 2,
+		Building = 3
 	};
 
 	struct enum_hash
@@ -56,6 +56,8 @@ namespace Model {
 
 		bool operator== (const Cell & oth) const;
 		friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
+		friend std::ofstream& operator<<(std::ofstream& fs, const Cell& cell);
+		friend std::ofstream& operator<<(std::ofstream& fs, const CellTag& tag);
         
         friend class boost::serialization::access;
         template<class Archive>

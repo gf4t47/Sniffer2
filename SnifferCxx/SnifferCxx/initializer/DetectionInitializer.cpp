@@ -22,6 +22,7 @@ namespace Initializer {
 	using boost::property_tree::ptree;
 
 	const auto PI = boost::math::constants::pi<double>();
+	const int mtn_factor = 2.5 * 10000;
 
 	unique_ptr<MyLog> DetectionInitializer::lg_(make_unique<MyLog>());
 
@@ -43,6 +44,10 @@ namespace Initializer {
 			if (!parseText(cfg_file)) {
 				throw e;
 			}
+		}
+
+		for (int i = 0; i < steady_stage_initializer_->size(); i++) {
+			BOOST_LOG_SEV(*lg_, severity_level::trace) << "load initialization" << i << " = " << steady_stage_initializer_->at(i);
 		}
 
 		for (int i = 0; i < dects_->size(); i++) {
@@ -205,46 +210,61 @@ namespace Initializer {
 		}
 
 		return WindVector(easting, northing, 0);
-
 	}
 
-	shared_ptr<vector<Detection>> DetectionInitializer::transStringTable2Struct(const std::vector<std::vector<string>> & strTable) const{
+	Model::Detection DetectionInitializer::transStringVec2Struct(const std::vector<std::string> & strVec, int last_time) const {
+			using boost::lexical_cast;
+
+			Detection dect;
+
+			auto cur_time = lexical_cast<int>(strVec[0]);
+			dect.time_ = (cur_time - last_time) * iterations_per_sec_ / 1000;
+
+			auto mtn = lexical_cast<double>(strVec[1]) * mtn_factor;
+
+			auto wind_direct = lexical_cast<int>(strVec[3]);
+			auto wind_speed = lexical_cast<double>(strVec[4]);
+			auto wind = transDirectionSpeed2Vector(wind_direct, wind_speed);
+			dect.wv_ = wind;
+
+			auto lon = lexical_cast<double>(strVec[5]); //x
+			auto lat = lexical_cast<double>(strVec[6]); //y
+			auto location = map_.locateIndex(transLonLat2Coordinate(lat, lon));
+
+			dect.detected_.push_back(Candidate(location, mtn));
+
+			return dect;
+	}
+
+	void DetectionInitializer::transStringTable2Struct(const std::vector<std::vector<std::string>> & strTable){
+		const int init_iterations = 50;
 		using boost::lexical_cast;
 
-		auto ret_vec = make_shared<vector<Detection>>();
+		steady_stage_initializer_ = make_shared<vector<Detection>>();
+		auto init_time = lexical_cast<int>(strTable.front().front());
+		auto end_time = lexical_cast<int>(strTable.back().front());
+		auto index = 1;
+		auto count_init = 0;
+		if (end_time - init_time > 60000) {
+			for (; index < strTable.size(); index++) {
+				steady_stage_initializer_->push_back(transStringVec2Struct(strTable[index], init_time));
+				init_time = lexical_cast<int>(strTable[index][0]);
 
-		boost::optional<int> last_time;
-
-		for (auto const & strVec : strTable) {
-			auto mtn = lexical_cast<double>(strVec[1]) * 10000;
-			if (mtn > Methane::getBackground()) {
-				Detection dect;
-
-				auto cur_time = lexical_cast<int>(strVec[0]);
-				if (last_time) {
-					dect.time_ = (cur_time - *last_time) * iterations_per_sec_ / 1000;
+				count_init += steady_stage_initializer_->back().time_;
+				if (count_init >= init_iterations) {
+					break;
 				}
-				else {
-					dect.time_ = 50;
-				}
-				last_time = cur_time;
-
-				auto wind_direct = lexical_cast<int>(strVec[3]);
-				auto wind_speed = lexical_cast<double>(strVec[4]);
-				auto wind = transDirectionSpeed2Vector(wind_direct, wind_speed);
-				dect.wv_ = wind;
-
-				auto lon = lexical_cast<double>(strVec[5]); //x
-				auto lat = lexical_cast<double>(strVec[6]); //y
-				auto location = map_.locateIndex(transLonLat2Coordinate(lat, lon));
-
-				dect.detected_.push_back(Candidate(location, mtn));
-
-				ret_vec->push_back(dect);
 			}
 		}
 
-		return ret_vec;
+		dects_ = make_shared<vector<Detection>>();
+		for (; index < strTable.size(); index++) {
+			auto mtn = lexical_cast<double>(strTable[index][1]) * mtn_factor;
+			if (mtn > Methane::getBackground()) {
+				dects_->push_back(transStringVec2Struct(strTable[index], init_time));
+				init_time = lexical_cast<int>(strTable[index][0]);
+			}
+		}
 	}
 
 	bool DetectionInitializer::parseText(string text_file) {
@@ -271,7 +291,7 @@ namespace Initializer {
 		}
 
 		mode_ = RunMode::execute_mode::single;
-		dects_ = transStringTable2Struct(strTable);
+		transStringTable2Struct(strTable);
 
 
 		return dects_ != nullptr;

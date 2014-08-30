@@ -4,6 +4,7 @@
 	"forwardChecking" : "byCell",
     "iterations_per_second" : 5,
     // "outputCells" : 500000,
+    // "output_detection_only" : false,
 	
 	"hypothesis" :
 	[

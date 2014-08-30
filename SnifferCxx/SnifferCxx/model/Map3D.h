@@ -49,6 +49,7 @@ namespace Model{
 		void setOrigin(const std::pair<Coordinate, WindVector> & origin);
 
 		friend class Initializer::MapBuilder;
+		friend std::ofstream& operator<<(std::ofstream& fs, const Map3D& map);
 
 	protected:
         void initCell();

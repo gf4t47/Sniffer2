@@ -15,6 +15,7 @@
 #include "../model/Candidate.h"
 #include "../initializer/DetectionInitializer.h"
 #include "../support/MyLog.h"
+#include <fstream>
 
 namespace ProtoMsg {
     using namespace std;
@@ -27,6 +28,17 @@ namespace ProtoMsg {
 			{ Model::CellTag::Building, CellTag::Building },
 			{ Model::CellTag::Ground, CellTag::Ground }
 	};
+
+	MessageBuilder::MessageBuilder(
+		std::pair<std::string, const std::vector<std::shared_ptr<Model::Hypotheses>> &> mtn_info,
+		std::pair<std::string, const std::vector<Model::Detection> &> dect_info,
+		std::pair<std::string, const std::vector<Model::Detection> &> can_info,
+		std::pair<std::string, const Model::Map3D &> map_info)
+		:mtn_info_(mtn_info),
+		dect_info_(dect_info),
+		can_info_(can_info),
+		map_info_(map_info) {
+	}
     
     shared_ptr<Detections> MessageBuilder::buildMessage(const vector<Model::Detection> & detections) {
         auto msg_dects = make_shared<Detections>();
@@ -195,4 +207,34 @@ namespace ProtoMsg {
         
         return true;
     }
+
+	void MessageBuilder::WriteMsg(int ideal_cells, bool detection_only) {
+		//auto map_msg = buildMessage(map_info_.second);
+		//fstream map_out(map_info_.first, ios::out | ios::trunc | ios::binary);
+		//if (!map_msg->SerializeToOstream(&map_out)) {
+		//	BOOST_LOG_SEV(*lg_, severity_level::error) << "Failed to write map msg into " << map_info_.first;
+		//}
+		//BOOST_LOG_SEV(*lg_, severity_level::info) << "Map message is written into " << map_info_.first;
+
+		auto dect_msg = buildMessage(dect_info_.second);
+		fstream dect_out(dect_info_.first, ios::out | ios::trunc | ios::binary);
+		if (!dect_msg->SerializeToOstream(&dect_out)) {
+			BOOST_LOG_SEV(*lg_, severity_level::error) << "Failed to write detection msg into " << dect_info_.first;
+		}
+		BOOST_LOG_SEV(*lg_, severity_level::info) << "Detection message is written into " << dect_info_.first;
+
+		auto can_msg = buildMessage(can_info_.second);
+		fstream can_out(can_info_.first, ios::out | ios::trunc | ios::binary);
+		if (!can_msg->SerializeToOstream(&can_out)) {
+			BOOST_LOG_SEV(*lg_, severity_level::error) << "Failed to write candidates msg into " << can_info_.first;
+		}
+		BOOST_LOG_SEV(*lg_, severity_level::info) << "Candidate message is written to file" << can_info_.first;
+
+		auto mtn_msg = buildMessage(mtn_info_.second, ideal_cells, detection_only);
+		fstream mtn_out(mtn_info_.first, ios::out | ios::trunc | ios::binary);
+		if (!mtn_msg->SerializeToOstream(&mtn_out)) {
+			BOOST_LOG_SEV(*lg_, severity_level::error) << "Failed to write methane msg into " << mtn_info_.first;
+		}
+		BOOST_LOG_SEV(*lg_, severity_level::info) << "Methane message is written into " << mtn_info_.first;
+	}
 }

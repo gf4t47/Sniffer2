@@ -7,7 +7,6 @@
 //
 
 #include <thread>
-#include <fstream>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include "support/MyLog.h"
@@ -25,8 +24,7 @@
 
 //message
 #include "protomsg/MessageBuilder.h"
-#include "protomsg/hypothesis.pb.h"
-#include "protomsg/dect.pb.h"
+#include "model/Map3D.h"
 
 using namespace std;
 using namespace Initializer;
@@ -51,8 +49,6 @@ int main(int argc, const char * argv[])
 	string map_output = argv[5];
 	string dect_output = argv[6];
 	string can_output = argv[7];
-
-	Support::MyLog lg_;
 
 	//init log
 	Support::MyLog::init_log("Sniffer");
@@ -84,37 +80,8 @@ int main(int argc, const char * argv[])
 	}
 
 	//message output
-	auto map_msg = ProtoMsg::MessageBuilder::buildMessage(*map);
-	fstream map_out(map_output, ios::out | ios::trunc | ios::binary);
-	if (!map_msg->SerializeToOstream(&map_out)) {
-		BOOST_LOG_SEV(lg_, severity_level::error) << "Failed to write map msg into " << map_output;
-		return -1;
-	}
-	BOOST_LOG_SEV(lg_, severity_level::info) << "Map message is written into " << map_output;
-
-	auto dect_msg = ProtoMsg::MessageBuilder::buildMessage(*dect_vec);
-	fstream dect_out(dect_output, ios::out | ios::trunc | ios::binary);
-	if (!dect_msg->SerializeToOstream(&dect_out)) {
-		BOOST_LOG_SEV(lg_, severity_level::error) << "Failed to write detection msg into " << dect_output;
-		return -1;
-	}
-	BOOST_LOG_SEV(lg_, severity_level::info) << "Detection message is written into " << dect_output;
-
-	auto can_msg = ProtoMsg::MessageBuilder::buildMessage(*can_vect);
-	fstream can_out(can_output, ios::out | ios::trunc | ios::binary);
-	if (!can_msg->SerializeToOstream(&can_out)) {
-		BOOST_LOG_SEV(lg_, severity_level::error) << "Failed to write candidates msg into " << can_output;
-		return -1;
-	}
-	BOOST_LOG_SEV(lg_, severity_level::info) << "Candidate message is written to file" << can_output;
-
-	auto mtn_msg = ProtoMsg::MessageBuilder::buildMessage(hyps_hist, hypI.getIdealCells(), false);
-	fstream mtn_out(mtn_output, ios::out | ios::trunc | ios::binary);
-	if (!mtn_msg->SerializeToOstream(&mtn_out)) {
-		BOOST_LOG_SEV(lg_, severity_level::error) << "Failed to write methane msg into " << mtn_output;
-		return -1;
-	}
-	BOOST_LOG_SEV(lg_, severity_level::info) << "Methane message is written into " << mtn_output;
+	ProtoMsg::MessageBuilder msg_builder(make_pair(mtn_output, hyps_hist), make_pair(dect_output, *dect_vec), make_pair(can_output, *can_vect), make_pair(map_output, *map));
+	msg_builder.WriteMsg(hypI.getIdealCells(), hypI.getDetectionOnly());
 
 	return 0;
 }

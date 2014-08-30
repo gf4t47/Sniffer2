@@ -9,6 +9,7 @@
 #include "Wind.h"
 #include "../support/MyLog.h"
 #include <sstream>
+#include <fstream>
 
 namespace Model {
 	using namespace std;
@@ -76,10 +77,19 @@ namespace Model {
 		return wind_ == oth.wind_ && potential_ == oth.potential_;
 	}
 
-	ostream& operator<<(ostream& os, const Wind& wind)
-	{
-		os << "{" << wind.wind_ << " + " << wind.potential_ << "}";
+	ostream& operator<<(std::ostream& os, const Wind& wind) {
+		os << "{";
+		os << *wind.wind_;
+		os << " + ";
+		os << wind.potential_;
+		os << "}";
 
 		return os;
+	}
+
+	ofstream& operator<<(ofstream& fs, const Wind& wind) {
+		auto calc_wind = wind.getCalcWind();
+		fs << calc_wind;
+		return fs;
 	}
 }

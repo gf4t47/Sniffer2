@@ -8,6 +8,7 @@
 
 #include "Map3D.h"
 #include "../support/MyLog.h"
+#include <fstream>
 
 namespace Model {
 	using namespace std;
@@ -113,7 +114,9 @@ namespace Model {
 	const Cell & Map3D::getCell(const Coordinate & pos) const {
 		if (!insideMap(pos)) {
 			ostringstream ostr;
-			ostr << "request a location out of the map: " << pos;
+			ostr << "request a location out of the map: ";
+			ostr << pos;
+
 			BOOST_LOG_SEV(*lg_, severity_level::error) << ostr.str();
 			throw out_of_range(ostr.str());
 		}
@@ -288,5 +291,18 @@ namespace Model {
 
 	void Map3D::setOrigin(const std::pair<Coordinate, WindVector> & origin) {
 		origin_ = origin;
+	}
+
+	ofstream& operator<<(ofstream& fs, const Map3D& map) {
+		auto startindex = map.getStartIndex();
+		auto boundary = map.getBoundary();
+
+		fs << static_cast<int>(startindex[0]) << static_cast<int>(startindex[1]) << static_cast<int>(startindex[2]);
+		fs << static_cast<int>(boundary[0]) << static_cast<int>(boundary[1]) << static_cast<int>(boundary[2]);
+
+		fs << static_cast<int>(map.num_elements());
+		boost::const_multi_array_ref<Cell, 1> map_ref(map.data(), boost::extents[map.num_elements()]);
+		for_each(map_ref.begin(), map_ref.end(), [&fs](const Cell & cell){ fs << cell; });
+		return fs;
 	}
 }
