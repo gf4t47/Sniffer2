@@ -308,6 +308,7 @@
     <ClCompile Include="backward\BackwardChecking.cpp" />
     <ClCompile Include="backward\CandidateGenerator.cpp" />
     <ClCompile Include="backward\InformationGain.cpp" />
+    <ClCompile Include="directmsg\DirectMessageBuilder.cpp" />
     <ClCompile Include="forward\ForwardChecking.cpp" />
     <ClCompile Include="forward\UpdateByCell.cpp" />
     <ClCompile Include="forward\UpdateByConvolution.cpp" />
@@ -331,7 +332,7 @@
     <ClCompile Include="protomsg\cell.pb.cc" />
     <ClCompile Include="protomsg\dect.pb.cc" />
     <ClCompile Include="protomsg\hypothesis.pb.cc" />
-    <ClCompile Include="protomsg\MessageBuilder.cpp" />
+    <ClCompile Include="protomsg\ProtoMessageBuilder.cpp" />
     <ClCompile Include="runmode\AsynEvent.cpp" />
     <ClCompile Include="runmode\Executor.cpp" />
     <ClCompile Include="runmode\ExecutorFactory.cpp" />
@@ -342,6 +343,7 @@
     <ClInclude Include="backward\BackwardChecking.h" />
     <ClInclude Include="backward\CandidateGenerator.h" />
     <ClInclude Include="backward\InformationGain.h" />
+    <ClInclude Include="directmsg\DirectMessageBuilder.h" />
     <ClInclude Include="forward\ForwardChecking.h" />
     <ClInclude Include="forward\UpdateByCell.h" />
     <ClInclude Include="forward\UpdateByConvolution.h" />
@@ -365,7 +367,7 @@
     <ClInclude Include="protomsg\cell.pb.h" />
     <ClInclude Include="protomsg\dect.pb.h" />
     <ClInclude Include="protomsg\hypothesis.pb.h" />
-    <ClInclude Include="protomsg\MessageBuilder.h" />
+    <ClInclude Include="protomsg\ProtoMessageBuilder.h" />
     <ClInclude Include="runmode\AsynEvent.h" />
     <ClInclude Include="runmode\Executor.h" />
     <ClInclude Include="runmode\ExecutorFactory.h" />

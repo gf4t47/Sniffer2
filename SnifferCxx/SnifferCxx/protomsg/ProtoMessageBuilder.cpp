@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 JPL. All rights reserved.
 //
 
-#include "MessageBuilder.h"
+#include "ProtoMessageBuilder.h"
 #include "hypothesis.pb.h"
 #include "dect.pb.h"
 #include "../model/Hypotheses.h"
@@ -21,26 +21,26 @@ namespace ProtoMsg {
     using namespace std;
 	using namespace Support;
 
-	unique_ptr<MyLog> MessageBuilder::lg_(make_unique<MyLog>());
+	unique_ptr<MyLog> ProtoMessageBuilder::lg_(make_unique<MyLog>());
 
-	unordered_map<Model::CellTag, CellTag, Model::enum_hash> MessageBuilder::Tag2Msg = { 
+	unordered_map<Model::CellTag, CellTag, Model::enum_hash> ProtoMessageBuilder::Tag2Msg = { 
 			{ Model::CellTag::Air, CellTag::Air },
 			{ Model::CellTag::Building, CellTag::Building },
 			{ Model::CellTag::Ground, CellTag::Ground }
 	};
 
-	MessageBuilder::MessageBuilder(
-		std::pair<std::string, const std::vector<std::shared_ptr<Model::Hypotheses>> &> mtn_info,
-		std::pair<std::string, const std::vector<Model::Detection> &> dect_info,
-		std::pair<std::string, const std::vector<Model::Detection> &> can_info,
-		std::pair<std::string, const Model::Map3D &> map_info)
+	ProtoMessageBuilder::ProtoMessageBuilder(
+		std::pair<std::string, std::shared_ptr<std::vector<std::shared_ptr<Model::Hypotheses>>>> mtn_info,
+		std::pair<std::string, std::shared_ptr<std::vector<Model::Detection>>> dect_info,
+		std::pair<std::string, std::shared_ptr<std::vector<Model::Detection>>> can_info,
+		std::pair<std::string, std::shared_ptr<Model::Map3D>> map_info)
 		:mtn_info_(mtn_info),
 		dect_info_(dect_info),
 		can_info_(can_info),
 		map_info_(map_info) {
 	}
     
-    shared_ptr<Detections> MessageBuilder::buildMessage(const vector<Model::Detection> & detections) {
+    shared_ptr<Detections> ProtoMessageBuilder::buildMessage(const vector<Model::Detection> & detections) {
         auto msg_dects = make_shared<Detections>();
         
         for (auto detection : detections) {
@@ -63,7 +63,7 @@ namespace ProtoMsg {
         return msg_dects;
     }
     
-    shared_ptr<Map> MessageBuilder::buildMessage(const Model::Map3D & map) {
+    shared_ptr<Map> ProtoMessageBuilder::buildMessage(const Model::Map3D & map) {
         auto msg_map = make_shared<Map>();
         
 //        auto msg_startIndex = new Coordinate();
@@ -88,7 +88,7 @@ namespace ProtoMsg {
         return msg_map;
     }
     
-    shared_ptr<Hypotheses_history> MessageBuilder::buildMessage(const vector<shared_ptr<Model::Hypotheses>> & hyps_his, size_t ideal_cells, bool only_detection /* = false*/) {
+    shared_ptr<Hypotheses_history> ProtoMessageBuilder::buildMessage(const vector<shared_ptr<Model::Hypotheses>> & hyps_his, size_t ideal_cells, bool only_detection /* = false*/) {
         double total_cells = 0.0;
 		auto count_iteraton = 0;
         for (auto hyps : hyps_his) {
@@ -164,7 +164,7 @@ namespace ProtoMsg {
 		return msg_hyps_his;
     }
     
-    bool MessageBuilder::buildCellMessage(const Model::Cell &cell, Cell * msg_cell) {
+    bool ProtoMessageBuilder::buildCellMessage(const Model::Cell &cell, Cell * msg_cell) {
         //set cell tag
         msg_cell->set_tag(Tag2Msg[cell.getTag()]);
         
@@ -208,29 +208,29 @@ namespace ProtoMsg {
         return true;
     }
 
-	void MessageBuilder::WriteMsg(int ideal_cells, bool detection_only) {
-		//auto map_msg = buildMessage(map_info_.second);
-		//fstream map_out(map_info_.first, ios::out | ios::trunc | ios::binary);
-		//if (!map_msg->SerializeToOstream(&map_out)) {
-		//	BOOST_LOG_SEV(*lg_, severity_level::error) << "Failed to write map msg into " << map_info_.first;
-		//}
-		//BOOST_LOG_SEV(*lg_, severity_level::info) << "Map message is written into " << map_info_.first;
+	void ProtoMessageBuilder::WriteMsg(int ideal_cells, bool detection_only) {
+		auto map_msg = buildMessage(*map_info_.second);
+		fstream map_out(map_info_.first, ios::out | ios::trunc | ios::binary);
+		if (!map_msg->SerializeToOstream(&map_out)) {
+			BOOST_LOG_SEV(*lg_, severity_level::error) << "Failed to write map msg into " << map_info_.first;
+		}
+		BOOST_LOG_SEV(*lg_, severity_level::info) << "Map message is written into " << map_info_.first;
 
-		auto dect_msg = buildMessage(dect_info_.second);
+		auto dect_msg = buildMessage(*dect_info_.second);
 		fstream dect_out(dect_info_.first, ios::out | ios::trunc | ios::binary);
 		if (!dect_msg->SerializeToOstream(&dect_out)) {
 			BOOST_LOG_SEV(*lg_, severity_level::error) << "Failed to write detection msg into " << dect_info_.first;
 		}
 		BOOST_LOG_SEV(*lg_, severity_level::info) << "Detection message is written into " << dect_info_.first;
 
-		auto can_msg = buildMessage(can_info_.second);
+		auto can_msg = buildMessage(*can_info_.second);
 		fstream can_out(can_info_.first, ios::out | ios::trunc | ios::binary);
 		if (!can_msg->SerializeToOstream(&can_out)) {
 			BOOST_LOG_SEV(*lg_, severity_level::error) << "Failed to write candidates msg into " << can_info_.first;
 		}
 		BOOST_LOG_SEV(*lg_, severity_level::info) << "Candidate message is written to file" << can_info_.first;
 
-		auto mtn_msg = buildMessage(mtn_info_.second, ideal_cells, detection_only);
+		auto mtn_msg = buildMessage(*mtn_info_.second, ideal_cells, detection_only);
 		fstream mtn_out(mtn_info_.first, ios::out | ios::trunc | ios::binary);
 		if (!mtn_msg->SerializeToOstream(&mtn_out)) {
 			BOOST_LOG_SEV(*lg_, severity_level::error) << "Failed to write methane msg into " << mtn_info_.first;

@@ -23,7 +23,8 @@
 #include "forward/ForwardChecking.h"
 
 //message
-#include "protomsg/MessageBuilder.h"
+#include "protomsg/ProtoMessageBuilder.h"
+#include "directmsg/DirectMessageBuilder.h"
 #include "model/Map3D.h"
 
 using namespace std;
@@ -71,17 +72,22 @@ int main(int argc, const char * argv[])
 	auto can_vect = make_shared<vector<Model::Detection>>();
 
 	//calculation
-	vector<shared_ptr<Hypotheses>> hyps_hist;
-	hyps_hist.push_back(hyps);
+	auto hyps_hist = make_shared<vector<shared_ptr<Hypotheses>>>();
+	hyps_hist->push_back(hyps);
 	auto executor = ExecutorFactory::createExecutor(dectI.getExecutorMode(), *map, *forward, *backward);
-	executor->run(hyps_hist, *dect_vec, init);
+	executor->run(*hyps_hist, *dect_vec, init);
 	if (auto_movement) {
-		executor->autoDrive(hyps_hist, *dect_vec, *auto_movement);
+		executor->autoDrive(*hyps_hist, *dect_vec, *auto_movement);
 	}
 
 	//message output
-	ProtoMsg::MessageBuilder msg_builder(make_pair(mtn_output, hyps_hist), make_pair(dect_output, *dect_vec), make_pair(can_output, *can_vect), make_pair(map_output, *map));
-	msg_builder.WriteMsg(hypI.getIdealCells(), hypI.getDetectionOnly());
+	//ProtoMsg::ProtoMessageBuilder msg_builder(make_pair(mtn_output, hyps_hist), make_pair(dect_output, dect_vec), make_pair(can_output, can_vect), make_pair(map_output, map));
+	//DirectMsg::DirectMessageBuilder msg_builder(make_pair(mtn_output, hyps_hist), make_pair(dect_output, dect_vec), make_pair(can_output, can_vect), make_pair(map_output, map));
+	//msg_builder.WriteMsg(hypI.getIdealCells(), hypI.getDetectionOnly());
+
+	fstream can_out("test.bin", ios::out | ios::binary);
+	int tmp = 1;
+	can_out.write(reinterpret_cast<char*>(&tmp), sizeof 2);
 
 	return 0;
 }

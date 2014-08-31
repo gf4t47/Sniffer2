@@ -63,8 +63,8 @@ namespace Model {
 		return *wind_;
 	}
     
-    bool Wind::setWindVector(const shared_ptr<WindVector> vec) {
-        wind_ = vec;
+    bool Wind::setWindVector(const WindVector * wv) {
+        wind_ = wv;
         return wind_ != nullptr;
     }
     

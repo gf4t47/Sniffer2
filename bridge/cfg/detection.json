@@ -4,8 +4,8 @@
     "init" :
     [
         {
-            "time" : 10,
-            "wind" : [1.96, 0.28, 0],
+            "time" : 20,
+            "wind" : [1, 0, 0],
             "dect" :
             [
                 {"location" : [0, 0, 0], "concentration" : 0.25}
@@ -17,8 +17,8 @@
     "detection" :
     [
         {
-            "time" : 5,
-            // "wind" : [1.96, 0.28, 0],
+            "time" : 10,
+            "wind" : [1, 1, 0],
             "dect" :
             [
             	{"location" : [0, 0, 0], "concentration" : 0.25}
@@ -27,7 +27,8 @@
         },
 
         {
-            "time" : 5,
+            "time" : 10,
+            "wind" : [0, 1, 0],
             "dect" :
             [
             	{"location" : [-2, 25, 0], "concentration" : 0.25}
@@ -37,7 +38,8 @@
 
 
         {
-            "time" : 5,
+            "time" : 10,
+            "wind" : [-1, 1, 0],
             "dect" :
             [
                 {"location" : [-4, 35, 0], "concentration" : 0.5}
@@ -46,7 +48,8 @@
         },
 
         {
-            "time" : 5,
+            "time" : 10,
+            "wind" : [-1, 0, 0],
             "dect" :
             [
                 {"location" : [-6, 45, 0], "concentration" : 1.5}

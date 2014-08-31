@@ -67,7 +67,7 @@ namespace Model{
 	private:
 		unit_t unit_;
 		std::pair<Coordinate, WindVector> origin_;
-		std::shared_ptr<WindVector> wind_;
+		const std::unique_ptr<WindVector> wind_;
 		static std::unique_ptr<Support::MyLog> lg_;
 	};
 }

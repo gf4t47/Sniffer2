@@ -29,6 +29,9 @@
     <Filter Include="support">
       <UniqueIdentifier>{9a9a555c-364b-44ce-b6b6-b907eac0eda9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="directmsg">
+      <UniqueIdentifier>{d273f9e2-9789-4573-97ed-9951302bc8ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="backward\BackwardChecking.cpp">
@@ -74,9 +77,6 @@
       <Filter>protomsg</Filter>
     </ClCompile>
     <ClCompile Include="protomsg\hypothesis.pb.cc">
-      <Filter>protomsg</Filter>
-    </ClCompile>
-    <ClCompile Include="protomsg\MessageBuilder.cpp">
       <Filter>protomsg</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
@@ -125,6 +125,12 @@
     <ClCompile Include="support\MyLog.cpp">
       <Filter>support</Filter>
     </ClCompile>
+    <ClCompile Include="protomsg\ProtoMessageBuilder.cpp">
+      <Filter>protomsg</Filter>
+    </ClCompile>
+    <ClCompile Include="directmsg\DirectMessageBuilder.cpp">
+      <Filter>directmsg</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="backward\BackwardChecking.h">
@@ -170,9 +176,6 @@
       <Filter>protomsg</Filter>
     </ClInclude>
     <ClInclude Include="protomsg\hypothesis.pb.h">
-      <Filter>protomsg</Filter>
-    </ClInclude>
-    <ClInclude Include="protomsg\MessageBuilder.h">
       <Filter>protomsg</Filter>
     </ClInclude>
     <ClInclude Include="runmode\AsynEvent.h">
@@ -222,6 +225,12 @@
     </ClInclude>
     <ClInclude Include="support\MyLog.h">
       <Filter>support</Filter>
+    </ClInclude>
+    <ClInclude Include="protomsg\ProtoMessageBuilder.h">
+      <Filter>protomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="directmsg\DirectMessageBuilder.h">
+      <Filter>directmsg</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -29,7 +29,7 @@ namespace Model {
         WindVector getPotential() const;
 		WindVector getWV() const;
         
-        bool setWindVector(const std::shared_ptr<WindVector> vec);
+        bool setWindVector(const  WindVector * wv);
         bool setPotential(const WindVector & potential);
         
 		bool operator== (const Wind & oth) const;
@@ -45,7 +45,7 @@ namespace Model {
         }
         
 	private:
-		std::shared_ptr<WindVector> wind_;
+		const WindVector * wind_;
 		WindVector potential_;
 		static std::unique_ptr<Support::MyLog> lg_;
 	};
