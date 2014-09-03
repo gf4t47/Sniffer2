@@ -44,7 +44,7 @@ namespace Math {
 	}
 
 	double GaussianBlur::gaussian_pdf(const Model::Coordinate &mean, int step, const Model::Coordinate &val) {
-		typedef boost::math::normal::normal_distribution<> distribution_t;
+		typedef boost::math::normal distribution_t;
 
 		auto dists = accumulate(mean.begin(), mean.end(), vector<distribution_t>(), [step](vector<distribution_t> ret_vec, const coord_item_t & item_val){ret_vec.push_back(distribution_t(item_val, step)); return ret_vec; });
 

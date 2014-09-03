@@ -27,6 +27,8 @@
 #include "directmsg/DirectMessageBuilder.h"
 #include "model/Map3D.h"
 
+#include "model/Coordinate.h"
+
 using namespace std;
 using namespace Initializer;
 using namespace Model;
@@ -82,12 +84,8 @@ int main(int argc, const char * argv[])
 
 	//message output
 	//ProtoMsg::ProtoMessageBuilder msg_builder(make_pair(mtn_output, hyps_hist), make_pair(dect_output, dect_vec), make_pair(can_output, can_vect), make_pair(map_output, map));
-	//DirectMsg::DirectMessageBuilder msg_builder(make_pair(mtn_output, hyps_hist), make_pair(dect_output, dect_vec), make_pair(can_output, can_vect), make_pair(map_output, map));
-	//msg_builder.WriteMsg(hypI.getIdealCells(), hypI.getDetectionOnly());
-
-	fstream can_out("test.bin", ios::out | ios::binary);
-	int tmp = 1;
-	can_out.write(reinterpret_cast<char*>(&tmp), sizeof 2);
+	DirectMsg::DirectMessageBuilder msg_builder(make_pair(mtn_output, hyps_hist), make_pair(dect_output, dect_vec), make_pair(can_output, can_vect), make_pair(map_output, map));
+	msg_builder.WriteMsg(hypI.getIdealCells(), hypI.getDetectionOnly());
 
 	return 0;
 }

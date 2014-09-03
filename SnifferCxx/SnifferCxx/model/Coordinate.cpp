@@ -60,8 +60,15 @@ namespace Model {
 		return os;
 	}
 
-	ofstream& operator<<(ofstream& fs, const Coordinate& coord) {
-		fs << coord[0] << coord[1] << coord[2];
+	ofstream& Coordinate::toBinary(ofstream& fs) const{
+		auto x = this->at(0);
+		auto y = this->at(1);
+		auto z = this->at(2);
+		fs.write(reinterpret_cast<char*>(&x), sizeof x);
+		fs.write(reinterpret_cast<char*>(&y), sizeof y);
+		fs.write(reinterpret_cast<char*>(&z), sizeof z);
+
 		return fs;
 	}
+
 }

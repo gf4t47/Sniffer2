@@ -293,16 +293,28 @@ namespace Model {
 		origin_ = origin;
 	}
 
-	ofstream& operator<<(ofstream& fs, const Map3D& map) {
-		auto startindex = map.getStartIndex();
-		auto boundary = map.getBoundary();
+	ofstream& Map3D::toBinary(ofstream& fs) const{
+		auto startindex_x = static_cast<int>(getStartIndex()[0]);
+		auto startindex_y = static_cast<int>(getStartIndex()[1]);
+		auto startindex_z = static_cast<int>(getStartIndex()[2]);
 
-		fs << static_cast<int>(startindex[0]) << static_cast<int>(startindex[1]) << static_cast<int>(startindex[2]);
-		fs << static_cast<int>(boundary[0]) << static_cast<int>(boundary[1]) << static_cast<int>(boundary[2]);
+		auto boundary_x = static_cast<int>(getBoundary()[0]);
+		auto boundary_y = static_cast<int>(getBoundary()[1]);
+		auto boundary_z = static_cast<int>(getBoundary()[2]);
 
-		fs << static_cast<int>(map.num_elements());
-		boost::const_multi_array_ref<Cell, 1> map_ref(map.data(), boost::extents[map.num_elements()]);
-		for_each(map_ref.begin(), map_ref.end(), [&fs](const Cell & cell){ fs << cell; });
+		fs.write(reinterpret_cast<char*>(&startindex_x), sizeof startindex_x);
+		fs.write(reinterpret_cast<char*>(&startindex_y), sizeof startindex_y);
+		fs.write(reinterpret_cast<char*>(&startindex_z), sizeof startindex_z);
+
+		fs.write(reinterpret_cast<char*>(&boundary_x), sizeof boundary_x);
+		fs.write(reinterpret_cast<char*>(&boundary_y), sizeof boundary_y);
+		fs.write(reinterpret_cast<char*>(&boundary_z), sizeof boundary_z);
+
+		auto num = static_cast<int>(num_elements());
+		fs.write(reinterpret_cast<char*>(&num), sizeof num);
+		boost::const_multi_array_ref<Cell, 1> map_ref(data(), boost::extents[num_elements()]);
+		for_each(map_ref.begin(), map_ref.end(), [&fs](const Cell & cell){ cell.toBinary(fs); });
+
 		return fs;
 	}
 }

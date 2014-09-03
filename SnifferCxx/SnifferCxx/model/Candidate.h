@@ -20,7 +20,7 @@ namespace Model {
 		}
 
 		friend std::ostream& operator<<(std::ostream& os, const Candidate & can);
-		friend std::ofstream& operator<<(std::ofstream& fs, const Candidate & can);
+		std::ofstream& toBinary(std::ofstream& fs) const;
 	};
 
 	struct Detection {
@@ -29,7 +29,7 @@ namespace Model {
 		std::vector<Candidate> detected_;
 
 		friend std::ostream& operator<<(std::ostream& os, const Detection & dect);
-		friend std::ofstream& operator<<(std::ofstream& fs, const Detection & dect);
+		std::ofstream& toBinary(std::ofstream& fs) const;
 	};
 
 	struct AutoMovement {

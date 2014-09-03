@@ -1,168 +1,190 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\model">
-      <UniqueIdentifier>{2503fee2-3f69-4c01-9f6c-c74c83f98ae6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\model">
-      <UniqueIdentifier>{f29a2511-12a4-45b8-9f20-359a3063db36}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Test">
       <UniqueIdentifier>{3cd52b0b-63ee-4b7a-8a72-6dd70b9eeea0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\sln">
-      <UniqueIdentifier>{2b2ac0c1-20fc-48d5-9037-9f2c3cc01b44}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\math">
-      <UniqueIdentifier>{31b23bd9-d644-46d7-a50d-a36140ef036c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\forward">
-      <UniqueIdentifier>{427c0836-dc21-4c34-af9c-32eabc280382}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\backward">
-      <UniqueIdentifier>{8344bde7-00e2-4098-8fe7-6550c02b8c88}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sln">
-      <UniqueIdentifier>{858c8139-f708-4b32-b76a-48f00e6ae5f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\backward">
-      <UniqueIdentifier>{0fe45285-9238-47d7-ae8a-75323b899e96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\forward">
-      <UniqueIdentifier>{c09cf5d0-6c3e-4e09-99b7-779c29352fca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\math">
-      <UniqueIdentifier>{334e8775-6966-4d05-aa97-3e6988601022}</UniqueIdentifier>
+    <Filter Include="Src">
+      <UniqueIdentifier>{09ac07ca-724d-41f5-b8a3-1212862285d8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\SnifferCxx\model\Cell.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SnifferCxx\model\Cells.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SnifferCxx\model\Coordinate.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SnifferCxx\model\Map3D.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SnifferCxx\model\Methane.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SnifferCxx\model\Wind.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SnifferCxx\model\WindVector.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\testWindVector.cpp">
-      <Filter>Test</Filter>
-    </ClCompile>
-    <ClCompile Include="model\testMap3D.cpp">
-      <Filter>Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SnifferCxx\model\Hypothesis.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\testCells.cpp">
-      <Filter>Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SnifferCxx\backwrad\BackwardChecking.cpp">
-      <Filter>Source Files\backward</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SnifferCxx\forward\ForwardChecking.cpp">
-      <Filter>Source Files\forward</Filter>
-    </ClCompile>
     <ClCompile Include="..\SnifferCxx\math\Gamma.cpp">
-      <Filter>Source Files\math</Filter>
+      <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="..\SnifferCxx\math\Gaussian.cpp">
-      <Filter>Source Files\math</Filter>
+      <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="..\SnifferCxx\math\GaussianBlur.cpp">
-      <Filter>Source Files\math</Filter>
+      <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\SnifferCxx\sln\MapBuilder.cpp">
-      <Filter>Source Files\sln</Filter>
+    <ClCompile Include="..\SnifferCxx\model\Candidate.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\model\Cell.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\model\Cells.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\model\Coordinate.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\model\Hypotheses.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\model\Hypothesis.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\model\Map3D.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\model\Methane.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\model\Wind.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\model\WindVector.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\initializer\HypothesisInitializer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\initializer\MapBuilder.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\backward\BackwardChecking.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\backward\CandidateGenerator.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\backward\InformationGain.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\runmode\AsynEvent.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\runmode\Executor.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\runmode\ExecutorFactory.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\runmode\MultiThread.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\directmsg\DirectMessageBuilder.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\support\MyLog.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SnifferCxx\forward\ForwardChecking.cpp">
+      <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="..\SnifferCxx\forward\UpdateByCell.cpp">
-      <Filter>Source Files\forward</Filter>
+      <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="..\SnifferCxx\forward\UpdateByConvolution.cpp">
-      <Filter>Source Files\forward</Filter>
+      <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\SnifferCxx\sln\HypothesisInitializer.cpp">
-      <Filter>Source Files\sln</Filter>
+    <ClCompile Include="model\testBinaryFile.cpp">
+      <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\SnifferCxx\model\Cell.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SnifferCxx\model\Cells.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SnifferCxx\model\Coordinate.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SnifferCxx\model\Map3D.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SnifferCxx\model\Methane.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SnifferCxx\model\Vector3D.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SnifferCxx\model\Wind.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SnifferCxx\model\WindVector.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SnifferCxx\model\Hypothesis.h">
-      <Filter>Source Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SnifferCxx\backwrad\BackwardChecking.h">
-      <Filter>Header Files\backward</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SnifferCxx\forward\ForwardChecking.h">
-      <Filter>Header Files\forward</Filter>
-    </ClInclude>
     <ClInclude Include="..\SnifferCxx\math\Gamma.h">
-      <Filter>Header Files\math</Filter>
+      <Filter>Src</Filter>
     </ClInclude>
     <ClInclude Include="..\SnifferCxx\math\Gaussian.h">
-      <Filter>Header Files\math</Filter>
+      <Filter>Src</Filter>
     </ClInclude>
     <ClInclude Include="..\SnifferCxx\math\GaussianBlur.h">
-      <Filter>Header Files\math</Filter>
+      <Filter>Src</Filter>
     </ClInclude>
-    <ClInclude Include="..\SnifferCxx\sln\MapBuilder.h">
-      <Filter>Header Files\sln</Filter>
+    <ClInclude Include="..\SnifferCxx\model\Candidate.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\model\Cell.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\model\Cells.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\model\Coordinate.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\model\Hypotheses.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\model\Hypothesis.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\model\Map3D.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\model\Methane.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\model\TypeDef.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\model\Wind.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\model\WindVector.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\initializer\DetectionInitializer.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\initializer\HypothesisInitializer.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\initializer\MapBuilder.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\backward\BackwardChecking.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\backward\CandidateGenerator.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\backward\InformationGain.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\runmode\AsynEvent.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\runmode\Executor.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\runmode\ExecutorFactory.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\runmode\MultiThread.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\directmsg\DirectMessageBuilder.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\support\MyLog.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SnifferCxx\forward\ForwardChecking.h">
+      <Filter>Src</Filter>
     </ClInclude>
     <ClInclude Include="..\SnifferCxx\forward\UpdateByCell.h">
-      <Filter>Header Files\forward</Filter>
+      <Filter>Src</Filter>
     </ClInclude>
     <ClInclude Include="..\SnifferCxx\forward\UpdateByConvolution.h">
-      <Filter>Header Files\forward</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SnifferCxx\sln\HypothesisInitializer.h">
-      <Filter>Header Files\sln</Filter>
+      <Filter>Src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

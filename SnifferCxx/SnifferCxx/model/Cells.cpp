@@ -74,10 +74,11 @@ namespace Model {
 		return true;
 	}
 
-	ofstream& operator<<(ofstream& fs, const Cells& cells) {
-		//fs.write(reinterpret_cast<char*>(static_cast<int>(cells.size())), sizeof cells.size());
-		fs << static_cast<int>(cells.size());
-		for_each(cells.begin(), cells.end(), [&fs](const cells_t::value_type & val_pair){fs << val_pair.second; });
+	ofstream& Cells::toBinary(ofstream& fs) const { 
+		auto cell_num = static_cast<int>(size());
+		fs.write(reinterpret_cast<char*>(&cell_num), sizeof cell_num);
+		BOOST_LOG_SEV(*lg_, severity_level::trace) << "cell_num=" << cell_num;
+		for_each(this->begin(), this->end(), [&fs](const cells_t::value_type & val_pair){BOOST_LOG_SEV(*lg_, severity_level::trace) << val_pair.second; val_pair.second.toBinary(fs); });
 
 		return fs;
 	}

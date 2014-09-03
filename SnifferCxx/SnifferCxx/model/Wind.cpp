@@ -87,9 +87,11 @@ namespace Model {
 		return os;
 	}
 
-	ofstream& operator<<(ofstream& fs, const Wind& wind) {
-		auto calc_wind = wind.getCalcWind();
-		fs << calc_wind;
+	ofstream& Wind::toBinary(ofstream& fs) const{
+		//wind_->toBinary(fs);
+		//potential_.toBinary(fs);
+		getCalcWind().toBinary(fs);
+
 		return fs;
 	}
 }

@@ -69,8 +69,10 @@ namespace Model {
 		return os;
 	}
 
-	//ofstream& operator<<(ofstream& fs, const Methane& mtn) {
-	//	fs.write(reinterpret_cast<char*>(&(double)mtn.concentration_), sizeof mtn.concentration_);
-	//	return fs;
-	//}
+	ofstream& Methane::toBinary(ofstream& fs) const{
+		auto con = static_cast<double>(getMethane());
+		fs.write(reinterpret_cast<char*>(&con), sizeof con);
+
+		return fs;
+	}
 }

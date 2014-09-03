@@ -41,7 +41,7 @@ namespace Support {
 
 		logging::core::get()->set_filter
 			(
-			severity >= severity_level::trace
+			severity >= severity_level::debug
 			);
 
 		boost::log::add_common_attributes();

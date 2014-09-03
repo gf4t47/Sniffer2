@@ -2,9 +2,13 @@
 #include "Cells.h"
 #include "Candidate.h"
 #include <fstream>
+#include "../support/MyLog.h"
 
 namespace Model {
 	using namespace std;
+	using namespace Support;
+
+	unique_ptr<MyLog> Hypothesis::lg_(make_unique<MyLog>());
     
     Hypothesis::Hypothesis(const Hypothesis & oth)
     :leaks_(oth.leaks_),
@@ -81,16 +85,22 @@ namespace Model {
 		probability_ = val;
 	}
 
-	ofstream& operator<<(ofstream& fs, const Hypothesis& hyp) {
-		fs << hyp.getProbability();
+	ofstream& Hypothesis::toBinary(ofstream& fs) const {
+		BOOST_LOG_SEV(*lg_, severity_level::trace) << "HYP:";
 
-		auto const & leaks = hyp.getLeaks();
-		fs << static_cast<int>(leaks.size());
-		for_each(leaks.begin(), leaks.end(), [&fs](const Candidate& can){fs << can; });
+		auto prob = getProbability();
+		fs.write(reinterpret_cast<char*>(&prob), sizeof prob);
+		BOOST_LOG_SEV(*lg_, severity_level::trace) << "prob=" << prob;
 
-		auto const & cells_his = hyp.getCelllsHistory();
-		fs << static_cast<int>(cells_his.size());
-		for_each(cells_his.begin(), cells_his.end(), [&fs](shared_ptr<Cells> cells){fs << *cells; });
+		auto leak_num = static_cast<int>(leaks_.size());
+		fs.write(reinterpret_cast<char*>(&leak_num), sizeof leak_num);
+		BOOST_LOG_SEV(*lg_, severity_level::trace) << "leak_num=" << leak_num;
+		for_each(leaks_.begin(), leaks_.end(), [&fs](const Candidate& can){BOOST_LOG_SEV(*lg_, severity_level::trace) << can;  can.toBinary(fs); });
+
+		auto his_num = static_cast<int>(cells_update_his_.size());
+		fs.write(reinterpret_cast<char*>(&his_num), sizeof his_num);
+		BOOST_LOG_SEV(*lg_, severity_level::trace) << "his_num=" << his_num;
+		for_each(cells_update_his_.begin(), cells_update_his_.end(), [&fs](shared_ptr<Cells> cells){cells->toBinary(fs); });
 
 		return fs;
 	}

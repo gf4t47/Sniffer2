@@ -2,6 +2,10 @@
 
 #include "Hypothesis.h"
 
+namespace Support {
+	class MyLog;
+}
+
 namespace Model {
 
 	class Hypotheses : public std::vector<Hypothesis>
@@ -15,10 +19,11 @@ namespace Model {
 		bool getAsynFlag();
 		void setAsynFlag(bool val);
 
-		friend std::ofstream& operator<<(std::ofstream& fs, const Hypotheses& hyps);
+		std::ofstream& toBinary(std::ofstream& fs) const;
 
 	private:
 		bool Asyn_Deduce_;
+		static std::unique_ptr<Support::MyLog> lg_;
 	};
 
 }

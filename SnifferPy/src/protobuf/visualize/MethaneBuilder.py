@@ -1,9 +1,10 @@
+from src.protobuf.message import cell_pb2
+
 __author__ = 'Kern'
 
 import numpy
-from src.protomsg import cell_pb2
 import mayavi.mlab as mb
-import time
+
 
 def _cells_to_vector(cells):
     size = len(cells.cell)

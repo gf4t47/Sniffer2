@@ -36,7 +36,7 @@ namespace Model {
 		WindVector & operator= (const wv_t & rhs);
 
 		friend std::ostream& operator<<(std::ostream& os, const WindVector& wv);
-		friend std::ofstream& operator<<(std::ofstream& fs, const WindVector& wv);
+		std::ofstream& toBinary(std::ofstream& fs) const;
         
         friend class boost::serialization::access;
         template<class Archive>

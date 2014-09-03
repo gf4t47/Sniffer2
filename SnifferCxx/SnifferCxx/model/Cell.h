@@ -56,8 +56,7 @@ namespace Model {
 
 		bool operator== (const Cell & oth) const;
 		friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
-		friend std::ofstream& operator<<(std::ofstream& fs, const Cell& cell);
-		friend std::ofstream& operator<<(std::ofstream& fs, const CellTag& tag);
+		std::ofstream& toBinary(std::ofstream& fs) const;
         
         friend class boost::serialization::access;
         template<class Archive>

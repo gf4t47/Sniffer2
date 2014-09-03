@@ -66,13 +66,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\tools\boost-1_56_0_b1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\tools\boost_1_56_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/DNOMINMAX %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\tools\boost-1_56_0_b1\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\tools\boost_1_56_0\lib32-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <TargetMachine>MachineX86</TargetMachine>
+      <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -84,74 +86,98 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\tools\boost-1_56_0_b1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\tools\boost_1_56_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/DNOMINMAX %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\tools\boost-1_56_0_b1\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\tools\boost_1_56_0\lib32-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\tools\boost-1_56_0_b1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\tools\boost_1_56_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/DNOMINMAX %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\tools\boost-1_56_0_b1\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <AdditionalLibraryDirectories>C:\tools\boost_1_56_0\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\tools\boost-1_56_0_b1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\tools\boost_1_56_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/DNOMINMAX %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\tools\boost-1_56_0_b1\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\tools\boost_1_56_0\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\SnifferCxx\backwrad\BackwardChecking.cpp" />
+    <ClCompile Include="..\SnifferCxx\backward\BackwardChecking.cpp" />
+    <ClCompile Include="..\SnifferCxx\backward\CandidateGenerator.cpp" />
+    <ClCompile Include="..\SnifferCxx\backward\InformationGain.cpp" />
+    <ClCompile Include="..\SnifferCxx\directmsg\DirectMessageBuilder.cpp" />
     <ClCompile Include="..\SnifferCxx\forward\ForwardChecking.cpp" />
     <ClCompile Include="..\SnifferCxx\forward\UpdateByCell.cpp" />
     <ClCompile Include="..\SnifferCxx\forward\UpdateByConvolution.cpp" />
+    <ClCompile Include="..\SnifferCxx\initializer\HypothesisInitializer.cpp" />
+    <ClCompile Include="..\SnifferCxx\initializer\MapBuilder.cpp" />
     <ClCompile Include="..\SnifferCxx\math\Gamma.cpp" />
     <ClCompile Include="..\SnifferCxx\math\Gaussian.cpp" />
     <ClCompile Include="..\SnifferCxx\math\GaussianBlur.cpp" />
+    <ClCompile Include="..\SnifferCxx\model\Candidate.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Cell.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Cells.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Coordinate.cpp" />
+    <ClCompile Include="..\SnifferCxx\model\Hypotheses.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Hypothesis.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Map3D.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Methane.cpp" />
     <ClCompile Include="..\SnifferCxx\model\Wind.cpp" />
     <ClCompile Include="..\SnifferCxx\model\WindVector.cpp" />
-    <ClCompile Include="..\SnifferCxx\sln\HypothesisInitializer.cpp" />
-    <ClCompile Include="..\SnifferCxx\sln\MapBuilder.cpp" />
-    <ClCompile Include="model\testCells.cpp" />
-    <ClCompile Include="model\testMap3D.cpp" />
-    <ClCompile Include="model\testWindVector.cpp" />
+    <ClCompile Include="..\SnifferCxx\runmode\AsynEvent.cpp" />
+    <ClCompile Include="..\SnifferCxx\runmode\Executor.cpp" />
+    <ClCompile Include="..\SnifferCxx\runmode\ExecutorFactory.cpp" />
+    <ClCompile Include="..\SnifferCxx\runmode\MultiThread.cpp" />
+    <ClCompile Include="..\SnifferCxx\support\MyLog.cpp" />
+    <ClCompile Include="model\testBinaryFile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\SnifferCxx\backwrad\BackwardChecking.h" />
+    <ClInclude Include="..\SnifferCxx\backward\BackwardChecking.h" />
+    <ClInclude Include="..\SnifferCxx\backward\CandidateGenerator.h" />
+    <ClInclude Include="..\SnifferCxx\backward\InformationGain.h" />
+    <ClInclude Include="..\SnifferCxx\directmsg\DirectMessageBuilder.h" />
     <ClInclude Include="..\SnifferCxx\forward\ForwardChecking.h" />
     <ClInclude Include="..\SnifferCxx\forward\UpdateByCell.h" />
     <ClInclude Include="..\SnifferCxx\forward\UpdateByConvolution.h" />
+    <ClInclude Include="..\SnifferCxx\initializer\DetectionInitializer.h" />
+    <ClInclude Include="..\SnifferCxx\initializer\HypothesisInitializer.h" />
+    <ClInclude Include="..\SnifferCxx\initializer\MapBuilder.h" />
     <ClInclude Include="..\SnifferCxx\math\Gamma.h" />
     <ClInclude Include="..\SnifferCxx\math\Gaussian.h" />
     <ClInclude Include="..\SnifferCxx\math\GaussianBlur.h" />
+    <ClInclude Include="..\SnifferCxx\model\Candidate.h" />
     <ClInclude Include="..\SnifferCxx\model\Cell.h" />
     <ClInclude Include="..\SnifferCxx\model\Cells.h" />
     <ClInclude Include="..\SnifferCxx\model\Coordinate.h" />
+    <ClInclude Include="..\SnifferCxx\model\Hypotheses.h" />
     <ClInclude Include="..\SnifferCxx\model\Hypothesis.h" />
     <ClInclude Include="..\SnifferCxx\model\Map3D.h" />
     <ClInclude Include="..\SnifferCxx\model\Methane.h" />
-    <ClInclude Include="..\SnifferCxx\model\Vector3D.h" />
+    <ClInclude Include="..\SnifferCxx\model\TypeDef.h" />
     <ClInclude Include="..\SnifferCxx\model\Wind.h" />
     <ClInclude Include="..\SnifferCxx\model\WindVector.h" />
-    <ClInclude Include="..\SnifferCxx\sln\HypothesisInitializer.h" />
-    <ClInclude Include="..\SnifferCxx\sln\MapBuilder.h" />
+    <ClInclude Include="..\SnifferCxx\runmode\AsynEvent.h" />
+    <ClInclude Include="..\SnifferCxx\runmode\Executor.h" />
+    <ClInclude Include="..\SnifferCxx\runmode\ExecutorFactory.h" />
+    <ClInclude Include="..\SnifferCxx\runmode\MultiThread.h" />
+    <ClInclude Include="..\SnifferCxx\support\MyLog.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

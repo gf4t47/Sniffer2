@@ -1,9 +1,13 @@
 #include "Hypotheses.h"
 #include <algorithm>
 #include <fstream>
+#include "../support/MyLog.h"
 
 namespace Model {
 	using namespace std;
+	using namespace Support;
+
+	unique_ptr<MyLog> Hypotheses::lg_(make_unique<MyLog>());
 
 	Hypotheses::Hypotheses()
 	:Asyn_Deduce_(true) {
@@ -34,9 +38,16 @@ namespace Model {
 		Asyn_Deduce_ = val;
 	}
 
-	ofstream& operator<<(ofstream& fs, const Hypotheses& hyps) {
-		fs << static_cast<int>(hyps.size());
-		for_each(hyps.begin(), hyps.end(), [&fs](const Hypothesis & hyp){fs << hyp; });
+	ofstream& Hypotheses::toBinary(ofstream& fs) const {
+		BOOST_LOG_SEV(*lg_, severity_level::trace) << "START HYPS:";
+
+		auto num = static_cast<int>(size());
+		fs.write(reinterpret_cast<char*>(&num), sizeof num);
+		BOOST_LOG_SEV(*lg_, severity_level::trace) << "hyp num = " << num;
+
+		for_each(begin(), end(), [&fs](const Hypothesis & hyp){hyp.toBinary(fs); });
+
+		BOOST_LOG_SEV(*lg_, severity_level::trace) << "END HYPS:";
 
 		return fs;
 	}

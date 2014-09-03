@@ -1,8 +1,9 @@
+from src.protobuf.message import cell_pb2
+
 __author__ = 'kding'
 
 import numpy
 import mayavi.mlab as mb
-from src.protomsg import cell_pb2
 
 
 def build(mp):

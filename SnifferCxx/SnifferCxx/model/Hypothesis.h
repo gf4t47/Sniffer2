@@ -4,6 +4,10 @@
 //#include <mutex>
 #include <memory>
 
+namespace Support {
+	class MyLog;
+}
+
 namespace Model {
 	class Cells;
 	struct Candidate;
@@ -26,7 +30,7 @@ namespace Model {
 		const std::shared_ptr<Cells> popMethaneCells();
 		const std::vector<const std::shared_ptr<Cells>> & getCelllsHistory() const;
 
-		friend std::ofstream& operator<<(std::ofstream& fs, const Hypothesis& hyp);
+		std::ofstream& toBinary(std::ofstream& fs) const;
         
     private:
         int getCurrentCellsHisIndex() const;
@@ -35,6 +39,7 @@ namespace Model {
         std::vector<Candidate> leaks_;
         double probability_;
         std::vector<const std::shared_ptr<Cells>> cells_update_his_;
+		static std::unique_ptr<Support::MyLog> lg_;
         
         //mutable std::mutex cells_his_mutex_;
 	};

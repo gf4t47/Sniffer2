@@ -103,14 +103,13 @@ namespace Model {
 		return os;
 	}
 
-	ofstream& operator<<(ofstream& fs, const CellTag& tag) {
-		fs << static_cast<int>(tag);
-		return fs;
-	}
+	ofstream& Cell::toBinary(ofstream& fs) const{
+		coord_.toBinary(fs);
+		auto tag = static_cast<int>(tag_);
+		fs.write(reinterpret_cast<char*>(&tag), sizeof tag);
+		wind_.toBinary(fs);
+		mtn_.toBinary(fs);
 
-	ofstream& operator<<(ofstream& fs, const Cell& cell) {
-		auto tag = cell.tag_;
-		fs << cell.coord_ << tag << cell.wind_ << cell.mtn_.getConcentration();
 		return fs;
 	}
 }

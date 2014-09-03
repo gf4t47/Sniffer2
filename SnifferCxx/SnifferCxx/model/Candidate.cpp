@@ -16,9 +16,11 @@ namespace Model {
 		return os;
 	}
 
-	ofstream& operator<<(ofstream& fs, const Candidate& can) {
-		fs << can.location_;
-		fs << can.concentration_;
+	ofstream& Candidate::toBinary(ofstream& fs) const{
+		location_.toBinary(fs);
+		auto con = concentration_;
+		fs.write(reinterpret_cast<char*>(&con), sizeof con);
+
 		return fs;
 	}
 
@@ -46,17 +48,19 @@ namespace Model {
 		return os;
 	}
 
-	ofstream& operator<<(ofstream& fs, const Detection& dect) {
-		fs << dect.time_;
-		if (dect.wv_) {
-			fs << *dect.wv_;
+	ofstream& Detection::toBinary(ofstream& fs) const{
+		auto tm = static_cast<int>(time_);
+		fs.write(reinterpret_cast<char*>(&tm), sizeof tm);
+		
+		WindVector wv;
+		if (wv_) {
+			wv = *wv_;
 		}
-		else {
-			fs << WindVector();
-		}
+		wv.toBinary(fs);
 
-		fs << static_cast<int>(dect.detected_.size());
-		for_each(dect.detected_.begin(), dect.detected_.end(), [&fs](const Candidate & can){fs << can; });
+		auto num = static_cast<int>(detected_.size());
+		fs.write(reinterpret_cast<char*>(&num), sizeof num);
+		for_each(detected_.begin(), detected_.end(), [&fs](const Candidate & can){can.toBinary(fs); });
 
 		return fs;
 	}

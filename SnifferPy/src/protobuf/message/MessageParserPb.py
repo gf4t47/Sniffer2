@@ -1,8 +1,6 @@
-__author__ = 'Kern'
+from src.protobuf.message import dect_pb2, cell_pb2, hypothesis_pb2
 
-import hypothesis_pb2
-import cell_pb2
-import dect_pb2
+__author__ = 'Kern'
 
 
 def parse_mtn(msg_file):
