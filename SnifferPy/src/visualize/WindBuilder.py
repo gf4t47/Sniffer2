@@ -1,13 +1,12 @@
-from src.protobuf.message import cell_pb2
-
 __author__ = 'kding'
 
 import numpy
 import mayavi.mlab as mb
+from src.model.Cell import str2tag
 
 
 def build(mp):
-    air_cells = filter(lambda cell: cell.tag == cell_pb2.Air, mp.cell)
+    air_cells = filter(lambda cell: cell.tag == str2tag["Air"], mp.cells)
 
     size = len(air_cells)
 
@@ -20,16 +19,15 @@ def build(mp):
 
     for index, cell in enumerate(air_cells):
         coord = cell.coord
-        xs[index] = coord.coord_x
-        ys[index] = coord.coord_y
-        zs[index] = coord.coord_z + 0.5
+        xs[index] = coord[0]
+        ys[index] = coord[1]
+        zs[index] = coord[2] + 0.5
 
-        wind = cell.wind.wind
-        potential = cell.wind.potential
+        wind = cell.wind.calc_wind()
 
-        us[index] = wind.wv_x + potential.wv_x
-        vs[index] = wind.wv_y + potential.wv_y
-        ws[index] = wind.wv_z + potential.wv_z
+        us[index] = wind[0]
+        vs[index] = wind[1]
+        ws[index] = wind[2]
         # us[index] = potential.wv_x
         # vs[index] = potential.wv_y
         # ws[index] = potential.wv_z

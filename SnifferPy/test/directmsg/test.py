@@ -1,8 +1,8 @@
+from src.visualize import WindBuilder, MapBuilder
+
 __author__ = 'Kern'
 
-from src.direct.message.MessageParserDriect import *
-from src.direct.visualize import MapBuilder
-from src.direct.visualize import WindBuilder
+from src.message.direct.MessageParserDirect import *
 import mayavi.mlab as mb
 
 # dect_list = parse_binary_file( "../../bridge/output/dect.bin", strDect)

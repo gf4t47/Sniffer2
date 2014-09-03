@@ -154,7 +154,7 @@ void protobuf_AssignDesc_cell_2eproto() {
   static const int Map_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Map, startindex_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Map, boundary_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Map, cell_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Map, cells_),
   };
   Map_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -233,11 +233,11 @@ void protobuf_AddDesc_cell_2eproto() {
     "otoMsg.Cell.WindVector\022,\n\tpotential\030\002 \002("
     "\0132\031.ProtoMsg.Cell.WindVector\032 \n\007Methane\022"
     "\025\n\rconcentration\030\001 \002(\001\"%\n\005Cells\022\034\n\004cell\030"
-    "\001 \003(\0132\016.ProtoMsg.Cell\"u\n\003Map\022(\n\nstartInd"
+    "\001 \003(\0132\016.ProtoMsg.Cell\"w\n\003Map\022(\n\nstartInd"
     "ex\030\001 \002(\0132\024.ProtoMsg.Coordinate\022&\n\010bounda"
-    "ry\030\002 \002(\0132\024.ProtoMsg.Coordinate\022\034\n\004cell\030\003"
-    " \003(\0132\016.ProtoMsg.Cell*,\n\007CellTag\022\007\n\003Air\020\001"
-    "\022\n\n\006Ground\020\002\022\014\n\010Building\020\003B\002H\001", 630);
+    "ry\030\002 \002(\0132\024.ProtoMsg.Coordinate\022\036\n\005cells\030"
+    "\003 \002(\0132\017.ProtoMsg.Cells*,\n\007CellTag\022\007\n\003Air"
+    "\020\001\022\n\n\006Ground\020\002\022\014\n\010Building\020\003B\002H\001", 632);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cell.proto", &protobuf_RegisterTypes);
   Coordinate::default_instance_ = new Coordinate();
@@ -1893,7 +1893,7 @@ void Cells::Swap(Cells* other) {
 #ifndef _MSC_VER
 const int Map::kStartIndexFieldNumber;
 const int Map::kBoundaryFieldNumber;
-const int Map::kCellFieldNumber;
+const int Map::kCellsFieldNumber;
 #endif  // !_MSC_VER
 
 Map::Map()
@@ -1904,6 +1904,7 @@ Map::Map()
 void Map::InitAsDefaultInstance() {
   startindex_ = const_cast< ::ProtoMsg::Coordinate*>(&::ProtoMsg::Coordinate::default_instance());
   boundary_ = const_cast< ::ProtoMsg::Coordinate*>(&::ProtoMsg::Coordinate::default_instance());
+  cells_ = const_cast< ::ProtoMsg::Cells*>(&::ProtoMsg::Cells::default_instance());
 }
 
 Map::Map(const Map& from)
@@ -1916,6 +1917,7 @@ void Map::SharedCtor() {
   _cached_size_ = 0;
   startindex_ = NULL;
   boundary_ = NULL;
+  cells_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1927,6 +1929,7 @@ void Map::SharedDtor() {
   if (this != default_instance_) {
     delete startindex_;
     delete boundary_;
+    delete cells_;
   }
 }
 
@@ -1959,8 +1962,10 @@ void Map::Clear() {
     if (has_boundary()) {
       if (boundary_ != NULL) boundary_->::ProtoMsg::Coordinate::Clear();
     }
+    if (has_cells()) {
+      if (cells_ != NULL) cells_->::ProtoMsg::Cells::Clear();
+    }
   }
-  cell_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -1994,21 +1999,20 @@ bool Map::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(26)) goto parse_cell;
+        if (input->ExpectTag(26)) goto parse_cells;
         break;
       }
 
-      // repeated .ProtoMsg.Cell cell = 3;
+      // required .ProtoMsg.Cells cells = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-         parse_cell:
+         parse_cells:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_cell()));
+               input, mutable_cells()));
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(26)) goto parse_cell;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -2043,10 +2047,10 @@ void Map::SerializeWithCachedSizes(
       2, this->boundary(), output);
   }
 
-  // repeated .ProtoMsg.Cell cell = 3;
-  for (int i = 0; i < this->cell_size(); i++) {
+  // required .ProtoMsg.Cells cells = 3;
+  if (has_cells()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      3, this->cell(i), output);
+      3, this->cells(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -2071,11 +2075,11 @@ void Map::SerializeWithCachedSizes(
         2, this->boundary(), target);
   }
 
-  // repeated .ProtoMsg.Cell cell = 3;
-  for (int i = 0; i < this->cell_size(); i++) {
+  // required .ProtoMsg.Cells cells = 3;
+  if (has_cells()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        3, this->cell(i), target);
+        3, this->cells(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -2103,15 +2107,14 @@ int Map::ByteSize() const {
           this->boundary());
     }
 
-  }
-  // repeated .ProtoMsg.Cell cell = 3;
-  total_size += 1 * this->cell_size();
-  for (int i = 0; i < this->cell_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cell(i));
-  }
+    // required .ProtoMsg.Cells cells = 3;
+    if (has_cells()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cells());
+    }
 
+  }
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -2137,13 +2140,15 @@ void Map::MergeFrom(const ::google::protobuf::Message& from) {
 
 void Map::MergeFrom(const Map& from) {
   GOOGLE_CHECK_NE(&from, this);
-  cell_.MergeFrom(from.cell_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_startindex()) {
       mutable_startindex()->::ProtoMsg::Coordinate::MergeFrom(from.startindex());
     }
     if (from.has_boundary()) {
       mutable_boundary()->::ProtoMsg::Coordinate::MergeFrom(from.boundary());
+    }
+    if (from.has_cells()) {
+      mutable_cells()->::ProtoMsg::Cells::MergeFrom(from.cells());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -2162,7 +2167,7 @@ void Map::CopyFrom(const Map& from) {
 }
 
 bool Map::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
 
   if (has_startindex()) {
     if (!this->startindex().IsInitialized()) return false;
@@ -2170,8 +2175,8 @@ bool Map::IsInitialized() const {
   if (has_boundary()) {
     if (!this->boundary().IsInitialized()) return false;
   }
-  for (int i = 0; i < cell_size(); i++) {
-    if (!this->cell(i).IsInitialized()) return false;
+  if (has_cells()) {
+    if (!this->cells().IsInitialized()) return false;
   }
   return true;
 }
@@ -2180,7 +2185,7 @@ void Map::Swap(Map* other) {
   if (other != this) {
     std::swap(startindex_, other->startindex_);
     std::swap(boundary_, other->boundary_);
-    cell_.Swap(&other->cell_);
+    std::swap(cells_, other->cells_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

@@ -725,17 +725,14 @@ class Map : public ::google::protobuf::Message {
   inline ::ProtoMsg::Coordinate* release_boundary();
   inline void set_allocated_boundary(::ProtoMsg::Coordinate* boundary);
 
-  // repeated .ProtoMsg.Cell cell = 3;
-  inline int cell_size() const;
-  inline void clear_cell();
-  static const int kCellFieldNumber = 3;
-  inline const ::ProtoMsg::Cell& cell(int index) const;
-  inline ::ProtoMsg::Cell* mutable_cell(int index);
-  inline ::ProtoMsg::Cell* add_cell();
-  inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell >&
-      cell() const;
-  inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell >*
-      mutable_cell();
+  // required .ProtoMsg.Cells cells = 3;
+  inline bool has_cells() const;
+  inline void clear_cells();
+  static const int kCellsFieldNumber = 3;
+  inline const ::ProtoMsg::Cells& cells() const;
+  inline ::ProtoMsg::Cells* mutable_cells();
+  inline ::ProtoMsg::Cells* release_cells();
+  inline void set_allocated_cells(::ProtoMsg::Cells* cells);
 
   // @@protoc_insertion_point(class_scope:ProtoMsg.Map)
  private:
@@ -743,12 +740,14 @@ class Map : public ::google::protobuf::Message {
   inline void clear_has_startindex();
   inline void set_has_boundary();
   inline void clear_has_boundary();
+  inline void set_has_cells();
+  inline void clear_has_cells();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::ProtoMsg::Coordinate* startindex_;
   ::ProtoMsg::Coordinate* boundary_;
-  ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell > cell_;
+  ::ProtoMsg::Cells* cells_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
@@ -1259,29 +1258,42 @@ inline void Map::set_allocated_boundary(::ProtoMsg::Coordinate* boundary) {
   }
 }
 
-// repeated .ProtoMsg.Cell cell = 3;
-inline int Map::cell_size() const {
-  return cell_.size();
+// required .ProtoMsg.Cells cells = 3;
+inline bool Map::has_cells() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void Map::clear_cell() {
-  cell_.Clear();
+inline void Map::set_has_cells() {
+  _has_bits_[0] |= 0x00000004u;
 }
-inline const ::ProtoMsg::Cell& Map::cell(int index) const {
-  return cell_.Get(index);
+inline void Map::clear_has_cells() {
+  _has_bits_[0] &= ~0x00000004u;
 }
-inline ::ProtoMsg::Cell* Map::mutable_cell(int index) {
-  return cell_.Mutable(index);
+inline void Map::clear_cells() {
+  if (cells_ != NULL) cells_->::ProtoMsg::Cells::Clear();
+  clear_has_cells();
 }
-inline ::ProtoMsg::Cell* Map::add_cell() {
-  return cell_.Add();
+inline const ::ProtoMsg::Cells& Map::cells() const {
+  return cells_ != NULL ? *cells_ : *default_instance_->cells_;
 }
-inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell >&
-Map::cell() const {
-  return cell_;
+inline ::ProtoMsg::Cells* Map::mutable_cells() {
+  set_has_cells();
+  if (cells_ == NULL) cells_ = new ::ProtoMsg::Cells;
+  return cells_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cell >*
-Map::mutable_cell() {
-  return &cell_;
+inline ::ProtoMsg::Cells* Map::release_cells() {
+  clear_has_cells();
+  ::ProtoMsg::Cells* temp = cells_;
+  cells_ = NULL;
+  return temp;
+}
+inline void Map::set_allocated_cells(::ProtoMsg::Cells* cells) {
+  delete cells_;
+  cells_ = cells;
+  if (cells) {
+    set_has_cells();
+  } else {
+    clear_has_cells();
+  }
 }
 
 

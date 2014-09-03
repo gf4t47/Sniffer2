@@ -8,7 +8,7 @@ from google.protobuf import descriptor_pb2
 # @@protoc_insertion_point(imports)
 
 
-from src.protobuf.message import hypothesis_pb2
+import hypothesis_pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(

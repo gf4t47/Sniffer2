@@ -14,7 +14,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='cell.proto',
   package='ProtoMsg',
-  serialized_pb='\n\ncell.proto\x12\x08ProtoMsg\"?\n\nCoordinate\x12\x0f\n\x07\x63oord_x\x18\x01 \x02(\x05\x12\x0f\n\x07\x63oord_y\x18\x02 \x02(\x05\x12\x0f\n\x07\x63oord_z\x18\x03 \x02(\x05\"\xcc\x02\n\x04\x43\x65ll\x12#\n\x05\x63oord\x18\x01 \x02(\x0b\x32\x14.ProtoMsg.Coordinate\x12\x1e\n\x03tag\x18\x02 \x02(\x0e\x32\x11.ProtoMsg.CellTag\x12#\n\x03mtn\x18\x03 \x02(\x0b\x32\x16.ProtoMsg.Cell.Methane\x12!\n\x04wind\x18\x04 \x02(\x0b\x32\x13.ProtoMsg.Cell.Wind\x1a\x36\n\nWindVector\x12\x0c\n\x04wv_x\x18\x01 \x02(\x01\x12\x0c\n\x04wv_y\x18\x02 \x02(\x01\x12\x0c\n\x04wv_z\x18\x03 \x02(\x01\x1a]\n\x04Wind\x12\'\n\x04wind\x18\x01 \x02(\x0b\x32\x19.ProtoMsg.Cell.WindVector\x12,\n\tpotential\x18\x02 \x02(\x0b\x32\x19.ProtoMsg.Cell.WindVector\x1a \n\x07Methane\x12\x15\n\rconcentration\x18\x01 \x02(\x01\"%\n\x05\x43\x65lls\x12\x1c\n\x04\x63\x65ll\x18\x01 \x03(\x0b\x32\x0e.ProtoMsg.Cell\"u\n\x03Map\x12(\n\nstartIndex\x18\x01 \x02(\x0b\x32\x14.ProtoMsg.Coordinate\x12&\n\x08\x62oundary\x18\x02 \x02(\x0b\x32\x14.ProtoMsg.Coordinate\x12\x1c\n\x04\x63\x65ll\x18\x03 \x03(\x0b\x32\x0e.ProtoMsg.Cell*,\n\x07\x43\x65llTag\x12\x07\n\x03\x41ir\x10\x01\x12\n\n\x06Ground\x10\x02\x12\x0c\n\x08\x42uilding\x10\x03\x42\x02H\x01')
+  serialized_pb='\n\ncell.proto\x12\x08ProtoMsg\"?\n\nCoordinate\x12\x0f\n\x07\x63oord_x\x18\x01 \x02(\x05\x12\x0f\n\x07\x63oord_y\x18\x02 \x02(\x05\x12\x0f\n\x07\x63oord_z\x18\x03 \x02(\x05\"\xcc\x02\n\x04\x43\x65ll\x12#\n\x05\x63oord\x18\x01 \x02(\x0b\x32\x14.ProtoMsg.Coordinate\x12\x1e\n\x03tag\x18\x02 \x02(\x0e\x32\x11.ProtoMsg.CellTag\x12#\n\x03mtn\x18\x03 \x02(\x0b\x32\x16.ProtoMsg.Cell.Methane\x12!\n\x04wind\x18\x04 \x02(\x0b\x32\x13.ProtoMsg.Cell.Wind\x1a\x36\n\nWindVector\x12\x0c\n\x04wv_x\x18\x01 \x02(\x01\x12\x0c\n\x04wv_y\x18\x02 \x02(\x01\x12\x0c\n\x04wv_z\x18\x03 \x02(\x01\x1a]\n\x04Wind\x12\'\n\x04wind\x18\x01 \x02(\x0b\x32\x19.ProtoMsg.Cell.WindVector\x12,\n\tpotential\x18\x02 \x02(\x0b\x32\x19.ProtoMsg.Cell.WindVector\x1a \n\x07Methane\x12\x15\n\rconcentration\x18\x01 \x02(\x01\"%\n\x05\x43\x65lls\x12\x1c\n\x04\x63\x65ll\x18\x01 \x03(\x0b\x32\x0e.ProtoMsg.Cell\"w\n\x03Map\x12(\n\nstartIndex\x18\x01 \x02(\x0b\x32\x14.ProtoMsg.Coordinate\x12&\n\x08\x62oundary\x18\x02 \x02(\x0b\x32\x14.ProtoMsg.Coordinate\x12\x1e\n\x05\x63\x65lls\x18\x03 \x02(\x0b\x32\x0f.ProtoMsg.Cells*,\n\x07\x43\x65llTag\x12\x07\n\x03\x41ir\x10\x01\x12\n\n\x06Ground\x10\x02\x12\x0c\n\x08\x42uilding\x10\x03\x42\x02H\x01')
 
 _CELLTAG = _descriptor.EnumDescriptor(
   name='CellTag',
@@ -37,8 +37,8 @@ _CELLTAG = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=582,
-  serialized_end=626,
+  serialized_start=584,
+  serialized_end=628,
 )
 
 CellTag = enum_type_wrapper.EnumTypeWrapper(_CELLTAG)
@@ -291,9 +291,9 @@ _MAP = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='cell', full_name='ProtoMsg.Map.cell', index=2,
-      number=3, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
+      name='cells', full_name='ProtoMsg.Map.cells', index=2,
+      number=3, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -307,7 +307,7 @@ _MAP = _descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=463,
-  serialized_end=580,
+  serialized_end=582,
 )
 
 _CELL_WINDVECTOR.containing_type = _CELL;
@@ -322,7 +322,7 @@ _CELL.fields_by_name['wind'].message_type = _CELL_WIND
 _CELLS.fields_by_name['cell'].message_type = _CELL
 _MAP.fields_by_name['startIndex'].message_type = _COORDINATE
 _MAP.fields_by_name['boundary'].message_type = _COORDINATE
-_MAP.fields_by_name['cell'].message_type = _CELL
+_MAP.fields_by_name['cells'].message_type = _CELLS
 DESCRIPTOR.message_types_by_name['Coordinate'] = _COORDINATE
 DESCRIPTOR.message_types_by_name['Cell'] = _CELL
 DESCRIPTOR.message_types_by_name['Cells'] = _CELLS

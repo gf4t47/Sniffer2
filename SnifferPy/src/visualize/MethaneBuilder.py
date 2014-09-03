@@ -1,13 +1,11 @@
-from src.protobuf.message import cell_pb2
-
 __author__ = 'Kern'
 
 import numpy
 import mayavi.mlab as mb
-
+from src.model.Cell import str2tag
 
 def _cells_to_vector(cells):
-    size = len(cells.cell)
+    size = len(cells)
     xs = numpy.zeros(size, dtype=int)
     ys = numpy.zeros(size, dtype=int)
     zs = numpy.zeros(size, dtype=int)
@@ -16,13 +14,13 @@ def _cells_to_vector(cells):
     vs = numpy.zeros(size)
     ws = numpy.zeros(size)
 
-    for index, cell in enumerate(filter(lambda c: c.tag == cell_pb2.Air, cells.cell)):
+    for index, cell in enumerate(filter(lambda c: c.tag == str2tag["Air"], cells)):
         coord = cell.coord
-        xs[index] = coord.coord_x
-        ys[index] = coord.coord_y
-        zs[index] = coord.coord_z
+        xs[index] = coord[0]
+        ys[index] = coord[1]
+        zs[index] = coord[2]
 
-        concentration = cell.mtn.concentration
+        concentration = cell.mtn
         us[index] = concentration
         vs[index] = concentration
         ws[index] = concentration
@@ -60,8 +58,8 @@ def _build(vecs, fig, color):
 def build(hyps, figs):
     low_fig, high_fig = figs
 
-    prob_list = [hyp.probability for hyp in hyps.hyp]
-    cells_his_list = [hyp.methene_cells for hyp in hyps.hyp]
+    prob_list = [hyp.prob for hyp in hyps]
+    cells_his_list = [hyp.cells_list for hyp in hyps]
     print "probability =", prob_list
 
     high_cells = None

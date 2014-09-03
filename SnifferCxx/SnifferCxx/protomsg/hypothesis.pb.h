@@ -208,17 +208,17 @@ class Hypothesis : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Leak >*
       mutable_leak();
 
-  // repeated .ProtoMsg.Cells methene_cells = 3;
-  inline int methene_cells_size() const;
-  inline void clear_methene_cells();
-  static const int kMetheneCellsFieldNumber = 3;
-  inline const ::ProtoMsg::Cells& methene_cells(int index) const;
-  inline ::ProtoMsg::Cells* mutable_methene_cells(int index);
-  inline ::ProtoMsg::Cells* add_methene_cells();
+  // repeated .ProtoMsg.Cells methane_history = 3;
+  inline int methane_history_size() const;
+  inline void clear_methane_history();
+  static const int kMethaneHistoryFieldNumber = 3;
+  inline const ::ProtoMsg::Cells& methane_history(int index) const;
+  inline ::ProtoMsg::Cells* mutable_methane_history(int index);
+  inline ::ProtoMsg::Cells* add_methane_history();
   inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cells >&
-      methene_cells() const;
+      methane_history() const;
   inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cells >*
-      mutable_methene_cells();
+      mutable_methane_history();
 
   // @@protoc_insertion_point(class_scope:ProtoMsg.Hypothesis)
  private:
@@ -229,7 +229,7 @@ class Hypothesis : public ::google::protobuf::Message {
 
   double probability_;
   ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Leak > leak_;
-  ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cells > methene_cells_;
+  ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cells > methane_history_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
@@ -529,29 +529,29 @@ Hypothesis::mutable_leak() {
   return &leak_;
 }
 
-// repeated .ProtoMsg.Cells methene_cells = 3;
-inline int Hypothesis::methene_cells_size() const {
-  return methene_cells_.size();
+// repeated .ProtoMsg.Cells methane_history = 3;
+inline int Hypothesis::methane_history_size() const {
+  return methane_history_.size();
 }
-inline void Hypothesis::clear_methene_cells() {
-  methene_cells_.Clear();
+inline void Hypothesis::clear_methane_history() {
+  methane_history_.Clear();
 }
-inline const ::ProtoMsg::Cells& Hypothesis::methene_cells(int index) const {
-  return methene_cells_.Get(index);
+inline const ::ProtoMsg::Cells& Hypothesis::methane_history(int index) const {
+  return methane_history_.Get(index);
 }
-inline ::ProtoMsg::Cells* Hypothesis::mutable_methene_cells(int index) {
-  return methene_cells_.Mutable(index);
+inline ::ProtoMsg::Cells* Hypothesis::mutable_methane_history(int index) {
+  return methane_history_.Mutable(index);
 }
-inline ::ProtoMsg::Cells* Hypothesis::add_methene_cells() {
-  return methene_cells_.Add();
+inline ::ProtoMsg::Cells* Hypothesis::add_methane_history() {
+  return methane_history_.Add();
 }
 inline const ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cells >&
-Hypothesis::methene_cells() const {
-  return methene_cells_;
+Hypothesis::methane_history() const {
+  return methane_history_;
 }
 inline ::google::protobuf::RepeatedPtrField< ::ProtoMsg::Cells >*
-Hypothesis::mutable_methene_cells() {
-  return &methene_cells_;
+Hypothesis::mutable_methane_history() {
+  return &methane_history_;
 }
 
 // -------------------------------------------------------------------

@@ -6,15 +6,15 @@ import mayavi.mlab as mb
 
 def _loc_vector_calculator(detected_location, vec_scale):
     def vector_calculator(hyp):
-        vec = sum(map(lambda leak: leak[0] - detected_location, hyp[1]))
-        return vec * hyp[0] * vec_scale / numpy.linalg.norm(vec)
+        vec = sum(map(lambda leak: leak.coord - detected_location, hyp.leaks))
+        return vec * hyp.prob * vec_scale / numpy.linalg.norm(vec)
 
     return vector_calculator
 
 
 def build(dect, hyps, fig):
-    pair_list = map(lambda leak: (leak[0], sum([_loc_vector_calculator(leak[0], len(hyps))(hyp) for hyp in hyps]) / len(
-        hyps) if len(hyps) > 0 else 1), dect[2])
+    pair_list = map(lambda leak: (leak.coord, sum([_loc_vector_calculator(leak.coord, len(hyps))(hyp) for hyp in hyps]) / len(
+        hyps) if len(hyps) > 0 else 1), dect.leaks)
 
     size = len(pair_list)
     xs = numpy.empty(size, dtype=int)

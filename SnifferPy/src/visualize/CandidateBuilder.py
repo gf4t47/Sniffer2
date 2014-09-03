@@ -6,7 +6,8 @@ import mayavi.mlab as mb
 
 
 def build(candidate, fig):
-    time, wv, can_list = candidate
+    can_list = candidate.leaks
+
     size = len(can_list)
     xs = numpy.empty(size, dtype=int)
     ys = numpy.empty(size, dtype=int)
@@ -15,7 +16,10 @@ def build(candidate, fig):
     vs = numpy.empty(size)
     ws = numpy.empty(size)
 
-    for index, (loc, infor_gain) in enumerate(can_list):
+    for index, can in enumerate(can_list):
+        loc = can.coord
+        infor_gain = can.conc
+
         print "information gain =", [loc[0], loc[1], loc[2]], "->", infor_gain
         xs[index] = loc[0]
         ys[index] = loc[1]

@@ -2,7 +2,10 @@
   <dictionary name="Kern">
     <words>
       <w>blds</w>
+      <w>conc</w>
       <w>hyps</w>
+      <w>proto</w>
+      <w>protobuf</w>
       <w>windvector</w>
     </words>
   </dictionary>

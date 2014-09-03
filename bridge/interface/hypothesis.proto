@@ -12,7 +12,7 @@ message Leak {
 message Hypothesis {
 	required double probability = 1;
 	repeated Leak leak = 2;
-	repeated Cells methene_cells = 3;
+	repeated Cells methane_history = 3;
 }
 
 message Hypotheses {

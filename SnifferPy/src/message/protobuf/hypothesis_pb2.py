@@ -8,13 +8,13 @@ from google.protobuf import descriptor_pb2
 # @@protoc_insertion_point(imports)
 
 
-from src.protobuf.message import cell_pb2
+import cell_pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='hypothesis.proto',
   package='ProtoMsg',
-  serialized_pb='\n\x10hypothesis.proto\x12\x08ProtoMsg\x1a\ncell.proto\"E\n\x04Leak\x12&\n\x08location\x18\x01 \x02(\x0b\x32\x14.ProtoMsg.Coordinate\x12\x15\n\rconcentration\x18\x02 \x02(\x01\"g\n\nHypothesis\x12\x13\n\x0bprobability\x18\x01 \x02(\x01\x12\x1c\n\x04leak\x18\x02 \x03(\x0b\x32\x0e.ProtoMsg.Leak\x12&\n\rmethene_cells\x18\x03 \x03(\x0b\x32\x0f.ProtoMsg.Cells\"/\n\nHypotheses\x12!\n\x03hyp\x18\x01 \x03(\x0b\x32\x14.ProtoMsg.Hypothesis\"8\n\x12Hypotheses_history\x12\"\n\x04hyps\x18\x01 \x03(\x0b\x32\x14.ProtoMsg.HypothesesB\x02H\x01')
+  serialized_pb='\n\x10hypothesis.proto\x12\x08ProtoMsg\x1a\ncell.proto\"E\n\x04Leak\x12&\n\x08location\x18\x01 \x02(\x0b\x32\x14.ProtoMsg.Coordinate\x12\x15\n\rconcentration\x18\x02 \x02(\x01\"i\n\nHypothesis\x12\x13\n\x0bprobability\x18\x01 \x02(\x01\x12\x1c\n\x04leak\x18\x02 \x03(\x0b\x32\x0e.ProtoMsg.Leak\x12(\n\x0fmethane_history\x18\x03 \x03(\x0b\x32\x0f.ProtoMsg.Cells\"/\n\nHypotheses\x12!\n\x03hyp\x18\x01 \x03(\x0b\x32\x14.ProtoMsg.Hypothesis\"8\n\x12Hypotheses_history\x12\"\n\x04hyps\x18\x01 \x03(\x0b\x32\x14.ProtoMsg.HypothesesB\x02H\x01')
 
 
 
@@ -76,7 +76,7 @@ _HYPOTHESIS = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='methene_cells', full_name='ProtoMsg.Hypothesis.methene_cells', index=2,
+      name='methane_history', full_name='ProtoMsg.Hypothesis.methane_history', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -92,7 +92,7 @@ _HYPOTHESIS = _descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=113,
-  serialized_end=216,
+  serialized_end=218,
 )
 
 
@@ -119,8 +119,8 @@ _HYPOTHESES = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=218,
-  serialized_end=265,
+  serialized_start=220,
+  serialized_end=267,
 )
 
 
@@ -147,13 +147,13 @@ _HYPOTHESES_HISTORY = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=267,
-  serialized_end=323,
+  serialized_start=269,
+  serialized_end=325,
 )
 
 _LEAK.fields_by_name['location'].message_type = cell_pb2._COORDINATE
 _HYPOTHESIS.fields_by_name['leak'].message_type = _LEAK
-_HYPOTHESIS.fields_by_name['methene_cells'].message_type = cell_pb2._CELLS
+_HYPOTHESIS.fields_by_name['methane_history'].message_type = cell_pb2._CELLS
 _HYPOTHESES.fields_by_name['hyp'].message_type = _HYPOTHESIS
 _HYPOTHESES_HISTORY.fields_by_name['hyps'].message_type = _HYPOTHESES
 DESCRIPTOR.message_types_by_name['Leak'] = _LEAK

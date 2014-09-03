@@ -62,7 +62,7 @@ void protobuf_AssignDesc_hypothesis_2eproto() {
   static const int Hypothesis_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypothesis, probability_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypothesis, leak_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypothesis, methene_cells_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hypothesis, methane_history_),
   };
   Hypothesis_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -150,13 +150,13 @@ void protobuf_AddDesc_hypothesis_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\020hypothesis.proto\022\010ProtoMsg\032\ncell.proto"
     "\"E\n\004Leak\022&\n\010location\030\001 \002(\0132\024.ProtoMsg.Co"
-    "ordinate\022\025\n\rconcentration\030\002 \002(\001\"g\n\nHypot"
+    "ordinate\022\025\n\rconcentration\030\002 \002(\001\"i\n\nHypot"
     "hesis\022\023\n\013probability\030\001 \002(\001\022\034\n\004leak\030\002 \003(\013"
-    "2\016.ProtoMsg.Leak\022&\n\rmethene_cells\030\003 \003(\0132"
-    "\017.ProtoMsg.Cells\"/\n\nHypotheses\022!\n\003hyp\030\001 "
-    "\003(\0132\024.ProtoMsg.Hypothesis\"8\n\022Hypotheses_"
-    "history\022\"\n\004hyps\030\001 \003(\0132\024.ProtoMsg.Hypothe"
-    "sesB\002H\001", 327);
+    "2\016.ProtoMsg.Leak\022(\n\017methane_history\030\003 \003("
+    "\0132\017.ProtoMsg.Cells\"/\n\nHypotheses\022!\n\003hyp\030"
+    "\001 \003(\0132\024.ProtoMsg.Hypothesis\"8\n\022Hypothese"
+    "s_history\022\"\n\004hyps\030\001 \003(\0132\024.ProtoMsg.Hypot"
+    "hesesB\002H\001", 329);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "hypothesis.proto", &protobuf_RegisterTypes);
   Leak::default_instance_ = new Leak();
@@ -437,7 +437,7 @@ void Leak::Swap(Leak* other) {
 #ifndef _MSC_VER
 const int Hypothesis::kProbabilityFieldNumber;
 const int Hypothesis::kLeakFieldNumber;
-const int Hypothesis::kMetheneCellsFieldNumber;
+const int Hypothesis::kMethaneHistoryFieldNumber;
 #endif  // !_MSC_VER
 
 Hypothesis::Hypothesis()
@@ -495,7 +495,7 @@ void Hypothesis::Clear() {
     probability_ = 0;
   }
   leak_.Clear();
-  methene_cells_.Clear();
+  methane_history_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -532,21 +532,21 @@ bool Hypothesis::MergePartialFromCodedStream(
           goto handle_uninterpreted;
         }
         if (input->ExpectTag(18)) goto parse_leak;
-        if (input->ExpectTag(26)) goto parse_methene_cells;
+        if (input->ExpectTag(26)) goto parse_methane_history;
         break;
       }
 
-      // repeated .ProtoMsg.Cells methene_cells = 3;
+      // repeated .ProtoMsg.Cells methane_history = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-         parse_methene_cells:
+         parse_methane_history:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_methene_cells()));
+                input, add_methane_history()));
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(26)) goto parse_methene_cells;
+        if (input->ExpectTag(26)) goto parse_methane_history;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -580,10 +580,10 @@ void Hypothesis::SerializeWithCachedSizes(
       2, this->leak(i), output);
   }
 
-  // repeated .ProtoMsg.Cells methene_cells = 3;
-  for (int i = 0; i < this->methene_cells_size(); i++) {
+  // repeated .ProtoMsg.Cells methane_history = 3;
+  for (int i = 0; i < this->methane_history_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      3, this->methene_cells(i), output);
+      3, this->methane_history(i), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -606,11 +606,11 @@ void Hypothesis::SerializeWithCachedSizes(
         2, this->leak(i), target);
   }
 
-  // repeated .ProtoMsg.Cells methene_cells = 3;
-  for (int i = 0; i < this->methene_cells_size(); i++) {
+  // repeated .ProtoMsg.Cells methane_history = 3;
+  for (int i = 0; i < this->methane_history_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        3, this->methene_cells(i), target);
+        3, this->methane_history(i), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -638,12 +638,12 @@ int Hypothesis::ByteSize() const {
         this->leak(i));
   }
 
-  // repeated .ProtoMsg.Cells methene_cells = 3;
-  total_size += 1 * this->methene_cells_size();
-  for (int i = 0; i < this->methene_cells_size(); i++) {
+  // repeated .ProtoMsg.Cells methane_history = 3;
+  total_size += 1 * this->methane_history_size();
+  for (int i = 0; i < this->methane_history_size(); i++) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->methene_cells(i));
+        this->methane_history(i));
   }
 
   if (!unknown_fields().empty()) {
@@ -672,7 +672,7 @@ void Hypothesis::MergeFrom(const ::google::protobuf::Message& from) {
 void Hypothesis::MergeFrom(const Hypothesis& from) {
   GOOGLE_CHECK_NE(&from, this);
   leak_.MergeFrom(from.leak_);
-  methene_cells_.MergeFrom(from.methene_cells_);
+  methane_history_.MergeFrom(from.methane_history_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_probability()) {
       set_probability(from.probability());
@@ -699,8 +699,8 @@ bool Hypothesis::IsInitialized() const {
   for (int i = 0; i < leak_size(); i++) {
     if (!this->leak(i).IsInitialized()) return false;
   }
-  for (int i = 0; i < methene_cells_size(); i++) {
-    if (!this->methene_cells(i).IsInitialized()) return false;
+  for (int i = 0; i < methane_history_size(); i++) {
+    if (!this->methane_history(i).IsInitialized()) return false;
   }
   return true;
 }
@@ -709,7 +709,7 @@ void Hypothesis::Swap(Hypothesis* other) {
   if (other != this) {
     std::swap(probability_, other->probability_);
     leak_.Swap(&other->leak_);
-    methene_cells_.Swap(&other->methene_cells_);
+    methane_history_.Swap(&other->methane_history_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

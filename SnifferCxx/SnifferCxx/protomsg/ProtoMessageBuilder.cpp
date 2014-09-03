@@ -83,7 +83,8 @@ namespace ProtoMsg {
 //        msg_map->set_allocated_boundary(msg_boundary);
         
         boost::const_multi_array_ref<Model::Cell, 1> map_ref(map.data(), boost::extents[map.num_elements()]);
-        for_each(map_ref.begin(), map_ref.end(), [&msg_map](const Model::Cell & cell){auto msg_cell = msg_map->add_cell(); buildCellMessage(cell, msg_cell);});
+		auto msg_cells = msg_map->mutable_cells();
+        for_each(map_ref.begin(), map_ref.end(), [&msg_cells](const Model::Cell & cell){auto msg_cell = msg_cells->add_cell(); buildCellMessage(cell, msg_cell);});
         
         return msg_map;
     }
@@ -129,7 +130,7 @@ namespace ProtoMsg {
 				if (only_detection) {
 					auto const cells = hyp.getMethaneCells();
 					if (cells) {
-						auto msg_cells = msg_hyp->add_methene_cells();
+						auto msg_cells = msg_hyp->add_methane_history();
 						for (auto const & cell_pair : *cells) {
 							auto const & cell = cell_pair.second;
 
@@ -146,7 +147,7 @@ namespace ProtoMsg {
 						}
 
 						auto const & cells = hyp.getCelllsHistory()[i];
-						auto msg_cells = msg_hyp->add_methene_cells();
+						auto msg_cells = msg_hyp->add_methane_history();
 						for (auto const & cell_pair : *cells) {
 							auto const & cell = cell_pair.second;
 
