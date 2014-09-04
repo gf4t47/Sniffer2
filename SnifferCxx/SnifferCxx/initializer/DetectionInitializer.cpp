@@ -141,8 +141,8 @@ namespace Initializer {
 	}
 
 	WindVector DetectionInitializer::transDirectionSpeed2Vector(int wind_direct, double wind_speed) {
-		auto x = wind_speed * sin(wind_direct * PI / 180.0);
-		auto y = wind_speed * cos(wind_direct * PI / 180.0);
+		auto x = wind_speed * cos(wind_direct * PI / 180.0);
+		auto y = - wind_speed * sin(wind_direct * PI / 180.0);
 		auto z = 0;
 
 		return WindVector(x, y, z);

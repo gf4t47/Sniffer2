@@ -56,7 +56,19 @@ namespace Backward {
 		return ret;
 	}
 
-	Candidate CandidateGenerator::generateCandidate(const Coordinate & curPos, int time_count, unit_t distance, const Hypotheses & hyps) const{
+	vector<Candidate> CandidateGenerator::calcCandidates(const Coordinate & curPos, int time_count, unit_t distance, const Hypotheses & hyps) const {
+		auto locations = collisionFilter(curPos, *crossLocation(curPos, map_, distance), map_);
+		auto gain_vec = infoGain_.calcInforGains(*locations, hyps, time_count);
+
+		vector<Candidate> can_vec;
+		for (int i = 0; i < gain_vec.size(); i++) {
+			can_vec.push_back(Candidate(locations->at(i), gain_vec[i]));
+		}
+
+		return can_vec;
+	}
+
+	Candidate CandidateGenerator::calcBestCandidate(const Coordinate & curPos, int time_count, unit_t distance, const Hypotheses & hyps) const{
 		auto locations = collisionFilter(curPos, *crossLocation(curPos, map_, distance), map_);
 		auto gain_vec = infoGain_.calcInforGains(*locations, hyps, time_count);
 		auto max_socre = max_element(gain_vec.begin(), gain_vec.end());

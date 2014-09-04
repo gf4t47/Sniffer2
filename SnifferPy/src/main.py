@@ -3,8 +3,9 @@ __author__ = 'Kern'
 import sys
 
 import mayavi.mlab as mb
+import initializer.MapParserJson as MapParser
 
-import src.message.Parser as Parser
+import message.Parser as Parser
 from src.visualize import MapBuilder
 from src.visualize import MethaneBuilder
 from src.visualize import DetectionBuilder
@@ -21,9 +22,6 @@ mtn_output = sys.argv[3]
 dect_output = sys.argv[4]
 can_output = sys.argv[5]
 
-map_output = None
-mp, dects, candidates, hyps_his = Parser.parse(map_cfg, map_output, dect_output, can_output, mtn_output)
-
 fig_window = mb.figure(size=(1024, 768))
 # eng = mb.get_engine()
 # scene = eng.scenes[0].scene
@@ -34,9 +32,13 @@ scene = fig_window.scene
 # cam = scene.camera
 # cam.zoom(2.5)
 
-if map_output is None:
-    fig_map = MapBuilder.build_from_json(mp)
-else:
+mp = MapParser.parser_json(map_cfg)
+fig_map = MapBuilder.build_from_json(mp)
+# mb.show()
+
+mp, dects, candidates, hyps_his = Parser.parse(None, dect_output, can_output, mtn_output)
+
+if not mp is None:
     fig_map = MapBuilder.build_from_bin(mp)
     fig_wind = WindBuilder.build(mp)
     fig_wind.remove()

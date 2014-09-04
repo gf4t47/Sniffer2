@@ -81,6 +81,9 @@ int main(int argc, const char * argv[])
 	if (auto_movement) {
 		executor->autoDrive(*hyps_hist, *dect_vec, *auto_movement);
 	}
+	else {
+		can_vect->push_back(executor->nextStep(*hyps_hist, *dect_vec, AutoMovement(30, 10)));
+	}
 
 	//message output
 	//ProtoMsg::ProtoMessageBuilder msg_builder(make_pair(mtn_output, hyps_hist), make_pair(dect_output, dect_vec), make_pair(can_output, can_vect), make_pair(map_output, map));

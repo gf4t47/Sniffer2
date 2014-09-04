@@ -33,6 +33,16 @@ namespace Model {
 	};
 
 	struct AutoMovement {
+		AutoMovement()
+			:time_(0),
+			distance_(0) {
+		}
+
+		AutoMovement(int time, Model::unit_t distance)
+			:time_(time),
+			distance_(distance) {
+		}
+
 		int time_;
 		double threshold_;
 		Model::unit_t distance_;

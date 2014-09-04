@@ -39,15 +39,15 @@ namespace Model {
 	}
 
 	ofstream& Hypotheses::toBinary(ofstream& fs) const {
-		BOOST_LOG_SEV(*lg_, severity_level::trace) << "START HYPS:";
+		BOOST_LOG_SEV(*lg_, severity_level::detail) << "START HYPS:";
 
 		auto num = static_cast<int>(size());
 		fs.write(reinterpret_cast<char*>(&num), sizeof num);
-		BOOST_LOG_SEV(*lg_, severity_level::trace) << "hyp num = " << num;
+		BOOST_LOG_SEV(*lg_, severity_level::detail) << "hyp num = " << num;
 
 		for_each(begin(), end(), [&fs](const Hypothesis & hyp){hyp.toBinary(fs); });
 
-		BOOST_LOG_SEV(*lg_, severity_level::trace) << "END HYPS:";
+		BOOST_LOG_SEV(*lg_, severity_level::detail) << "END HYPS:";
 
 		return fs;
 	}

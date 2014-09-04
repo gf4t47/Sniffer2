@@ -8,6 +8,7 @@ namespace Support {
 
 	enum severity_level
 	{
+		detail,
 		trace,
 		debug,
 		info,

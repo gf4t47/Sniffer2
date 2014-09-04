@@ -86,20 +86,20 @@ namespace Model {
 	}
 
 	ofstream& Hypothesis::toBinary(ofstream& fs) const {
-		BOOST_LOG_SEV(*lg_, severity_level::trace) << "HYP:";
+		BOOST_LOG_SEV(*lg_, severity_level::detail) << "HYP:";
 
 		auto prob = getProbability();
 		fs.write(reinterpret_cast<char*>(&prob), sizeof prob);
-		BOOST_LOG_SEV(*lg_, severity_level::trace) << "prob=" << prob;
+		BOOST_LOG_SEV(*lg_, severity_level::detail) << "prob=" << prob;
 
 		auto leak_num = static_cast<int>(leaks_.size());
 		fs.write(reinterpret_cast<char*>(&leak_num), sizeof leak_num);
-		BOOST_LOG_SEV(*lg_, severity_level::trace) << "leak_num=" << leak_num;
-		for_each(leaks_.begin(), leaks_.end(), [&fs](const Candidate& can){BOOST_LOG_SEV(*lg_, severity_level::trace) << can;  can.toBinary(fs); });
+		BOOST_LOG_SEV(*lg_, severity_level::detail) << "leak_num=" << leak_num;
+		for_each(leaks_.begin(), leaks_.end(), [&fs](const Candidate& can){BOOST_LOG_SEV(*lg_, severity_level::detail) << can;  can.toBinary(fs); });
 
 		auto his_num = static_cast<int>(cells_update_his_.size());
 		fs.write(reinterpret_cast<char*>(&his_num), sizeof his_num);
-		BOOST_LOG_SEV(*lg_, severity_level::trace) << "his_num=" << his_num;
+		BOOST_LOG_SEV(*lg_, severity_level::detail) << "his_num=" << his_num;
 		for_each(cells_update_his_.begin(), cells_update_his_.end(), [&fs](shared_ptr<Cells> cells){cells->toBinary(fs); });
 
 		return fs;
