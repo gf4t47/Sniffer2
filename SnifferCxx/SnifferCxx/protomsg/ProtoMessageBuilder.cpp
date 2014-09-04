@@ -181,7 +181,7 @@ namespace ProtoMsg {
         //set cell methane
 //        auto msg_mtn = new Cell::Methane();
         auto msg_mtn = msg_cell->mutable_mtn();
-        msg_mtn->set_concentration(cell.getMethane().getConcentration());
+        msg_mtn->set_concentration(cell.getMethane().getParitcles());
 //        msg_cell->set_allocated_mtn(msg_mtn);
         
         //set cell wind

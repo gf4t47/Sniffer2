@@ -22,7 +22,7 @@ namespace Initializer {
 	using boost::property_tree::ptree;
 
 	const auto PI = boost::math::constants::pi<double>();
-	const int mtn_factor = 2.5 * 10000;
+	//const int mtn_factor = 2.5 * 10000;
 
 	unique_ptr<MyLog> DetectionInitializer::lg_(make_unique<MyLog>());
 
@@ -141,8 +141,8 @@ namespace Initializer {
 	}
 
 	WindVector DetectionInitializer::transDirectionSpeed2Vector(int wind_direct, double wind_speed) {
-		auto x = wind_speed * cos(wind_direct * PI / 180.0);
-		auto y = - wind_speed * sin(wind_direct * PI / 180.0);
+		auto x = wind_speed * sin(wind_direct * PI / 180.0);
+		auto y = wind_speed * cos(wind_direct * PI / 180.0);
 		auto z = 0;
 
 		return WindVector(x, y, z);
@@ -219,13 +219,16 @@ namespace Initializer {
 
 			auto cur_time = lexical_cast<int>(strVec[0]);
 			dect.time_ = (cur_time - last_time) * iterations_per_sec_ / 1000;
+			if (dect.time_ <= 0) {
+				dect.time_ = 1;
+			}
 
-			auto mtn = lexical_cast<double>(strVec[1]) * mtn_factor;
+			auto mtn = lexical_cast<double>(strVec[1]); // * mtn_factor;
 
 			auto wind_direct = lexical_cast<int>(strVec[3]);
 			auto wind_speed = lexical_cast<double>(strVec[4]);
 			auto wind = transDirectionSpeed2Vector(wind_direct, wind_speed);
-			dect.wv_ = wind;
+			dect.wv_ = wind; //*iterations_per_sec_;
 
 			auto lon = lexical_cast<double>(strVec[5]); //x
 			auto lat = lexical_cast<double>(strVec[6]); //y
@@ -259,7 +262,7 @@ namespace Initializer {
 
 		dects_ = make_shared<vector<Detection>>();
 		for (; index < strTable.size(); index++) {
-			auto mtn = lexical_cast<double>(strTable[index][1]) * mtn_factor;
+			auto mtn = lexical_cast<double>(strTable[index][1]);// *mtn_factor;
 			if (mtn > Methane::getBackground()) {
 				dects_->push_back(transStringVec2Struct(strTable[index], init_time));
 				init_time = lexical_cast<int>(strTable[index][0]);

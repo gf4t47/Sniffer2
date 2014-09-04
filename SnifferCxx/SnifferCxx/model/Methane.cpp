@@ -13,64 +13,67 @@
 namespace Model {
 	using namespace std;
 
-	const double background = 0.05;
+	mtn_t Methane::background_ = 0.05;
+	mtn_t Methane::concentration_per_particle_ = 0.00003;
 
 	Methane::Methane()
-		:concentration_(0.0f),
+		:particles_(0),
 		potential_(WindVector(0, 0, 0)) {
 	}
 
-	Methane::Methane(mtn_t c)
-		: concentration_(c),
+	Methane::Methane(mtn_t p)
+		: particles_(p),
 		potential_(WindVector(0, 0, 0)) {
 
 	}
 
-	Methane::Methane(mtn_t c, const WindVector & wv)
-		:concentration_(c),
+	Methane::Methane(mtn_t p, const WindVector & wv)
+		:particles_(p),
 		potential_(wv){
 
 	}
 
 	double Methane::getBackground() {
-		return background;
+		return background_;
 	}
 
-	mtn_t Methane::getConcentration() const {
-		return concentration_;
+	double Methane::getConcPerParticle() {
+		return concentration_per_particle_;
+	}
+
+	void Methane::setBackgournd(double val) {
+		background_ = val;
+	}
+
+	void Methane::setConcPerParticle(double val) {
+		concentration_per_particle_ = val;
+	}
+
+	mtn_t Methane::getParitcles() const {
+		return particles_;
 	}
 
 	const WindVector & Methane::getPotential() const {
 		return potential_;
 	}
 
-	double Methane::getMethane() const {
-		return getConcentration() + getBackground();
+	mtn_t Methane::getMethaneConc() const {
+		return getParitcles() * getConcPerParticle() + getBackground();
 	}
-
-	bool Methane::updateConcentration(mtn_t concentration) {
-		concentration_ = concentration;
-
-		return true;
-	}
-
-	//bool Methane::operator== (const Methane & oth) const {
-	//	return concentration_ == oth.concentration_ && potential_ == oth.potential_;
-	//}
 
 	Methane Methane::operator+ (const Methane & oth) const {
-		return Methane(concentration_ + oth.concentration_, (potential_ + oth.potential_) * 0.5);
+		return Methane(particles_ + oth.particles_, (potential_ + oth.potential_) * 0.5);
 	}
 
 	ostream& operator<<(ostream& os, const Methane& mtn)
 	{
-		os << "{" << mtn.concentration_ << " + " << background << "}";
+		os << "{" << mtn.particles_ << " + " << mtn.background_ << "}";
 
 		return os;
 	}
 
 	ofstream& Methane::toBinary(ofstream& fs) const{
-		auto con = static_cast<double>(getMethane());
+		auto con = static_cast<double>(getParitcles());
 		fs.write(reinterpret_cast<char*>(&con), sizeof con);
 
 		return fs;

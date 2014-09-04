@@ -12,6 +12,10 @@
 #include <vector>
 #include <memory>
 
+namespace Support {
+	class MyLog;
+}
+
 namespace Model {
     class Coordinate;
     class Hypothesis;
@@ -45,6 +49,7 @@ namespace Backward {
         const Forward::ForwardChecking & forward_;
         const BackwardChecking & backward_;
         const Model::Map3D & map_;
+		static std::unique_ptr<Support::MyLog> lg_;
     };
 }
 

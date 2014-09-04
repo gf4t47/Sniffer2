@@ -63,6 +63,7 @@ namespace Backward {
 		vector<Candidate> can_vec;
 		for (int i = 0; i < gain_vec.size(); i++) {
 			can_vec.push_back(Candidate(locations->at(i), gain_vec[i]));
+			BOOST_LOG_SEV(*lg_, severity_level::info) << "Info Gain: " << locations->at(i) << "->" << gain_vec[i];
 		}
 
 		return can_vec;
@@ -71,12 +72,17 @@ namespace Backward {
 	Candidate CandidateGenerator::calcBestCandidate(const Coordinate & curPos, int time_count, unit_t distance, const Hypotheses & hyps) const{
 		auto locations = collisionFilter(curPos, *crossLocation(curPos, map_, distance), map_);
 		auto gain_vec = infoGain_.calcInforGains(*locations, hyps, time_count);
+		for (int i = 0; i < gain_vec.size(); i++) {
+			BOOST_LOG_SEV(*lg_, severity_level::info) << "Info Gain: " << locations->at(i) << "->" << gain_vec[i];
+		}
 		auto max_socre = max_element(gain_vec.begin(), gain_vec.end());
 
 		while (max_socre == gain_vec.end()) {
 			locations = collisionFilter(curPos, *randomLocation(curPos, map_, distance), map_);
-			//cout << "new locations num = " << locations->size() << endl;
 			gain_vec = infoGain_.calcInforGains(*locations, hyps, time_count);
+			for (int i = 0; i < gain_vec.size(); i++) {
+				BOOST_LOG_SEV(*lg_, severity_level::info) << "Info Gain: " << locations->at(i) << "->" << gain_vec[i];
+			}
 			max_socre = max_element(gain_vec.begin(), gain_vec.end());
 		}
 

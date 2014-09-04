@@ -16,6 +16,7 @@
 #include "../model/Coordinate.h"
 #include "../model/Candidate.h"
 #include "../model/Hypotheses.h"
+#include "../model/Methane.h"
 
 
 namespace Initializer {
@@ -69,6 +70,8 @@ namespace Initializer {
         const string strConcentration = "concentration";
         const string strIdealCells = "outputCells";
 		const string strDetectionOnly = "output_detection_only";
+		const string strBackground = "concentration_background";
+		const string strConcPerParticle = "concentration_per_paritcle";
         
         using boost::property_tree::ptree;
         using boost::lexical_cast;
@@ -104,8 +107,6 @@ namespace Initializer {
 			output_detection_only_ = false;
 		}
 
-		//cout << "detection only = " << output_detection_only_ << endl;
-
 		auto iterations_per_second = 5;
 		auto iiterations_node = pt.get_optional<int>(strIterations);
 		if (iiterations_node) {
@@ -122,6 +123,12 @@ namespace Initializer {
         }
         
         backward_ = make_shared<BackwardChecking>(blur_range, kernel_range);
+
+		auto background = pt.get<double>(strBackground);
+		Methane::setBackgournd(background);
+
+		auto pperp = pt.get<double>(strConcPerParticle);
+		Methane::setConcPerParticle(pperp);
         
         auto hyp_node = pt.get_child_optional(strHypothesis);
         if (hyp_node) {

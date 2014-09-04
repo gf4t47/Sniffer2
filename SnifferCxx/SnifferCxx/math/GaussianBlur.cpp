@@ -121,7 +121,7 @@ namespace Math {
                     auto factor = kernel(kernel_coord);
                     if (factor > 0) {
                         auto cell = map.getCell(cell_coord);
-                        cell.setMethane(Methane(ori_cell.getMethane().getConcentration() * factor, ori_cell.getMethane().getPotential()));
+                        cell.setMethane(Methane(ori_cell.getMethane().getParitcles() * factor, ori_cell.getMethane().getPotential()));
                         ret_cells->updateCell(cell);
                     }
 				}

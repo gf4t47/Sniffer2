@@ -4,8 +4,8 @@
     "init" :
     [
         {
-            "time" : 20,
-            "wind" : [1, 0, 0],
+            "time" : 50,
+            // "wind" : [1, 0, 0],
             "dect" :
             [
                 {"location" : [0, 0, 0], "concentration" : 0.25}
@@ -17,42 +17,42 @@
     "detection" :
     [
         {
-            "time" : 10,
-            "wind" : [1, 1, 0],
+            "time" : 30,
+            // "wind" : [1, 1, 0],
             "dect" :
             [
-            	{"location" : [0, 0, 0], "concentration" : 0.25}
+            	{"location" : [46, 15, 0], "concentration" : 0.25}
             ],
             "repeat" : 1
         },
 
         {
-            "time" : 10,
-            "wind" : [0, 1, 0],
+            "time" : 30,
+            // "wind" : [0, 1, 0],
             "dect" :
             [
-            	{"location" : [-2, 25, 0], "concentration" : 0.25}
+            	{"location" : [45, 35, 0], "concentration" : 0.25}
             ],
             "repeat" : 1
         },
 
 
         {
-            "time" : 10,
-            "wind" : [-1, 1, 0],
+            "time" : 30,
+            // "wind" : [-1, 1, 0],
             "dect" :
             [
-                {"location" : [-4, 35, 0], "concentration" : 0.5}
+                {"location" : [43, 55, 0], "concentration" : 0.5}
             ],
             "repeat" : 1
         },
 
         {
-            "time" : 10,
-            "wind" : [-1, 0, 0],
+            "time" : 30,
+            // "wind" : [-1, 0, 0],
             "dect" :
             [
-                {"location" : [-6, 45, 0], "concentration" : 1.5}
+                {"location" : [42, 75, 0], "concentration" : 1.5}
             ],
             "repeat" : 1
         }

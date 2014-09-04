@@ -13,11 +13,15 @@
 #include "../forward/ForwardChecking.h"
 #include "../math/Gamma.h"
 #include "BackwardChecking.h"
+#include "../support/MyLog.h"
 
 namespace Backward {
     using namespace std;
     using namespace Model;
     using namespace Forward;
+	using namespace Support;
+
+	unique_ptr<MyLog> InformationGain::lg_(make_unique<MyLog>());
     
     /**
      *  construct a information gain calculator

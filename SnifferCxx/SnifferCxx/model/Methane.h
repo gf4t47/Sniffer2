@@ -19,15 +19,18 @@ namespace Model {
 	class Methane {
 	public:
 		Methane();
-		Methane(mtn_t c);
-		Methane(mtn_t c, const WindVector & wv);
+		Methane(mtn_t p);
+		Methane(mtn_t p, const WindVector & wv);
 
 		static double getBackground();
-		double getMethane() const;
-		mtn_t getConcentration() const;
+		static double getConcPerParticle();
+		static void setBackgournd(double val);
+		static void setConcPerParticle(double val);
+
+		mtn_t getMethaneConc() const;
+		mtn_t getParitcles() const;
 		const WindVector & getPotential() const;
 
-		//bool operator== (const Methane & oth) const;
 		Methane operator+ (const Methane & oth) const;
 
 		friend std::ostream& operator<<(std::ostream& os, const Methane& mtn);
@@ -41,11 +44,11 @@ namespace Model {
 			ar & potential_;
         }
 
-	protected:
-		bool updateConcentration(mtn_t concentration);
-
 	private:
-		mtn_t concentration_;
+		static mtn_t background_;
+		static mtn_t concentration_per_particle_;
+
+		mtn_t particles_;
 		WindVector potential_;
 	};
 }

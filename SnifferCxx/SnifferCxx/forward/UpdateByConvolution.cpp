@@ -36,13 +36,13 @@ namespace Forward {
 
 		auto ret_cells = make_shared<Cells>();
         
-		if (cell.getMethane().getConcentration() > blur_concentration_threshold)
+		if (cell.getMethane().getParitcles() > blur_concentration_threshold)
 		{
 			auto wv_per_iteration = cell.getWind().getCalcWind() * (1.0 / (double)getIterationPerSecond());
 			auto ideal_end_pair = map.calcPosition(cell.getCoordinate(), wv_per_iteration + cell.getMethane().getPotential());
 			auto endCell = calcEndcell(cell.getCoordinate(), get<0>(ideal_end_pair), map, true);
 			if (endCell) {
-				endCell->setMethane(Methane(cell.getMethane().getConcentration(), get<1>(ideal_end_pair)));
+				endCell->setMethane(Methane(cell.getMethane().getParitcles(), get<1>(ideal_end_pair)));
 				ret_cells = Math::GaussianBlur::blurCell(*endCell, map, getKernelRange());
 			}
 		}
