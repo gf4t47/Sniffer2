@@ -10,7 +10,6 @@
 #define __Sniffer_Cxx__Map3D__
 
 #include <boost/multi_array.hpp>
-#include <boost/logic/tribool.hpp>
 #include "Cell.h"
 
 namespace Support {

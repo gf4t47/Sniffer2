@@ -87,10 +87,14 @@ namespace Model {
 		return os;
 	}
 
-	ofstream& Wind::toBinary(ofstream& fs) const{
-		//wind_->toBinary(fs);
-		//potential_.toBinary(fs);
-		getCalcWind().toBinary(fs);
+	ofstream& Wind::toBinary(ofstream& fs, boost::tribool two_vector) const{
+		if (two_vector) {
+			wind_->toBinary(fs);
+			potential_.toBinary(fs);
+		} 
+		else if (boost::indeterminate(two_vector)) {
+			getCalcWind().toBinary(fs);
+		}
 
 		return fs;
 	}

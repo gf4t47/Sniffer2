@@ -103,12 +103,14 @@ namespace Model {
 		return os;
 	}
 
-	ofstream& Cell::toBinary(ofstream& fs) const{
+	ofstream& Cell::toBinary(ofstream& fs, boost::tribool include_wind) const{
 		coord_.toBinary(fs);
 		auto tag = static_cast<int>(tag_);
 		fs.write(reinterpret_cast<char*>(&tag), sizeof tag);
-		wind_.toBinary(fs);
 		mtn_.toBinary(fs);
+		if (include_wind != false) {
+			wind_.toBinary(fs, include_wind);
+		}
 
 		return fs;
 	}

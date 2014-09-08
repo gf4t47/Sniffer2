@@ -313,7 +313,7 @@ namespace Model {
 		auto num = static_cast<int>(num_elements());
 		fs.write(reinterpret_cast<char*>(&num), sizeof num);
 		boost::const_multi_array_ref<Cell, 1> map_ref(data(), boost::extents[num_elements()]);
-		for_each(map_ref.begin(), map_ref.end(), [&fs](const Cell & cell){ cell.toBinary(fs); });
+		for_each(map_ref.begin(), map_ref.end(), [&fs](const Cell & cell){ cell.toBinary(fs, true); });
 
 		return fs;
 	}

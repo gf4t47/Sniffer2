@@ -1,6 +1,7 @@
 __author__ = 'Kern'
 from struct import *
 import numpy as np
+import tribool
 from src.model.Cell import *
 from src.model.Detection import *
 from src.model.Hypothesis import *
@@ -24,16 +25,23 @@ def _parse_windvector(content, index):
     return wv, wv_len
 
 
-def _parse_wind(content, index):
+def _parse_wind(content, index, two_vector):
     ori_index = index
 
-    wv, wv_len = _parse_windvector(content, index)
-    index += wv_len
+    if two_vector:
+        wv, wv_len = _parse_windvector(content, index)
+        index += wv_len
+        potential, p_len = _parse_windvector(content, index)
+        index += p_len
 
-    # potential, p_len = parse_windvector(content, index)
-    # index += p_len
+        wind = Wind(wv, potential)
+    else:
+        wv, wv_len = _parse_windvector(content, index)
+        index += wv_len
 
-    return Wind(wv, None), index - ori_index
+        wind = Wind(wv, None)
+
+    return wind, index - ori_index
 
 
 def _parse_coordinate(content, index):
@@ -55,7 +63,7 @@ def _parse_candidate(content, index):
     return Candidate(coord, concentration), index - ori_index
 
 
-def _parse_cell(content, index):
+def _parse_cell(content, index, include_wind):
     ori_index = index
 
     coord, coord_len = _parse_coordinate(content, index)
@@ -64,11 +72,14 @@ def _parse_cell(content, index):
     tag, = unpack("i", content[index: index + int_len])
     index += int_len
 
-    wv, wv_len = _parse_wind(content, index)
-    index += wv_len
-
     mtn, = unpack("d", content[index: index + double_len])
     index += double_len
+
+    if include_wind != False:
+        wv, wv_len = _parse_wind(content, index, include_wind)
+        index += wv_len
+    else:
+        wv = None
 
     return Cell(coord, tag, wv, mtn), index - ori_index
 
@@ -112,7 +123,7 @@ def _parse_map(content, index):
 
     cell_list = []
     for i in range(num):
-        cell, cell_len = _parse_cell(content, index)
+        cell, cell_len = _parse_cell(content, index, True)
         index += cell_len
 
         cell_list.append(cell)
@@ -148,7 +159,7 @@ def _parse_hypothesis(content, index):
 
         cell_list = []
         for k in range(cell_num):
-            cell, cell_len = _parse_cell(content, index)
+            cell, cell_len = _parse_cell(content, index, False)
             index += cell_len
 
             cell_list.append(cell)

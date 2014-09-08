@@ -56,7 +56,7 @@ namespace Model {
 
 		bool operator== (const Cell & oth) const;
 		friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
-		std::ofstream& toBinary(std::ofstream& fs) const;
+		std::ofstream& toBinary(std::ofstream& fs, boost::tribool include_wind) const;
         
         friend class boost::serialization::access;
         template<class Archive>

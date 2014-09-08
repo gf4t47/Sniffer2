@@ -78,7 +78,7 @@ namespace Model {
 		auto cell_num = static_cast<int>(size());
 		fs.write(reinterpret_cast<char*>(&cell_num), sizeof cell_num);
 		BOOST_LOG_SEV(*lg_, severity_level::detail) << "cell_num=" << cell_num;
-		for_each(this->begin(), this->end(), [&fs](const cells_t::value_type & val_pair){BOOST_LOG_SEV(*lg_, severity_level::detail) << val_pair.second; val_pair.second.toBinary(fs); });
+		for_each(this->begin(), this->end(), [&fs](const cells_t::value_type & val_pair){BOOST_LOG_SEV(*lg_, severity_level::detail) << val_pair.second; val_pair.second.toBinary(fs, false); });
 
 		return fs;
 	}

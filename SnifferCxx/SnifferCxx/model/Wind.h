@@ -13,6 +13,7 @@
 #include "WindVector.h"
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
+#include <boost/logic/tribool.hpp>
 
 namespace Support {
 	class MyLog;
@@ -34,7 +35,7 @@ namespace Model {
         
 		bool operator== (const Wind & oth) const;
 		friend std::ostream& operator<<(std::ostream& os, const Wind& wind);
-		std::ofstream& toBinary(std::ofstream& fs) const;
+		std::ofstream& toBinary(std::ofstream& fs, boost::tribool two_vector) const;
         
         friend class boost::serialization::access;
         template<class Archive>
