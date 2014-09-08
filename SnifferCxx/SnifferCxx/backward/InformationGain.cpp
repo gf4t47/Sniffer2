@@ -61,8 +61,8 @@ namespace Backward {
     /**
      *  calculate information gain by sum the entropy for all hypotheses together for one candidate
      *
-     *  @param candidate one coordinate candidate for detection
-     *  @param hyps      all virtual worlds represent all the hypotheses
+     *  @param candidate one candidate coordinate for detection
+     *  @param hyps      all virtual worlds represented by all the hypotheses
      *
      *  @return expected information gain
      */
@@ -70,17 +70,22 @@ namespace Backward {
         entropy_t ret_sum = 0.0;
         
         for (auto i=0; i < current_hyps.size(); i++) {
-			auto copy_futures = future_hyps;
-			auto assumed_detection = backward_.calcGaussianBlurMean(candidate, *(copy_futures[i].getMethaneCells()), map_);
+			//assume one hypothesis is true per iteration, assume we measure a concentration value which is the Gaussian blur mean at the candidate location under the true hypothesis
+			auto future_hyps_with_one_true_assumption = future_hyps;
+			auto assumed_detection = backward_.calcGaussianBlurMean(candidate, *(future_hyps_with_one_true_assumption[i].getMethaneCells()), map_);
 
+			//calculate the new probability for all hypotheses under the true assumption
 			vector<double> probs;
-			for (auto const & hyp : copy_futures) {
+			for (auto const & hyp : future_hyps_with_one_true_assumption) {
+				//calculate the gamma likehood using the assumed detection
 				auto likehood = backward_.calcLikehood(hyp, candidate, assumed_detection, map_);
 				probs.push_back(likehood * hyp.getProbability());
 			}
-			backward_.normalize(copy_futures, probs);
+			//normalize the new probabilities
+			backward_.normalize(future_hyps_with_one_true_assumption, probs);
 
-            ret_sum += (entropy(current_hyps) - entropy(copy_futures)) * current_hyps[i].getProbability();
+			//sum the expected information gain together by multiplying a weight factor which is the probability of the hypothesis that is assumed to be true
+            ret_sum += (entropy(current_hyps) - entropy(future_hyps_with_one_true_assumption)) * current_hyps[i].getProbability();
         }
         
         return ret_sum;
@@ -93,7 +98,7 @@ namespace Backward {
      *  @param candidates all candidates detection
      *  @param hyps       all virtual worlds represent all our hypotheses
      *
-     *  @return a set of score maped to all candidates
+     *  @return a set of score mapped to all candidates
      */
     vector<entropy_t> InformationGain::calcInforGains(const vector<Coordinate> & candidates, const Hypotheses & hyps, int time_count) const{
         auto copy_hyps = make_shared<Hypotheses>(hyps);

@@ -75,7 +75,6 @@ namespace Model {
                         auto vector = remote_coord - local_coord;
                         auto potential = vector / (vector.calcNorm() / expected_norm);
                         (*this)(remote_coord).setPotential(potential + (*this)(remote_coord).getWind().getPotential());
-//                        cout<< remote_coord << " : " << (*this)(remote_coord).getWind().getPotential() << endl;
                     }
                 }
             }

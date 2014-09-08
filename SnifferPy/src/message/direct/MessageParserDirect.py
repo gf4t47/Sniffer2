@@ -1,7 +1,6 @@
 __author__ = 'Kern'
 from struct import *
 import numpy as np
-import tribool
 from src.model.Cell import *
 from src.model.Detection import *
 from src.model.Hypothesis import *
@@ -28,18 +27,18 @@ def _parse_windvector(content, index):
 def _parse_wind(content, index, two_vector):
     ori_index = index
 
-    if two_vector:
+    if two_vector is True:
         wv, wv_len = _parse_windvector(content, index)
         index += wv_len
         potential, p_len = _parse_windvector(content, index)
         index += p_len
-
         wind = Wind(wv, potential)
-    else:
+    elif two_vector is None:
         wv, wv_len = _parse_windvector(content, index)
         index += wv_len
-
         wind = Wind(wv, None)
+    else:
+        wind = None
 
     return wind, index - ori_index
 
@@ -75,7 +74,7 @@ def _parse_cell(content, index, include_wind):
     mtn, = unpack("d", content[index: index + double_len])
     index += double_len
 
-    if include_wind != False:
+    if not include_wind is False:
         wv, wv_len = _parse_wind(content, index, include_wind)
         index += wv_len
     else:

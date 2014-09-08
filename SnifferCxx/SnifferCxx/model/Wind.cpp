@@ -20,19 +20,16 @@ namespace Model {
 	Wind::Wind()
 		:potential_(WindVector()),
 		wind_(nullptr) {
-
 	}
 
 	//Wind::Wind(const WindVector & wind)
 	//	: wind_(wind),
 	//	potential_(WindVector()) {
-
 	//}
 
 	//Wind::Wind(const WindVector & wind, const WindVector & potential)
 	//	: potential_(potential),
 	//	wind_(wind) {
-
 	//}
 
 	WindVector Wind::getCalcWind() const {
