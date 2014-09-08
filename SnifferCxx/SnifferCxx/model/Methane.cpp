@@ -14,7 +14,7 @@ namespace Model {
 	using namespace std;
 
 	mtn_t Methane::background_ = 0.05;
-	mtn_t Methane::concentration_per_particle_ = 0.00003;
+	mtn_t Methane::concentration_per_particle_ = 0.0125;
 
 	Methane::Methane()
 		:particles_(0),

@@ -39,7 +39,7 @@ namespace Model {
 		return ret;
 	}
     
-    WindVector Coordinate::operator / (const double & norm) const {
+	WindVector Coordinate::operator / (const double & norm) const {
 		WindVector ret;
 		transform(begin(), end(), ret.begin(), [norm](const coord_item_t & it) {return it / norm; });
 		return ret;

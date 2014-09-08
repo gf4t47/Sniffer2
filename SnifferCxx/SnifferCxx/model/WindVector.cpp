@@ -17,7 +17,6 @@ namespace Model {
 
 	WindVector::WindVector() {
 		*this = wv_t{ { 0, 0, 0 } };
-
 	}
 
 	WindVector::WindVector(wv_item_t x, wv_item_t y, wv_item_t z) {

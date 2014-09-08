@@ -82,7 +82,7 @@ int main(int argc, const char * argv[])
 		executor->autoDrive(*hyps_hist, *dect_vec, *auto_movement);
 	}
 	else {
-		can_vect->push_back(executor->nextStep(*hyps_hist, *dect_vec, AutoMovement(20, 5)));
+		can_vect->push_back(executor->nextStep(*hyps_hist, *dect_vec, AutoMovement(20, 8)));
 	}
 
 	//message output

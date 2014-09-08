@@ -190,6 +190,7 @@ def _parse_methane(content, index):
 
 parse_func_dict = {strDect: _parse_dect, strMap: _parse_map, strMethane: _parse_methane}
 
+
 def parse_binary_file(file_name, type_key):
     with open(file_name, "rb") as msg_stream:
         ret = parse_func_dict[type_key](msg_stream.read(), 0)
