@@ -71,7 +71,7 @@ namespace Initializer {
         const string strIdealCells = "outputCells";
 		const string strDetectionOnly = "output_detection_only";
 		const string strBackground = "concentration_background";
-		const string strConcPerParticle = "concentration_per_paritcle";
+		const string strConcPerParticle = "concentration_per_particle";
         
         using boost::property_tree::ptree;
         using boost::lexical_cast;

@@ -58,8 +58,8 @@ for hyps, dect in zip(hyps_his[1: 1 + manual_move_len], dects[: manual_move_len]
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
 
 for hyps, dect, can in zip(hyps_his[manual_move_len + 1:], dects[manual_move_len:], candidates[:]):
-    fig_dect = DetectionBuilder.build(dect, hyps, fig_dect)
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
+    fig_dect = DetectionBuilder.build(dect, hyps, fig_dect)
     fig_can = CandidateBuilder.build(can, fig_can)
 
 mb.show()

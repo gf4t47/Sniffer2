@@ -43,9 +43,9 @@ def _build(vecs, fig, color):
     # time.sleep(0.1)
 
     if not fig is None:
-        fig.mlab_source.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
-        # fig.remove()
-        # fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_mode="vector", mode="2dtriangle", colormap=color)
+        # fig.mlab_source.reset(x=xs, y=ys, z=zs, u=us, v=vs, w=ws)
+        fig.remove()
+        fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_mode="vector", mode="2dtriangle", colormap=color)
     else:
         fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_mode="vector", mode="2dtriangle",
                           colormap=color)

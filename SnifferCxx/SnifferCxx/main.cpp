@@ -41,7 +41,7 @@ int main(int argc, const char * argv[])
 	using namespace Support;
 
 	if (argc < 8) {
-		cerr << argv[0] << " Missing some argument to indicate input files" << endl;
+		cerr << argv[0] << " Missing some argument to indicate input/output files" << endl;
 		return -1;
 	}
 
@@ -68,7 +68,7 @@ int main(int argc, const char * argv[])
 
 	//load detection
 	DetectionInitializer dectI(dect_cfg, *map, forward->getIterationPerSecond());
-	auto init = dectI.getInitSteadyStage();
+	auto init_vec = dectI.getInitSteadyStage();
 	auto dect_vec = dectI.getDetections();
 	auto auto_movement = dectI.getAutoMovementInfo();
 	auto can_vect = make_shared<vector<Model::Detection>>();
@@ -77,7 +77,7 @@ int main(int argc, const char * argv[])
 	auto hyps_hist = make_shared<vector<shared_ptr<Hypotheses>>>();
 	hyps_hist->push_back(hyps);
 	auto executor = ExecutorFactory::createExecutor(dectI.getExecutorMode(), *map, *forward, *backward);
-	executor->run(*hyps_hist, *dect_vec, init);
+	executor->run(*hyps_hist, *dect_vec, init_vec);
 	if (auto_movement) {
 		executor->autoDrive(*hyps_hist, *dect_vec, *auto_movement);
 	}

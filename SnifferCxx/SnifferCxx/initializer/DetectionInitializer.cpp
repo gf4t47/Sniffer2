@@ -55,7 +55,7 @@ namespace Initializer {
 		}
 	}
 
-	shared_ptr<vector<Detection>> DetectionInitializer::parseJsonNode(const string & nodeName, const boost::property_tree::ptree & pt) const{
+	shared_ptr<vector<Detection>> DetectionInitializer::parseJsonNode(const string & nodeName, const boost::property_tree::ptree & pt) const {
 		const string strTime = "time";
 		const string strDect = "dect";
 		const string strLocation = "location";
@@ -240,7 +240,7 @@ namespace Initializer {
 	}
 
 	void DetectionInitializer::transStringTable2Struct(const std::vector<std::vector<std::string>> & strTable){
-		const int init_iterations = 50;
+		const int init_iterations = 100;
 		using boost::lexical_cast;
 
 		steady_stage_initializer_ = make_shared<vector<Detection>>();
