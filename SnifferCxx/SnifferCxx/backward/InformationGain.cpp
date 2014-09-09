@@ -70,7 +70,7 @@ namespace Backward {
         entropy_t ret_sum = 0.0;
         
         for (auto i=0; i < current_hyps.size(); i++) {
-			//assume one hypothesis is true per iteration, assume we measure a concentration value which is the Gaussian blur mean at the candidate location under the true hypothesis
+			//assume one hypothesis is true per iteration, that means assume we measure a concentration value which is the Gaussian blur mean at the candidate location under the true hypothesis
 			auto future_hyps_with_one_true_assumption = future_hyps;
 			auto assumed_detection = backward_.calcGaussianBlurMean(candidate, *(future_hyps_with_one_true_assumption[i].getMethaneCells()), map_);
 
@@ -84,7 +84,7 @@ namespace Backward {
 			//normalize the new probabilities
 			backward_.normalize(future_hyps_with_one_true_assumption, probs);
 
-			//sum the expected information gain together by multiplying a weight factor which is the probability of the hypothesis that is assumed to be true
+			//sum the expected information gain for all assumptions together by multiplying a weight factor which is the probability of the hypothesis that is assumed to be true
             ret_sum += (entropy(current_hyps) - entropy(future_hyps_with_one_true_assumption)) * current_hyps[i].getProbability();
         }
         

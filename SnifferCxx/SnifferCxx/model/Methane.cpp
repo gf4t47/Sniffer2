@@ -33,11 +33,11 @@ namespace Model {
 
 	}
 
-	double Methane::getBackground() {
+	mtn_t Methane::getBackground() {
 		return background_;
 	}
 
-	double Methane::getConcPerParticle() {
+	mtn_t Methane::getConcPerParticle() {
 		return concentration_per_particle_;
 	}
 
