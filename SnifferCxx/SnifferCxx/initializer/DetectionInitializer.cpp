@@ -296,7 +296,6 @@ namespace Initializer {
 		mode_ = RunMode::execute_mode::single;
 		transStringTable2Struct(strTable);
 
-
 		return dects_ != nullptr;
 	}
 	shared_ptr<vector<Detection>> DetectionInitializer::getInitSteadyStage() const {
