@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <vector>
+#include <string>
 
 namespace Support {
 	class MyLog;
@@ -28,7 +29,6 @@ namespace DirectMsg {
 			std::pair<std::string, std::shared_ptr<std::vector<Model::Detection>>> can_info,
 			std::pair<std::string, std::shared_ptr<Model::Map3D>> map_info
 			);
-		virtual ~DirectMessageBuilder();
 		void WriteMsg(int ideal_cells, bool detection_only);
 
 	private:

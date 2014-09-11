@@ -15,8 +15,9 @@ namespace Model {
 	using namespace std;
 	using namespace Support;
 
-	unique_ptr<MyLog> Wind::lg_(make_unique<MyLog>());
-
+//	unique_ptr<MyLog> Wind::lg_(make_unique<MyLog>());
+	unique_ptr<MyLog> Wind::lg_(new MyLog());
+    
 	Wind::Wind()
 		:potential_(WindVector()),
 		wind_(nullptr) {

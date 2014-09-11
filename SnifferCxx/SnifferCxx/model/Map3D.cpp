@@ -15,12 +15,14 @@ namespace Model {
 	using namespace Support;
 	typedef map_t::extent_range erange;
 
-	unique_ptr<MyLog> Map3D::lg_(make_unique<MyLog>());
+//	unique_ptr<MyLog> Map3D::lg_(make_unique<MyLog>());
+    unique_ptr<MyLog> Map3D::lg_(new MyLog());
 
 	Map3D::Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit)
 		:map_t(boost::extents[erange(startIndex[0], startIndex[0] + boundary[0])][erange(startIndex[1], startIndex[1] + boundary[1])][erange(startIndex[2], startIndex[2] + boundary[2])]),
 		unit_(unit),
-		wind_(make_unique<WindVector>()),
+//		wind_(make_unique<WindVector>()),
+        wind_(new WindVector()),
 		origin_(make_pair(Coordinate(), WindVector())) {
 		initCell();
 	}
@@ -28,7 +30,8 @@ namespace Model {
 	Map3D::Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit, const WindVector & wv)
 		:map_t(boost::extents[erange(startIndex[0], startIndex[0] + boundary[0])][erange(startIndex[1], startIndex[1] + boundary[1])][erange(startIndex[2], startIndex[2] + boundary[2])]),
 		unit_(unit),
-		wind_(make_unique<WindVector>(wv)),
+//		wind_(make_unique<WindVector>(wv)),
+        wind_(new WindVector(wv)),
 		origin_(make_pair(Coordinate(), WindVector())) {
 		initCell();
 	}
@@ -36,7 +39,8 @@ namespace Model {
 	Map3D::Map3D(size_t length, size_t width, size_t height, unit_t unit)
 		: map_t(boost::extents[length][width][height]),
 		unit_(unit),
-		wind_(make_unique<WindVector>()),
+//		wind_(make_unique<WindVector>()),
+        wind_(new WindVector()),
 		origin_(make_pair(Coordinate(), WindVector())) {
 		initCell();
 	}
@@ -44,7 +48,8 @@ namespace Model {
 	Map3D::Map3D(size_t length, size_t width, size_t height, unit_t unit, const WindVector & wv)
 		: map_t(boost::extents[length][width][height]),
 		unit_(unit),
-		wind_(make_unique<WindVector>(wv)),
+//		wind_(make_unique<WindVector>(wv)),
+        wind_(new WindVector(wv)),
 		origin_(make_pair(Coordinate(), WindVector())) {
         initCell();
 	}

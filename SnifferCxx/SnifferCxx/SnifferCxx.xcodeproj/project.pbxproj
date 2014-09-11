@@ -20,12 +20,17 @@
 		AC4AE2AA197D6C410089A6F9 /* Methane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE29C197D6C410089A6F9 /* Methane.cpp */; };
 		AC4AE2AB197D6C410089A6F9 /* Wind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE29F197D6C410089A6F9 /* Wind.cpp */; };
 		AC4AE2AC197D6C410089A6F9 /* WindVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2A1197D6C410089A6F9 /* WindVector.cpp */; };
-		AC4AE2B3197D7AC40089A6F9 /* BackwardChecking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */; settings = {COMPILER_FLAGS = "-DBOOST_LOG_DYN_LINK"; }; };
 		AC591FC7199E64D5006BDEB7 /* cell.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = AC591FBF199E64D5006BDEB7 /* cell.pb.cc */; };
 		AC591FC8199E64D5006BDEB7 /* dect.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = AC591FC1199E64D5006BDEB7 /* dect.pb.cc */; };
 		AC591FC9199E64D5006BDEB7 /* hypothesis.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = AC591FC3199E64D5006BDEB7 /* hypothesis.pb.cc */; };
-		AC591FCA199E64D5006BDEB7 /* MessageBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC591FC5199E64D5006BDEB7 /* MessageBuilder.cpp */; };
-		AC5F12E51991906200ED30C5 /* InformationGain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5F12E31991906200ED30C5 /* InformationGain.cpp */; };
+		AC5B506319C0B343009FDEF3 /* BackwardChecking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5B505D19C0B343009FDEF3 /* BackwardChecking.cpp */; };
+		AC5B506419C0B343009FDEF3 /* CandidateGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5B505F19C0B343009FDEF3 /* CandidateGenerator.cpp */; };
+		AC5B506519C0B343009FDEF3 /* InformationGain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5B506119C0B343009FDEF3 /* InformationGain.cpp */; };
+		AC5B506819C0B35D009FDEF3 /* ProtoMessageBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5B506619C0B35D009FDEF3 /* ProtoMessageBuilder.cpp */; };
+		AC5B506D19C0B36D009FDEF3 /* Candidate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5B506919C0B36D009FDEF3 /* Candidate.cpp */; };
+		AC5B506E19C0B36D009FDEF3 /* Hypotheses.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5B506B19C0B36D009FDEF3 /* Hypotheses.cpp */; };
+		AC5B507219C0B390009FDEF3 /* DirectMessageBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5B507019C0B390009FDEF3 /* DirectMessageBuilder.cpp */; };
+		AC5B507619C0B416009FDEF3 /* MyLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC5B507419C0B416009FDEF3 /* MyLog.cpp */; };
 		AC7D6F59198178BD0041B1E9 /* UpdateByConvolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */; };
 		ACB63F121999668E000FF6A9 /* DetectionInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACB63F101999668E000FF6A9 /* DetectionInitializer.cpp */; };
 		ACD77E1A19894BFF0057ED65 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACD77E1919894BFF0057ED65 /* main.cpp */; };
@@ -72,18 +77,28 @@
 		AC4AE2A0197D6C410089A6F9 /* Wind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wind.h; sourceTree = "<group>"; };
 		AC4AE2A1197D6C410089A6F9 /* WindVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindVector.cpp; sourceTree = "<group>"; };
 		AC4AE2A2197D6C410089A6F9 /* WindVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindVector.h; sourceTree = "<group>"; };
-		AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackwardChecking.cpp; sourceTree = "<group>"; };
-		AC4AE2B2197D7AC40089A6F9 /* BackwardChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackwardChecking.h; sourceTree = "<group>"; };
 		AC591FBF199E64D5006BDEB7 /* cell.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cell.pb.cc; path = protomsg/cell.pb.cc; sourceTree = "<group>"; };
 		AC591FC0199E64D5006BDEB7 /* cell.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cell.pb.h; path = protomsg/cell.pb.h; sourceTree = "<group>"; };
 		AC591FC1199E64D5006BDEB7 /* dect.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dect.pb.cc; path = protomsg/dect.pb.cc; sourceTree = "<group>"; };
 		AC591FC2199E64D5006BDEB7 /* dect.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dect.pb.h; path = protomsg/dect.pb.h; sourceTree = "<group>"; };
 		AC591FC3199E64D5006BDEB7 /* hypothesis.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hypothesis.pb.cc; path = protomsg/hypothesis.pb.cc; sourceTree = "<group>"; };
 		AC591FC4199E64D5006BDEB7 /* hypothesis.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hypothesis.pb.h; path = protomsg/hypothesis.pb.h; sourceTree = "<group>"; };
-		AC591FC5199E64D5006BDEB7 /* MessageBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageBuilder.cpp; path = protomsg/MessageBuilder.cpp; sourceTree = "<group>"; };
-		AC591FC6199E64D5006BDEB7 /* MessageBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageBuilder.h; path = protomsg/MessageBuilder.h; sourceTree = "<group>"; };
-		AC5F12E31991906200ED30C5 /* InformationGain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InformationGain.cpp; sourceTree = "<group>"; };
-		AC5F12E41991906200ED30C5 /* InformationGain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationGain.h; sourceTree = "<group>"; };
+		AC5B505D19C0B343009FDEF3 /* BackwardChecking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BackwardChecking.cpp; path = backward/BackwardChecking.cpp; sourceTree = SOURCE_ROOT; };
+		AC5B505E19C0B343009FDEF3 /* BackwardChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackwardChecking.h; path = backward/BackwardChecking.h; sourceTree = SOURCE_ROOT; };
+		AC5B505F19C0B343009FDEF3 /* CandidateGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CandidateGenerator.cpp; path = backward/CandidateGenerator.cpp; sourceTree = SOURCE_ROOT; };
+		AC5B506019C0B343009FDEF3 /* CandidateGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CandidateGenerator.h; path = backward/CandidateGenerator.h; sourceTree = SOURCE_ROOT; };
+		AC5B506119C0B343009FDEF3 /* InformationGain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InformationGain.cpp; path = backward/InformationGain.cpp; sourceTree = SOURCE_ROOT; };
+		AC5B506219C0B343009FDEF3 /* InformationGain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InformationGain.h; path = backward/InformationGain.h; sourceTree = SOURCE_ROOT; };
+		AC5B506619C0B35D009FDEF3 /* ProtoMessageBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ProtoMessageBuilder.cpp; path = protomsg/ProtoMessageBuilder.cpp; sourceTree = "<group>"; };
+		AC5B506719C0B35D009FDEF3 /* ProtoMessageBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtoMessageBuilder.h; path = protomsg/ProtoMessageBuilder.h; sourceTree = "<group>"; };
+		AC5B506919C0B36D009FDEF3 /* Candidate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Candidate.cpp; sourceTree = "<group>"; };
+		AC5B506A19C0B36D009FDEF3 /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candidate.h; sourceTree = "<group>"; };
+		AC5B506B19C0B36D009FDEF3 /* Hypotheses.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hypotheses.cpp; sourceTree = "<group>"; };
+		AC5B506C19C0B36D009FDEF3 /* Hypotheses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hypotheses.h; sourceTree = "<group>"; };
+		AC5B507019C0B390009FDEF3 /* DirectMessageBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DirectMessageBuilder.cpp; path = directmsg/DirectMessageBuilder.cpp; sourceTree = "<group>"; };
+		AC5B507119C0B390009FDEF3 /* DirectMessageBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirectMessageBuilder.h; path = directmsg/DirectMessageBuilder.h; sourceTree = "<group>"; };
+		AC5B507419C0B416009FDEF3 /* MyLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyLog.cpp; path = support/MyLog.cpp; sourceTree = "<group>"; };
+		AC5B507519C0B416009FDEF3 /* MyLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLog.h; path = support/MyLog.h; sourceTree = "<group>"; };
 		AC687E7419A27B9200F67376 /* TypeDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeDef.h; sourceTree = "<group>"; };
 		AC7D6F57198178BD0041B1E9 /* UpdateByConvolution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UpdateByConvolution.cpp; sourceTree = "<group>"; };
 		AC7D6F58198178BD0041B1E9 /* UpdateByConvolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateByConvolution.h; sourceTree = "<group>"; };
@@ -138,6 +153,10 @@
 		AC4AE291197D6C410089A6F9 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				AC5B506919C0B36D009FDEF3 /* Candidate.cpp */,
+				AC5B506A19C0B36D009FDEF3 /* Candidate.h */,
+				AC5B506B19C0B36D009FDEF3 /* Hypotheses.cpp */,
+				AC5B506C19C0B36D009FDEF3 /* Hypotheses.h */,
 				AC4AE292197D6C410089A6F9 /* Cell.cpp */,
 				AC4AE293197D6C410089A6F9 /* Cell.h */,
 				AC4AE294197D6C410089A6F9 /* Cells.cpp */,
@@ -159,30 +178,51 @@
 			path = model;
 			sourceTree = "<group>";
 		};
-		AC4AE2B0197D78260089A6F9 /* backwrad */ = {
+		AC4AE2B0197D78260089A6F9 /* backward */ = {
 			isa = PBXGroup;
 			children = (
-				AC4AE2B1197D7AC40089A6F9 /* BackwardChecking.cpp */,
-				AC4AE2B2197D7AC40089A6F9 /* BackwardChecking.h */,
-				AC5F12E31991906200ED30C5 /* InformationGain.cpp */,
-				AC5F12E41991906200ED30C5 /* InformationGain.h */,
+				AC5B505D19C0B343009FDEF3 /* BackwardChecking.cpp */,
+				AC5B505E19C0B343009FDEF3 /* BackwardChecking.h */,
+				AC5B505F19C0B343009FDEF3 /* CandidateGenerator.cpp */,
+				AC5B506019C0B343009FDEF3 /* CandidateGenerator.h */,
+				AC5B506119C0B343009FDEF3 /* InformationGain.cpp */,
+				AC5B506219C0B343009FDEF3 /* InformationGain.h */,
 			);
+			name = backward;
 			path = backwrad;
 			sourceTree = "<group>";
 		};
 		AC591FBE199E64BC006BDEB7 /* protomsg */ = {
 			isa = PBXGroup;
 			children = (
+				AC5B506619C0B35D009FDEF3 /* ProtoMessageBuilder.cpp */,
+				AC5B506719C0B35D009FDEF3 /* ProtoMessageBuilder.h */,
 				AC591FBF199E64D5006BDEB7 /* cell.pb.cc */,
 				AC591FC0199E64D5006BDEB7 /* cell.pb.h */,
 				AC591FC1199E64D5006BDEB7 /* dect.pb.cc */,
 				AC591FC2199E64D5006BDEB7 /* dect.pb.h */,
 				AC591FC3199E64D5006BDEB7 /* hypothesis.pb.cc */,
 				AC591FC4199E64D5006BDEB7 /* hypothesis.pb.h */,
-				AC591FC5199E64D5006BDEB7 /* MessageBuilder.cpp */,
-				AC591FC6199E64D5006BDEB7 /* MessageBuilder.h */,
 			);
 			name = protomsg;
+			sourceTree = "<group>";
+		};
+		AC5B506F19C0B37B009FDEF3 /* directmsg */ = {
+			isa = PBXGroup;
+			children = (
+				AC5B507019C0B390009FDEF3 /* DirectMessageBuilder.cpp */,
+				AC5B507119C0B390009FDEF3 /* DirectMessageBuilder.h */,
+			);
+			name = directmsg;
+			sourceTree = "<group>";
+		};
+		AC5B507319C0B3EC009FDEF3 /* support */ = {
+			isa = PBXGroup;
+			children = (
+				AC5B507419C0B416009FDEF3 /* MyLog.cpp */,
+				AC5B507519C0B416009FDEF3 /* MyLog.h */,
+			);
+			name = support;
 			sourceTree = "<group>";
 		};
 		ACD77E1B19894C060057ED65 /* initializer */ = {
@@ -201,10 +241,12 @@
 		ACE0817019797CC300C6880A = {
 			isa = PBXGroup;
 			children = (
+				AC5B507319C0B3EC009FDEF3 /* support */,
+				AC5B506F19C0B37B009FDEF3 /* directmsg */,
 				AC591FBE199E64BC006BDEB7 /* protomsg */,
 				ACD77E1B19894C060057ED65 /* initializer */,
 				AC3438E4197EBF03002E37AE /* math */,
-				AC4AE2B0197D78260089A6F9 /* backwrad */,
+				AC4AE2B0197D78260089A6F9 /* backward */,
 				AC4AE28C197D6C410089A6F9 /* forward */,
 				AC4AE291197D6C410089A6F9 /* model */,
 				ACE0818619797D2B00C6880A /* SnifferCxx.1 */,
@@ -280,22 +322,27 @@
 				AC591FC9199E64D5006BDEB7 /* hypothesis.pb.cc in Sources */,
 				AC4AE2AC197D6C410089A6F9 /* WindVector.cpp in Sources */,
 				AC4AE2A9197D6C410089A6F9 /* Map3D.cpp in Sources */,
+				AC5B507219C0B390009FDEF3 /* DirectMessageBuilder.cpp in Sources */,
 				AC7D6F59198178BD0041B1E9 /* UpdateByConvolution.cpp in Sources */,
+				AC5B506819C0B35D009FDEF3 /* ProtoMessageBuilder.cpp in Sources */,
 				AC4AE2A4197D6C410089A6F9 /* UpdateByCell.cpp in Sources */,
-				AC5F12E51991906200ED30C5 /* InformationGain.cpp in Sources */,
 				ACB63F121999668E000FF6A9 /* DetectionInitializer.cpp in Sources */,
+				AC5B506E19C0B36D009FDEF3 /* Hypotheses.cpp in Sources */,
 				AC3438EB197EBF03002E37AE /* Gamma.cpp in Sources */,
+				AC5B506319C0B343009FDEF3 /* BackwardChecking.cpp in Sources */,
 				AC4AE2AB197D6C410089A6F9 /* Wind.cpp in Sources */,
+				AC5B506D19C0B36D009FDEF3 /* Candidate.cpp in Sources */,
 				AC4AE2AA197D6C410089A6F9 /* Methane.cpp in Sources */,
-				AC591FCA199E64D5006BDEB7 /* MessageBuilder.cpp in Sources */,
 				ACD77E1A19894BFF0057ED65 /* main.cpp in Sources */,
+				AC5B507619C0B416009FDEF3 /* MyLog.cpp in Sources */,
 				ACD77E2019894C060057ED65 /* HypothesisInitializer.cpp in Sources */,
+				AC5B506519C0B343009FDEF3 /* InformationGain.cpp in Sources */,
 				AC4AE2A3197D6C410089A6F9 /* ForwardChecking.cpp in Sources */,
+				AC5B506419C0B343009FDEF3 /* CandidateGenerator.cpp in Sources */,
 				ACD77E2119894C060057ED65 /* MapBuilder.cpp in Sources */,
 				AC4AE2A5197D6C410089A6F9 /* Cell.cpp in Sources */,
 				AC3438EC197EBF03002E37AE /* Gaussian.cpp in Sources */,
 				AC4AE2A8197D6C410089A6F9 /* Hypothesis.cpp in Sources */,
-				AC4AE2B3197D7AC40089A6F9 /* BackwardChecking.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -345,7 +392,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -377,22 +424,24 @@
 		ACE0818319797CC400C6880A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/local/Cellar/boost/1.55.0_2/include,
+					/usr/local/boost_1_56_0,
 					/usr/local/Cellar/protobuf/2.5.0/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/Cellar/boost/1.55.0_2/lib,
+					/usr/local/boost_1_56_0/build/clangstage/lib,
 					/usr/local/Cellar/protobuf/2.5.0/lib,
 				);
 				OTHER_LDFLAGS = (
+					"-lpthread",
 					"-lboost_system",
-					"-lboost_log-mt",
+					"-lboost_log",
+					"-lboost_log_setup",
 					"-lboost_serialization",
 					"-lprotobuf",
 				);
@@ -403,21 +452,23 @@
 		ACE0818419797CC400C6880A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/local/Cellar/boost/1.55.0_2/include,
+					/usr/local/boost_1_56_0,
 					/usr/local/Cellar/protobuf/2.5.0/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/Cellar/boost/1.55.0_2/lib,
+					/usr/local/boost_1_56_0/build/clangstage/lib,
 					/usr/local/Cellar/protobuf/2.5.0/lib,
 				);
 				OTHER_LDFLAGS = (
+					"-lpthread",
 					"-lboost_system",
-					"-lboost_log-mt",
+					"-lboost_log",
+					"-lboost_log_setup",
 					"-lboost_serialization",
 					"-lprotobuf",
 				);

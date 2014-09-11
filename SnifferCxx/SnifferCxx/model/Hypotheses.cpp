@@ -7,7 +7,8 @@ namespace Model {
 	using namespace std;
 	using namespace Support;
 
-	unique_ptr<MyLog> Hypotheses::lg_(make_unique<MyLog>());
+//	unique_ptr<MyLog> Hypotheses::lg_(make_unique<MyLog>());
+    unique_ptr<MyLog> Hypotheses::lg_(new MyLog());
 
 	Hypotheses::Hypotheses()
 	:Asyn_Deduce_(true) {

@@ -10,12 +10,14 @@
 #include "../support/MyLog.h"
 #include <fstream>
 #include <sstream>
+#include <memory>
 
 namespace Model {
 	using namespace std;
 	using namespace Support;
 
-	unique_ptr<MyLog> Cells::lg_(make_unique<MyLog>());
+//	unique_ptr<MyLog> Cells::lg_(make_unique<MyLog>());
+    unique_ptr<MyLog> Cells::lg_(new MyLog());
 
 	shared_ptr<Cell> Cells::getCell(const Coordinate & pos) const {
 		auto find_ret = find(pos);

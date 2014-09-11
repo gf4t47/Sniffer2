@@ -24,8 +24,9 @@ namespace Initializer {
 	const auto PI = boost::math::constants::pi<double>();
 	//const int mtn_factor = 2.5 * 10000;
 
-	unique_ptr<MyLog> DetectionInitializer::lg_(make_unique<MyLog>());
-
+//	unique_ptr<MyLog> DetectionInitializer::lg_(make_unique<MyLog>());
+	unique_ptr<MyLog> DetectionInitializer::lg_(new MyLog());
+    
 	unordered_map<string, execute_mode> DetectionInitializer::String2Mode =
 	{
 		{"single", execute_mode::single},

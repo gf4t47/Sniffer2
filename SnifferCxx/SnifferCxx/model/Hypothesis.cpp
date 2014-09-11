@@ -8,7 +8,8 @@ namespace Model {
 	using namespace std;
 	using namespace Support;
 
-	unique_ptr<MyLog> Hypothesis::lg_(make_unique<MyLog>());
+//	unique_ptr<MyLog> Hypothesis::lg_(make_unique<MyLog>());
+	unique_ptr<MyLog> Hypothesis::lg_(new MyLog());
     
     Hypothesis::Hypothesis(const Hypothesis & oth)
     :leaks_(oth.leaks_),

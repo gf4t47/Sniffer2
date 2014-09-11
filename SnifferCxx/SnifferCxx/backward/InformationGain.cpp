@@ -21,7 +21,8 @@ namespace Backward {
     using namespace Forward;
 	using namespace Support;
 
-	unique_ptr<MyLog> InformationGain::lg_(make_unique<MyLog>());
+//	unique_ptr<MyLog> InformationGain::lg_(make_unique<MyLog>());
+    unique_ptr<MyLog> InformationGain::lg_(new MyLog());
     
     /**
      *  construct a information gain calculator

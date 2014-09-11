@@ -40,7 +40,7 @@ namespace Model {
         template<class Archive>
         void serialize(Archive & ar, const unsigned int version)
         {
-            ar & concentration_;
+            ar & particles_;
 			ar & potential_;
         }
 

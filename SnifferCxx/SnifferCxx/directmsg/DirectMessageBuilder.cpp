@@ -9,8 +9,9 @@ namespace DirectMsg {
 	using namespace std;
 	using namespace Support;
 
-	unique_ptr<MyLog> DirectMessageBuilder::lg_(make_unique<MyLog>());
-
+//	unique_ptr<MyLog> DirectMessageBuilder::lg_(make_unique<MyLog>());
+	unique_ptr<MyLog> DirectMessageBuilder::lg_(new MyLog());
+    
 	DirectMessageBuilder::DirectMessageBuilder(
 		std::pair<std::string, std::shared_ptr<std::vector<std::shared_ptr<Model::Hypotheses>>>> mtn_info,
 		std::pair<std::string, std::shared_ptr<std::vector<Model::Detection>>> dect_info,
@@ -20,11 +21,8 @@ namespace DirectMsg {
 	:mtn_info_(mtn_info),
 	dect_info_(dect_info),
 	can_info_(can_info),
-	map_info_(map_info) {
-	}
-
-
-	DirectMessageBuilder::~DirectMessageBuilder() {
+	map_info_(map_info)
+    {
 	}
 
 	void DirectMessageBuilder::WriteMsg(int ideal_cells, bool detection_only) {

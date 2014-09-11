@@ -9,8 +9,9 @@ namespace Backward {
 	using namespace Forward;
 	using namespace Support;
 
-	unique_ptr<MyLog> CandidateGenerator::lg_(make_unique<MyLog>());
-
+//	unique_ptr<MyLog> CandidateGenerator::lg_(make_unique<MyLog>());
+	unique_ptr<MyLog> CandidateGenerator::lg_(new MyLog());
+    
 	CandidateGenerator::CandidateGenerator(const ForwardChecking & forward, const BackwardChecking & backward, const Map3D & map)
 		:map_(map),
 		infoGain_(forward, backward, map) {

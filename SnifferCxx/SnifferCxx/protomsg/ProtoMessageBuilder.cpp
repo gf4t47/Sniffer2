@@ -21,7 +21,8 @@ namespace ProtoMsg {
     using namespace std;
 	using namespace Support;
 
-	unique_ptr<MyLog> ProtoMessageBuilder::lg_(make_unique<MyLog>());
+//	unique_ptr<MyLog> ProtoMessageBuilder::lg_(make_unique<MyLog>());
+    unique_ptr<MyLog> ProtoMessageBuilder::lg_(new MyLog());
 
 	unordered_map<Model::CellTag, CellTag, Model::enum_hash> ProtoMessageBuilder::Tag2Msg = { 
 			{ Model::CellTag::Air, CellTag::Air },

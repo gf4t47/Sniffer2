@@ -24,7 +24,8 @@ namespace Backward {
 
 	const double gamma_background_probability = 0.0001;
 
-	unique_ptr<MyLog> BackwardChecking::lg_(make_unique<MyLog>());
+//	unique_ptr<MyLog> BackwardChecking::lg_(make_unique<MyLog>());
+    unique_ptr<MyLog> BackwardChecking::lg_(new MyLog());
     
     BackwardChecking::BackwardChecking(range_t blur_range, range_t kernel_range)
         :blur_range_(blur_range),
