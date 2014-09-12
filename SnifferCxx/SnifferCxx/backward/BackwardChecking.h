@@ -35,21 +35,22 @@ namespace Backward {
 
 	class BackwardChecking {
     public:
-        BackwardChecking(range_t blur_range, range_t kernel_range);
+        BackwardChecking(range_t gaussian_blur_range, range_t gaussian_kernel_range, range_t gamma_variance);
         virtual ~BackwardChecking();
         
-        double calcGaussianBlurMean(const Model::Coordinate & location, const Model::Cells & methane_cells, const Model::Map3D & map) const;
+        Model::mtn_t calcGaussianBlurMean(const Model::Coordinate & location, const Model::Cells & methane_cells, const Model::Map3D & map) const;
         void normalize(Model::Hypotheses & hyps, const std::vector<double> & hyps_probability) const;
         std::shared_ptr<Model::Hypotheses> updateHypotheses(Model::Hypotheses & hyps, const Model::Map3D & map, const std::vector<Model::Candidate> & detections) const;
-		double calcLikehood(const Model::Hypothesis & hyp, const Model::Coordinate & detected_location, double detected_concentration, const Model::Map3D & map) const;
+		double calcLikehood(const Model::Hypothesis & hyp, const Model::Coordinate & detected_location, double detected_particles, const Model::Map3D & map) const;
 
 	private:
 		range_t getBlurRange() const;
         range_t getKernelRange() const;
         
     private:
-		range_t blur_range_;
-        range_t kernel_range_;
+		range_t gaussian_blur_range_;
+        range_t gaussian_kernel_range_;
+		range_t gamma_variance_;
 		static std::unique_ptr<Support::MyLog> lg_;
     };
 }

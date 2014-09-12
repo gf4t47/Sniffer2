@@ -25,17 +25,15 @@ namespace Backward {
 	shared_ptr<vector<Coordinate>> CandidateGenerator::crossLocation(const Coordinate & curPos, const Map3D & map, unit_t distance) const {
 		auto ret = make_shared<vector<Coordinate>>();
 
-		Coordinate newCoord1(curPos[0] + distance, curPos[1], curPos[2]);
-		ret->push_back(newCoord1);
+		ret->push_back(Coordinate(curPos[0] + distance, curPos[1], curPos[2]));
+		ret->push_back(Coordinate(curPos[0] - distance, curPos[1], curPos[2]));
+		ret->push_back(Coordinate(curPos[0], curPos[1] + distance, curPos[2]));
+		ret->push_back(Coordinate(curPos[0], curPos[1] - distance, curPos[2]));
 
-		Coordinate newCoord2(curPos[0] - distance, curPos[1], curPos[2]);
-		ret->push_back(newCoord2);
-
-		Coordinate newCoord3(curPos[0], curPos[1] + distance, curPos[2]);
-		ret->push_back(newCoord3);
-
-		Coordinate newCoord4(curPos[0], curPos[1] - distance, curPos[2]);
-		ret->push_back(newCoord4);
+		ret->push_back(Coordinate(curPos[0] + distance, curPos[1] + distance, curPos[2]));
+		ret->push_back(Coordinate(curPos[0] - distance, curPos[1] - distance, curPos[2]));
+		ret->push_back(Coordinate(curPos[0] - distance, curPos[1] + distance, curPos[2]));
+		ret->push_back(Coordinate(curPos[0] + distance, curPos[1] - distance, curPos[2]));
 
 		return ret;
 	}
@@ -59,6 +57,9 @@ namespace Backward {
 
 	vector<Candidate> CandidateGenerator::calcCandidates(const Coordinate & curPos, int time_count, unit_t distance, const Hypotheses & hyps) const {
 		auto locations = collisionFilter(curPos, *crossLocation(curPos, map_, distance), map_);
+		auto locations2 = collisionFilter(curPos, *crossLocation(curPos, map_, distance * 2), map_);
+		locations->insert(locations->end(), locations2->begin(), locations2->end());
+
 		auto gain_vec = infoGain_.calcInforGains(*locations, hyps, time_count);
 
 		vector<Candidate> can_vec;

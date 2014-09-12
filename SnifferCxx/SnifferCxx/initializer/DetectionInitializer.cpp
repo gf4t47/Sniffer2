@@ -264,7 +264,7 @@ namespace Initializer {
 		dects_ = make_shared<vector<Detection>>();
 		for (; index < strTable.size(); index++) {
 			auto mtn = lexical_cast<double>(strTable[index][1]);// *mtn_factor;
-			if (mtn > Methane::getBackground()) {
+			if (mtn > Methane::getBackgroundConcentration()) {
 				dects_->push_back(transStringVec2Struct(strTable[index], init_time));
 				init_time = lexical_cast<int>(strTable[index][0]);
 			}

@@ -33,7 +33,7 @@ namespace Model {
 
 	}
 
-	mtn_t Methane::getBackground() {
+	mtn_t Methane::getBackgroundConcentration() {
 		return background_;
 	}
 
@@ -57,9 +57,17 @@ namespace Model {
 		return potential_;
 	}
 
-	mtn_t Methane::getMethaneConc() const {
-		return getParitcles() * getConcPerParticle() + getBackground();
+	double Methane::transParticle2Concentration(mtn_t particle) {
+		return particle * concentration_per_particle_;
 	}
+
+	mtn_t Methane::transConcentration2Particle(double conc) {
+		return conc / concentration_per_particle_;
+	}
+
+	//mtn_t Methane::getMethaneConc() const {
+	//	return getParitcles() * getConcPerParticle() + getBackground();
+	//}
 
 	Methane Methane::operator+ (const Methane & oth) const {
 		return Methane(particles_ + oth.particles_, (potential_ + oth.potential_) * 0.5);

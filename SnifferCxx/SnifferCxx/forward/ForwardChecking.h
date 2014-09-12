@@ -44,7 +44,7 @@ namespace Forward {
         range_t getKernelRange() const;
 
     private:
-        range_t kernel_range_;
+        range_t gaussian_kernel_range_;
 		int iteration_per_sec_;
 	};
 

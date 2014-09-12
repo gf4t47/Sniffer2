@@ -15,7 +15,7 @@ namespace Math {
     
     class Gamma {
     public:
-        static double calcGammaPdf(double detected, double shape, double scale = default_gamma_scale);
+        static double calcGammaPdf(double detected, double mean, double variance = default_gamma_scale);
     };
 }
 

@@ -17,7 +17,7 @@ namespace Forward {
     using namespace Model;
     
     ForwardChecking::ForwardChecking(range_t kernnel_range, int iteration_per_sec)
-    :kernel_range_(kernnel_range),
+    :gaussian_kernel_range_(kernnel_range),
 	iteration_per_sec_(iteration_per_sec) {
         
     }
@@ -27,7 +27,7 @@ namespace Forward {
 	}
     
     range_t ForwardChecking::getKernelRange() const {
-        return kernel_range_;
+        return gaussian_kernel_range_;
     }
 
 	int ForwardChecking::getIterationPerSecond() const {

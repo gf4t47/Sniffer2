@@ -22,12 +22,14 @@ namespace Model {
 		Methane(mtn_t p);
 		Methane(mtn_t p, const WindVector & wv);
 
-		static mtn_t getBackground();
+		static mtn_t getBackgroundConcentration();
 		static mtn_t getConcPerParticle();
 		static void setBackgournd(double val);
 		static void setConcPerParticle(double val);
+		static mtn_t transConcentration2Particle(double conc);
+		static double transParticle2Concentration(mtn_t particle);
 
-		mtn_t getMethaneConc() const;
+		//mtn_t getMethaneConc() const;
 		mtn_t getParitcles() const;
 		const WindVector & getPotential() const;
 

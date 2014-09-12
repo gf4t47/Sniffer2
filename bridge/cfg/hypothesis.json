@@ -1,9 +1,10 @@
 {
-	"blurRange" : 3,
-    "kernelRange" : 1, 
+	"GaussianblurRange" : 3,
+    "GaussiankernelRange" : 1, 
+    "GammaVariance" : 184,
 	"forwardChecking" : "byCell",
     "iterations_per_second" : 5,
-    "concentration_background" : 2.0E-006,
+    "concentration_background" : 1.8E-006,
     "concentration_per_particle" : 5.125E-007, // = 1.025E-004 / 200
     // "concentration_background" : 0.04,
     // "concentration_per_paritcle" : 1,
@@ -15,6 +16,6 @@
     	[{"location": [36, 63, 0], "concentration": 200}],
         [{"location": [8, 62, 0], "concentration": 75}],
         [{"location": [8, 27, 0], "concentration": 100}],
-        [{"location": [32, 30, 0], "concentration": 300}]
+        [{"location": [32, 30, 0], "concentration": 250}]
 	]
 }

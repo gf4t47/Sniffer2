@@ -22,14 +22,15 @@ namespace Backward {
     using namespace Model;
     using namespace Forward;
 
-	const double gamma_background_probability = 0.0001;
+	const double gamma_background_probability = 0.00001;
 
 //	unique_ptr<MyLog> BackwardChecking::lg_(make_unique<MyLog>());
     unique_ptr<MyLog> BackwardChecking::lg_(new MyLog());
     
-    BackwardChecking::BackwardChecking(range_t blur_range, range_t kernel_range)
-        :blur_range_(blur_range),
-        kernel_range_(kernel_range) {
+    BackwardChecking::BackwardChecking(range_t gaussian_blur_range, range_t gaussian_kernel_range, range_t gamma_variance)
+        :gaussian_blur_range_(gaussian_blur_range),
+        gaussian_kernel_range_(gaussian_kernel_range),
+		gamma_variance_(gamma_variance) {
         
     }
     
@@ -38,11 +39,11 @@ namespace Backward {
     }
 
 	range_t BackwardChecking::getBlurRange() const{
-		return blur_range_;
+		return gaussian_blur_range_;
 	}
     
     range_t BackwardChecking::getKernelRange() const {
-        return kernel_range_;
+        return gaussian_kernel_range_;
     }
 
 	//************************************
@@ -55,14 +56,15 @@ namespace Backward {
 	// Parameter: const Cells & methane_cells
 	// Parameter: const Map3D & map
 	//************************************
-	double BackwardChecking::calcGaussianBlurMean(const Coordinate & location, const Cells & methane_cells, const Map3D & map) const {
+	Model::mtn_t BackwardChecking::calcGaussianBlurMean(const Coordinate & location, const Cells & methane_cells, const Map3D & map) const {
 		auto newCells = Math::GaussianBlur::blurCells(location, getBlurRange(), methane_cells, map, getKernelRange());
 		auto locate_cell = newCells->getCell(location);
+		auto background_partile = Methane::transConcentration2Particle(Methane::getBackgroundConcentration());
 		if (locate_cell) {
-			return locate_cell->getMethane().getMethaneConc();
+			return locate_cell->getMethane().getParitcles() + background_partile;
 		}
 
-		return Methane::getBackground();
+		return background_partile;
 	}
       
     //************************************
@@ -76,16 +78,15 @@ namespace Backward {
     // Parameter: double detected_concentration
     // Parameter: const Map3D & map
     //************************************
-    double BackwardChecking::calcLikehood(const Hypothesis & hyp, const Coordinate & detected_location, double detected_concentration, const Map3D & map) const {
-        auto mean = calcGaussianBlurMean(detected_location, *hyp.getMethaneCells(), map);
-        auto ret = Math::Gamma::calcGammaPdf(detected_concentration, mean) + gamma_background_probability;
+    double BackwardChecking::calcLikehood(const Hypothesis & hyp, const Coordinate & detected_location, double detected_particles, const Map3D & map) const {
+        auto mean = calcGaussianBlurMean(detected_location, *hyp.getMethaneCells(), map); //unit : particle
+        auto ret = Math::Gamma::calcGammaPdf(detected_particles, mean, gamma_variance_);  //where is this gamma_variance_ comes from? gamma fit the data by python -_-, sorry!
         
-        BOOST_LOG_SEV(*lg_, severity_level::debug) << "calculated mean = " << mean;
-        BOOST_LOG_SEV(*lg_, severity_level::debug) << "detected location = " << detected_location;
-        BOOST_LOG_SEV(*lg_, severity_level::debug) << "detected concentration = " << detected_concentration;
-        BOOST_LOG_SEV(*lg_, severity_level::debug) << "calculated likehood = " << ret;
+		BOOST_LOG_SEV(*lg_, severity_level::debug) << "calculated = " << detected_location << ": " << mean;
+		BOOST_LOG_SEV(*lg_, severity_level::debug) << "detected   = " << detected_location << ": " << detected_particles;
+        BOOST_LOG_SEV(*lg_, severity_level::debug) << "likehood = " << ret << " + " << gamma_background_probability;
         
-        return ret;
+		return ret + gamma_background_probability;
     }
     
     //************************************
@@ -129,7 +130,7 @@ namespace Backward {
 			//BOOST_LOG_SEV(*lg_, severity_level::debug) << "hypothesis" << count << " is updating: ";
             for (auto detection : detections) {
                 if (map.insideMap(detection.location_)) {
-                    likeHood *= calcLikehood(hyp, detection.location_, detection.concentration_, map);
+					likeHood *= calcLikehood(hyp, detection.location_, Methane::transConcentration2Particle(detection.concentration_), map);
                 }
             }
 			//BOOST_LOG_SEV(*lg_, severity_level::debug) << "hypothesis" << count << " is finished.";

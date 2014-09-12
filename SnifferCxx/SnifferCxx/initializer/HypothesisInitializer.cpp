@@ -58,11 +58,13 @@ namespace Initializer {
 	}
     
     bool HypothesisInitializer::load(string cfg_file) {
-        const Forward::range_t default_blurRange = 1;
-        const Backward::range_t default_kernelRange = 1;
+        const range_t default_blurRange = 1;
+        const range_t default_kernelRange = 1;
+		const range_t default_variance = 128;
         
-        const string strBlurRange = "blurRange";
-        const string strKernelRange = "kernelRange";
+        const string strBlurRange = "GaussianblurRange";
+        const string strKernelRange = "GaussiankernelRange";
+		const string strGammaVariance = "GammaVariance";
         const string strForwardChecking = "forwardChecking";
 		const string strIterations = "iterations_per_second";
         const string strHypothesis = "hypothesis";
@@ -80,16 +82,22 @@ namespace Initializer {
         read_json(cfg_file, pt);
         
         auto blur_range = default_blurRange;
-        auto blurRange_node = pt.get_optional<Backward::range_t>(strBlurRange);
+        auto blurRange_node = pt.get_optional<range_t>(strBlurRange);
         if (blurRange_node) {
             blur_range = *blurRange_node;
         }
         
         auto kernel_range = default_kernelRange;
-        auto kernelRange_node = pt.get_optional<Forward::range_t>(strKernelRange);
+        auto kernelRange_node = pt.get_optional<range_t>(strKernelRange);
         if (kernelRange_node) {
             kernel_range = *kernelRange_node;
         }
+
+		auto variance = default_variance;
+		auto variance_node = pt.get_optional<range_t>(strGammaVariance);
+		if (variance_node) {
+			variance = *variance_node;
+		}
         
         auto ideal_cells_node = pt.get_optional<ideal_t>(strIdealCells);
         if (ideal_cells_node) {
@@ -122,7 +130,7 @@ namespace Initializer {
             }
         }
         
-        backward_ = make_shared<BackwardChecking>(blur_range, kernel_range);
+        backward_ = make_shared<BackwardChecking>(blur_range, kernel_range, variance);
 
 		auto background = pt.get<double>(strBackground);
 		Methane::setBackgournd(background);

@@ -1,8 +1,5 @@
 #pragma once
 
-//#define BOOST_LOG_DYN_LINK
-#define BOOST_LOG_NO_THREADS
-
 #include <boost/log/support/date_time.hpp>
 #include <boost/log/sources/severity_feature.hpp>
 #include <boost/log/sources/severity_logger.hpp>
