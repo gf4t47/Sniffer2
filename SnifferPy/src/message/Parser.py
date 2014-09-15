@@ -30,9 +30,11 @@ def _direct_parse(map_output, dect_output, can_output, mtn_output):
     dects = MessageParser.parse_binary_file(dect_output, MessageParser.strDect)
     candidates = MessageParser.parse_binary_file(can_output, MessageParser.strDect)
 
-    start = time.clock()
-    hyps_his = MessageParser.parse_binary_file(mtn_output, MessageParser.strMethane)
-    print "time for parsing all hyps", time.clock() - start, "s"
+    hyps_his = None
+    if not mtn_output is None:
+        start = time.clock()
+        hyps_his = MessageParser.parse_binary_file(mtn_output, MessageParser.strMethane)
+        print "time for parsing all hyps", time.clock() - start, "s"
 
     return mp, dects, candidates, hyps_his
 

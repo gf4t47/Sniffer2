@@ -41,7 +41,11 @@ mp, dects, candidates, hyps_his = Parser.parse(None, dect_output, can_output, mt
 if not mp is None:
     fig_map = MapBuilder.build_from_bin(mp)
     fig_wind = WindBuilder.build(mp)
+    # mb.show()
     fig_wind.remove()
+
+if hyps_his is None:
+    exit(0)
 
 fig_hyp = MethaneBuilder.build(hyps_his[0], [None, None])
 fig_dect = None
@@ -52,10 +56,8 @@ if manual_move_len < 0:
     manual_move_len = 0
 
 for hyps, dect in zip(hyps_his[1: 1 + manual_move_len], dects[: manual_move_len]):
-    fig_dect = DetectionBuilder.build(dect, hyps, fig_dect)
-    # map(lambda fig: fig.remove(), filter(lambda fig: not fig is None, fig_hyp))
-    # fig_hyp = [None, None]
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)
+    fig_dect = DetectionBuilder.build(dect, hyps, fig_dect)
 
 for hyps, dect, can in zip(hyps_his[manual_move_len + 1:], dects[manual_move_len:], candidates[:]):
     fig_hyp = MethaneBuilder.build(hyps, fig_hyp)

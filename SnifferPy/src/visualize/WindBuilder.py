@@ -6,7 +6,7 @@ from src.model.Cell import str2tag
 
 
 def build(mp):
-    air_cells = filter(lambda cell: cell.tag == str2tag["Air"], mp.cells)
+    air_cells = filter(lambda cell: cell.tag == str2tag["Air"] and numpy.any(cell.wind.potential > 0), mp.cells)
 
     size = len(air_cells)
 
@@ -23,6 +23,7 @@ def build(mp):
         ys[index] = coord[1]
         zs[index] = coord[2] + 0.5
 
+        # wind = cell.wind.potential
         wind = cell.wind.calc_wind()
 
         us[index] = wind[0]

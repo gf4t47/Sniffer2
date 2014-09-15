@@ -4,7 +4,7 @@
     "GammaVariance" : 184,
 	"forwardChecking" : "byCell",
     "iterations_per_second" : 5,
-    "concentration_background" : 1.8E-006,
+    "concentration_background" : 2.0E-006,
     "concentration_per_particle" : 5.125E-007, // = 1.025E-004 / 200
     // "concentration_background" : 0.04,
     // "concentration_per_paritcle" : 1,
