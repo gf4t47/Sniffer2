@@ -55,7 +55,7 @@ def build_from_json(m_dict):
         ret = _build_building(location, boundary)
         map(lambda item, item_list: item_list.extend(item), ret, all_list)
 
-    return mb.barchart(*all_list)
+    return mb.barchart(*all_list, colormap="summer")
 
 
 def build_from_bin(mp):
@@ -65,5 +65,5 @@ def build_from_bin(mp):
 
     bld_cells = filter(lambda cell: cell.tag == str2tag["Building"], mp.cells)
     bld_vecs = _build_buildings(bld_cells)
-    return mb.barchart(*bld_vecs)
+    return mb.barchart(*bld_vecs, colormap="summer")
 

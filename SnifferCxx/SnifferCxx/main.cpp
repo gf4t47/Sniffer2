@@ -54,7 +54,7 @@ int main(int argc, const char * argv[])
 	string can_output = argv[7];
 
 	//init log
-	Support::MyLog::init_log("../../bridge/output/Sniffer");
+	MyLog::init_log("../../bridge/output/Sniffer");
 
 	//load map
 	MapBuilder mb(map_cfg);
@@ -71,7 +71,7 @@ int main(int argc, const char * argv[])
 	auto init_vec = dectI.getInitSteadyStage();
 	auto dect_vec = dectI.getDetections();
 	auto auto_movement = dectI.getAutoMovementInfo();
-	auto can_vect = make_shared<vector<Model::Detection>>();
+	auto can_vect = make_shared<vector<Detection>>();
 
 	//calculation
 	auto hyps_hist = make_shared<vector<shared_ptr<Hypotheses>>>();

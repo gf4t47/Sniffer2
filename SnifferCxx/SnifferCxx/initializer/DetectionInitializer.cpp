@@ -29,9 +29,9 @@ namespace Initializer {
     
 	unordered_map<string, execute_mode> DetectionInitializer::String2Mode =
 	{
-		{"single", execute_mode::single},
-		{"asyn", execute_mode::asyn_event},
-		{"multithread", execute_mode::multi_thread}
+		{"single", single},
+		{"asyn", asyn_event},
+		{"multithread", multi_thread}
 	};
 
 	DetectionInitializer::DetectionInitializer(string cfg_file, const Map3D & map, int iterations_per_sec)
@@ -56,7 +56,7 @@ namespace Initializer {
 		}
 	}
 
-	shared_ptr<vector<Detection>> DetectionInitializer::parseJsonNode(const string & nodeName, const boost::property_tree::ptree & pt) const {
+	shared_ptr<vector<Detection>> DetectionInitializer::parseJsonNode(const string & nodeName, const ptree & pt) const {
 		const string strTime = "time";
 		const string strDect = "dect";
 		const string strLocation = "location";
@@ -213,7 +213,7 @@ namespace Initializer {
 		return WindVector(easting, northing, 0);
 	}
 
-	Model::Detection DetectionInitializer::transStringVec2Struct(const std::vector<std::string> & strVec, int last_time) const {
+	Detection DetectionInitializer::transStringVec2Struct(const vector<string> & strVec, int last_time) const {
 			using boost::lexical_cast;
 
 			Detection dect;
@@ -240,8 +240,8 @@ namespace Initializer {
 			return dect;
 	}
 
-	void DetectionInitializer::transStringTable2Struct(const std::vector<std::vector<std::string>> & strTable){
-		const int init_iterations = 100;
+	void DetectionInitializer::transStringTable2Struct(const vector<vector<string>> & strTable){
+		const int init_iterations = 75;
 		using boost::lexical_cast;
 
 		steady_stage_initializer_ = make_shared<vector<Detection>>();
@@ -294,7 +294,7 @@ namespace Initializer {
 			strTable.push_back(strVec);
 		}
 
-		mode_ = RunMode::execute_mode::single;
+		mode_ = single;
 		transStringTable2Struct(strTable);
 
 		return dects_ != nullptr;
@@ -315,7 +315,7 @@ namespace Initializer {
 		return auto_movement_;
 	}
 
-	RunMode::execute_mode DetectionInitializer::getExecutorMode() const {
+	execute_mode DetectionInitializer::getExecutorMode() const {
 		return mode_;
 	}
 

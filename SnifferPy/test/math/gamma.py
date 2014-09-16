@@ -58,8 +58,7 @@ class MyTestCase(unittest.TestCase):
     def test_gamma(self):
         fig, ax = plt.subplots(1, 1)
 
-        variance = 128
-
+        variance = 128.0
         mean = 224.0
         scale = variance / mean
         shape = mean / scale

@@ -23,8 +23,8 @@ def build(mp):
         ys[index] = coord[1]
         zs[index] = coord[2] + 0.5
 
-        # wind = cell.wind.potential
-        wind = cell.wind.calc_wind()
+        wind = cell.wind.potential
+        # wind = cell.wind.calc_wind()
 
         us[index] = wind[0]
         vs[index] = wind[1]

@@ -13,9 +13,6 @@
 	
 	"hypothesis" :
 	[
-    	[{"location": [36, 63, 0], "concentration": 200}],
-        [{"location": [8, 62, 0], "concentration": 75}],
-        [{"location": [8, 27, 0], "concentration": 100}],
-        [{"location": [32, 30, 0], "concentration": 250}]
+    	[{"location": [36, 63, 0], "concentration": 200}]
 	]
 }

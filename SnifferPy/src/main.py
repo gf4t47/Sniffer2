@@ -41,7 +41,7 @@ mp, dects, candidates, hyps_his = Parser.parse(None, dect_output, can_output, mt
 if not mp is None:
     fig_map = MapBuilder.build_from_bin(mp)
     fig_wind = WindBuilder.build(mp)
-    # mb.show()
+    mb.show()
     fig_wind.remove()
 
 if hyps_his is None:

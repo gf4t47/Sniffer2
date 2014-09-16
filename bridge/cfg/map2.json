@@ -1,0 +1,13 @@
+{
+	"boundary": [50, 100, 10],
+    "location": [0, 0, 0],
+    "wind": [-2.0, -1.5, 0],
+    "unit": 1,
+    "potential": 3,
+    "origin": {"index": [46, 15, 0], "coordinate": [613699, 4173162, 0]},
+
+    "building":
+    [
+     {"location": [32, 63, 0], "boundary":[3, 2, 7]}
+    ]
+}

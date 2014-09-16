@@ -47,9 +47,7 @@ def _build(vecs, fig, color):
         fig.remove()
         fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_mode="vector", mode="2dtriangle", colormap=color)
     else:
-        fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_mode="vector", mode="2dtriangle",
-                          colormap=color)
-        # fig.glyph.scale_mode = 'scale_by_vector'
+        fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_mode="vector", mode="2dtriangle", colormap=color)
 
     # time.sleep(0.1)
     # print fig
@@ -59,6 +57,12 @@ def _build(vecs, fig, color):
 
 def build(hyps, figs):
     low_fig, high_fig = figs
+
+    high_color = "Set1"
+    if len(hyps) > 1:
+        low_color = "Pastel2"
+    else:
+        low_color = "Set1"
 
     prob_list = [hyp.prob for hyp in hyps]
     cells_his_list = [hyp.cells_list for hyp in hyps]
@@ -80,13 +84,13 @@ def build(hyps, figs):
             if not high_fig is None:
                 high_fig.remove()
                 high_fig = None
-            low_fig = _build(low_vecs, low_fig, "Pastel2")
+            low_fig = _build(low_vecs, low_fig, low_color)
     else:
         for low_cells_list, high_cells_list in zip(zip(*low_cells), zip(*high_cells)):
             low_vecs = _cells_list_to_vector(low_cells_list)
             high_vecs = _cells_list_to_vector(high_cells_list)
-            low_fig = _build(low_vecs, low_fig, "Pastel2")
-            high_fig = _build(high_vecs, high_fig, "blue-red")
+            low_fig = _build(low_vecs, low_fig, low_color)
+            high_fig = _build(high_vecs, high_fig, high_color)
 
     return low_fig, high_fig
 
