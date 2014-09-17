@@ -56,7 +56,7 @@ namespace Backward {
 	// Parameter: const Cells & methane_cells
 	// Parameter: const Map3D & map
 	//************************************
-	Model::mtn_t BackwardChecking::calcGaussianBlurMean(const Coordinate & location, const Cells & methane_cells, const Map3D & map) const {
+	mtn_t BackwardChecking::calcGaussianBlurMean(const Coordinate & location, const Cells & methane_cells, const Map3D & map) const {
 		auto newCells = Math::GaussianBlur::blurCells(location, getBlurRange(), methane_cells, map, getKernelRange());
 		auto locate_cell = newCells->getCell(location);
 		auto background_partile = Methane::transConcentration2Particle(Methane::getBackgroundConcentration());
@@ -80,13 +80,13 @@ namespace Backward {
     //************************************
     double BackwardChecking::calcLikehood(const Hypothesis & hyp, const Coordinate & detected_location, double detected_particles, const Map3D & map) const {
         auto mean = calcGaussianBlurMean(detected_location, *hyp.getMethaneCells(), map); //unit : particle
-        auto ret = Math::Gamma::calcGammaPdf(detected_particles, mean, gamma_variance_);  //where is this gamma_variance_ comes from? gamma fit the data by python -_-, sorry!
+        auto pdf = Math::Gamma::calcGammaPdf(detected_particles, mean, gamma_variance_);  //where is this gamma_variance_ comes from? gamma fit the data by python -_-, sorry!
         
 		BOOST_LOG_SEV(*lg_, severity_level::debug) << "calculated = " << detected_location << ": " << mean;
 		BOOST_LOG_SEV(*lg_, severity_level::debug) << "detected   = " << detected_location << ": " << detected_particles;
-        BOOST_LOG_SEV(*lg_, severity_level::debug) << "likehood = " << ret << " + " << gamma_background_probability;
+        BOOST_LOG_SEV(*lg_, severity_level::debug) << "likehood = " << pdf << " + " << gamma_background_probability;
         
-		return ret + gamma_background_probability;
+		return pdf + gamma_background_probability;
     }
     
     //************************************

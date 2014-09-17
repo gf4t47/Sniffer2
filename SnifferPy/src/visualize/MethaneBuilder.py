@@ -48,7 +48,7 @@ def _build(vecs, fig, color):
         fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_mode="vector", mode="2dtriangle", colormap=color)
     else:
         fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_mode="vector", mode="2dtriangle", colormap=color)
-
+        # fig = mb.quiver3d(xs, ys, zs, us, vs, ws, line_width=2.0, scale_mode="scalar", scale_factor="0.1", mode="2dtriangle", colormap=color)
     # time.sleep(0.1)
     # print fig
 

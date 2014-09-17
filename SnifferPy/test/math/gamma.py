@@ -67,7 +67,6 @@ class MyTestCase(unittest.TestCase):
         rv = gamma(shape, scale=scale)
         ax.plot(x, rv.pdf(x), 'k-', lw=2, label='gamma pdf')
 
-
         mean = 114.0
         scale = variance / mean
         shape = mean / scale
@@ -75,7 +74,6 @@ class MyTestCase(unittest.TestCase):
         x = np.linspace(1, 250, 10000)
         rv = gamma(shape, scale=scale)
         ax.plot(x, rv.pdf(x), 'k-', lw=2, label='gamma pdf')
-
 
         mean = 24.0
         scale = variance / mean
@@ -92,6 +90,24 @@ class MyTestCase(unittest.TestCase):
         x = np.linspace(1, 250, 10000)
         rv = gamma(shape, scale=scale)
         ax.plot(x, rv.pdf(x), 'k-', lw=2, label='gamma pdf')
+
+        plt.show()
+
+    def _test_draw(self):
+        fig, gamma_plot = plt.subplots(1, 1)
+
+        variance = 188.0
+        mean = 60.0
+        var = 110
+        scale = variance / mean
+        shape = mean / scale
+
+        x = np.linspace(1, 250, 10000)
+        rv = gamma(shape, scale=scale)
+
+        gamma_plot.plot(x, rv.pdf(x), 'k-', lw=2, c='blue', label='gamma')
+        gamma_plot.plot([0, var], [rv.pdf(var), rv.pdf(var)], 'k--', lw=1, c='red', label='pdf')
+        gamma_plot.plot([var, var], [0, rv.pdf(var)], 'k-', lw=1, label='x')
 
         plt.show()
 
