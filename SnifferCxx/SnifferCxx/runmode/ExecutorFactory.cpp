@@ -3,7 +3,8 @@
 #include "../runmode/MultiThread.h"
 #include "../runmode/Executor.h"
 
-namespace RunMode {
+namespace RunMode
+{
 	using namespace std;
 	using namespace RunMode;
 
@@ -16,8 +17,10 @@ namespace RunMode {
 	{
 	}
 
-	shared_ptr<Executor> ExecutorFactory::createExecutor(execute_mode run_type, const Model::Map3D & map, const Forward::ForwardChecking & forward, const Backward::BackwardChecking & backward) {
-		switch (run_type) {
+	shared_ptr<Executor> ExecutorFactory::createExecutor(execute_mode run_type, const Model::Map3D& map, const Forward::ForwardChecking& forward, const Backward::BackwardChecking& backward)
+	{
+		switch (run_type)
+		{
 		case single:
 			return make_shared<Executor>(map, forward, backward);
 

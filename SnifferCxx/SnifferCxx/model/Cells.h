@@ -12,19 +12,23 @@
 #include <unordered_map>
 #include "Cell.h"
 
-namespace Support {
+namespace Support
+{
 	class MyLog;
 }
 
-namespace Model{
+namespace Model
+{
 	typedef std::unordered_map<Coordinate, Cell, CoordHasher> cells_t;
-	class Cells : public cells_t{
-	public:
-		std::shared_ptr<Cell> getCell(const Coordinate & pos) const;
-		std::shared_ptr<Cell> getCell(coord_item_t x, coord_item_t y, coord_item_t z) const;
-		bool updateCell(const Cell & cell);
 
-		bool mergeCellsByAddMethane(const Cells & cells);
+	class Cells : public cells_t
+	{
+	public:
+		std::shared_ptr<Cell> getCell(const Coordinate& pos) const;
+		std::shared_ptr<Cell> getCell(coord_item_t x, coord_item_t y, coord_item_t z) const;
+		bool updateCell(const Cell& cell);
+
+		bool mergeCellsByAddMethane(const Cells& cells);
 
 		std::ofstream& toBinary(std::ofstream& fs) const;
 

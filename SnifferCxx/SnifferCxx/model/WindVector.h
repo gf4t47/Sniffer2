@@ -15,37 +15,40 @@
 #include <boost/archive/text_oarchive.hpp>
 #include "TypeDef.h"
 
-namespace Model {
+namespace Model
+{
 	class Coordinate;
 
 	typedef double wv_item_t;
 	typedef std::array<wv_item_t, 3> wv_t;
 
-	class WindVector : public wv_t {
+	class WindVector : public wv_t
+	{
 	public:
 		WindVector();
 		WindVector(wv_item_t x, wv_item_t y, wv_item_t z);
-        
-        wv_item_t calcNorm() const;
-        
-		WindVector operator+ (const WindVector & rhs) const;
-		WindVector operator- (const WindVector & rhs) const;
-		Coordinate operator/ (const unit_t & unit) const;
-		WindVector operator% (const unit_t & unit) const;
-		WindVector operator* (const wv_item_t & factor) const;
-		WindVector & operator= (const wv_t & rhs);
+
+		wv_item_t calcNorm() const;
+
+		WindVector operator+(const WindVector& rhs) const;
+		WindVector operator-(const WindVector& rhs) const;
+		Coordinate operator/(const unit_t& unit) const;
+		WindVector operator%(const unit_t& unit) const;
+		WindVector operator*(const wv_item_t& factor) const;
+		WindVector& operator=(const wv_t& rhs);
 
 		friend std::ostream& operator<<(std::ostream& os, const WindVector& wv);
 		std::ofstream& toBinary(std::ofstream& fs) const;
-        
-        friend class boost::serialization::access;
-        template<class Archive>
-        void serialize(Archive & ar, const unsigned int version)
-        {
-            ar & (*this)[0];
-            ar & (*this)[1];
-            ar & (*this)[2];
-        }
+
+		friend class boost::serialization::access;
+
+		template <class Archive>
+		void serialize(Archive& ar, const unsigned int version)
+		{
+			ar & (*this)[0];
+			ar & (*this)[1];
+			ar & (*this)[2];
+		}
 	};
 }
 

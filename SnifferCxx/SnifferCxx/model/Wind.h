@@ -15,38 +15,42 @@
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/logic/tribool.hpp>
 
-namespace Support {
+namespace Support
+{
 	class MyLog;
 }
 
-namespace Model {
-	class Wind {
+namespace Model
+{
+	class Wind
+	{
 	public:
 		Wind();
 		//Wind(const WindVector & wind);
 		//Wind(const WindVector & wind, const WindVector & potential);
 
 		WindVector getCalcWind() const;
-        WindVector getPotential() const;
+		WindVector getPotential() const;
 		WindVector getWV() const;
-        
-        bool setWindVector(const  WindVector * wv);
-        bool setPotential(const WindVector & potential);
-        
-		bool operator== (const Wind & oth) const;
+
+		bool setWindVector(const WindVector* wv);
+		bool setPotential(const WindVector& potential);
+
+		bool operator==(const Wind& oth) const;
 		friend std::ostream& operator<<(std::ostream& os, const Wind& wind);
 		std::ofstream& toBinary(std::ofstream& fs, boost::tribool two_vector) const;
-        
-        friend class boost::serialization::access;
-        template<class Archive>
-        void serialize(Archive & ar, const unsigned int version)
-        {
-            ar & wind_;
-            ar & potential_;
-        }
-        
+
+		friend class boost::serialization::access;
+
+		template <class Archive>
+		void serialize(Archive& ar, const unsigned int version)
+		{
+			ar & wind_;
+			ar & potential_;
+		}
+
 	private:
-		const WindVector * wind_;
+		const WindVector* wind_;
 		WindVector potential_;
 		static std::unique_ptr<Support::MyLog> lg_;
 	};

@@ -10,58 +10,68 @@
 #include "../support/MyLog.h"
 #include <fstream>
 
-namespace Model {
+namespace Model
+{
 	using namespace std;
 	using namespace Support;
 	typedef map_t::extent_range erange;
 
-//	unique_ptr<MyLog> Map3D::lg_(make_unique<MyLog>());
-    unique_ptr<MyLog> Map3D::lg_(new MyLog());
+	//	unique_ptr<MyLog> Map3D::lg_(make_unique<MyLog>());
+	unique_ptr<MyLog> Map3D::lg_(new MyLog());
 
-	Map3D::Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit)
+	Map3D::Map3D(const Coordinate& startIndex, const Coordinate& boundary, unit_t unit)
 		:map_t(boost::extents[erange(startIndex[0], startIndex[0] + boundary[0])][erange(startIndex[1], startIndex[1] + boundary[1])][erange(startIndex[2], startIndex[2] + boundary[2])]),
-		unit_(unit),
-//		wind_(make_unique<WindVector>()),
-        wind_(new WindVector()),
-		origin_(make_pair(Coordinate(), WindVector())) {
+		 unit_(unit),
+		 //		wind_(make_unique<WindVector>()),
+		 wind_(new WindVector()),
+		 origin_(make_pair(Coordinate(), WindVector()))
+	{
 		initCell();
 	}
 
-	Map3D::Map3D(const Coordinate & startIndex, const Coordinate & boundary, unit_t unit, const WindVector & wv)
+	Map3D::Map3D(const Coordinate& startIndex, const Coordinate& boundary, unit_t unit, const WindVector& wv)
 		:map_t(boost::extents[erange(startIndex[0], startIndex[0] + boundary[0])][erange(startIndex[1], startIndex[1] + boundary[1])][erange(startIndex[2], startIndex[2] + boundary[2])]),
-		unit_(unit),
-//		wind_(make_unique<WindVector>(wv)),
-        wind_(new WindVector(wv)),
-		origin_(make_pair(Coordinate(), WindVector())) {
+		 unit_(unit),
+		 //		wind_(make_unique<WindVector>(wv)),
+		 wind_(new WindVector(wv)),
+		 origin_(make_pair(Coordinate(), WindVector()))
+	{
 		initCell();
 	}
 
 	Map3D::Map3D(size_t length, size_t width, size_t height, unit_t unit)
 		: map_t(boost::extents[length][width][height]),
-		unit_(unit),
-//		wind_(make_unique<WindVector>()),
-        wind_(new WindVector()),
-		origin_(make_pair(Coordinate(), WindVector())) {
+		  unit_(unit),
+		  //		wind_(make_unique<WindVector>()),
+		  wind_(new WindVector()),
+		  origin_(make_pair(Coordinate(), WindVector()))
+	{
 		initCell();
 	}
 
-	Map3D::Map3D(size_t length, size_t width, size_t height, unit_t unit, const WindVector & wv)
+	Map3D::Map3D(size_t length, size_t width, size_t height, unit_t unit, const WindVector& wv)
 		: map_t(boost::extents[length][width][height]),
-		unit_(unit),
-//		wind_(make_unique<WindVector>(wv)),
-        wind_(new WindVector(wv)),
-		origin_(make_pair(Coordinate(), WindVector())) {
-        initCell();
+		  unit_(unit),
+		  //		wind_(make_unique<WindVector>(wv)),
+		  wind_(new WindVector(wv)),
+		  origin_(make_pair(Coordinate(), WindVector()))
+	{
+		initCell();
 	}
 
-	shared_ptr<vector<Coordinate>> Map3D::AddBuilding(const Coordinate & location, const Coordinate & boundary, coord_item_t potentialStep, wv_item_t wind_norm) {
+	shared_ptr<vector<Coordinate>> Map3D::AddBuilding(const Coordinate& location, const Coordinate& boundary, coord_item_t potentialStep, wv_item_t wind_norm)
+	{
 		auto ret_vec = make_shared<vector<Coordinate>>();
-		for (auto l = location[0]; l < location[0] + boundary[0]; l++) {
-			for (auto w = location[1]; w < location[1] + boundary[1]; w++) {
-				for (auto h = location[2]; h < location[2] + boundary[2]; h++) {
+		for (auto l = location[0]; l < location[0] + boundary[0]; l++)
+		{
+			for (auto w = location[1]; w < location[1] + boundary[1]; w++)
+			{
+				for (auto h = location[2]; h < location[2] + boundary[2]; h++)
+				{
 					Coordinate coord(l, w, h);
-					if (insideMap(coord)) {
-                        (*this)(coord).setCellTag(CellTag::Building);
+					if (insideMap(coord))
+					{
+						(*this)(coord).setCellTag(CellTag::Building);
 						calcLocalPotential(coord, potentialStep, wind_norm / pow(potentialStep, 3));
 						ret_vec->push_back(coord);
 					}
@@ -70,53 +80,67 @@ namespace Model {
 		}
 		return ret_vec;
 	}
-    
-    void Map3D::calcLocalPotential(const Coordinate & local_coord, coord_item_t step, wv_item_t expected_norm) {
-        for (auto l = local_coord[0] - step; l <= local_coord[0] + step; l++) {
-            for (auto w = local_coord[1] - step; w <= local_coord[1] + step; w++) {
-                for (auto h = local_coord[2] - step; h <= local_coord[2] + step; h++) {
-                    Coordinate remote_coord(l, w, h);
-                    if (remote_coord != local_coord && isAirCell(remote_coord)) {
-                        auto vector = remote_coord - local_coord;
-                        auto potential = vector / (vector.calcNorm() / expected_norm);
-                        (*this)(remote_coord).setPotential(potential + (*this)(remote_coord).getWind().getPotential());
-                    }
-                }
-            }
-        }
-    }
-    
-    void Map3D::initCell() {
-        auto start_pos = getStartIndex();
-		auto boundary = getBoundary();
-        
-        for (auto l = start_pos[0]; l < start_pos[0] + static_cast<coord_item_t>(boundary[0]); l++) {
-            for (auto w = start_pos[1]; w < start_pos[1] + static_cast<coord_item_t>(boundary[1]); w++) {
-                for (auto h = start_pos[2]; h < start_pos[2] + static_cast<coord_item_t>(boundary[2]); h++) {
-                    Coordinate coord(l, w, h);
-                    (*this)(coord).setCoordinate(coord);
-					(*this)(coord).setWindVector(wind_.get());
-                }
-            }
-        }
-    }
 
-	void Map3D::updateWind(const WindVector & wind) const{
+	void Map3D::calcLocalPotential(const Coordinate& local_coord, coord_item_t step, wv_item_t expected_norm)
+	{
+		for (auto l = local_coord[0] - step; l <= local_coord[0] + step; l++)
+		{
+			for (auto w = local_coord[1] - step; w <= local_coord[1] + step; w++)
+			{
+				for (auto h = local_coord[2] - step; h <= local_coord[2] + step; h++)
+				{
+					Coordinate remote_coord(l, w, h);
+					if (remote_coord != local_coord && isAirCell(remote_coord))
+					{
+						auto vector = remote_coord - local_coord;
+						auto potential = vector / (vector.calcNorm() / expected_norm);
+						(*this)(remote_coord).setPotential(potential + (*this)(remote_coord).getWind().getPotential());
+					}
+				}
+			}
+		}
+	}
+
+	void Map3D::initCell()
+	{
+		auto start_pos = getStartIndex();
+		auto boundary = getBoundary();
+
+		for (auto l = start_pos[0]; l < start_pos[0] + static_cast<coord_item_t>(boundary[0]); l++)
+		{
+			for (auto w = start_pos[1]; w < start_pos[1] + static_cast<coord_item_t>(boundary[1]); w++)
+			{
+				for (auto h = start_pos[2]; h < start_pos[2] + static_cast<coord_item_t>(boundary[2]); h++)
+				{
+					Coordinate coord(l, w, h);
+					(*this)(coord).setCoordinate(coord);
+					(*this)(coord).setWindVector(wind_.get());
+				}
+			}
+		}
+	}
+
+	void Map3D::updateWind(const WindVector& wind) const
+	{
 		*wind_ = wind;
 	}
-    
-    bool Map3D::updateCell(const Cell &cell) {
-		auto const & coord = cell.getCoordinate();
-		if (!insideMap(coord)) {
+
+	bool Map3D::updateCell(const Cell& cell)
+	{
+		auto const& coord = cell.getCoordinate();
+		if (!insideMap(coord))
+		{
 			return false;
 		}
 
 		(*this)(coord) = cell;
 		return true;
 	}
-    
-	const Cell & Map3D::getCell(const Coordinate & pos) const {
-		if (!insideMap(pos)) {
+
+	const Cell& Map3D::getCell(const Coordinate& pos) const
+	{
+		if (!insideMap(pos))
+		{
 			ostringstream ostr;
 			ostr << "request a location out of the map: ";
 			ostr << pos;
@@ -128,34 +152,38 @@ namespace Model {
 		return (*this)(pos);
 	}
 
-	unit_t Map3D::getUnit() const {
+	unit_t Map3D::getUnit() const
+	{
 		return unit_;
 	}
 
-	const map_t::size_type * Map3D::getBoundary() const{
+	const map_t::size_type* Map3D::getBoundary() const
+	{
 		return shape();
 	}
 
-	const map_t::index * Map3D::getStartIndex() const {
+	const map_t::index* Map3D::getStartIndex() const
+	{
 		return index_bases();
 	}
 
-	bool Map3D::isAirCell(const Coordinate & pos) const {
-        if (insideMap(pos)) {
-            return (*this)(pos).isAirCell();
-        }
-        
-        return false;
-        
+	bool Map3D::isAirCell(const Coordinate& pos) const
+	{
+		if (insideMap(pos))
+		{
+			return (*this)(pos).isAirCell();
+		}
+
+		return false;
 	}
-    
-//    bool Map3D::hasMethane(const Coordinate & pos) const {
-//        return insideMap(pos) && (*this)(pos).hasMethane();
-//    }
-    
-//    mtn_t Map3D::getMethane(const Coordinate & pos) const {
-//        return (*this)(pos).getMethane().getParticleNum();
-//    }
+
+	//    bool Map3D::hasMethane(const Coordinate & pos) const {
+	//        return insideMap(pos) && (*this)(pos).hasMethane();
+	//    }
+
+	//    mtn_t Map3D::getMethane(const Coordinate & pos) const {
+	//        return (*this)(pos).getMethane().getParticleNum();
+	//    }
 
 	//************************************
 	// Method:    insideMap : check if a position is in the map area or under the ground or out of boundary
@@ -165,7 +193,8 @@ namespace Model {
 	// Qualifier: const
 	// Parameter: const Coordinate & pos : unit = cell index
 	//************************************
-	boost::tribool Map3D::insideMap(const Coordinate &pos) const{
+	boost::tribool Map3D::insideMap(const Coordinate& pos) const
+	{
 		using namespace boost;
 
 		auto start_pos = getStartIndex();
@@ -192,7 +221,8 @@ namespace Model {
 	// Parameter: const Coordinate & pos : start position, unit = cell index
 	// Parameter: const WindVector & wv : wind vector, unit = meter / iteration
 	//************************************
-	tuple<Coordinate, WindVector> Map3D::calcPosition(const Coordinate & pos, const WindVector & wv) const {
+	tuple<Coordinate, WindVector> Map3D::calcPosition(const Coordinate& pos, const WindVector& wv) const
+	{
 		return make_tuple(pos + (wv / unit_), wv % unit_);
 	}
 
@@ -207,16 +237,20 @@ namespace Model {
 	// Parameter: const Coordinate & startPos : start position, unit = cell index
 	// Parameter: const Coordinate & endPos : ideal end position without care about collision, unit = cell index.
 	//************************************
-	shared_ptr<Cell> Map3D::calcCollisionByEndCell(const Coordinate & startPos, const Coordinate & endPos) const {
+	shared_ptr<Cell> Map3D::calcCollisionByEndCell(const Coordinate& startPos, const Coordinate& endPos) const
+	{
 		auto pos_ret = insideMap(endPos);
 
-		if (pos_ret) { // end pos is still in the map .
+		if (pos_ret)
+		{ // end pos is still in the map .
 			auto endCell = getCell(endPos);
-			if (endCell.isAirCell()) {//and it is a air cell
+			if (endCell.isAirCell())
+			{//and it is a air cell
 				return make_shared<Cell>(getCell(endPos));
 			}
 		}
-		else if (!pos_ret) {// end pos is out of the boundary
+		else if (!pos_ret)
+		{// end pos is out of the boundary
 			return nullptr;
 		}
 
@@ -232,20 +266,25 @@ namespace Model {
 	// Parameter: const Coordinate & curPos : unit = cell index
 	// Parameter: const Coordinate & dstPos : unit = cell index
 	//************************************
-	Coordinate Map3D::calcStep(const Coordinate & curPos, const Coordinate & dstPos)  const {
+	Coordinate Map3D::calcStep(const Coordinate& curPos, const Coordinate& dstPos) const
+	{
 		Coordinate ret;
 		transform(curPos.begin(), curPos.end(), dstPos.begin(), ret.begin(),
-			[](coord_item_t curI, coord_item_t dstI) {
-			if (curI < dstI){
-				return 1;
-			}
-			else if (curI > dstI) {
-				return -1;
-			}
-			else {
-				return 0;
-			}
-		});
+		          [](coord_item_t curI, coord_item_t dstI)
+		          {
+			          if (curI < dstI)
+			          {
+				          return 1;
+			          }
+			          else if (curI > dstI)
+			          {
+				          return -1;
+			          }
+			          else
+			          {
+				          return 0;
+			          }
+		          });
 		return ret;
 	}
 
@@ -260,24 +299,29 @@ namespace Model {
 	// Parameter: const Coordinate & startPos : start position, unit = cell index
 	// Parameter: const Coordinate & endPos : ideal end position without care about collision, unit = cell index.
 	//************************************
-	shared_ptr<Cell> Map3D::calcCollisionByFullPath(const Coordinate & startPos, const Coordinate & endPos) const {
+	shared_ptr<Cell> Map3D::calcCollisionByFullPath(const Coordinate& startPos, const Coordinate& endPos) const
+	{
 		auto curPos = startPos;
 
-		while (curPos != endPos) {
+		while (curPos != endPos)
+		{
 			auto nextPos = curPos + calcStep(curPos, endPos);
 
 			auto nextPos_ret = insideMap(nextPos);
-			if (!nextPos_ret) { // next pos is out of boundary
+			if (!nextPos_ret)
+			{ // next pos is out of boundary
 				return nullptr;
 			}
 
-			if (indeterminate(nextPos_ret)) { //next pos is hit on ground
+			if (indeterminate(nextPos_ret))
+			{ //next pos is hit on ground
 				return make_shared<Cell>(getCell(curPos));
 			}
-			
+
 			//next pos is still inside the map
 			auto nextCell = getCell(nextPos);
-			if (!nextCell.isAirCell()) { //next pos is hit on building
+			if (!nextCell.isAirCell())
+			{ //next pos is hit on building
 				return make_shared<Cell>(getCell(curPos));
 			}
 
@@ -287,18 +331,21 @@ namespace Model {
 		return make_shared<Cell>(getCell(curPos));
 	}
 
-	Coordinate Map3D::locateIndex(const WindVector & real_coord) const {
+	Coordinate Map3D::locateIndex(const WindVector& real_coord) const
+	{
 		auto index_origin = origin_.first;
 		auto real_origin = origin_.second;
 
 		return index_origin + (real_coord - real_origin) / unit_;
 	}
 
-	void Map3D::setOrigin(const pair<Coordinate, WindVector> & origin) {
+	void Map3D::setOrigin(const pair<Coordinate, WindVector>& origin)
+	{
 		origin_ = origin;
 	}
 
-	ofstream& Map3D::toBinary(ofstream& fs) const{
+	ofstream& Map3D::toBinary(ofstream& fs) const
+	{
 		auto startindex_x = static_cast<int>(getStartIndex()[0]);
 		auto startindex_y = static_cast<int>(getStartIndex()[1]);
 		auto startindex_z = static_cast<int>(getStartIndex()[2]);
@@ -318,7 +365,10 @@ namespace Model {
 		auto num = static_cast<int>(num_elements());
 		fs.write(reinterpret_cast<char*>(&num), sizeof num);
 		const_multi_array_ref<Cell, 1> map_ref(data(), boost::extents[num_elements()]);
-		for_each(map_ref.begin(), map_ref.end(), [&fs](const Cell & cell){ cell.toBinary(fs, true); });
+		for_each(map_ref.begin(), map_ref.end(), [&fs](const Cell& cell)
+		         {
+			         cell.toBinary(fs, true);
+		         });
 
 		return fs;
 	}

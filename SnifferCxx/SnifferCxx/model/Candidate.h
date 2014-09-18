@@ -4,43 +4,51 @@
 #include "WindVector.h"
 #include <boost/optional.hpp>
 
-namespace Model {
-	struct Candidate {
+namespace Model
+{
+	struct Candidate
+	{
 		Coordinate location_;
 		mtn_t concentration_; //concentration in a detection object, information gain score for a candidate object... yeah:( they share the same struct.
 
-		Candidate(const Coordinate & loc, const mtn_t & conc)
+		Candidate(const Coordinate& loc, const mtn_t& conc)
 			:location_(loc),
-			concentration_(conc) {
+			 concentration_(conc)
+		{
 		}
 
 		Candidate()
 			:location_(Coordinate()),
-			concentration_(mtn_t()) {
+			 concentration_(mtn_t())
+		{
 		}
 
-		friend std::ostream& operator<<(std::ostream& os, const Candidate & can);
+		friend std::ostream& operator<<(std::ostream& os, const Candidate& can);
 		std::ofstream& toBinary(std::ofstream& fs) const;
 	};
 
-	struct Detection {
+	struct Detection
+	{
 		int time_;
 		boost::optional<WindVector> wv_;
 		std::vector<Candidate> detected_;
 
-		friend std::ostream& operator<<(std::ostream& os, const Detection & dect);
+		friend std::ostream& operator<<(std::ostream& os, const Detection& dect);
 		std::ofstream& toBinary(std::ofstream& fs) const;
 	};
 
-	struct AutoMovement {
+	struct AutoMovement
+	{
 		AutoMovement()
 			:time_(0),
-			distance_(0) {
+			 distance_(0)
+		{
 		}
 
 		AutoMovement(int time, unit_t distance)
 			:time_(time),
-			distance_(distance) {
+			 distance_(distance)
+		{
 		}
 
 		int time_;
@@ -48,5 +56,3 @@ namespace Model {
 		unit_t distance_;
 	};
 }
-
-

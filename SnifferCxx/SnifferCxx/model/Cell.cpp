@@ -10,79 +10,92 @@
 #include <fstream>
 #include <sstream>
 
-namespace Model {
+namespace Model
+{
 	using namespace std;
 
-	unordered_map<CellTag, string, enum_hash> Cell::TagString = { 
-			{ CellTag::Air, "Air" }, 
-			{ CellTag::Building, "Building" }, 
-			{ CellTag::Ground, "Ground" } 
+	unordered_map<CellTag, string, enum_hash> Cell::TagString = {
+		{CellTag::Air, "Air"},
+		{CellTag::Building, "Building"},
+		{CellTag::Ground, "Ground"}
 	};
 
 	Cell::Cell()
 		:coord_(Coordinate()),
-		wind_(Wind()),
-		mtn_(Methane()),
-		tag_(CellTag::Air) {
-
+		 wind_(Wind()),
+		 mtn_(Methane()),
+		 tag_(CellTag::Air)
+	{
 	}
 
-	Cell::Cell(Coordinate & coord, CellTag tag, Methane & mtn, Wind & wind)
+	Cell::Cell(Coordinate& coord, CellTag tag, Methane& mtn, Wind& wind)
 		:coord_(coord),
-		wind_(wind),
-		mtn_(mtn),
-		tag_(tag) {
-
+		 wind_(wind),
+		 mtn_(mtn),
+		 tag_(tag)
+	{
 	}
 
-	const Wind & Cell::getWind() const {
+	const Wind& Cell::getWind() const
+	{
 		return wind_;
 	}
 
-	const Methane & Cell::getMethane() const {
+	const Methane& Cell::getMethane() const
+	{
 		return mtn_;
 	}
 
-	const Coordinate & Cell::getCoordinate() const {
+	const Coordinate& Cell::getCoordinate() const
+	{
 		return coord_;
 	}
 
-	CellTag Cell::getTag() const{
+	CellTag Cell::getTag() const
+	{
 		return tag_;
 	}
 
-	bool Cell::isAirCell() const {
+	bool Cell::isAirCell() const
+	{
 		return getTag() == CellTag::Air;
 	}
 
-	bool Cell::hasMethane() const {
+	bool Cell::hasMethane() const
+	{
 		return mtn_.getParitcles() > 0;
 	}
 
-	bool Cell::setMethane(const Methane & mtn) {
+	bool Cell::setMethane(const Methane& mtn)
+	{
 		mtn_ = mtn;
 		return true;
 	}
 
-	bool Cell::setCellTag(const CellTag & tag) {
+	bool Cell::setCellTag(const CellTag& tag)
+	{
 		tag_ = tag;
 		return true;
 	}
-    
-    bool Cell::setWindVector(const WindVector * wind) {
-        return wind_.setWindVector(wind);
-    }
-    
-    bool Cell::setCoordinate(const Coordinate &coord) {
-        coord_ = coord;
-        return true;
-    }
-    
-    bool Cell::setPotential(const WindVector &potential) {
-        return wind_.setPotential(potential);
-    }
 
-	bool Cell::operator== (const Cell & oth) const {
+	bool Cell::setWindVector(const WindVector* wind)
+	{
+		return wind_.setWindVector(wind);
+	}
+
+	bool Cell::setCoordinate(const Coordinate& coord)
+	{
+		coord_ = coord;
+		return true;
+	}
+
+	bool Cell::setPotential(const WindVector& potential)
+	{
+		return wind_.setPotential(potential);
+	}
+
+	bool Cell::operator==(const Cell& oth) const
+	{
 		return coord_ == oth.coord_
 			&& wind_ == oth.wind_
 			&& tag_ == oth.tag_;
@@ -103,12 +116,14 @@ namespace Model {
 		return os;
 	}
 
-	ofstream& Cell::toBinary(ofstream& fs, boost::tribool include_wind) const{
+	ofstream& Cell::toBinary(ofstream& fs, boost::tribool include_wind) const
+	{
 		coord_.toBinary(fs);
 		auto tag = static_cast<int>(tag_);
 		fs.write(reinterpret_cast<char*>(&tag), sizeof tag);
 		mtn_.toBinary(fs);
-		if (include_wind != false) {
+		if (include_wind != false)
+		{
 			wind_.toBinary(fs, include_wind);
 		}
 

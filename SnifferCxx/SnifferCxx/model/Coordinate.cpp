@@ -12,41 +12,62 @@
 #include <fstream>
 #include <sstream>
 
-namespace Model {
+namespace Model
+{
 	using namespace std;
 
-	Coordinate::Coordinate() {
-		*this = coord_t{ { 0, 0, 0 } };
+	Coordinate::Coordinate()
+	{
+		*this = coord_t{{0, 0, 0}};
 	}
 
-	Coordinate::Coordinate(coord_item_t x, coord_item_t y, coord_item_t z) {
-		*this = coord_t{ { x, y, z } };
+	Coordinate::Coordinate(coord_item_t x, coord_item_t y, coord_item_t z)
+	{
+		*this = coord_t{{x, y, z}};
 	}
-    
-    double Coordinate::calcNorm() const {
-        return sqrt(accumulate(begin(), end(), 0, [](coord_item_t ret_val, const coord_item_t & item_val){return ret_val += item_val * item_val;}));
-    }
 
-	Coordinate Coordinate::operator + (const Coordinate & rhs) const {
+	double Coordinate::calcNorm() const
+	{
+		return sqrt(accumulate(begin(), end(), 0, [](coord_item_t ret_val, const coord_item_t& item_val)
+		                       {
+			                       return ret_val += item_val * item_val;
+		                       }));
+	}
+
+	Coordinate Coordinate::operator +(const Coordinate& rhs) const
+	{
 		Coordinate ret;
-		transform(rhs.begin(), rhs.end(), begin(), ret.begin(), [](const coord_item_t & it1, const coord_item_t & it2){return it1 + it2; });
+		transform(rhs.begin(), rhs.end(), begin(), ret.begin(), [](const coord_item_t& it1, const coord_item_t& it2)
+		          {
+			          return it1 + it2;
+		          });
 		return ret;
 	}
-    
-    Coordinate Coordinate::operator - (const Coordinate & rhs) const {
+
+	Coordinate Coordinate::operator -(const Coordinate& rhs) const
+	{
 		Coordinate ret;
-		transform(rhs.begin(), rhs.end(), begin(), ret.begin(), [](const coord_item_t & it1, const coord_item_t & it2){return it2 - it1; });
+		transform(rhs.begin(), rhs.end(), begin(), ret.begin(), [](const coord_item_t& it1, const coord_item_t& it2)
+		          {
+			          return it2 - it1;
+		          });
 		return ret;
 	}
-    
-	WindVector Coordinate::operator / (const double & norm) const {
+
+	WindVector Coordinate::operator /(const double& norm) const
+	{
 		WindVector ret;
-		transform(begin(), end(), ret.begin(), [norm](const coord_item_t & it) {return it / norm; });
+		transform(begin(), end(), ret.begin(), [norm](const coord_item_t& it)
+		          {
+			          return it / norm;
+		          });
 		return ret;
 	}
 
-	Coordinate & Coordinate::operator= (const coord_t & rhs) {
-		if (this == &rhs) {
+	Coordinate& Coordinate::operator=(const coord_t& rhs)
+	{
+		if (this == &rhs)
+		{
 			return *this;
 		}
 
@@ -55,12 +76,14 @@ namespace Model {
 		return *this;
 	}
 
-	ostream& operator<<(ostream& os, const Coordinate& coord) {
+	ostream& operator<<(ostream& os, const Coordinate& coord)
+	{
 		os << "(" << coord[0] << ", " << coord[1] << ", " << coord[2] << ")";
 		return os;
 	}
 
-	ofstream& Coordinate::toBinary(ofstream& fs) const{
+	ofstream& Coordinate::toBinary(ofstream& fs) const
+	{
 		auto x = this->at(0);
 		auto y = this->at(1);
 		auto z = this->at(2);
@@ -70,5 +93,4 @@ namespace Model {
 
 		return fs;
 	}
-
 }

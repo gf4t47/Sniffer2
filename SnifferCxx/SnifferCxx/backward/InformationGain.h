@@ -12,45 +12,50 @@
 #include <vector>
 #include <memory>
 
-namespace Support {
+namespace Support
+{
 	class MyLog;
 }
 
-namespace Model {
-    class Coordinate;
-    class Hypothesis;
+namespace Model
+{
+	class Coordinate;
+	class Hypothesis;
 	class Hypotheses;
-    class Map3D;
+	class Map3D;
 }
 
-namespace Forward {
-    class ForwardChecking;
+namespace Forward
+{
+	class ForwardChecking;
 }
 
-namespace Backward {
-    typedef double entropy_t;
-    
-    class BackwardChecking;
-    
-    class InformationGain {
-    public:
-        InformationGain(const Forward::ForwardChecking & forward, const BackwardChecking & backward, const Model::Map3D & map);
-        virtual ~InformationGain();
-        
-        std::vector<entropy_t> calcInforGains(const std::vector<Model::Coordinate> & candidates, const Model::Hypotheses & hyps, int time_count) const;
-        
+namespace Backward
+{
+	typedef double entropy_t;
+
+	class BackwardChecking;
+
+	class InformationGain
+	{
+	public:
+		InformationGain(const Forward::ForwardChecking& forward, const BackwardChecking& backward, const Model::Map3D& map);
+		virtual ~InformationGain();
+
+		std::vector<entropy_t> calcInforGains(const std::vector<Model::Coordinate>& candidates, const Model::Hypotheses& hyps, int time_count) const;
+
 	protected:
-        entropy_t calcInforGain(const Model::Coordinate & candidate, const Model::Hypotheses & hyps, const Model::Hypotheses & future_hyps) const;
+		entropy_t calcInforGain(const Model::Coordinate& candidate, const Model::Hypotheses& hyps, const Model::Hypotheses& future_hyps) const;
 
 	private:
-        entropy_t entropy(const Model::Hypotheses & hyps) const;
-        
-    private:
-        const Forward::ForwardChecking & forward_;
-        const BackwardChecking & backward_;
-        const Model::Map3D & map_;
+		entropy_t entropy(const Model::Hypotheses& hyps) const;
+
+	private:
+		const Forward::ForwardChecking& forward_;
+		const BackwardChecking& backward_;
+		const Model::Map3D& map_;
 		static std::unique_ptr<Support::MyLog> lg_;
-    };
+	};
 }
 
 #endif /* defined(__SnifferCxx__InformationGain__) */

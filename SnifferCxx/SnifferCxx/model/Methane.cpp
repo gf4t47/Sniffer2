@@ -10,7 +10,8 @@
 #include <fstream>
 #include <sstream>
 
-namespace Model {
+namespace Model
+{
 	using namespace std;
 
 	mtn_t Methane::background_ = 0.05;
@@ -18,50 +19,59 @@ namespace Model {
 
 	Methane::Methane()
 		:particles_(0),
-		potential_(WindVector(0, 0, 0)) {
+		 potential_(WindVector(0, 0, 0))
+	{
 	}
 
 	Methane::Methane(mtn_t p)
 		: particles_(p),
-		potential_(WindVector(0, 0, 0)) {
-
+		  potential_(WindVector(0, 0, 0))
+	{
 	}
 
-	Methane::Methane(mtn_t p, const WindVector & wv)
+	Methane::Methane(mtn_t p, const WindVector& wv)
 		:particles_(p),
-		potential_(wv){
-
+		 potential_(wv)
+	{
 	}
 
-	mtn_t Methane::getBackgroundConcentration() {
+	mtn_t Methane::getBackgroundConcentration()
+	{
 		return background_;
 	}
 
-	mtn_t Methane::getConcPerParticle() {
+	mtn_t Methane::getConcPerParticle()
+	{
 		return concentration_per_particle_;
 	}
 
-	void Methane::setBackgournd(double val) {
+	void Methane::setBackgournd(double val)
+	{
 		background_ = val;
 	}
 
-	void Methane::setConcPerParticle(double val) {
+	void Methane::setConcPerParticle(double val)
+	{
 		concentration_per_particle_ = val;
 	}
 
-	mtn_t Methane::getParitcles() const {
+	mtn_t Methane::getParitcles() const
+	{
 		return particles_;
 	}
 
-	const WindVector & Methane::getPotential() const {
+	const WindVector& Methane::getPotential() const
+	{
 		return potential_;
 	}
 
-	double Methane::transParticle2Concentration(mtn_t particle) {
+	double Methane::transParticle2Concentration(mtn_t particle)
+	{
 		return particle * concentration_per_particle_;
 	}
 
-	mtn_t Methane::transConcentration2Particle(double conc) {
+	mtn_t Methane::transConcentration2Particle(double conc)
+	{
 		return conc / concentration_per_particle_;
 	}
 
@@ -69,7 +79,8 @@ namespace Model {
 	//	return getParitcles() * getConcPerParticle() + getBackground();
 	//}
 
-	Methane Methane::operator+ (const Methane & oth) const {
+	Methane Methane::operator+(const Methane& oth) const
+	{
 		return Methane(particles_ + oth.particles_, (potential_ + oth.potential_) * 0.5);
 	}
 
@@ -80,7 +91,8 @@ namespace Model {
 		return os;
 	}
 
-	ofstream& Methane::toBinary(ofstream& fs) const{
+	ofstream& Methane::toBinary(ofstream& fs) const
+	{
 		auto con = static_cast<double>(getParitcles());
 		fs.write(reinterpret_cast<char*>(&con), sizeof con);
 

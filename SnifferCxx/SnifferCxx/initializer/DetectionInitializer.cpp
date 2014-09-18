@@ -24,14 +24,14 @@ namespace Initializer {
 	const auto PI = boost::math::constants::pi<double>();
 	//const int mtn_factor = 2.5 * 10000;
 
-//	unique_ptr<MyLog> DetectionInitializer::lg_(make_unique<MyLog>());
+	//	unique_ptr<MyLog> DetectionInitializer::lg_(make_unique<MyLog>());
 	unique_ptr<MyLog> DetectionInitializer::lg_(new MyLog());
-    
+
 	unordered_map<string, execute_mode> DetectionInitializer::String2Mode =
 	{
-		{"single", single},
-		{"asyn", asyn_event},
-		{"multithread", multi_thread}
+		{ "single", single },
+		{ "asyn", asyn_event },
+		{ "multithread", multi_thread }
 	};
 
 	DetectionInitializer::DetectionInitializer(string cfg_file, const Map3D & map, int iterations_per_sec)
@@ -201,7 +201,7 @@ namespace Initializer {
 			- (35 * eccSqrd*eccSqrd*eccSqrd / 3072)*sin(6 * latRad));
 
 		auto easting = static_cast<double>(k0*N*(A + (1 - T + C)*A*A*A / 6
-				+ (5 - 18 * T + T*T + 72 * C - 58 * eccPrimeSqrd)*A*A*A*A*A / 120)
+			+ (5 - 18 * T + T*T + 72 * C - 58 * eccPrimeSqrd)*A*A*A*A*A / 120)
 			+ 500000.0);
 
 		auto northing = static_cast<double>(k0*(M + N*tan(latRad)*(A*A / 2 + (5 - T + 9 * C + 4 * C*C)*A*A*A*A / 24
@@ -214,30 +214,30 @@ namespace Initializer {
 	}
 
 	Detection DetectionInitializer::transStringVec2Struct(const vector<string> & strVec, int last_time) const {
-			using boost::lexical_cast;
+		using boost::lexical_cast;
 
-			Detection dect;
+		Detection dect;
 
-			auto cur_time = lexical_cast<int>(strVec[0]);
-			dect.time_ = (cur_time - last_time) * iterations_per_sec_ / 1000;
-			if (dect.time_ <= 0) {
-				dect.time_ = 1;
-			}
+		auto cur_time = lexical_cast<int>(strVec[0]);
+		dect.time_ = (cur_time - last_time) * iterations_per_sec_ / 1000;
+		if (dect.time_ <= 0) {
+			dect.time_ = 1;
+		}
 
-			auto mtn = lexical_cast<double>(strVec[1]); // * mtn_factor;
+		auto mtn = lexical_cast<double>(strVec[1]); // * mtn_factor;
 
-			auto wind_direct = lexical_cast<int>(strVec[3]);
-			auto wind_speed = lexical_cast<double>(strVec[4]);
-			auto wind = transDirectionSpeed2Vector(wind_direct, wind_speed);
-			dect.wv_ = wind; //*iterations_per_sec_;
+		auto wind_direct = lexical_cast<int>(strVec[3]);
+		auto wind_speed = lexical_cast<double>(strVec[4]);
+		auto wind = transDirectionSpeed2Vector(wind_direct, wind_speed);
+		dect.wv_ = wind; //*iterations_per_sec_;
 
-			auto lon = lexical_cast<double>(strVec[5]); //x
-			auto lat = lexical_cast<double>(strVec[6]); //y
-			auto location = map_.locateIndex(transLonLat2Coordinate(lat, lon));
+		auto lon = lexical_cast<double>(strVec[5]); //x
+		auto lat = lexical_cast<double>(strVec[6]); //y
+		auto location = map_.locateIndex(transLonLat2Coordinate(lat, lon));
 
-			dect.detected_.push_back(Candidate(location, mtn));
+		dect.detected_.push_back(Candidate(location, mtn));
 
-			return dect;
+		return dect;
 	}
 
 	void DetectionInitializer::transStringTable2Struct(const vector<vector<string>> & strTable){

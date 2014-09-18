@@ -6,12 +6,14 @@
 #include "../model/Hypotheses.h"
 #include <boost/bind.hpp>
 
-namespace RunMode {
+namespace RunMode
+{
 	using namespace std;
 
-	AsynEvent::AsynEvent(const Model::Map3D & map, const Forward::ForwardChecking & forward, const Backward::BackwardChecking & backward)
+	AsynEvent::AsynEvent(const Model::Map3D& map, const Forward::ForwardChecking& forward, const Backward::BackwardChecking& backward)
 		:Executor(map, forward, backward),
-		dect_timer_(io_service_) {
+		 dect_timer_(io_service_)
+	{
 	}
 
 
@@ -19,18 +21,22 @@ namespace RunMode {
 	{
 	}
 
-	void AsynEvent::run(vector<shared_ptr<Model::Hypotheses>> & hyps_his, const vector<Model::Detection> & dect_vec, const shared_ptr<vector<Model::Detection>> init) {
-		if (dect_vec.size() <= 0) {
+	void AsynEvent::run(vector<shared_ptr<Model::Hypotheses>>& hyps_his, const vector<Model::Detection>& dect_vec, const shared_ptr<vector<Model::Detection>> init)
+	{
+		if (dect_vec.size() <= 0)
+		{
 			return;
 		}
 
-		if (init) {
+		if (init)
+		{
 			hyps_his.push_back(init2steadystage(*hyps_his.back(), *init));
 		}
 
 		auto dect = dect_vec.begin();
 		auto wind = dect->wv_;
-		if (wind) {
+		if (wind)
+		{
 			map_.updateWind(*wind);
 		}
 
@@ -42,27 +48,35 @@ namespace RunMode {
 		io_service_.run();
 	}
 
-	void AsynEvent::handle_Deduce(Model::Hypotheses & hyps) {
-		if (hyps.getAsynFlag()) {
+	void AsynEvent::handle_Deduce(Model::Hypotheses& hyps)
+	{
+		if (hyps.getAsynFlag())
+		{
 			forward_.update_once(hyps, map_);
 			io_service_.post(boost::bind(&AsynEvent::handle_Deduce, this, ref(hyps)));
 		}
 	}
 
-	void AsynEvent::handle_Detection(vector<shared_ptr<Model::Hypotheses>> & hyps_his, vector<Model::Detection>::const_iterator dect, const vector<Model::Detection> & dect_vec, const boost::system::error_code& error) {
+	void AsynEvent::handle_Detection(vector<shared_ptr<Model::Hypotheses>>& hyps_his, vector<Model::Detection>::const_iterator dect, const vector<Model::Detection>& dect_vec, const boost::system::error_code& error)
+	{
 		if (!error)
 		{
 			auto cur_hyps = hyps_his.back();
 			cur_hyps->setAsynFlag(false);
 
 			auto new_hyps = make_shared<Model::Hypotheses>();
-			for_each(cur_hyps->begin(), cur_hyps->end(), [&new_hyps](Model::Hypothesis & hyp){new_hyps->push_back(Model::Hypothesis(hyp.getLeaks(), hyp.getProbability(), hyp.popMethaneCells())); });
+			for_each(cur_hyps->begin(), cur_hyps->end(), [&new_hyps](Model::Hypothesis& hyp)
+			         {
+				         new_hyps->push_back(Model::Hypothesis(hyp.getLeaks(), hyp.getProbability(), hyp.popMethaneCells()));
+			         });
 			new_hyps = backward_.updateHypotheses(*new_hyps, map_, dect->detected_);
 			hyps_his.push_back(new_hyps);
 
-			if ((dect = next(dect, 1)) != dect_vec.end()) {
+			if ((dect = next(dect, 1)) != dect_vec.end())
+			{
 				auto wind = dect->wv_;
-				if (wind) {
+				if (wind)
+				{
 					//auto wv = *wind;
 					map_.updateWind(*wind);
 				}

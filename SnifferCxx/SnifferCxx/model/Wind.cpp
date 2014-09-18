@@ -11,16 +11,18 @@
 #include <sstream>
 #include <fstream>
 
-namespace Model {
+namespace Model
+{
 	using namespace std;
 	using namespace Support;
 
-//	unique_ptr<MyLog> Wind::lg_(make_unique<MyLog>());
+	//	unique_ptr<MyLog> Wind::lg_(make_unique<MyLog>());
 	unique_ptr<MyLog> Wind::lg_(new MyLog());
-    
+
 	Wind::Wind()
 		:potential_(WindVector()),
-		wind_(nullptr) {
+		 wind_(nullptr)
+	{
 	}
 
 	//Wind::Wind(const WindVector & wind)
@@ -33,8 +35,10 @@ namespace Model {
 	//	wind_(wind) {
 	//}
 
-	WindVector Wind::getCalcWind() const {
-		if (!wind_) {
+	WindVector Wind::getCalcWind() const
+	{
+		if (!wind_)
+		{
 			ostringstream ostr;
 			ostr << "wind_ pointer has not been initialized";
 
@@ -44,13 +48,16 @@ namespace Model {
 
 		return *wind_ + potential_;
 	}
-    
-    WindVector Wind::getPotential() const {
-        return potential_;
-    }
 
-	WindVector Wind::getWV() const {
-		if (!wind_) {
+	WindVector Wind::getPotential() const
+	{
+		return potential_;
+	}
+
+	WindVector Wind::getWV() const
+	{
+		if (!wind_)
+		{
 			ostringstream ostr;
 			ostr << "wind_ pointer has not been initialized";
 
@@ -60,22 +67,26 @@ namespace Model {
 
 		return *wind_;
 	}
-    
-    bool Wind::setWindVector(const WindVector * wv) {
-        wind_ = wv;
-        return wind_ != nullptr;
-    }
-    
-    bool Wind::setPotential(const WindVector &potential) {
-        potential_ = potential;
-        return true;
-    }
 
-	bool Wind::operator== (const Wind & oth) const {
+	bool Wind::setWindVector(const WindVector* wv)
+	{
+		wind_ = wv;
+		return wind_ != nullptr;
+	}
+
+	bool Wind::setPotential(const WindVector& potential)
+	{
+		potential_ = potential;
+		return true;
+	}
+
+	bool Wind::operator==(const Wind& oth) const
+	{
 		return wind_ == oth.wind_ && potential_ == oth.potential_;
 	}
 
-	ostream& operator<<(ostream& os, const Wind& wind) {
+	ostream& operator<<(ostream& os, const Wind& wind)
+	{
 		os << "{";
 		os << *wind.wind_;
 		os << " + ";
@@ -85,12 +96,15 @@ namespace Model {
 		return os;
 	}
 
-	ofstream& Wind::toBinary(ofstream& fs, boost::tribool two_vector) const{
-		if (two_vector) {
+	ofstream& Wind::toBinary(ofstream& fs, boost::tribool two_vector) const
+	{
+		if (two_vector)
+		{
 			wind_->toBinary(fs);
 			potential_.toBinary(fs);
-		} 
-		else if (indeterminate(two_vector)) {
+		}
+		else if (indeterminate(two_vector))
+		{
 			getCalcWind().toBinary(fs);
 		}
 

@@ -15,12 +15,14 @@
 #include "WindVector.h"
 #include "TypeDef.h"
 
-namespace Model {
-	class Methane {
+namespace Model
+{
+	class Methane
+	{
 	public:
 		Methane();
-		Methane(mtn_t p);
-		Methane(mtn_t p, const WindVector & wv);
+		explicit Methane(mtn_t p);
+		Methane(mtn_t p, const WindVector& wv);
 
 		static mtn_t getBackgroundConcentration();
 		static mtn_t getConcPerParticle();
@@ -31,20 +33,21 @@ namespace Model {
 
 		//mtn_t getMethaneConc() const;
 		mtn_t getParitcles() const;
-		const WindVector & getPotential() const;
+		const WindVector& getPotential() const;
 
-		Methane operator+ (const Methane & oth) const;
+		Methane operator+(const Methane& oth) const;
 
 		friend std::ostream& operator<<(std::ostream& os, const Methane& mtn);
 		std::ofstream& toBinary(std::ofstream& fs) const;
-        
-        friend class boost::serialization::access;
-        template<class Archive>
-        void serialize(Archive & ar, const unsigned int version)
-        {
-            ar & particles_;
+
+		friend class boost::serialization::access;
+
+		template <class Archive>
+		void serialize(Archive& ar, const unsigned int version)
+		{
+			ar & particles_;
 			ar & potential_;
-        }
+		}
 
 	private:
 		static mtn_t background_;

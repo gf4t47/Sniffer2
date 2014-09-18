@@ -13,17 +13,18 @@
 #include "../model/Map3D.h"
 #include <math.h>
 
-namespace Forward {
+namespace Forward
+{
 	using namespace std;
 	using namespace Model;
-    
-    UpdateByCell::UpdateByCell(range_t kernel_range, int iteration_per_sec)
-    :ForwardChecking(kernel_range, iteration_per_sec) {
-        
-    }
 
-	UpdateByCell::~UpdateByCell() {
+	UpdateByCell::UpdateByCell(range_t kernel_range, int iteration_per_sec)
+		:ForwardChecking(kernel_range, iteration_per_sec)
+	{
+	}
 
+	UpdateByCell::~UpdateByCell()
+	{
 	}
 
 	//************************************
@@ -37,23 +38,27 @@ namespace Forward {
 	// Parameter: const mtn_t particle_num : methane concentration in the start cell
 	// Parameter: const Map3D & map
 	//************************************
-	shared_ptr<pos_conc_t> UpdateByCell::calcGaussianEnds(const Cell & start_cell, const Map3D & map) const {
+	shared_ptr<pos_conc_t> UpdateByCell::calcGaussianEnds(const Cell& start_cell, const Map3D& map) const
+	{
 		auto wv_per_iteration = start_cell.getWind().getCalcWind() * (1.0 / static_cast<double>(getIterationPerSecond()));
 		auto winds = Math::Gaussian::RandomWindVectors(wv_per_iteration, getKernelRange() * map.getUnit(), ceil(start_cell.getMethane().getParitcles()));
 
 		auto particle_per_wind = 1;
 
 		auto map_ret = make_shared<pos_conc_t>(); //a hash table used to merge the methane particles move into same cell.
-		for (auto const & wv : *winds) {
+		for (auto const& wv : *winds)
+		{
 			Coordinate position;
 			WindVector potential;
 
 			tie(position, potential) = map.calcPosition(start_cell.getCoordinate(), wv + start_cell.getMethane().getPotential());
 			auto find_ret = map_ret->find(position);
-			if (find_ret == map_ret->end()) {
+			if (find_ret == map_ret->end())
+			{
 				(*map_ret)[position] = Methane(particle_per_wind, potential);
 			}
-			else {
+			else
+			{
 				(*map_ret)[position] = Methane(particle_per_wind, potential) + (*map_ret)[position];
 			}
 		}
@@ -71,10 +76,12 @@ namespace Forward {
 	// Parameter: const Coordinate & endPos
 	// Parameter: const Map3D & map
 	//************************************
-	shared_ptr<Cell> UpdateByCell::calcEndcell(const Coordinate & statPos, const Coordinate & endPos, const Map3D & map, bool checkFullPath /* = true*/) const {
+	shared_ptr<Cell> UpdateByCell::calcEndcell(const Coordinate& statPos, const Coordinate& endPos, const Map3D& map, bool checkFullPath /* = true*/) const
+	{
 		shared_ptr<Cell> ret;
 
-		if (checkFullPath) {
+		if (checkFullPath)
+		{
 			return map.calcCollisionByFullPath(statPos, endPos);
 		}
 
@@ -91,22 +98,28 @@ namespace Forward {
 	// Parameter: const Cell & cell : methane start cell
 	// Parameter: const Map3D & map
 	//************************************
-	shared_ptr<Cells> UpdateByCell::calcEnds(const Cell & cell, const Map3D & map) const {
-		if (!cell.hasMethane()) {
+	shared_ptr<Cells> UpdateByCell::calcEnds(const Cell& cell, const Map3D& map) const
+	{
+		if (!cell.hasMethane())
+		{
 			return make_shared<Cells>();
 		}
 
 		auto end_vals = calcGaussianEnds(cell, map);
 
 		auto new_cells = make_shared<Cells>();
-		for (auto entry : *end_vals) {
+		for (auto entry : *end_vals)
+		{
 			auto endCell = calcEndcell(cell.getCoordinate(), entry.first, map);
-			if (endCell) {
+			if (endCell)
+			{
 				auto same_position_cell = new_cells->getCell(endCell->getCoordinate());
-				if (same_position_cell) {
+				if (same_position_cell)
+				{
 					endCell->setMethane(same_position_cell->getMethane() + entry.second);
 				}
-				else {
+				else
+				{
 					endCell->setMethane(entry.second);
 				}
 
@@ -126,14 +139,16 @@ namespace Forward {
 	// Parameter: const Model::Cells & cells
 	// Parameter: const Model::Map3D & map
 	//************************************
-	shared_ptr<Cells> UpdateByCell::calcEnds(const Cells & cells, const Map3D & map) const {
+	shared_ptr<Cells> UpdateByCell::calcEnds(const Cells& cells, const Map3D& map) const
+	{
 		auto ret_cells = make_shared<Cells>();
-		for (auto entry : cells) {
+		for (auto entry : cells)
+		{
 			auto new_cells = calcEnds(entry.second, map);
 			ret_cells->mergeCellsByAddMethane(*new_cells);
 		}
 
-        //cout <<"intput cells = "<<cells.size()<<" output cells = " << ret_cells->size() << endl;
+		//cout <<"intput cells = "<<cells.size()<<" output cells = " << ret_cells->size() << endl;
 		return ret_cells;
 	}
 }

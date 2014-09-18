@@ -12,53 +12,82 @@
 #include <fstream>
 #include <sstream>
 
-namespace Model {
+namespace Model
+{
 	using namespace std;
 
-	WindVector::WindVector() {
-		*this = wv_t{ { 0, 0, 0 } };
+	WindVector::WindVector()
+	{
+		*this = wv_t{{0, 0, 0}};
 	}
 
-	WindVector::WindVector(wv_item_t x, wv_item_t y, wv_item_t z) {
-		*this = wv_t{ { x, y, z } };
+	WindVector::WindVector(wv_item_t x, wv_item_t y, wv_item_t z)
+	{
+		*this = wv_t{{x, y, z}};
 	}
 
-    wv_item_t WindVector::calcNorm() const {
-        return sqrt(accumulate(begin(), end(), 0.0f, [](wv_item_t ret_val, const wv_item_t & item_val){return ret_val += item_val * item_val;}));
-    }
-    
-	WindVector WindVector::operator + (const WindVector &rhs) const{
+	wv_item_t WindVector::calcNorm() const
+	{
+		return sqrt(accumulate(begin(), end(), 0.0f, [](wv_item_t ret_val, const wv_item_t& item_val)
+		                       {
+			                       return ret_val += item_val * item_val;
+		                       }));
+	}
+
+	WindVector WindVector::operator +(const WindVector& rhs) const
+	{
 		WindVector ret;
-		transform(rhs.begin(), rhs.end(), begin(), ret.begin(), [](const wv_item_t & it1, const wv_item_t & it2){return it1 + it2; });
+		transform(rhs.begin(), rhs.end(), begin(), ret.begin(), [](const wv_item_t& it1, const wv_item_t& it2)
+		          {
+			          return it1 + it2;
+		          });
 		return ret;
 	}
 
-	WindVector WindVector::operator - (const WindVector & rhs) const {
+	WindVector WindVector::operator -(const WindVector& rhs) const
+	{
 		WindVector ret;
-		transform(rhs.begin(), rhs.end(), begin(), ret.begin(), [](const coord_item_t & it1, const coord_item_t & it2){return it2 - it1; });
+		transform(rhs.begin(), rhs.end(), begin(), ret.begin(), [](const coord_item_t& it1, const coord_item_t& it2)
+		          {
+			          return it2 - it1;
+		          });
 		return ret;
 	}
 
-	Coordinate WindVector::operator / (const unit_t & unit) const {
+	Coordinate WindVector::operator /(const unit_t& unit) const
+	{
 		Coordinate ret;
-		transform(begin(), end(), ret.begin(), [unit](const wv_item_t & it) {return it / unit; });
+		transform(begin(), end(), ret.begin(), [unit](const wv_item_t& it)
+		          {
+			          return it / unit;
+		          });
 		return ret;
 	}
 
-	WindVector WindVector::operator % (const unit_t & unit) const {
+	WindVector WindVector::operator %(const unit_t& unit) const
+	{
 		WindVector ret;
-		transform(begin(), end(), ret.begin(), [unit](const wv_item_t & it) {return fmod(it, unit); });
+		transform(begin(), end(), ret.begin(), [unit](const wv_item_t& it)
+		          {
+			          return fmod(it, unit);
+		          });
 		return ret;
 	}
 
-	WindVector WindVector::operator * (const wv_item_t & factor) const {
+	WindVector WindVector::operator *(const wv_item_t& factor) const
+	{
 		WindVector ret;
-		transform(begin(), end(), ret.begin(), [factor](const wv_item_t & it) {return it * factor; });
+		transform(begin(), end(), ret.begin(), [factor](const wv_item_t& it)
+		          {
+			          return it * factor;
+		          });
 		return ret;
 	}
 
-	WindVector & WindVector::operator= (const wv_t & rhs) {
-		if (this == &rhs) {
+	WindVector& WindVector::operator=(const wv_t& rhs)
+	{
+		if (this == &rhs)
+		{
 			return *this;
 		}
 
@@ -74,7 +103,8 @@ namespace Model {
 		return os;
 	}
 
-	ofstream& WindVector::toBinary(ofstream& fs) const{
+	ofstream& WindVector::toBinary(ofstream& fs) const
+	{
 		auto x = this->at(0);
 		auto y = this->at(1);
 		auto z = this->at(2);

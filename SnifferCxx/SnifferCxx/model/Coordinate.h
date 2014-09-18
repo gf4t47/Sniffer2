@@ -15,40 +15,43 @@
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
 
-namespace Model {
+namespace Model
+{
 	class WindVector;
 
 	typedef int coord_item_t;
 	typedef std::array<coord_item_t, 3> coord_t;
 
-	class Coordinate : public coord_t {
+	class Coordinate : public coord_t
+	{
 	public:
 		Coordinate();
 		Coordinate(coord_item_t x, coord_item_t y, coord_item_t z);
-        
-        double calcNorm() const;
 
-		Coordinate operator+ (const Coordinate & rhs) const;
-        Coordinate operator- (const Coordinate & rhs) const;
-        WindVector operator/ (const double & norm) const;
-		Coordinate & operator= (const coord_t & rhs);
+		double calcNorm() const;
+
+		Coordinate operator+(const Coordinate& rhs) const;
+		Coordinate operator-(const Coordinate& rhs) const;
+		WindVector operator/(const double& norm) const;
+		Coordinate& operator=(const coord_t& rhs);
 
 		friend std::ostream& operator<<(std::ostream& os, const Coordinate& coord);
 		std::ofstream& toBinary(std::ofstream& fs) const;
-        
-        friend class boost::serialization::access;
-        template<class Archive>
-        void serialize(Archive & ar, const unsigned int version)
-        {
-            ar & (*this)[0];
-            ar & (*this)[1];
-            ar & (*this)[2];
-        }
+
+		friend class boost::serialization::access;
+
+		template <class Archive>
+		void serialize(Archive& ar, const unsigned int version)
+		{
+			ar & (*this)[0];
+			ar & (*this)[1];
+			ar & (*this)[2];
+		}
 	};
 
 	struct CoordHasher
 	{
-		size_t operator()(const Coordinate & key) const
+		size_t operator()(const Coordinate& key) const
 		{
 			using boost::hash_value;
 			using boost::hash_combine;

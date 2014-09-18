@@ -17,8 +17,10 @@
 #include "Methane.h"
 #include "Coordinate.h"
 
-namespace Model {
-	enum class CellTag {
+namespace Model
+{
+	enum class CellTag
+	{
 		Air = 1,
 		Ground = 2,
 		Building = 3
@@ -28,39 +30,41 @@ namespace Model {
 	{
 		template <typename T>
 		inline
-			typename std::enable_if<std::is_enum<T>::value, size_t>::type
-			operator ()(T const value) const
+		typename std::enable_if<std::is_enum<T>::value, size_t>::type
+		operator ()(T const value) const
 		{
 			return static_cast<size_t>(value);
 		}
 	};
 
-	class Cell {
+	class Cell
+	{
 	public:
 		Cell();
-		Cell(Coordinate & coord, CellTag tag, Methane & mtn, Wind & wind);
+		Cell(Coordinate& coord, CellTag tag, Methane& mtn, Wind& wind);
 
-		const Wind & getWind() const;
-		const Methane & getMethane() const;
-		const Coordinate & getCoordinate() const;
+		const Wind& getWind() const;
+		const Methane& getMethane() const;
+		const Coordinate& getCoordinate() const;
 		CellTag getTag() const;
 
-		bool setMethane(const Methane & mtn);
-		bool setCellTag(const CellTag & tag);
-		bool setWindVector(const WindVector * wind);
-		bool setPotential(const WindVector & potential);
-		bool setCoordinate(const Coordinate & coord);
+		bool setMethane(const Methane& mtn);
+		bool setCellTag(const CellTag& tag);
+		bool setWindVector(const WindVector* wind);
+		bool setPotential(const WindVector& potential);
+		bool setCoordinate(const Coordinate& coord);
 
 		bool isAirCell() const;
 		bool hasMethane() const;
 
-		bool operator== (const Cell & oth) const;
+		bool operator==(const Cell& oth) const;
 		friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
 		std::ofstream& toBinary(std::ofstream& fs, boost::tribool include_wind) const;
 
 		friend class boost::serialization::access;
-		template<class Archive>
-		void serialize(Archive & ar, const unsigned int version)
+
+		template <class Archive>
+		void serialize(Archive& ar, const unsigned int version)
 		{
 			ar & coord_;
 			ar & tag_;

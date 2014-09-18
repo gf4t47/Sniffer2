@@ -9,8 +9,9 @@
 #ifndef SnifferCxx_TypeDef_h
 #define SnifferCxx_TypeDef_h
 
-namespace Model {
-    typedef int unit_t;
+namespace Model
+{
+	typedef int unit_t;
 	typedef double mtn_t;
 	typedef int range_t;
 }

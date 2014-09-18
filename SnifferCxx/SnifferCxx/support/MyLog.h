@@ -5,8 +5,8 @@
 #include <boost/log/sources/severity_logger.hpp>
 #include <boost/log/sources/record_ostream.hpp>
 
-namespace Support {
-
+namespace Support
+{
 	enum severity_level
 	{
 		detail,
@@ -17,7 +17,7 @@ namespace Support {
 		critical
 	};
 
-	class MyLog : public boost::log::sources::severity_logger < severity_level >
+	class MyLog : public boost::log::sources::severity_logger<severity_level>
 	{
 	public:
 		MyLog();
@@ -25,5 +25,4 @@ namespace Support {
 
 		static void init_log(std::string filename);
 	};
-
 }

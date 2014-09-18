@@ -2,19 +2,20 @@
 
 #include "Hypothesis.h"
 
-namespace Support {
+namespace Support
+{
 	class MyLog;
 }
 
-namespace Model {
-
+namespace Model
+{
 	class Hypotheses : public std::vector<Hypothesis>
 	{
 	public:
 		Hypotheses();
 		~Hypotheses();
 
-		const Hypothesis & getMaxProbHyp();
+		const Hypothesis& getMaxProbHyp();
 
 		bool getAsynFlag();
 		void setAsynFlag(bool val);
@@ -25,6 +26,4 @@ namespace Model {
 		bool Asyn_Deduce_;
 		static std::unique_ptr<Support::MyLog> lg_;
 	};
-
 }
-

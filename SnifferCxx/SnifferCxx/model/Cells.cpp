@@ -12,14 +12,16 @@
 #include <sstream>
 #include <memory>
 
-namespace Model {
+namespace Model
+{
 	using namespace std;
 	using namespace Support;
 
-//	unique_ptr<MyLog> Cells::lg_(make_unique<MyLog>());
-    unique_ptr<MyLog> Cells::lg_(new MyLog());
+	//	unique_ptr<MyLog> Cells::lg_(make_unique<MyLog>());
+	unique_ptr<MyLog> Cells::lg_(new MyLog());
 
-	shared_ptr<Cell> Cells::getCell(const Coordinate & pos) const {
+	shared_ptr<Cell> Cells::getCell(const Coordinate& pos) const
+	{
 		auto find_ret = find(pos);
 		if (find_ret == this->end())
 		{
@@ -29,11 +31,13 @@ namespace Model {
 		return make_shared<Cell>(find_ret->second);
 	}
 
-	shared_ptr<Cell> Cells::getCell(coord_item_t x, coord_item_t y, coord_item_t z) const {
+	shared_ptr<Cell> Cells::getCell(coord_item_t x, coord_item_t y, coord_item_t z) const
+	{
 		return getCell(Coordinate(x, y, z));
 	}
 
-	bool Cells::updateCell(const Cell & cell) {
+	bool Cells::updateCell(const Cell& cell)
+	{
 		(*this)[cell.getCoordinate()] = cell;
 		return true;
 	}
@@ -46,22 +50,27 @@ namespace Model {
 	// Qualifier:
 	// Parameter: const Cells & cells
 	//************************************
-	bool Cells::mergeCellsByAddMethane(const Cells & cells) {
-		for (auto oth_entry : cells) {
+	bool Cells::mergeCellsByAddMethane(const Cells& cells)
+	{
+		for (auto oth_entry : cells)
+		{
 			auto find_ret = find(oth_entry.first);
-			if (find_ret == end()) {
+			if (find_ret == end())
+			{
 				updateCell(oth_entry.second);
 			}
-			else {
+			else
+			{
 				if (find_ret->second == oth_entry.second)
 				{
 					auto original_methane = find_ret->second.getMethane();
 					auto new_methane = oth_entry.second.getMethane();
 					find_ret->second.setMethane(original_methane + new_methane);
 				}
-				else {
+				else
+				{
 					ostringstream ostr;
-					ostr << "two cells to be merged are not same: " << endl; 
+					ostr << "two cells to be merged are not same: " << endl;
 					ostr << "cell1 = ";
 					ostr << find_ret->second << endl;
 					ostr << "cell2 = ";
@@ -76,11 +85,16 @@ namespace Model {
 		return true;
 	}
 
-	ofstream& Cells::toBinary(ofstream& fs) const { 
+	ofstream& Cells::toBinary(ofstream& fs) const
+	{
 		auto cell_num = static_cast<int>(size());
 		fs.write(reinterpret_cast<char*>(&cell_num), sizeof cell_num);
 		BOOST_LOG_SEV(*lg_, severity_level::detail) << "cell_num=" << cell_num;
-		for_each(this->begin(), this->end(), [&fs](const value_type & val_pair){BOOST_LOG_SEV(*lg_, severity_level::detail) << val_pair.second; val_pair.second.toBinary(fs, false); });
+		for_each(this->begin(), this->end(), [&fs](const value_type& val_pair)
+		         {
+			         BOOST_LOG_SEV(*lg_, severity_level::detail) << val_pair.second;
+			         val_pair.second.toBinary(fs, false);
+		         });
 
 		return fs;
 	}

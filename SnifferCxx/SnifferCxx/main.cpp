@@ -33,15 +33,16 @@ using namespace std;
 using namespace Initializer;
 using namespace Model;
 
-int main(int argc, const char * argv[])
+int main(int argc, const char* argv[])
 {
 	using namespace Forward;
 	using namespace Backward;
 	using namespace RunMode;
 	using namespace Support;
 
-	if (argc < 8) {
-		cerr << argv[0] << " Missing some argument to indicate input/output files" << endl;
+	if (argc < 8)
+	{
+		cerr << argv[0] << " Missing some argument/s to indicate input/output files" << endl;
 		return -1;
 	}
 
@@ -78,18 +79,19 @@ int main(int argc, const char * argv[])
 	hyps_hist->push_back(hyps);
 	auto executor = ExecutorFactory::createExecutor(dectI.getExecutorMode(), *map, *forward, *backward);
 	executor->run(*hyps_hist, *dect_vec, init_vec);
-	if (auto_movement) {
+	if (auto_movement)
+	{
 		executor->autoDrive(*hyps_hist, *dect_vec, *auto_movement);
 	}
-	else {
+	else
+	{
 		can_vect->push_back(executor->nextStep(*hyps_hist, *dect_vec, AutoMovement(20, 8)));
 	}
 
 	//message output
-//	ProtoMsg::ProtoMessageBuilder msg_builder(make_pair(mtn_output, hyps_hist), make_pair(dect_output, dect_vec), make_pair(can_output, can_vect), make_pair(map_output, map));
+	//	ProtoMsg::ProtoMessageBuilder msg_builder(make_pair(mtn_output, hyps_hist), make_pair(dect_output, dect_vec), make_pair(can_output, can_vect), make_pair(map_output, map));
 	DirectMsg::DirectMessageBuilder msg_builder(make_pair(mtn_output, hyps_hist), make_pair(dect_output, dect_vec), make_pair(can_output, can_vect), make_pair(map_output, map));
 	msg_builder.WriteMsg(hypI.getIdealCells(), hypI.getDetectionOnly());
 
 	return 0;
 }
-

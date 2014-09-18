@@ -4,17 +4,20 @@
 #include <vector>
 #include <string>
 
-namespace Support {
+namespace Support
+{
 	class MyLog;
 }
 
-namespace Model {
+namespace Model
+{
 	class Hypotheses;
 	class Map3D;
 	struct Detection;
 }
 
-namespace DirectMsg {
+namespace DirectMsg
+{
 	class Hypotheses_history;
 	class Detections;
 	class Cell;
@@ -28,7 +31,7 @@ namespace DirectMsg {
 			std::pair<std::string, std::shared_ptr<std::vector<Model::Detection>>> dect_info,
 			std::pair<std::string, std::shared_ptr<std::vector<Model::Detection>>> can_info,
 			std::pair<std::string, std::shared_ptr<Model::Map3D>> map_info
-			);
+		);
 		void WriteMsg(int ideal_cells, bool detection_only);
 
 	private:
