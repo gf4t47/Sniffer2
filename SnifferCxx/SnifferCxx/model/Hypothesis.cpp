@@ -67,7 +67,7 @@ namespace Model {
 		return nullptr;
 	}
 
-	const std::vector<const std::shared_ptr<Cells>> & Hypothesis::getCelllsHistory() const{
+	const vector<const shared_ptr<Cells>> & Hypothesis::getCelllsHistory() const{
         
 		return cells_update_his_;
 	}
@@ -75,7 +75,7 @@ namespace Model {
     int Hypothesis::getCurrentCellsHisIndex() const{
 //        lock_guard<mutex> lock(cells_his_mutex_);
         
-        return (int)cells_update_his_.size() - 1;
+        return static_cast<int>(cells_update_his_.size()) - 1;
     }
     
     double Hypothesis::getProbability() const {

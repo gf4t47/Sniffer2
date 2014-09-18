@@ -33,7 +33,7 @@ namespace Forward {
 
 	protected:
         virtual std::shared_ptr<Model::Cells> calcEnds(const Model::Cell & cell, const Model::Map3D & map) const;
-		virtual std::shared_ptr<Model::Cells> calcEnds(const Model::Cells & cells, const Model::Map3D & map) const; 
+		virtual std::shared_ptr<Model::Cells> calcEnds(const Model::Cells & cells, const Model::Map3D & map) const override; 
         std::shared_ptr<Model::Cell> calcEndcell(const Model::Coordinate & statPos, const Model::Coordinate & endPos, const Model::Map3D & map, bool checkFullPath = true) const;
 
 	private:

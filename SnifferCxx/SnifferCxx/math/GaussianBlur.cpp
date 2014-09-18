@@ -20,19 +20,19 @@ namespace Math {
 	using namespace Model;
 
     int GaussianBlur::static_kernel_range = 1;
-	shared_ptr<kernel_t> GaussianBlur::static_kernel = GaussianBlur::generateGaussianKernel(static_kernel_range);
+	shared_ptr<kernel_t> GaussianBlur::static_kernel = generateGaussianKernel(static_kernel_range);
 
-	std::string GaussianBlur::kernelToString(const kernel_t & kernel) {
+	string GaussianBlur::kernelToString(const kernel_t & kernel) {
 		auto index = kernel.index_bases();
 		auto length = kernel.shape();
 		
 		ostringstream ostr;
 
 		ostr << "kernel: " << endl;
-		for (auto l = index[0]; l < index[0] + (int)length[0]; l++) {
-			for (auto w = index[1]; w < index[1] + (int)length[1]; w++) {
+		for (auto l = index[0]; l < index[0] + static_cast<int>(length[0]); l++) {
+			for (auto w = index[1]; w < index[1] + static_cast<int>(length[1]); w++) {
 				ostr << "[";
-				for (auto h = index[2]; h < index[2] + (int)length[2]; h++) {
+				for (auto h = index[2]; h < index[2] + static_cast<int>(length[2]); h++) {
 					ostr << kernel[l][w][h] << ", ";
 				}
 				ostr << "]";
@@ -43,14 +43,14 @@ namespace Math {
 		return ostr.str();
 	}
 
-	double GaussianBlur::gaussian_pdf(const Model::Coordinate &mean, int step, const Model::Coordinate &val) {
+	double GaussianBlur::gaussian_pdf(const Coordinate &mean, int step, const Coordinate &val) {
 		typedef boost::math::normal distribution_t;
 
 		auto dists = accumulate(mean.begin(), mean.end(), vector<distribution_t>(), [step](vector<distribution_t> ret_vec, const coord_item_t & item_val){ret_vec.push_back(distribution_t(item_val, step)); return ret_vec; });
 
 		double ret = 1.0;
 		for (auto i = 0; i < val.size(); i++) {
-			ret *= boost::math::pdf(dists[i], val[i]);
+			ret *= pdf(dists[i], val[i]);
 		}
 
 		return ret;
@@ -77,7 +77,7 @@ namespace Math {
 	void GaussianBlur::resetStaticKernel(int kernel_range) {
 		if (kernel_range != static_kernel_range) {
 			static_kernel_range = kernel_range;
-			static_kernel = GaussianBlur::generateGaussianKernel(static_kernel_range);
+			static_kernel = generateGaussianKernel(static_kernel_range);
 		}
 	}
     

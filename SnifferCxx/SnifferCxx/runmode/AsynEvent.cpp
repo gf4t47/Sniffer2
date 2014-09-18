@@ -19,7 +19,7 @@ namespace RunMode {
 	{
 	}
 
-	void AsynEvent::run(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, const std::vector<Model::Detection> & dect_vec, const std::shared_ptr<std::vector<Model::Detection>> init) {
+	void AsynEvent::run(vector<shared_ptr<Model::Hypotheses>> & hyps_his, const vector<Model::Detection> & dect_vec, const shared_ptr<vector<Model::Detection>> init) {
 		if (dect_vec.size() <= 0) {
 			return;
 		}
@@ -34,10 +34,10 @@ namespace RunMode {
 			map_.updateWind(*wind);
 		}
 
-		io_service_.post(boost::bind(&AsynEvent::handle_Deduce, this, std::ref(*hyps_his.back())));
+		io_service_.post(boost::bind(&AsynEvent::handle_Deduce, this, ref(*hyps_his.back())));
 
 		dect_timer_.expires_from_now(boost::posix_time::milliseconds(dect->time_));
-		dect_timer_.async_wait(boost::bind(&AsynEvent::handle_Detection, this, std::ref(hyps_his), dect, std::ref(dect_vec), boost::asio::placeholders::error));
+		dect_timer_.async_wait(bind(&AsynEvent::handle_Detection, this, ref(hyps_his), dect, ref(dect_vec), boost::asio::placeholders::error));
 
 		io_service_.run();
 	}
@@ -45,32 +45,32 @@ namespace RunMode {
 	void AsynEvent::handle_Deduce(Model::Hypotheses & hyps) {
 		if (hyps.getAsynFlag()) {
 			forward_.update_once(hyps, map_);
-			io_service_.post(boost::bind(&AsynEvent::handle_Deduce, this, std::ref(hyps)));
+			io_service_.post(boost::bind(&AsynEvent::handle_Deduce, this, ref(hyps)));
 		}
 	}
 
-	void AsynEvent::handle_Detection(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, std::vector<Model::Detection>::const_iterator dect, const std::vector<Model::Detection> & dect_vec, const boost::system::error_code& error) {
+	void AsynEvent::handle_Detection(vector<shared_ptr<Model::Hypotheses>> & hyps_his, vector<Model::Detection>::const_iterator dect, const vector<Model::Detection> & dect_vec, const boost::system::error_code& error) {
 		if (!error)
 		{
 			auto cur_hyps = hyps_his.back();
 			cur_hyps->setAsynFlag(false);
 
-			auto new_hyps = std::make_shared<Model::Hypotheses>();
-			std::for_each(cur_hyps->begin(), cur_hyps->end(), [&new_hyps](Model::Hypothesis & hyp){new_hyps->push_back(Model::Hypothesis(hyp.getLeaks(), hyp.getProbability(), hyp.popMethaneCells())); });
+			auto new_hyps = make_shared<Model::Hypotheses>();
+			for_each(cur_hyps->begin(), cur_hyps->end(), [&new_hyps](Model::Hypothesis & hyp){new_hyps->push_back(Model::Hypothesis(hyp.getLeaks(), hyp.getProbability(), hyp.popMethaneCells())); });
 			new_hyps = backward_.updateHypotheses(*new_hyps, map_, dect->detected_);
 			hyps_his.push_back(new_hyps);
 
-			if ((dect = std::next(dect, 1)) != dect_vec.end()) {
+			if ((dect = next(dect, 1)) != dect_vec.end()) {
 				auto wind = dect->wv_;
 				if (wind) {
 					//auto wv = *wind;
 					map_.updateWind(*wind);
 				}
 
-				io_service_.post(boost::bind(&AsynEvent::handle_Deduce, this, std::ref(*hyps_his.back())));
+				io_service_.post(boost::bind(&AsynEvent::handle_Deduce, this, ref(*hyps_his.back())));
 
 				dect_timer_.expires_from_now(boost::posix_time::milliseconds(dect->time_));
-				dect_timer_.async_wait(boost::bind(&AsynEvent::handle_Detection, this, std::ref(hyps_his), dect, std::ref(dect_vec), boost::asio::placeholders::error));
+				dect_timer_.async_wait(bind(&AsynEvent::handle_Detection, this, ref(hyps_his), dect, ref(dect_vec), boost::asio::placeholders::error));
 			}
 		}
 	}

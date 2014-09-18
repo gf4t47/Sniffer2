@@ -25,16 +25,16 @@ namespace ProtoMsg {
     unique_ptr<MyLog> ProtoMessageBuilder::lg_(new MyLog());
 
 	unordered_map<Model::CellTag, CellTag, Model::enum_hash> ProtoMessageBuilder::Tag2Msg = { 
-			{ Model::CellTag::Air, CellTag::Air },
-			{ Model::CellTag::Building, CellTag::Building },
-			{ Model::CellTag::Ground, CellTag::Ground }
+			{ Model::CellTag::Air, Air },
+			{ Model::CellTag::Building, Building },
+			{ Model::CellTag::Ground, Ground }
 	};
 
 	ProtoMessageBuilder::ProtoMessageBuilder(
-		std::pair<std::string, std::shared_ptr<std::vector<std::shared_ptr<Model::Hypotheses>>>> mtn_info,
-		std::pair<std::string, std::shared_ptr<std::vector<Model::Detection>>> dect_info,
-		std::pair<std::string, std::shared_ptr<std::vector<Model::Detection>>> can_info,
-		std::pair<std::string, std::shared_ptr<Model::Map3D>> map_info)
+		pair<string, shared_ptr<vector<shared_ptr<Model::Hypotheses>>>> mtn_info,
+		pair<string, shared_ptr<vector<Model::Detection>>> dect_info,
+		pair<string, shared_ptr<vector<Model::Detection>>> can_info,
+		pair<string, shared_ptr<Model::Map3D>> map_info)
 		:mtn_info_(mtn_info),
 		dect_info_(dect_info),
 		can_info_(can_info),

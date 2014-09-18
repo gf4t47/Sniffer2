@@ -38,7 +38,7 @@ namespace Forward {
         
 		if (cell.getMethane().getParitcles() > blur_concentration_threshold)
 		{
-			auto wv_per_iteration = cell.getWind().getCalcWind() * (1.0 / (double)getIterationPerSecond());
+			auto wv_per_iteration = cell.getWind().getCalcWind() * (1.0 / static_cast<double>(getIterationPerSecond()));
 			auto ideal_end_pair = map.calcPosition(cell.getCoordinate(), wv_per_iteration + cell.getMethane().getPotential());
 			auto endCell = calcEndcell(cell.getCoordinate(), get<0>(ideal_end_pair), map, true);
 			if (endCell) {

@@ -13,10 +13,10 @@ namespace DirectMsg {
 	unique_ptr<MyLog> DirectMessageBuilder::lg_(new MyLog());
     
 	DirectMessageBuilder::DirectMessageBuilder(
-		std::pair<std::string, std::shared_ptr<std::vector<std::shared_ptr<Model::Hypotheses>>>> mtn_info,
-		std::pair<std::string, std::shared_ptr<std::vector<Model::Detection>>> dect_info,
-		std::pair<std::string, std::shared_ptr<std::vector<Model::Detection>>> can_info,
-		std::pair<std::string, std::shared_ptr<Model::Map3D>> map_info
+		pair<string, shared_ptr<vector<shared_ptr<Model::Hypotheses>>>> mtn_info,
+		pair<string, shared_ptr<vector<Model::Detection>>> dect_info,
+		pair<string, shared_ptr<vector<Model::Detection>>> can_info,
+		pair<string, shared_ptr<Model::Map3D>> map_info
 		)
 	:mtn_info_(mtn_info),
 	dect_info_(dect_info),
@@ -46,7 +46,7 @@ namespace DirectMsg {
 		auto mtn_num = static_cast<int>(mtn_info_.second->size());
 		mtn_out.write(reinterpret_cast<char*>(&mtn_num), sizeof mtn_num);
 		BOOST_LOG_SEV(*lg_, severity_level::debug) << "mtn_num = " << mtn_num;
-		for_each(mtn_info_.second->begin(), mtn_info_.second->end(), [&mtn_out](std::shared_ptr<Model::Hypotheses> const & hyps){hyps->toBinary(mtn_out); });
+		for_each(mtn_info_.second->begin(), mtn_info_.second->end(), [&mtn_out](shared_ptr<Model::Hypotheses> const & hyps){hyps->toBinary(mtn_out); });
 		BOOST_LOG_SEV(*lg_, severity_level::info) << "Methane message is written into " << mtn_info_.first;
 	}
 }

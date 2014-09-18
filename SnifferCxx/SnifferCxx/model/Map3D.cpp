@@ -90,9 +90,9 @@ namespace Model {
         auto start_pos = getStartIndex();
 		auto boundary = getBoundary();
         
-        for (auto l = start_pos[0]; l < start_pos[0] + (coord_item_t)boundary[0]; l++) {
-            for (auto w = start_pos[1]; w < start_pos[1] + (coord_item_t)boundary[1]; w++) {
-                for (auto h = start_pos[2]; h < start_pos[2] + (coord_item_t)boundary[2]; h++) {
+        for (auto l = start_pos[0]; l < start_pos[0] + static_cast<coord_item_t>(boundary[0]); l++) {
+            for (auto w = start_pos[1]; w < start_pos[1] + static_cast<coord_item_t>(boundary[1]); w++) {
+                for (auto h = start_pos[2]; h < start_pos[2] + static_cast<coord_item_t>(boundary[2]); h++) {
                     Coordinate coord(l, w, h);
                     (*this)(coord).setCoordinate(coord);
 					(*this)(coord).setWindVector(wind_.get());
@@ -171,8 +171,8 @@ namespace Model {
 		auto start_pos = getStartIndex();
 		auto boundary = getBoundary();
 
-		bool in2D = start_pos[0] <= pos[0] && pos[0] < start_pos[0] + (coord_item_t)boundary[0] && start_pos[1] <= pos[1] && pos[1] < start_pos[1] + (coord_item_t)boundary[1];
-		bool inHeight = (start_pos[2] <= pos[2]) && (pos[2] < start_pos[2] + (coord_item_t)boundary[2]);
+		bool in2D = start_pos[0] <= pos[0] && pos[0] < start_pos[0] + static_cast<coord_item_t>(boundary[0]) && start_pos[1] <= pos[1] && pos[1] < start_pos[1] + static_cast<coord_item_t>(boundary[1]);
+		bool inHeight = (start_pos[2] <= pos[2]) && (pos[2] < start_pos[2] + static_cast<coord_item_t>(boundary[2]));
 		bool underHeight = pos[2] < start_pos[2];
 
 		if (in2D && underHeight)
@@ -270,17 +270,18 @@ namespace Model {
 			if (!nextPos_ret) { // next pos is out of boundary
 				return nullptr;
 			}
-			else if (indeterminate(nextPos_ret)) { //next pos is hit on ground
+
+			if (indeterminate(nextPos_ret)) { //next pos is hit on ground
 				return make_shared<Cell>(getCell(curPos));
 			}
-            else {//next pos is still inside the map
-                auto nextCell = getCell(nextPos);
-                if (!nextCell.isAirCell()) { //next pos is hit on building
-					return make_shared<Cell>(getCell(curPos));
-                }
-            }
-            
-            curPos = nextPos;
+			
+			//next pos is still inside the map
+			auto nextCell = getCell(nextPos);
+			if (!nextCell.isAirCell()) { //next pos is hit on building
+				return make_shared<Cell>(getCell(curPos));
+			}
+
+			curPos = nextPos;
 		}
 
 		return make_shared<Cell>(getCell(curPos));
@@ -293,7 +294,7 @@ namespace Model {
 		return index_origin + (real_coord - real_origin) / unit_;
 	}
 
-	void Map3D::setOrigin(const std::pair<Coordinate, WindVector> & origin) {
+	void Map3D::setOrigin(const pair<Coordinate, WindVector> & origin) {
 		origin_ = origin;
 	}
 
@@ -316,7 +317,7 @@ namespace Model {
 
 		auto num = static_cast<int>(num_elements());
 		fs.write(reinterpret_cast<char*>(&num), sizeof num);
-		boost::const_multi_array_ref<Cell, 1> map_ref(data(), boost::extents[num_elements()]);
+		const_multi_array_ref<Cell, 1> map_ref(data(), boost::extents[num_elements()]);
 		for_each(map_ref.begin(), map_ref.end(), [&fs](const Cell & cell){ cell.toBinary(fs, true); });
 
 		return fs;

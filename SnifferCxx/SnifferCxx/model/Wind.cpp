@@ -75,7 +75,7 @@ namespace Model {
 		return wind_ == oth.wind_ && potential_ == oth.potential_;
 	}
 
-	ostream& operator<<(std::ostream& os, const Wind& wind) {
+	ostream& operator<<(ostream& os, const Wind& wind) {
 		os << "{";
 		os << *wind.wind_;
 		os << " + ";
@@ -90,7 +90,7 @@ namespace Model {
 			wind_->toBinary(fs);
 			potential_.toBinary(fs);
 		} 
-		else if (boost::indeterminate(two_vector)) {
+		else if (indeterminate(two_vector)) {
 			getCalcWind().toBinary(fs);
 		}
 

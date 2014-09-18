@@ -25,7 +25,7 @@ namespace Model {
 
 	struct Detection {
 		int time_;
-		boost::optional<Model::WindVector> wv_;
+		boost::optional<WindVector> wv_;
 		std::vector<Candidate> detected_;
 
 		friend std::ostream& operator<<(std::ostream& os, const Detection & dect);
@@ -38,14 +38,14 @@ namespace Model {
 			distance_(0) {
 		}
 
-		AutoMovement(int time, Model::unit_t distance)
+		AutoMovement(int time, unit_t distance)
 			:time_(time),
 			distance_(distance) {
 		}
 
 		int time_;
 		double threshold_;
-		Model::unit_t distance_;
+		unit_t distance_;
 	};
 }
 

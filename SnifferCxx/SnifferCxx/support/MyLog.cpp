@@ -37,7 +37,7 @@ namespace Support {
 			keywords::format = "[%TimeStamp%]: %Message%"
 			);
 
-		logging::add_console_log(std::cout, boost::log::keywords::format = "[%TimeStamp%]: %Message%");
+		logging::add_console_log(std::cout, keywords::format = "[%TimeStamp%]: %Message%");
 
 		logging::core::get()->set_filter
 			(

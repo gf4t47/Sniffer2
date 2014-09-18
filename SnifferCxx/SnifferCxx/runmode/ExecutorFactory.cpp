@@ -20,19 +20,15 @@ namespace RunMode {
 		switch (run_type) {
 		case single:
 			return make_shared<Executor>(map, forward, backward);
-			break;
 
 		case asyn_event:
 			return make_shared<AsynEvent>(map, forward, backward);
-			break;
 
 		case multi_thread:
 			return make_shared<MultiThread>(map, forward, backward);
-			break;
 
 		default:
 			return nullptr;
-			break;
 		}
 	}
 }

@@ -38,14 +38,14 @@ namespace ProtoMsg {
 			std::pair<std::string, std::shared_ptr<Model::Map3D>> map_info
 			);
 
-        static std::shared_ptr<ProtoMsg::Hypotheses_history> buildMessage(const std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, size_t ideal_cells, bool only_detection = false);
-        static std::shared_ptr<ProtoMsg::Detections> buildMessage(const std::vector<Model::Detection> & detections);
-        static std::shared_ptr<ProtoMsg::Map> buildMessage(const Model::Map3D & map);
+        static std::shared_ptr<Hypotheses_history> buildMessage(const std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, size_t ideal_cells, bool only_detection = false);
+        static std::shared_ptr<Detections> buildMessage(const std::vector<Model::Detection> & detections);
+        static std::shared_ptr<Map> buildMessage(const Model::Map3D & map);
 		static std::unordered_map<Model::CellTag, CellTag, Model::enum_hash> Tag2Msg;
 		void WriteMsg(int ideal_cells, bool detection_only);
 
 	private:
-		static bool buildCellMessage(const Model::Cell & cell, ProtoMsg::Cell * msg_cell);
+		static bool buildCellMessage(const Model::Cell & cell, Cell * msg_cell);
 
 	private:
 		std::pair<std::string, std::shared_ptr<std::vector<std::shared_ptr<Model::Hypotheses>>>> mtn_info_;

@@ -28,10 +28,10 @@ namespace Model {
 	{
 		template <typename T>
 		inline
-			typename std::enable_if<std::is_enum<T>::value, std::size_t>::type
+			typename std::enable_if<std::is_enum<T>::value, size_t>::type
 			operator ()(T const value) const
 		{
-			return static_cast<std::size_t>(value);
+			return static_cast<size_t>(value);
 		}
 	};
 
@@ -47,9 +47,9 @@ namespace Model {
 
 		bool setMethane(const Methane & mtn);
 		bool setCellTag(const CellTag & tag);
-        bool setWindVector(const WindVector * wind);
-        bool setPotential(const WindVector & potential);
-        bool setCoordinate(const Coordinate & coord);
+		bool setWindVector(const WindVector * wind);
+		bool setPotential(const WindVector & potential);
+		bool setCoordinate(const Coordinate & coord);
 
 		bool isAirCell() const;
 		bool hasMethane() const;
@@ -57,24 +57,24 @@ namespace Model {
 		bool operator== (const Cell & oth) const;
 		friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
 		std::ofstream& toBinary(std::ofstream& fs, boost::tribool include_wind) const;
-        
-        friend class boost::serialization::access;
-        template<class Archive>
-        void serialize(Archive & ar, const unsigned int version)
-        {
-            ar & coord_;
-            ar & tag_;
-            ar & mtn_;
-            ar & wind_;
-        }
+
+		friend class boost::serialization::access;
+		template<class Archive>
+		void serialize(Archive & ar, const unsigned int version)
+		{
+			ar & coord_;
+			ar & tag_;
+			ar & mtn_;
+			ar & wind_;
+		}
 
 	public:
 		static std::unordered_map<CellTag, std::string, enum_hash> TagString;
 
 	private:
 		Coordinate coord_;
-        CellTag tag_;
-        Methane mtn_;
+		CellTag tag_;
+		Methane mtn_;
 		Wind wind_;
 	};
 }

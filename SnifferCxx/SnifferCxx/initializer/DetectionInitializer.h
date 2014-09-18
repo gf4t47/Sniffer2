@@ -38,7 +38,6 @@ namespace Initializer {
 		std::shared_ptr<std::vector<Model::Detection>> getCandidates() const;
         std::shared_ptr<Model::AutoMovement> getAutoMovementInfo() const;
 		RunMode::execute_mode getExecutorMode() const;
-        bool beMultiplethread() const;
 
 		static Model::WindVector transDirectionSpeed2Vector(int wind_direct, double wind_speed);
 		static Model::WindVector transLonLat2Coordinate(double lat, double lon);

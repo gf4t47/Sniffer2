@@ -127,7 +127,7 @@ namespace Initializer {
         return this;
     }
     
-	MapBuilder * MapBuilder::setBuildings(const std::vector<stBuilding> & buildings) {
+	MapBuilder * MapBuilder::setBuildings(const vector<stBuilding> & buildings) {
 		buildings_ = buildings;
 		return this;
 	}

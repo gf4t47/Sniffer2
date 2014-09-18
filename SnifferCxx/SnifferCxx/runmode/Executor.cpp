@@ -20,7 +20,7 @@ namespace RunMode {
 	Executor::~Executor() {
 	}
 
-	std::shared_ptr<Model::Hypotheses> Executor::run_one_dect(Model::Hypotheses & hyps, const Model::Detection & dect) const{
+	shared_ptr<Model::Hypotheses> Executor::run_one_dect(Model::Hypotheses & hyps, const Model::Detection & dect) const{
 		if (dect.wv_) {
 			map_.updateWind(*dect.wv_);
 		}
@@ -28,7 +28,7 @@ namespace RunMode {
 		return backward_.updateHypotheses(*forward_.UpdateMethane(hyps, map_, dect.time_), map_, dect.detected_);
 	}
 
-	std::shared_ptr<Model::Hypotheses> Executor::init2steadystage(const Model::Hypotheses & hyps, const std::vector<Model::Detection> & init) const {
+	shared_ptr<Model::Hypotheses> Executor::init2steadystage(const Model::Hypotheses & hyps, const vector<Model::Detection> & init) const {
 		auto curHyps = make_shared<Model::Hypotheses>(hyps);
 
 		for (auto const & it : init) {
@@ -42,7 +42,7 @@ namespace RunMode {
 		return curHyps;
 	}
 
-	void Executor::run(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, const std::vector<Model::Detection> & dect_vec, const std::shared_ptr<std::vector<Model::Detection>> init) const {
+	void Executor::run(vector<shared_ptr<Model::Hypotheses>> & hyps_his, const vector<Model::Detection> & dect_vec, const shared_ptr<vector<Model::Detection>> init) const {
 		if (init) {
 			hyps_his.push_back(init2steadystage(*hyps_his.back(), *init));
 		}
@@ -52,7 +52,7 @@ namespace RunMode {
 		}
 	}
 
-	void Executor::autoDrive(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, std::vector<Model::Detection> & dect_vec, const Model::AutoMovement & auto_info) const {
+	void Executor::autoDrive(vector<shared_ptr<Model::Hypotheses>> & hyps_his, vector<Model::Detection> & dect_vec, const Model::AutoMovement & auto_info) const {
 		using namespace Backward;
 		using namespace Model;
 
@@ -70,7 +70,7 @@ namespace RunMode {
 		}
 	}
 
-	Model::Detection Executor::nextStep(std::vector<std::shared_ptr<Model::Hypotheses>> & hyps_his, std::vector<Model::Detection> & dect_vec, const Model::AutoMovement & auto_info) const {
+	Model::Detection Executor::nextStep(vector<shared_ptr<Model::Hypotheses>> & hyps_his, vector<Model::Detection> & dect_vec, const Model::AutoMovement & auto_info) const {
 		using namespace Backward;
 		using namespace Model;
 

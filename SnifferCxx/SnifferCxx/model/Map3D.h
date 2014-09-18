@@ -33,8 +33,8 @@ namespace Model{
 		boost::tribool insideMap(const Coordinate & pos) const;
 		const Cell & getCell(const Coordinate & pos) const;
 		bool updateCell(const Cell & cell);
-        const map_t::size_type * getBoundary() const;
-		const map_t::index * getStartIndex() const;
+        const size_type * getBoundary() const;
+		const index * getStartIndex() const;
 
 
 		std::tuple<Coordinate, WindVector> calcPosition(const Coordinate & pos, const WindVector & wv) const;

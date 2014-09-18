@@ -38,7 +38,7 @@ namespace Forward {
 	// Parameter: const Map3D & map
 	//************************************
 	shared_ptr<pos_conc_t> UpdateByCell::calcGaussianEnds(const Cell & start_cell, const Map3D & map) const {
-		auto wv_per_iteration = start_cell.getWind().getCalcWind() * (1.0 / (double)getIterationPerSecond());
+		auto wv_per_iteration = start_cell.getWind().getCalcWind() * (1.0 / static_cast<double>(getIterationPerSecond()));
 		auto winds = Math::Gaussian::RandomWindVectors(wv_per_iteration, getKernelRange() * map.getUnit(), ceil(start_cell.getMethane().getParitcles()));
 
 		auto particle_per_wind = 1;
@@ -126,7 +126,7 @@ namespace Forward {
 	// Parameter: const Model::Cells & cells
 	// Parameter: const Model::Map3D & map
 	//************************************
-	shared_ptr<Cells> UpdateByCell::calcEnds(const Model::Cells & cells, const Model::Map3D & map) const {
+	shared_ptr<Cells> UpdateByCell::calcEnds(const Cells & cells, const Map3D & map) const {
 		auto ret_cells = make_shared<Cells>();
 		for (auto entry : cells) {
 			auto new_cells = calcEnds(entry.second, map);

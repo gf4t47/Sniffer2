@@ -19,7 +19,7 @@ namespace Model {
 	}
 
 	const Hypothesis & Hypotheses::getMaxProbHyp() {
-		auto max = std::max_element(this->begin(), this->end(),
+		auto max = max_element(this->begin(), this->end(),
 			[](const Hypothesis & left, const Hypothesis & right) {
 			if (left.getProbability() < right.getProbability()) {
 				return true;

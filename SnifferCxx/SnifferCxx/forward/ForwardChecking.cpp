@@ -102,7 +102,7 @@ namespace Forward {
 	// Parameter: const Model::Map3D & map
 	// Parameter: int time_count
 	//************************************
-	std::shared_ptr<Model::Hypotheses> ForwardChecking::initHypotheses(Model::Hypotheses & hyps, const Model::Map3D & map, int time_count) const {
+	shared_ptr<Hypotheses> ForwardChecking::initHypotheses(Hypotheses & hyps, const Map3D & map, int time_count) const {
 		auto ret_hyps = make_shared<Hypotheses>();
 
 		for (auto & hyp : hyps) {

@@ -48,12 +48,12 @@ namespace Model {
 
 	struct CoordHasher
 	{
-		std::size_t operator()(const Coordinate & key) const
+		size_t operator()(const Coordinate & key) const
 		{
 			using boost::hash_value;
 			using boost::hash_combine;
 
-			std::size_t seed = 0;
+			size_t seed = 0;
 
 			hash_combine(seed, hash_value(key[0]));
 			hash_combine(seed, hash_value(key[1]));

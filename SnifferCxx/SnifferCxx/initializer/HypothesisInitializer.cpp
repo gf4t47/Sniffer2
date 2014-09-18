@@ -25,11 +25,11 @@ namespace Initializer {
 	using namespace Backward;
 	using namespace Forward;
     
-    unordered_map<string, function<shared_ptr<ForwardChecking>(Forward::range_t, int it_per_sec)>> HypothesisInitializer::String2Forward =
+    unordered_map<string, function<shared_ptr<ForwardChecking>(range_t, int it_per_sec)>> HypothesisInitializer::String2Forward =
     {
-		{ "byCell", [](Forward::range_t range, int iteration_per_sec){return make_shared<UpdateByCell>(range, iteration_per_sec); } },
-		{ "byBlur", [](Forward::range_t range, int iteration_per_sec){return make_shared<UpdateByConvolution>(range, iteration_per_sec); } },
-		{ "byParticle", [](Forward::range_t range, int iteration_per_sec){return nullptr; } }
+		{ "byCell", [](range_t range, int iteration_per_sec){return make_shared<UpdateByCell>(range, iteration_per_sec); } },
+		{ "byBlur", [](range_t range, int iteration_per_sec){return make_shared<UpdateByConvolution>(range, iteration_per_sec); } },
+		{ "byParticle", [](range_t range, int iteration_per_sec){return nullptr; } }
     };
     
     HypothesisInitializer::HypothesisInitializer(string cfg_file)
@@ -104,7 +104,7 @@ namespace Initializer {
             ideal_cells_ = *ideal_cells_node;
         }
         else {
-			ideal_cells_ = std::numeric_limits<ideal_t>::max();
+			ideal_cells_ = numeric_limits<ideal_t>::max();
         }
 
 		auto detection_only_node = pt.get_optional<bool>(strDetectionOnly);
@@ -158,7 +158,7 @@ namespace Initializer {
             }
             
             for (auto leak_vec : all_hypothesis_leaks) {
-                Hypothesis hyp(leak_vec, 1.0 / (double)all_hypothesis_leaks.size());
+                Hypothesis hyp(leak_vec, 1.0 / static_cast<double>(all_hypothesis_leaks.size()));
                 hyps_->push_back(hyp);
             }
 

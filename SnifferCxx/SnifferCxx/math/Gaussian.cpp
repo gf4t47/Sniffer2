@@ -16,7 +16,7 @@ namespace Math {
     using namespace std;
     using namespace Model;
     
-    default_random_engine generator(std::chrono::system_clock::now().time_since_epoch().count());
+    default_random_engine generator(chrono::system_clock::now().time_since_epoch().count());
 //    random_device generator;
     
     //************************************

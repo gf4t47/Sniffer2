@@ -168,9 +168,9 @@ namespace Initializer {
 		double a = 6378137;          // equatorial radius
 		double eccSqrd = 0.00669438;       // square of eccentricity
 		double latRad = lat*PI / 180.0;
-		double lonTmp = (lon + 180) - (int)((lon + 180) / 360) * 360 - 180; // -180.0 .. 179.9; Ensure lon between -180.0 & 179.9
+		double lonTmp = (lon + 180) - static_cast<int>((lon + 180) / 360) * 360 - 180; // -180.0 .. 179.9; Ensure lon between -180.0 & 179.9
 		double lonRad = lonTmp*PI / 180.0;
-		int zoneNum = (int)((lonTmp + 180) / 6) + 1;
+		int zoneNum = static_cast<int>((lonTmp + 180) / 6) + 1;
 
 
 		if (lat >= 56.0 && lat < 64.0 && lonTmp >= 3.0 && lonTmp < 12.0)
@@ -200,11 +200,11 @@ namespace Initializer {
 			+ (15 * eccSqrd*eccSqrd / 256 + 45 * eccSqrd*eccSqrd*eccSqrd / 1024)*sin(4 * latRad)
 			- (35 * eccSqrd*eccSqrd*eccSqrd / 3072)*sin(6 * latRad));
 
-		auto easting = (double)(k0*N*(A + (1 - T + C)*A*A*A / 6
-			+ (5 - 18 * T + T*T + 72 * C - 58 * eccPrimeSqrd)*A*A*A*A*A / 120)
+		auto easting = static_cast<double>(k0*N*(A + (1 - T + C)*A*A*A / 6
+				+ (5 - 18 * T + T*T + 72 * C - 58 * eccPrimeSqrd)*A*A*A*A*A / 120)
 			+ 500000.0);
 
-		auto northing = (double)(k0*(M + N*tan(latRad)*(A*A / 2 + (5 - T + 9 * C + 4 * C*C)*A*A*A*A / 24
+		auto northing = static_cast<double>(k0*(M + N*tan(latRad)*(A*A / 2 + (5 - T + 9 * C + 4 * C*C)*A*A*A*A / 24
 			+ (61 - 58 * T + T*T + 600 * C - 330 * eccPrimeSqrd)*A*A*A*A*A*A / 720)));
 		if (lat < 0) {
 			northing += 10000000.0; //10000000 meter offset for southern hemisphere
@@ -241,7 +241,7 @@ namespace Initializer {
 	}
 
 	void DetectionInitializer::transStringTable2Struct(const vector<vector<string>> & strTable){
-		const int init_iterations = 75;
+		const int init_iterations = 100;
 		using boost::lexical_cast;
 
 		steady_stage_initializer_ = make_shared<vector<Detection>>();

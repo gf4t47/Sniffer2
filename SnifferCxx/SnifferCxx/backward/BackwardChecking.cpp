@@ -127,13 +127,11 @@ namespace Backward {
         for (auto const & hyp : *ret_hyps) {
             double likeHood = 1.0;
 
-			//BOOST_LOG_SEV(*lg_, severity_level::debug) << "hypothesis" << count << " is updating: ";
             for (auto detection : detections) {
                 if (map.insideMap(detection.location_)) {
 					likeHood *= calcLikehood(hyp, detection.location_, Methane::transConcentration2Particle(detection.concentration_), map);
                 }
             }
-			//BOOST_LOG_SEV(*lg_, severity_level::debug) << "hypothesis" << count << " is finished.";
 
             hyps_probability.push_back(hyp.getProbability() * likeHood);
 
