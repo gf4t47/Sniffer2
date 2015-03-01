@@ -13,3 +13,4 @@ C++: core computation part
 python: visualization
 
 ##Introduction
+[PPT](https://github.com/gf4t47/Sniffer2/blob/master/Adaptive%20Methane%20Detection.pdf)
