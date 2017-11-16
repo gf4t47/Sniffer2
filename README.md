@@ -11,4 +11,4 @@ To develop an automated system that guides the robot or person carrying the snif
 ######python: visualization
 
 ##Introduction
-[a relative link](./Adaptive Methane Detection.pdf)
+[a relative link](./Adaptive%20Methane%20Detection.pdf)
